@@ -1,4 +1,4 @@
-# THOMSSEN
+# THOMSEN
 
 ### Building powerful software. Pushing hardware beyond its limits.
 
@@ -59,6 +59,3 @@ Every project is built with one objective:
 * **Website:** [thomsenperformance.tech](https://thomsenperformance.tech)
 * **GitHub:** [github.com/Thomssen](https://github.com/Thomssen)
 
----
-
-<sub>Built in Denmark. Engineered for performance.</sub>
