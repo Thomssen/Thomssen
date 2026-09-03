@@ -1,61 +1,25 @@
 # THOMSEN
 
-### Building powerful software. Pushing hardware beyond its limits.
+### High-performance software. Built for speed, control and results.
 
-I’m a developer focused on **Windows applications, PC performance, gaming optimization and modern web development**.
-
-I don’t build software to blend in.
-I build it to be **fast, precise and impossible to ignore**.
-
----
+Developer focused on **Windows applications, PC optimization and modern software**.
 
 ## THOMSEN PERFORMANCE
 
-**Thomsen Performance** is a PC optimization platform built for gamers who demand more from their hardware.
+A PC optimization platform built to create a faster and smoother gaming experience.
 
-* Advanced Windows optimization
-* Gaming performance improvements
-* Hardware detection and monitoring
-* Benchmarking and system analysis
-* Clean, powerful Windows applications
-* Dark and modern user interfaces
-
-> No unnecessary features. No empty promises. Just performance.
-
----
-
-## CURRENT MISSION
-
-```text
-[+] Building powerful Windows tools
-[+] Developing Thomsen Performance
-[+] Exploring hardware optimization
-[+] Improving application security
-[+] Creating faster and cleaner systems
-```
-
----
+* Windows and gaming optimization
+* Hardware monitoring and system analysis
+* Performance benchmarking
+* Safe backups and rollback
+* Clean, modern Windows interface
 
 ## TECHNOLOGY
 
-`Windows` `C#` `Python` `JavaScript` `HTML` `CSS` `Node.js` `Git`
+`C#` `Python` `JavaScript` `HTML` `CSS` `Node.js`
 
 ---
 
-## THE STANDARD
+### PERFORMANCE // CONTROL // PRECISION
 
-```text
-PERFORMANCE  //  CONTROL  //  PRECISION
-```
-
-Every project is built with one objective:
-
-### Push the system further.
-
----
-
-## CONTACT
-
-* **Website:** [thomsenperformance.tech](https://thomsenperformance.tech)
-* **GitHub:** [github.com/Thomssen](https://github.com/Thomssen)
-
+[Visit Thomsen Performance](https://thomsenperformance.tech)
