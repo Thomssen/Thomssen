@@ -1,25 +1,12 @@
 # THOMSEN
 
-### High-performance software. Built for speed, control and results.
+Developer creating practical Windows tools and modern software.
 
-Developer focused on **Windows applications, PC optimization and modern software**.
+Focused on performance, privacy and clean design.
 
-## THOMSEN PERFORMANCE
+## Skills
 
-A PC optimization platform built to create a faster and smoother gaming experience.
-
-* Windows and gaming optimization
-* Hardware monitoring and system analysis
-* Performance benchmarking
-* Safe backups and rollback
-* Clean, modern Windows interface
-
-## TECHNOLOGY
-
-`C#` `Python` `JavaScript` `HTML` `CSS` `Node.js`
-
----
-
-### PERFORMANCE // CONTROL // PRECISION
-
-[Visit Thomsen Performance](https://thomsenperformance.tech)
+- Windows applications
+- Web development
+- UI design
+- Performance optimization
