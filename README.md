@@ -9,4 +9,3 @@ Focused on performance, privacy and clean design.
 - Windows applications
 - Web development
 - UI design
-- Performance optimization
