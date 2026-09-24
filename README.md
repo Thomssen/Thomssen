@@ -17,8 +17,8 @@ Building practical software with a focus on performance, privacy and clean desig
 
 ### Principles
 
-```text
+``text
 Clean code. Strong performance. No unnecessary noise.
-```
+``
 
 ---
