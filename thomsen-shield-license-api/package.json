@@ -1,0 +1,23 @@
+{
+  "name": "thomsen-shield-license-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "License activation API for Thomsen Shield - Stripe checkout/webhook, Supabase-backed licenses, signed activation tokens.",
+  "scripts": {
+    "dev": "vercel dev",
+    "generate-keypair": "tsx scripts/generate-signing-keypair.ts",
+    "generate-admin-token": "tsx scripts/generate-admin-token.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "stripe": "^17.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@vercel/node": "^3.2.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  }
+}

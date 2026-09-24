@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Thomsen Shield - Admin</title>
+<style>
+  :root {
+    --bg: #050607; --surface: #0d0f11; --surface-2: #131619;
+    --text: #f2f3f4; --text-secondary: #b4b9be; --text-muted: #7c838a; --text-faint: #565c62;
+    --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.14);
+    --btn-primary-bg: #f3f4f5; --btn-primary-text: #0a0b0c;
+    --good: #6f9e8f; --good-soft: rgba(111,158,143,0.14);
+    --bad: #e5595a; --bad-soft: rgba(229,89,90,0.14);
+    --warn: #d8b24c; --warn-soft: rgba(216,178,76,0.14);
+    --radius: 14px; --radius-sm: 9px; --radius-pill: 999px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text-secondary); font-family: -apple-system, "Segoe UI", Inter, sans-serif; font-size: 13.5px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { color: var(--text); font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 4px; }
+  .sub { color: var(--text-muted); font-size: 13px; margin: 0 0 28px; }
+  .row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  input { height: 36px; padding-inline: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); color: var(--text); font-size: 13px; flex: 1; min-width: 180px; }
+  input::placeholder { color: var(--text-faint); }
+  button { height: 36px; padding-inline: 16px; border-radius: var(--radius-pill); border: 1px solid transparent; font-size: 12.5px; font-weight: 600; cursor: pointer; background: var(--btn-primary-bg); color: var(--btn-primary-text); }
+  button.secondary { background: rgba(255,255,255,0.05); color: var(--text); border-color: var(--border); }
+  button.danger { background: transparent; color: var(--bad); border-color: var(--border); }
+  button:disabled { opacity: 0.5; cursor: default; }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  th { text-align: left; font-size: 10.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); padding: 10px 12px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
+  td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--text); }
+  .badge { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding-inline: 8px; border-radius: var(--radius-pill); font-size: 10.5px; font-weight: 600; }
+  .badge.active { background: var(--good-soft); color: var(--good); }
+  .badge.disabled { background: var(--bad-soft); color: var(--bad); }
+  .badge.refunded { background: var(--warn-soft); color: var(--warn); }
+  .muted { color: var(--text-faint); font-size: 11.5px; }
+  .actions-cell { display: flex; gap: 6px; }
+  .gate { max-width: 360px; margin: 120px auto; text-align: center; }
+  .gate h1 { margin-bottom: 16px; }
+  .status { margin-top: 12px; font-size: 12px; color: var(--text-faint); }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function () {
+  var TOKEN_KEY = 'thomsen-shield-admin-token';
+  var app = document.getElementById('app');
+  var token = sessionStorage.getItem(TOKEN_KEY) || '';
+
+  function api(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({ 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }, opts.headers || {});
+    return fetch(path, opts).then(function (r) {
+      if (r.status === 401) { sessionStorage.removeItem(TOKEN_KEY); token = ''; render(); throw new Error('Unauthorized'); }
+      return r.json().then(function (body) {
+        if (!r.ok) throw new Error(body.error || 'Request failed');
+        return body;
+      });
+    });
+  }
+
+  function renderGate() {
+    app.innerHTML =
+      '<div class="gate"><h1>Thomsen Shield Admin</h1>' +
+      '<input id="token-input" type="password" placeholder="Admin token" style="width:100%;text-align:center" />' +
+      '<div style="margin-top:12px"><button id="enter-btn">Enter</button></div></div>';
+    document.getElementById('enter-btn').onclick = function () {
+      token = document.getElementById('token-input').value.trim();
+      if (!token) return;
+      sessionStorage.setItem(TOKEN_KEY, token);
+      render();
+    };
+  }
+
+  function fmt(d) { return d ? new Date(d).toLocaleString() : '—'; }
+
+  function renderTable(licenses) {
+    var rows = licenses.map(function (l) {
+      var device = l.device_id ? '<code>' + l.device_id.slice(0, 12) + '…</code>' : '<span class="muted">not activated</span>';
+      var resets = l.device_reset_count > 0 ? '<div class="muted">reset ' + l.device_reset_count + 'x</div>' : '';
+      return '<tr data-id="' + l.id + '">' +
+        '<td><code>' + l.license_key + '</code></td>' +
+        '<td>' + l.email + '</td>' +
+        '<td><span class="badge ' + l.status + '">' + l.status + '</span></td>' +
+        '<td>' + device + resets + '</td>' +
+        '<td class="muted">' + fmt(l.created_at) + '</td>' +
+        '<td class="muted">' + fmt(l.activated_at) + '</td>' +
+        '<td class="actions-cell">' +
+          (l.status === 'active'
+            ? '<button class="danger disable-btn" data-id="' + l.id + '">Disable</button>'
+            : '<button class="secondary enable-btn" data-id="' + l.id + '">Re-enable</button>') +
+          '<button class="secondary reset-btn" data-id="' + l.id + '"' + (l.device_id ? '' : ' disabled') + '>Reset Device</button>' +
+        '</td>' +
+      '</tr>';
+    }).join('');
+
+    return '<table><thead><tr><th>License Key</th><th>Email</th><th>Status</th><th>Device</th><th>Created</th><th>Activated</th><th></th></tr></thead>' +
+      '<tbody>' + (rows || '<tr><td colspan="7" class="muted" style="padding:20px;text-align:center">No licenses found.</td></tr>') + '</tbody></table>';
+  }
+
+  function load(q) {
+    return api('/api/admin/licenses?q=' + encodeURIComponent(q || '')).then(function (body) {
+      document.getElementById('table-slot').innerHTML = renderTable(body.licenses);
+      bindRowActions(q);
+    });
+  }
+
+  function bindRowActions(q) {
+    document.querySelectorAll('.disable-btn').forEach(function (b) {
+      b.onclick = function () { api('/api/admin/disable', { method: 'POST', body: JSON.stringify({ id: b.dataset.id }) }).then(function () { load(q); }); };
+    });
+    document.querySelectorAll('.enable-btn').forEach(function (b) {
+      b.onclick = function () { api('/api/admin/disable', { method: 'POST', body: JSON.stringify({ id: b.dataset.id, reenable: true }) }).then(function () { load(q); }); };
+    });
+    document.querySelectorAll('.reset-btn').forEach(function (b) {
+      b.onclick = function () {
+        if (!confirm('Reset this license’s device binding? The customer will be able to activate it on a new PC.')) return;
+        api('/api/admin/reset-device', { method: 'POST', body: JSON.stringify({ id: b.dataset.id }) }).then(function () { load(q); });
+      };
+    });
+  }
+
+  function renderApp() {
+    app.innerHTML =
+      '<div class="wrap"><h1>Licenses</h1><p class="sub">thomsen-shield · search by email or license key</p>' +
+      '<div class="row"><input id="search" placeholder="name@example.com or TSHIELD-…" /><button id="search-btn">Search</button>' +
+      '<button class="secondary" id="signout-btn">Sign out</button></div>' +
+      '<div id="table-slot"></div></div>';
+
+    document.getElementById('signout-btn').onclick = function () { sessionStorage.removeItem(TOKEN_KEY); token = ''; render(); };
+    document.getElementById('search-btn').onclick = function () { load(document.getElementById('search').value); };
+    document.getElementById('search').addEventListener('keydown', function (e) { if (e.key === 'Enter') load(e.target.value); });
+    load('');
+  }
+
+  function render() {
+    if (!token) { renderGate(); return; }
+    renderApp();
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

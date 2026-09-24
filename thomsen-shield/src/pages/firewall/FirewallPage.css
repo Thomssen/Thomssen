@@ -1,0 +1,37 @@
+.fw__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.fw__status > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fw__status-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.fw__profiles {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fw__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.fw__remove:hover {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
