@@ -38,6 +38,13 @@ create index if not exists licenses_email_idx on licenses (email);
 create index if not exists licenses_status_idx on licenses (status);
 create index if not exists licenses_license_key_idx on licenses (license_key);
 
+-- Refund idempotency for api/stripe/webhook.ts's charge.refunded handler,
+-- which looks a license up by this column - a plain index would let two
+-- rows carry the same payment_intent and make that lookup ambiguous.
+-- Partial (excludes null) since a still-unresolved/failed payment can
+-- reasonably leave this unset on more than one row.
+create unique index if not exists licenses_stripe_payment_intent_id_idx on licenses (stripe_payment_intent_id) where stripe_payment_intent_id is not null;
+
 -- Row-level security is intentionally left OFF: every read/write in this
 -- project goes through the service-role key from server-side Vercel
 -- functions only (see lib/supabase.ts) - there is no anon/browser client

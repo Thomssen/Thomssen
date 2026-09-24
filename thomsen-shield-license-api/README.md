@@ -60,6 +60,30 @@ POST /api/license/activate --> Supabase check --> signed token back
   14-day window runs out. That's the offline grace period - there's no
   separate timer or config for it, it falls out of how the token expiry
   works.
+- Once a token is issued, only an *explicit* rejection from `/validate`
+  (403 disabled/refunded, 409 device mismatch) clears it early - a
+  disabled or refunded license stops working client-side on its very
+  next background check-in (every few hours, and once ~15s after
+  startup), not after waiting out the 14-day grace period.
+
+## Refunds
+
+Issuing a Stripe refund (full amount, not a partial one) automatically
+revokes the license - `api/stripe/webhook.ts` also listens for
+`charge.refunded` alongside `checkout.session.completed`, looks the
+license up by the `stripe_payment_intent_id` already stored on it from
+the original purchase, and sets `status = 'refunded'`. Nothing to do
+by hand for the common case.
+
+- A *partial* refund fires the same Stripe event but is deliberately
+  ignored - a goodwill partial refund isn't meant to pull a lifetime
+  license. Refund the full amount if that's the intent.
+- Idempotent by construction: the update is a plain status change with
+  no other side effect, so Stripe redelivering the same event (its
+  webhooks are at-least-once) just reapplies the same status - never a
+  second license, never a duplicate log of the same refund.
+- The desktop app picks this up the same way it picks up a manual
+  "Disable" from `/admin` - see the bullet above.
 
 ## Setup
 
@@ -82,8 +106,13 @@ per mode, a dashboard step this sidesteps instead of asking you to get
 right twice).
 
 1. Developers -> Webhooks -> Add endpoint, pointing at
-   `https://api.thomssen.dev/api/stripe/webhook`, subscribed to
-   `checkout.session.completed`. Copy the signing secret (`whsec_...`).
+   `https://api.thomssen.dev/api/stripe/webhook`, subscribed to exactly
+   these two events:
+   - `checkout.session.completed` - creates the license.
+   - `charge.refunded` - marks it refunded (see **Refunds** below). One
+     endpoint, one webhook secret, for both - `api/stripe/webhook.ts`
+     branches on the event type itself.
+   Copy the signing secret (`whsec_...`).
 2. Copy your secret key (`sk_...`) from Developers -> API keys.
 
 Use test-mode keys everywhere until you're ready to go live - see
@@ -163,6 +192,12 @@ can run the full flow without spending real money:
    Supabase.
 8. Use `/admin` (with your `ADMIN_API_TOKEN`) to reset the device, then
    confirm activation succeeds again from a "different" device id.
+9. Refund that same test payment - Stripe Dashboard (test mode) -> the
+   payment -> **Refund** (full amount), or `stripe refunds create
+   --charge=<the charge id>` via the CLI. Confirm: `charge.refunded`
+   shows up in the `stripe listen` terminal, the license's `status` flips
+   to `refunded` in Supabase, and `/api/license/validate` for that
+   license now returns 403.
 
 Keep production and development entirely separate: a different Supabase
 project (or at least willingness to wipe test rows), Stripe test-mode
