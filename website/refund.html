@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#050607" />
+<meta name="description" content="Refund policy and refund request form." />
+<title>Refund Policy - Thomssen</title>
+<style>
+  /* ============================================================
+     Design tokens - matches the palette/radii/type already used
+     across thomssen.dev and the Thomsen apps (near-black surfaces,
+     white/grey text, hairline borders, no accent colour except the
+     existing muted status greens/reds). Safe to delete this block
+     if your site already declares these on :root globally.
+     ============================================================ */
+  :root {
+    --bg: #050607;
+    --surface: #0d0f11;
+    --surface-2: #131619;
+    --text: #f2f3f4;
+    --text-secondary: #b4b9be;
+    --text-muted: #7c838a;
+    --text-faint: #565c62;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --field-bg: rgba(255, 255, 255, 0.03);
+    --field-bg-focus: rgba(255, 255, 255, 0.05);
+    --field-border: rgba(255, 255, 255, 0.12);
+    --btn-primary-bg: #f3f4f5;
+    --btn-primary-bg-hover: #ffffff;
+    --btn-primary-text: #0a0b0c;
+    --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+    --btn-secondary-bg-hover: rgba(255, 255, 255, 0.09);
+    --good: #6f9e8f;
+    --good-soft: rgba(111, 158, 143, 0.14);
+    --bad: #e5595a;
+    --bad-soft: rgba(229, 89, 90, 0.14);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 22px;
+    --radius-pill: 999px;
+    --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.35), 0 14px 44px rgba(0, 0, 0, 0.3);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --dur: 200ms;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 40px 20px 100px;
+  }
+  a { color: var(--text); }
+
+  .page { max-width: 760px; margin: 0 auto; }
+
+  .topbar { margin-bottom: 28px; }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--dur) var(--ease-out);
+  }
+  .back:hover { color: var(--text); }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 24px;
+    padding-inline: 10px;
+    border-radius: var(--radius-pill);
+    background: var(--good-soft);
+    color: var(--good);
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+
+  h1 { color: var(--text); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .updated { font-size: 12.5px; color: var(--text-muted); margin: 0 0 24px; }
+  .lead { font-size: 15.5px; color: var(--text-secondary); max-width: 60ch; margin: 0 0 40px; }
+
+  h2 { color: var(--text); font-size: 18px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
+  h3 { color: var(--text); font-size: 14.5px; font-weight: 600; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  section { margin: 0 0 44px; }
+  p, li { margin: 0 0 12px; }
+  ul, ol { padding-left: 20px; margin: 0; }
+  li:last-child { margin-bottom: 0; }
+
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .dot-good { background: var(--good); }
+  .dot-bad { background: var(--bad); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .card ul { font-size: 14px; }
+  .card-bad h3 { color: var(--text); }
+
+  .info-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; font-size: 14px; }
+  .info-list ul, .info-list ol { margin: 0; }
+
+  .return-cta {
+    display: flex;
+    justify-content: center;
+    margin: 48px 0;
+    padding: 36px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding-inline: 26px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
+  .btn-primary:hover { background: var(--btn-primary-bg-hover); }
+  .btn-secondary { background: var(--btn-secondary-bg); color: var(--text); border-color: var(--border); }
+  .btn-secondary:hover { background: var(--btn-secondary-bg-hover); border-color: var(--border-strong); }
+  .btn-block { width: 100%; }
+
+  /* Request-a-refund card: the same floating, glassy treatment as a
+     cookie-consent banner - translucent surface + blur + soft shadow. */
+  .form-card {
+    background: rgba(13, 15, 17, 0.72);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+  }
+  .form-card .form-sub { font-size: 14px; color: var(--text-muted); margin: 0 0 24px; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field:last-of-type { margin-bottom: 0; }
+  .field label { font-size: 12.5px; font-weight: 600; color: var(--text-secondary); }
+  .field .hint { font-size: 12px; color: var(--text-faint); margin: -2px 0 0; }
+
+  input, select, textarea {
+    background: var(--field-bg);
+    border: 1px solid var(--field-border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+    width: 100%;
+  }
+  input::placeholder, textarea::placeholder { color: var(--text-faint); }
+  input:focus, select:focus, textarea:focus {
+    background: var(--field-bg-focus);
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+  }
+  textarea { resize: vertical; min-height: 96px; }
+  select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%237c838a' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 34px; }
+
+  .form-actions { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .form-note { font-size: 13px; color: var(--good); background: var(--good-soft); border-radius: var(--radius-sm); padding: 10px 14px; margin: 0; }
+  .form-note[hidden] { display: none; }
+  .required { color: var(--text-faint); font-weight: 400; }
+
+  .footer-links { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--border); font-size: 13px; }
+  .footer-links a { color: var(--text-muted); margin-right: 18px; text-decoration: none; transition: color var(--dur) var(--ease-out); }
+  .footer-links a:hover { color: var(--text); }
+  .footer-links a[aria-current="page"] { color: var(--text); }
+
+  .page { animation: fade-in 320ms var(--ease-out); }
+  @keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page { animation: none; }
+    .btn, .back, input, select, textarea, .footer-links a { transition: none; }
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 28px 16px 80px; }
+    h1 { font-size: 24px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+    .form-card { padding: 22px; }
+    .return-cta { padding: 28px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="topbar">
+    <a class="back" href="index.html">&larr; Back to thomssen.dev</a>
+  </header>
+
+  <main class="doc">
+
+    <!-- ============================================================
+         EDITABLE POLICY VALUES
+         This page has no backend/template engine, so values are kept
+         directly in the text below. Each one is wrapped in an HTML
+         comment marker so you can find every occurrence with your
+         editor's search (Ctrl/Cmd+F):
+
+           REFUND_WINDOW    - number of refund-eligible days (3 places)
+           REVIEW_TIME      - how long you take to review a request
+           PROCESSING_TIME  - how long an approved refund takes to land
+           SUPPORT_EMAIL    - support address (3 places)
+           LAST_UPDATED     - date shown under the title
+
+         None of the wording below is a legal promise pulled from an
+         existing policy - no refund terms were found in the connected
+         project, so this is placeholder copy sized to be safe and
+         easy to edit, not a finished legal document.
+         ============================================================ -->
+
+    <span class="badge"><!-- REFUND_WINDOW -->14<!-- /REFUND_WINDOW -->-day refund window</span>
+
+    <h1>Refund Policy</h1>
+    <p class="updated">Last updated <!-- LAST_UPDATED -->September 24, 2026<!-- /LAST_UPDATED --></p>
+
+    <p class="lead">We want every purchase from Thomssen to feel safe. This page explains when a refund is available, what isn't covered, and how to request one - or use the form further down if you'd rather not send an email.</p>
+
+    <section>
+      <h2>How refunds work</h2>
+      <p>Most purchases are eligible for a full refund if you request one within the window below. Each request is reviewed individually, and approved refunds are returned to your original payment method.</p>
+    </section>
+
+    <section>
+      <div class="grid-2">
+        <div class="card card-good">
+          <h3><span class="dot dot-good"></span>Eligible for a refund</h3>
+          <ul>
+            <li>Requested within <!-- REFUND_WINDOW -->14<!-- /REFUND_WINDOW --> days of the original purchase date</li>
+            <li>Purchased directly through thomssen.dev or an official Thomssen checkout</li>
+            <li>The order ID or license key provided matches an active purchase on file</li>
+            <li>The product or service hasn't been used in a way that breaks the Terms of Service</li>
+          </ul>
+        </div>
+        <div class="card card-bad">
+          <h3><span class="dot dot-bad"></span>Not eligible for a refund</h3>
+          <ul>
+            <li>Requests made after the <!-- REFUND_WINDOW -->14<!-- /REFUND_WINDOW -->-day window, outside case-by-case exceptions</li>
+            <li>Custom or bespoke work that has already been completed and delivered</li>
+            <li>Licenses or accounts suspended for fraud, chargeback abuse, or a Terms violation</li>
+            <li>Chargebacks filed with your bank before contacting support first</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to request a refund</h2>
+      <div class="info-list">
+        <ol>
+          <li>Fill out the <a href="#refund-form">Request a Refund</a> form below, or email <!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL --> directly</li>
+          <li>Include your order ID or license key so the purchase can be found</li>
+          <li>You'll get a confirmation and, once reviewed, the outcome - both by email</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>Expected processing time</h2>
+      <div class="info-list">
+        <ul>
+          <li>Requests are reviewed within <!-- REVIEW_TIME -->2 business days<!-- /REVIEW_TIME --></li>
+          <li>Approved refunds are issued to your original payment method</li>
+          <li>Refunds typically appear on your statement within <!-- PROCESSING_TIME -->5-10 business days<!-- /PROCESSING_TIME -->, depending on your bank or card provider</li>
+          <li>Any associated license or access is deactivated once a refund is issued</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Contact &amp; support</h2>
+      <p>Questions before you request a refund? Reach out at <!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL --> and we'll get back to you.</p>
+    </section>
+
+    <div class="return-cta">
+      <a class="btn btn-primary" href="index.html">Return to thomssen.dev</a>
+    </div>
+
+    <section id="refund-form" class="form-card">
+      <h2>Request a Refund</h2>
+      <p class="form-sub">Prefer not to email? Fill this out and we'll follow up at the address you provide.</p>
+
+      <form id="refund-request-form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="rf-name">Name <span class="required">*</span></label>
+            <input type="text" id="rf-name" name="name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="rf-email">Email <span class="required">*</span></label>
+            <input type="email" id="rf-email" name="email" autocomplete="email" required />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="rf-order">Order ID / License Key <span class="required">*</span></label>
+            <input type="text" id="rf-order" name="orderId" placeholder="e.g. TS-8F21-91AC" required />
+          </div>
+          <div class="field">
+            <label for="rf-product">Product / Service <span class="required">*</span></label>
+            <input type="text" id="rf-product" name="product" placeholder="e.g. Thomsen Shield" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rf-reason">Reason for refund <span class="required">*</span></label>
+          <select id="rf-reason" name="reason" required>
+            <option value="" disabled selected>Select a reason</option>
+            <option value="Not what I expected">Not what I expected</option>
+            <option value="Technical issue">Technical issue</option>
+            <option value="Accidental purchase">Accidental purchase</option>
+            <option value="Found a better alternative">Found a better alternative</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="rf-details">Additional details</label>
+          <textarea id="rf-details" name="details" placeholder="Anything that helps us understand what happened (optional)"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-block">Submit Refund Request</button>
+          <p class="form-note" id="rf-success" hidden role="status" aria-live="polite">
+            Your email app should now open with this pre-filled to <!-- SUPPORT_EMAIL -->support@thomssen.dev<!-- /SUPPORT_EMAIL -->. Nothing happened? Email us directly instead.
+          </p>
+        </div>
+      </form>
+    </section>
+
+    <div class="footer-links">
+      <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund.html" aria-current="page">Refunds</a>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Zero-backend default: builds a pre-filled mailto: to the support
+  // address so the request works without any server. If you later
+  // want this posted to a real endpoint (e.g. your license API),
+  // replace the body of this handler with a fetch() call instead.
+  (function () {
+    var SUPPORT_EMAIL = "support@thomssen.dev"; // EDIT: keep in sync with the SUPPORT_EMAIL markers above
+
+    var form = document.getElementById("refund-request-form");
+    var successNote = document.getElementById("rf-success");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var data = new FormData(form);
+      var subject = "Refund Request - " + (data.get("orderId") || "no order ID");
+      var body = [
+        "Name: " + data.get("name"),
+        "Email: " + data.get("email"),
+        "Order ID / License Key: " + data.get("orderId"),
+        "Product / Service: " + data.get("product"),
+        "Reason: " + data.get("reason"),
+        "",
+        "Additional details:",
+        data.get("details") || "(none provided)"
+      ].join("\n");
+
+      var mailtoUrl = "mailto:" + SUPPORT_EMAIL
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailtoUrl;
+      successNote.hidden = false;
+    });
+  })();
+</script>
+</body>
+</html>
