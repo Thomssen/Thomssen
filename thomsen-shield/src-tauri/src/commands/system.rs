@@ -32,6 +32,7 @@ pub async fn get_dashboard_summary(state: State<'_, Arc<AppState>>) -> Result<Da
 }
 
 #[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct AppInfo {
     pub version: String,
     pub load_warnings: Vec<String>,
