@@ -72,12 +72,19 @@ Project URL and the **service_role** key (Settings -> API) into your env
 
 ### 2. Stripe
 
-1. Create a product ("Thomsen Shield") with a one-time $19.99 price.
-   Copy its price id (`price_...`).
-2. Developers -> Webhooks -> Add endpoint, pointing at
+No product/price to create in the Dashboard - `api/stripe/checkout.ts`
+defines the $19.99 price inline (`price_data`), tax code included, so
+it's correct in both test and live mode with nothing to keep in sync
+between them (see that file's comment for why: Managed Payments, on by
+default for new accounts, requires a product tax code on every line item,
+and that code lives on the Product object - which is entirely separate
+per mode, a dashboard step this sidesteps instead of asking you to get
+right twice).
+
+1. Developers -> Webhooks -> Add endpoint, pointing at
    `https://api.thomssen.dev/api/stripe/webhook`, subscribed to
    `checkout.session.completed`. Copy the signing secret (`whsec_...`).
-3. Copy your secret key (`sk_...`) from Developers -> API keys.
+2. Copy your secret key (`sk_...`) from Developers -> API keys.
 
 Use test-mode keys everywhere until you're ready to go live - see
 **Development mode** below.
@@ -121,7 +128,6 @@ vercel env add SUPABASE_URL production
 vercel env add SUPABASE_SERVICE_ROLE_KEY production
 vercel env add STRIPE_SECRET_KEY production
 vercel env add STRIPE_WEBHOOK_SECRET production
-vercel env add STRIPE_PRICE_ID production
 vercel env add LICENSE_SIGNING_PRIVATE_KEY_B64 production
 vercel env add LICENSE_SIGNING_PUBLIC_KEY_B64 production
 vercel env add ADMIN_API_TOKEN production

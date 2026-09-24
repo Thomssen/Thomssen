@@ -25,13 +25,14 @@ use crate::error::{AppError, AppResult};
 /// commit - an old client build won't verify tokens from a rotated key
 /// until it ships with the matching bytes.
 ///
-/// Rotated once already: the first keypair's private half was pasted into
-/// a chat response while nothing was deployed yet, so it was regenerated
-/// before anything ever went live rather than treated as a real rotation
-/// (no issued tokens to invalidate). This is that replacement's public
-/// half.
+/// Rotated twice before anything ever went live: the first keypair's
+/// private half was pasted into a chat response, and its replacement's
+/// private half was lost by both the user and this session (deliberately -
+/// this session never keeps a copy once a secret's been handed off) before
+/// it reached Vercel. Neither had any issued tokens to invalidate. This is
+/// the third keypair's public half.
 const LICENSE_SIGNING_PUBLIC_KEY: [u8; 32] = [
-    251, 158, 149, 86, 46, 93, 143, 92, 163, 94, 211, 71, 165, 180, 70, 85, 63, 242, 98, 231, 108, 38, 214, 50, 58, 120, 162, 181, 47, 190, 68, 211,
+    161, 218, 88, 108, 228, 106, 74, 75, 163, 131, 39, 161, 123, 163, 98, 167, 108, 20, 144, 71, 174, 227, 211, 70, 129, 172, 192, 209, 91, 125, 78, 115,
 ];
 
 /// camelCase to match the exact JSON the backend's `lib/signing.ts`
