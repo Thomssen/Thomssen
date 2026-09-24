@@ -73,6 +73,8 @@ async fn tick(state: &AppState) -> crate::error::AppResult<()> {
             ids_and_ips.iter().map(|(id, ip)| (id.as_str(), *ip)),
             chrono::Utc::now(),
             effective_sensitivity,
+            settings.protection.detect_connection_spikes,
+            settings.protection.detect_repeated_connections,
             |ip| is_reserved_local(ip) || allowlist_values.iter().any(|e| ip_matches(ip, e)),
         )
     };
@@ -92,6 +94,17 @@ async fn handle_verdict(state: &AppState, settings: &Settings, verdict: Verdict)
     };
     logging::append(LogCategory::Warning, format!("{reason_label} from {}", verdict.ip))?;
 
+    // ConnectionSpike is a best-guess attribution across *all* processes and
+    // IPs in the window (whichever contributed most - see detection::engine)
+    // rather than one address alone crossing its own threshold, so a burst
+    // caused by several unrelated ordinary apps (a VPN reconnect, several
+    // apps waking at once) can point at an innocent bystander. It's always
+    // logged above; only RepeatedConnections (one IP alone, on its own
+    // merits) is trusted enough to auto-block.
+    if verdict.reason == BlockReason::ConnectionSpike {
+        return Ok(());
+    }
+
     // Monitoring Only never blocks, regardless of the auto-block toggle or
     // Lockdown Mode - it's the one mode the spec guarantees never acts on
     // its own. Lockdown otherwise forces blocking on even if the user left
@@ -103,19 +116,22 @@ async fn handle_verdict(state: &AppState, settings: &Settings, verdict: Verdict)
     }
 
     let expires_at = settings.protection.block_duration.to_chrono_duration().map(|d| chrono::Utc::now() + d);
-    let entry = BlockedEntry {
-        id: uuid::Uuid::new_v4().to_string(),
-        ip: verdict.ip.to_string(),
-        reason: verdict.reason,
-        note: None,
-        created_at: chrono::Utc::now(),
-        expires_at,
-        status: BlockStatus::Active,
-    };
-    blocklist::add(entry)?;
 
+    // Create the real rule *before* recording the block - the reverse order
+    // let a failed/declined elevation still leave the blocklist (and so the
+    // UI) claiming this IP was blocked when no firewall rule exists at all.
     match state.firewall.create_ip_rule(&verdict.ip.to_string(), FirewallRuleDirection::In).await {
         Ok(_) => {
+            let entry = BlockedEntry {
+                id: uuid::Uuid::new_v4().to_string(),
+                ip: verdict.ip.to_string(),
+                reason: verdict.reason,
+                note: None,
+                created_at: chrono::Utc::now(),
+                expires_at,
+                status: BlockStatus::Active,
+            };
+            blocklist::add(entry)?;
             let duration_label = expires_at.map(|_| "temporarily").unwrap_or("permanently");
             logging::append(LogCategory::Blocked, format!("{} blocked {duration_label}", verdict.ip))?;
         }
@@ -134,13 +150,25 @@ async fn sweep_expired_blocks(state: &AppState) -> crate::error::AppResult<()> {
         if entry.status == BlockStatus::Active {
             if let Some(expires_at) = entry.expires_at {
                 if expires_at <= now {
-                    entry.status = BlockStatus::Expired;
                     let ip = entry.ip.clone();
+                    // Remove the live rule *before* marking the entry
+                    // Expired - the reverse order let a failed removal (a
+                    // declined/timed-out elevation prompt, a transient COM
+                    // error) get reported as "expired" while the firewall
+                    // rule stayed in place. On failure, just leave the
+                    // entry Active and retry on the next poll (3s) rather
+                    // than persisting a status the removal never confirmed.
+                    let removed = match find_rule_id_for_ip(state, &ip).await? {
+                        Some(rule_id) => state.firewall.remove_rule(&rule_id).await.is_ok(),
+                        None => true, // no live rule to remove - already gone
+                    };
+                    if !removed {
+                        logging::append(LogCategory::Warning, format!("Couldn't remove the expired firewall rule for {ip} yet - will retry"))?;
+                        continue;
+                    }
+                    entry.status = BlockStatus::Expired;
                     blocklist::update(entry)?;
                     state.detection.lock().await.clear_flag(ip.parse().unwrap_or(Ipv4Addr::UNSPECIFIED));
-                    if let Some(rule_id) = find_rule_id_for_ip(state, &ip).await? {
-                        let _ = state.firewall.remove_rule(&rule_id).await;
-                    }
                     logging::append(LogCategory::Blocked, format!("Block expired for {ip}"))?;
                 }
             }

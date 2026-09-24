@@ -221,10 +221,11 @@ pub struct AllowlistEntry {
 /// removable from the UI; kept out of the persisted file so a future
 /// update to this list doesn't require a migration.
 pub const BUILT_IN_ALLOWLIST: &[(&str, &str)] = &[
-    ("127.0.0.1", "Loopback"),
+    ("127.0.0.0/8", "Loopback"),
     ("10.0.0.0/8", "Private network"),
     ("172.16.0.0/12", "Private network"),
     ("192.168.0.0/16", "Private network"),
+    ("169.254.0.0/16", "Link-local"),
 ];
 
 // -- Events / logs ----------------------------------------------------------------------

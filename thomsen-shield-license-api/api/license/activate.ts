@@ -48,7 +48,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const now = new Date().toISOString();
-  const { error: updateError } = await supabaseAdmin()
+  const baseUpdate = supabaseAdmin()
     .from("licenses")
     .update({
       device_id: deviceId,
@@ -57,10 +57,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       last_validated_at: now,
     })
     .eq("id", license.id);
+  // Compare-and-swap against the device_id we just read (null, or already
+  // this same device - the only two cases that reach here, see the 409
+  // above) rather than an unconditional update: without this, two activate
+  // calls racing on the same never-yet-bound license could both pass the
+  // check above and both walk away with a validly-signed token for one
+  // purchase. Whichever write loses the race now matches zero rows instead
+  // of silently overwriting the winner's binding.
+  const { data: updated, error: updateError } = await (license.device_id === null ? baseUpdate.is("device_id", null) : baseUpdate.eq("device_id", license.device_id)).select(
+    "id",
+  );
 
   if (updateError) {
     console.error("license/activate: failed to record activation", updateError);
     res.status(500).json({ error: "Couldn't save the activation. Please try again." });
+    return;
+  }
+
+  if (!updated || updated.length === 0) {
+    res.status(409).json({
+      error: "This license is already active on another PC. Deactivate it there first, or contact support to reset it.",
+    });
     return;
   }
 
