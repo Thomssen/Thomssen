@@ -72,6 +72,7 @@ function successBody(licenseKey: string): string {
   </div>
 
   <p class="hint">Keep this key somewhere safe - open Thomsen Shield, go to Activate License, and paste it in. A copy of this page's details is not emailed automatically yet; save it now.</p>
+  <p class="hint"><a href="/refund.html">Refund policy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
 </div>
 <script>
   function copyKey() {

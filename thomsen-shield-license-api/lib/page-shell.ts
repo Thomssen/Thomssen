@@ -63,6 +63,8 @@ export function pageShell(title: string, bodyHtml: string): string {
   .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text); border-color: var(--border); }
   .btn-secondary:hover { border-color: var(--border-strong); }
   .hint { margin-top: 18px; font-size: 12px; color: var(--text-faint); }
+  .hint a { color: var(--text-faint); text-decoration: underline; }
+  .hint a:hover { color: var(--text-muted); }
   .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding-inline: 9px; border-radius: var(--radius-pill); background: var(--good-soft); color: var(--good); font-size: 11px; font-weight: 600; }
   .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
   .spinner { width: 28px; height: 28px; border-radius: 50%; border: 2.5px solid var(--border-strong); border-top-color: var(--text-muted); animation: spin 0.8s linear infinite; margin: 8px 0; }
