@@ -16,7 +16,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   let query = supabaseAdmin()
     .from("licenses")
-    .select("id, license_key, email, status, device_id, device_reset_count, created_at, activated_at, last_validated_at")
+    .select(
+      "id, license_key, email, status, device_id, device_reset_count, created_at, activated_at, last_validated_at, stripe_checkout_session_id, stripe_payment_intent_id",
+    )
     .order("created_at", { ascending: false })
     .limit(100);
 
