@@ -9,7 +9,6 @@ Building practical software with a focus on performance, privacy and clean desig
 ### Focus
 
 * Windows applications
-* Performance optimization
 * Privacy and security
 * Modern user interfaces
 * Web development
