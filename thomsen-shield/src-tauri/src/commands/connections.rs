@@ -6,7 +6,7 @@ use crate::error::AppError;
 use crate::state::AppState;
 use crate::store::models::{BlockReason, BlockStatus, BlockedEntry, FirewallRuleDirection, LiveConnection, LogCategory};
 use crate::store::{allowlist, blocklist};
-use crate::{logging, network};
+use crate::{logging, netutil, network};
 
 #[tauri::command]
 pub async fn get_connections(state: State<'_, Arc<AppState>>) -> Result<Vec<LiveConnection>, AppError> {
@@ -17,6 +17,10 @@ pub async fn get_connections(state: State<'_, Arc<AppState>>) -> Result<Vec<Live
 
 #[tauri::command]
 pub async fn block_connection_ip(ip: String, state: State<'_, Arc<AppState>>) -> Result<(), AppError> {
+    if let Some(reason) = netutil::reject_unsafe_block_target(&ip) {
+        return Err(AppError::new(reason));
+    }
+    state.firewall.create_ip_rule(&ip, FirewallRuleDirection::In).await?;
     blocklist::add(BlockedEntry {
         id: uuid::Uuid::new_v4().to_string(),
         ip: ip.clone(),
@@ -26,7 +30,6 @@ pub async fn block_connection_ip(ip: String, state: State<'_, Arc<AppState>>) ->
         expires_at: None,
         status: BlockStatus::Active,
     })?;
-    state.firewall.create_ip_rule(&ip, FirewallRuleDirection::In).await?;
     logging::append(LogCategory::Blocked, format!("{ip} manually blocked"))?;
     Ok(())
 }

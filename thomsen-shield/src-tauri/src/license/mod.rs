@@ -13,7 +13,7 @@ pub mod device_id;
 pub mod store;
 pub mod token;
 
-use crate::error::AppResult;
+use crate::error::{AppError, AppResult};
 use crate::store::models::{LicenseInfo, LicenseProviderKind, LicenseStatus};
 
 use token::TokenPayload;
@@ -35,7 +35,13 @@ impl LicenseManager {
     /// Never makes a network call - this is what keeps startup fast.
     pub fn info(&self) -> LicenseInfo {
         match self.cached_payload() {
-            Some(payload) if payload.expires_at > chrono::Utc::now() => LicenseInfo {
+            // The device_id check matters on its own, not just as a
+            // signature-adjacent formality: without it, a cache file valid
+            // for a *different* machine (moved/restored by hand, or a
+            // future multi-profile scenario) would read as licensed here
+            // purely on expiry, even though no server ever bound it to
+            // this device.
+            Some(payload) if payload.expires_at > chrono::Utc::now() && payload.device_id == self.device_id => LicenseInfo {
                 status: LicenseStatus::Active,
                 key: Some(payload.license_key),
                 activated_at: Some(payload.issued_at),
@@ -75,17 +81,37 @@ impl LicenseManager {
         store::clear_token()
     }
 
-    /// One background revalidation attempt. A failure (offline, server
-    /// unreachable) is deliberately not an error the caller needs to act
-    /// on - the cached token's existing `expires_at` is the grace period,
-    /// and it's simply left as-is until the next attempt succeeds.
+    /// One background revalidation attempt. A *transport* failure (offline,
+    /// server unreachable, a timeout) is deliberately not something this
+    /// needs to act on - the cached token's existing `expires_at` is the
+    /// grace period, and it's simply left as-is until an attempt succeeds.
+    ///
+    /// An *explicit* rejection is different and must not wait for that
+    /// expiry: `/api/license/validate` answers 403 the instant a license is
+    /// disabled or refunded, and 409 the instant it's bound to a different
+    /// device - see `lib/license-repo.ts` and that endpoint in the API
+    /// project. Treating that the same as "server unreachable" would mean a
+    /// disabled/refunded license keeps working locally for up to its
+    /// token's full 14-day validity, even while online and being told no on
+    /// every single check-in - a revocation-latency bug, not a grace
+    /// period. `client::post_json` attaches the response's status code
+    /// precisely so this can tell the two apart.
     pub async fn revalidate_once(&self) {
         let Ok(Some(token)) = store::load_token() else { return };
         let Ok(payload) = token.verify(&token::license_signing_public_key()) else { return };
 
-        if let Ok(fresh) = client::validate(&payload.license_key, &self.device_id, &token).await {
-            if fresh.verify(&token::license_signing_public_key()).is_ok() {
-                let _ = store::save_token(&fresh);
+        match client::validate(&payload.license_key, &self.device_id, &token).await {
+            Ok(fresh) => {
+                if fresh.verify(&token::license_signing_public_key()).is_ok() {
+                    let _ = store::save_token(&fresh);
+                }
+            }
+            Err(AppError { code: Some(code), .. }) if matches!(code.as_str(), "401" | "403" | "404" | "409") => {
+                let _ = store::clear_token();
+            }
+            Err(_) => {
+                // Transport-level failure (offline, DNS, timeout, 5xx) -
+                // leave the cached token's own expiry as the grace period.
             }
         }
     }

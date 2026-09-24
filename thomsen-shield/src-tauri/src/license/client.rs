@@ -12,10 +12,19 @@ use super::token::SignedToken;
 
 /// Overridable via the `THOMSEN_SHIELD_LICENSE_API` environment variable
 /// for local development against `vercel dev` or a preview deployment -
-/// see the license API project's README ("DEVELOPMENT MODE"). Production
-/// builds need nothing set.
+/// see the license API project's README ("DEVELOPMENT MODE"). Gated to
+/// debug builds only: a release build has no reason to ever point anywhere
+/// but production, and reading this in a shipped binary would be needless
+/// attack surface (an env var an attacker controls redirecting where a
+/// customer's license key gets sent) for zero benefit - verification still
+/// wouldn't accept a rogue server's tokens either way (see `mod.rs`), but
+/// there's no reason to leave the door there at all.
 fn base_url() -> String {
-    std::env::var("THOMSEN_SHIELD_LICENSE_API").unwrap_or_else(|_| "https://api.thomssen.dev".to_string())
+    #[cfg(debug_assertions)]
+    if let Ok(url) = std::env::var("THOMSEN_SHIELD_LICENSE_API") {
+        return url;
+    }
+    "https://api.thomssen.dev".to_string()
 }
 
 // camelCase on all three: the API (thomsen-shield-license-api/api/license/*)
@@ -74,7 +83,11 @@ async fn post_json<Req: Serialize, Resp: for<'de> Deserialize<'de>>(path: &str, 
             .await
             .map(|b| b.error)
             .unwrap_or_else(|_| format!("The license server returned an error ({status})."));
-        Err(AppError::new(message))
+        // The status code is what lets `license::revalidate_once` tell an
+        // explicit rejection (disabled/refunded/device mismatch - act on it
+        // now) apart from the server just being unreachable (leave the
+        // cached token's offline grace period alone) - see that function.
+        Err(AppError::with_code(message, status.as_u16().to_string()))
     }
 }
 

@@ -5,7 +5,7 @@ use tauri::State;
 use crate::error::AppError;
 use crate::state::AppState;
 use crate::store::models::{FirewallRule, FirewallRuleDirection, FirewallStatus, LogCategory};
-use crate::logging;
+use crate::{logging, netutil};
 
 #[tauri::command]
 pub async fn get_firewall_status(state: State<'_, Arc<AppState>>) -> Result<FirewallStatus, AppError> {
@@ -19,6 +19,9 @@ pub async fn list_firewall_rules(state: State<'_, Arc<AppState>>) -> Result<Vec<
 
 #[tauri::command]
 pub async fn create_ip_block_rule(ip: String, direction: FirewallRuleDirection, state: State<'_, Arc<AppState>>) -> Result<FirewallRule, AppError> {
+    if let Some(reason) = netutil::reject_unsafe_block_target(&ip) {
+        return Err(AppError::new(reason));
+    }
     let rule = state.firewall.create_ip_rule(&ip, direction).await?;
     logging::append(LogCategory::Firewall, format!("Created rule {}", rule.name))?;
     Ok(rule)
