@@ -1,0 +1,268 @@
+/* ============================================================
+   Shared styles for thomssen.dev legal/policy pages
+   (refund.html, terms.html, privacy.html).
+
+   Matches the palette/radii/type already used across the Thomsen
+   apps (near-black surfaces, white/grey text, hairline borders, no
+   accent colour except the existing muted status greens/reds) -
+   see thomsen-shield/src/styles/tokens.css and
+   thomsen-shield-license-api/public/{privacy,terms,refund}.html.
+
+   Safe to delete the :root block below if your site already
+   declares these custom properties globally.
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  --bg: #050607;
+  --surface: #0d0f11;
+  --surface-2: #131619;
+  --text: #f2f3f4;
+  --text-secondary: #b4b9be;
+  --text-muted: #7c838a;
+  --text-faint: #565c62;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --field-bg: rgba(255, 255, 255, 0.03);
+  --field-bg-focus: rgba(255, 255, 255, 0.05);
+  --field-border: rgba(255, 255, 255, 0.12);
+  --btn-primary-bg: #f3f4f5;
+  --btn-primary-bg-hover: #ffffff;
+  --btn-primary-text: #0a0b0c;
+  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --btn-secondary-bg-hover: rgba(255, 255, 255, 0.09);
+  --good: #6f9e8f;
+  --good-soft: rgba(111, 158, 143, 0.14);
+  --bad: #e5595a;
+  --bad-soft: rgba(229, 89, 90, 0.14);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.35), 0 14px 44px rgba(0, 0, 0, 0.3);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 200ms;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 40px 20px 100px;
+}
+a { color: var(--text); }
+
+.page { max-width: 760px; margin: 0 auto; }
+
+.topbar { margin-bottom: 28px; }
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease-out);
+}
+.back:hover { color: var(--text); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding-inline: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--good-soft);
+  color: var(--good);
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+
+h1 { color: var(--text); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
+.updated { font-size: 12.5px; color: var(--text-muted); margin: 0 0 24px; }
+.lead { font-size: 15.5px; color: var(--text-secondary); max-width: 60ch; margin: 0 0 40px; }
+
+h2 { color: var(--text); font-size: 18px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
+h3 { color: var(--text); font-size: 14.5px; font-weight: 600; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+section { margin: 0 0 44px; }
+p, li { margin: 0 0 12px; }
+ul, ol { padding-left: 20px; margin: 0; }
+li:last-child { margin-bottom: 0; }
+
+.dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.dot-good { background: var(--good); }
+.dot-bad { background: var(--bad); }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+.card ul { font-size: 14px; }
+.card-bad h3 { color: var(--text); }
+
+.info-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; font-size: 14px; }
+.info-list ul, .info-list ol { margin: 0; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding-inline: 26px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+  font-family: inherit;
+}
+.btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
+.btn-primary:hover { background: var(--btn-primary-bg-hover); }
+.btn-secondary { background: var(--btn-secondary-bg); color: var(--text); border-color: var(--border); }
+.btn-secondary:hover { background: var(--btn-secondary-bg-hover); border-color: var(--border-strong); }
+.btn-block { width: 100%; }
+
+/* Request-a-refund card: the same floating, glassy treatment as a
+   cookie-consent banner - translucent surface + blur + soft shadow. */
+.form-card {
+  background: rgba(13, 15, 17, 0.72);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+}
+.form-card .form-sub { font-size: 14px; color: var(--text-muted); margin: 0 0 24px; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.field:last-of-type { margin-bottom: 0; }
+.field label { font-size: 12.5px; font-weight: 600; color: var(--text-secondary); }
+.field .hint { font-size: 12px; color: var(--text-faint); margin: -2px 0 0; }
+
+input, textarea {
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 11px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+  width: 100%;
+}
+input::placeholder, textarea::placeholder { color: var(--text-faint); }
+input:focus, textarea:focus {
+  background: var(--field-bg-focus);
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+textarea { resize: vertical; min-height: 96px; }
+
+/* Custom dropdown (replaces native <select> so the open list is styled
+   like the rest of the site instead of falling back to the OS's native
+   popup, which renders light on some platforms regardless of theme). */
+.select { position: relative; }
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 11px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.select-trigger:hover { background: var(--field-bg-focus); }
+.select-trigger:focus-visible,
+.select-trigger[aria-expanded="true"] {
+  background: var(--field-bg-focus);
+  border-color: var(--border-strong);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+.select-trigger-invalid { border-color: var(--bad); }
+.select-trigger-text.is-placeholder { color: var(--text-faint); }
+.select-chevron { color: var(--text-muted); flex: none; margin-left: 10px; transition: transform var(--dur) var(--ease-out); }
+.select-trigger[aria-expanded="true"] .select-chevron { transform: rotate(180deg); }
+
+.select-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  max-height: 240px;
+  overflow-y: auto;
+}
+.select-list[hidden] { display: none; }
+.select-list li {
+  padding: 9px 10px;
+  border-radius: 7px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.select-list li:hover, .select-list li:focus {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  outline: none;
+}
+.select-list li[aria-selected="true"] { color: var(--text); background: rgba(255, 255, 255, 0.04); }
+
+.form-actions { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.form-note { font-size: 13px; color: var(--good); background: var(--good-soft); border-radius: var(--radius-sm); padding: 10px 14px; margin: 0; }
+.form-note[hidden] { display: none; }
+.required { color: var(--text-faint); font-weight: 400; }
+
+.footer-links { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--border); font-size: 13px; }
+.footer-links a { color: var(--text-muted); margin-right: 18px; text-decoration: none; transition: color var(--dur) var(--ease-out); }
+.footer-links a:hover { color: var(--text); }
+.footer-links a[aria-current="page"] { color: var(--text); }
+
+.page { animation: fade-in 320ms var(--ease-out); }
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .page { animation: none; }
+  .btn, .back, input, select, textarea, .footer-links a { transition: none; }
+}
+
+@media (max-width: 640px) {
+  body { padding: 28px 16px 80px; }
+  h1 { font-size: 24px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .form-card { padding: 22px; }
+}

@@ -6,215 +6,7 @@
 <meta name="theme-color" content="#050607" />
 <meta name="description" content="Refund policy and refund request form." />
 <title>Refund Policy - Thomssen</title>
-<style>
-  /* ============================================================
-     Design tokens - matches the palette/radii/type already used
-     across thomssen.dev and the Thomsen apps (near-black surfaces,
-     white/grey text, hairline borders, no accent colour except the
-     existing muted status greens/reds). Safe to delete this block
-     if your site already declares these on :root globally.
-     ============================================================ */
-  :root {
-    --bg: #050607;
-    --surface: #0d0f11;
-    --surface-2: #131619;
-    --text: #f2f3f4;
-    --text-secondary: #b4b9be;
-    --text-muted: #7c838a;
-    --text-faint: #565c62;
-    --border: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.14);
-    --field-bg: rgba(255, 255, 255, 0.03);
-    --field-bg-focus: rgba(255, 255, 255, 0.05);
-    --field-border: rgba(255, 255, 255, 0.12);
-    --btn-primary-bg: #f3f4f5;
-    --btn-primary-bg-hover: #ffffff;
-    --btn-primary-text: #0a0b0c;
-    --btn-secondary-bg: rgba(255, 255, 255, 0.05);
-    --btn-secondary-bg-hover: rgba(255, 255, 255, 0.09);
-    --good: #6f9e8f;
-    --good-soft: rgba(111, 158, 143, 0.14);
-    --bad: #e5595a;
-    --bad-soft: rgba(229, 89, 90, 0.14);
-    --radius: 16px;
-    --radius-sm: 10px;
-    --radius-lg: 22px;
-    --radius-pill: 999px;
-    --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.35), 0 14px 44px rgba(0, 0, 0, 0.3);
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --dur: 200ms;
-  }
-
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text-secondary);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    padding: 40px 20px 100px;
-  }
-  a { color: var(--text); }
-
-  .page { max-width: 760px; margin: 0 auto; }
-
-  .topbar { margin-bottom: 28px; }
-  .back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color var(--dur) var(--ease-out);
-  }
-  .back:hover { color: var(--text); }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    height: 24px;
-    padding-inline: 10px;
-    border-radius: var(--radius-pill);
-    background: var(--good-soft);
-    color: var(--good);
-    font-size: 12.5px;
-    font-weight: 600;
-    margin-bottom: 18px;
-  }
-  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
-
-  h1 { color: var(--text); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
-  .updated { font-size: 12.5px; color: var(--text-muted); margin: 0 0 24px; }
-  .lead { font-size: 15.5px; color: var(--text-secondary); max-width: 60ch; margin: 0 0 40px; }
-
-  h2 { color: var(--text); font-size: 18px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
-  h3 { color: var(--text); font-size: 14.5px; font-weight: 600; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
-  section { margin: 0 0 44px; }
-  p, li { margin: 0 0 12px; }
-  ul, ol { padding-left: 20px; margin: 0; }
-  li:last-child { margin-bottom: 0; }
-
-  .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
-  .dot-good { background: var(--good); }
-  .dot-bad { background: var(--bad); }
-
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 22px;
-  }
-  .card ul { font-size: 14px; }
-  .card-bad h3 { color: var(--text); }
-
-  .info-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; font-size: 14px; }
-  .info-list ul, .info-list ol { margin: 0; }
-
-  .return-cta {
-    display: flex;
-    justify-content: center;
-    margin: 48px 0;
-    padding: 36px 20px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 46px;
-    padding-inline: 26px;
-    border-radius: var(--radius-pill);
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
-    font-family: inherit;
-  }
-  .btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
-  .btn-primary:hover { background: var(--btn-primary-bg-hover); }
-  .btn-secondary { background: var(--btn-secondary-bg); color: var(--text); border-color: var(--border); }
-  .btn-secondary:hover { background: var(--btn-secondary-bg-hover); border-color: var(--border-strong); }
-  .btn-block { width: 100%; }
-
-  /* Request-a-refund card: the same floating, glassy treatment as a
-     cookie-consent banner - translucent surface + blur + soft shadow. */
-  .form-card {
-    background: rgba(13, 15, 17, 0.72);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    padding: 32px;
-    box-shadow: var(--shadow-md);
-  }
-  .form-card .form-sub { font-size: 14px; color: var(--text-muted); margin: 0 0 24px; }
-
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-  .field:last-of-type { margin-bottom: 0; }
-  .field label { font-size: 12.5px; font-weight: 600; color: var(--text-secondary); }
-  .field .hint { font-size: 12px; color: var(--text-faint); margin: -2px 0 0; }
-
-  input, select, textarea {
-    background: var(--field-bg);
-    border: 1px solid var(--field-border);
-    border-radius: var(--radius-sm);
-    color: var(--text);
-    padding: 11px 14px;
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-    transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
-    width: 100%;
-  }
-  input::placeholder, textarea::placeholder { color: var(--text-faint); }
-  input:focus, select:focus, textarea:focus {
-    background: var(--field-bg-focus);
-    border-color: var(--border-strong);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
-  }
-  textarea { resize: vertical; min-height: 96px; }
-  select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%237c838a' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 34px; }
-
-  .form-actions { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-  .form-note { font-size: 13px; color: var(--good); background: var(--good-soft); border-radius: var(--radius-sm); padding: 10px 14px; margin: 0; }
-  .form-note[hidden] { display: none; }
-  .required { color: var(--text-faint); font-weight: 400; }
-
-  .footer-links { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--border); font-size: 13px; }
-  .footer-links a { color: var(--text-muted); margin-right: 18px; text-decoration: none; transition: color var(--dur) var(--ease-out); }
-  .footer-links a:hover { color: var(--text); }
-  .footer-links a[aria-current="page"] { color: var(--text); }
-
-  .page { animation: fade-in 320ms var(--ease-out); }
-  @keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
-  @media (prefers-reduced-motion: reduce) {
-    .page { animation: none; }
-    .btn, .back, input, select, textarea, .footer-links a { transition: none; }
-  }
-
-  @media (max-width: 640px) {
-    body { padding: 28px 16px 80px; }
-    h1 { font-size: 24px; }
-    .grid-2 { grid-template-columns: 1fr; }
-    .field-row { grid-template-columns: 1fr; gap: 0; }
-    .form-card { padding: 22px; }
-    .return-cta { padding: 28px 16px; }
-  }
-</style>
+<link rel="stylesheet" href="legal.css" />
 </head>
 <body>
 <div class="page">
@@ -307,10 +99,6 @@
       <p>Questions before you request a refund? Reach out at <!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL --> and we'll get back to you.</p>
     </section>
 
-    <div class="return-cta">
-      <a class="btn btn-primary" href="index.html">Return to thomssen.dev</a>
-    </div>
-
     <section id="refund-form" class="form-card">
       <h2>Request a Refund</h2>
       <p class="form-sub">Prefer not to email? Fill this out and we'll follow up at the address you provide.</p>
@@ -339,15 +127,21 @@
         </div>
 
         <div class="field">
-          <label for="rf-reason">Reason for refund <span class="required">*</span></label>
-          <select id="rf-reason" name="reason" required>
-            <option value="" disabled selected>Select a reason</option>
-            <option value="Not what I expected">Not what I expected</option>
-            <option value="Technical issue">Technical issue</option>
-            <option value="Accidental purchase">Accidental purchase</option>
-            <option value="Found a better alternative">Found a better alternative</option>
-            <option value="Other">Other</option>
-          </select>
+          <label id="rf-reason-label" for="rf-reason-trigger">Reason for refund <span class="required">*</span></label>
+          <div class="select" id="rf-reason-select">
+            <button type="button" class="select-trigger" id="rf-reason-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="rf-reason-label rf-reason-trigger">
+              <span class="select-trigger-text is-placeholder">Select a reason</span>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <ul class="select-list" id="rf-reason-listbox" role="listbox" aria-labelledby="rf-reason-label" tabindex="-1" hidden>
+              <li role="option" tabindex="-1" data-value="Not what I expected">Not what I expected</li>
+              <li role="option" tabindex="-1" data-value="Technical issue">Technical issue</li>
+              <li role="option" tabindex="-1" data-value="Accidental purchase">Accidental purchase</li>
+              <li role="option" tabindex="-1" data-value="Found a better alternative">Found a better alternative</li>
+              <li role="option" tabindex="-1" data-value="Other">Other</li>
+            </ul>
+          </div>
+          <input type="hidden" id="rf-reason-value" name="reason" />
         </div>
 
         <div class="field">
@@ -372,6 +166,69 @@
 </div>
 
 <script>
+  // Custom "Reason for refund" dropdown - a styled listbox instead of a
+  // native <select>, so the open list matches the site's dark theme on
+  // every OS/browser instead of falling back to a native popup. Keeps
+  // its value in the hidden #rf-reason-value input for the form to read.
+  (function () {
+    var wrapper = document.getElementById("rf-reason-select");
+    var trigger = document.getElementById("rf-reason-trigger");
+    var triggerText = trigger.querySelector(".select-trigger-text");
+    var listbox = document.getElementById("rf-reason-listbox");
+    var hiddenInput = document.getElementById("rf-reason-value");
+    var options = Array.prototype.slice.call(listbox.querySelectorAll('[role="option"]'));
+
+    function closeList() {
+      listbox.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
+    }
+    function openList() {
+      listbox.hidden = false;
+      trigger.setAttribute("aria-expanded", "true");
+      var current = listbox.querySelector('[aria-selected="true"]') || options[0];
+      current.focus();
+    }
+    function selectOption(opt) {
+      options.forEach(function (o) { o.setAttribute("aria-selected", "false"); });
+      opt.setAttribute("aria-selected", "true");
+      hiddenInput.value = opt.getAttribute("data-value");
+      triggerText.textContent = opt.textContent;
+      triggerText.classList.remove("is-placeholder");
+      trigger.classList.remove("select-trigger-invalid");
+      closeList();
+      trigger.focus();
+    }
+
+    trigger.addEventListener("click", function () {
+      if (listbox.hidden) { openList(); } else { closeList(); }
+    });
+
+    options.forEach(function (opt) {
+      opt.addEventListener("click", function () { selectOption(opt); });
+    });
+
+    listbox.addEventListener("keydown", function (event) {
+      var idx = options.indexOf(document.activeElement);
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        (options[idx + 1] || options[0]).focus();
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        (options[idx - 1] || options[options.length - 1]).focus();
+      } else if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectOption(document.activeElement);
+      } else if (event.key === "Escape") {
+        closeList();
+        trigger.focus();
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!wrapper.contains(event.target)) { closeList(); }
+    });
+  })();
+
   // Zero-backend default: builds a pre-filled mailto: to the support
   // address so the request works without any server. If you later
   // want this posted to a real endpoint (e.g. your license API),
@@ -381,12 +238,19 @@
 
     var form = document.getElementById("refund-request-form");
     var successNote = document.getElementById("rf-success");
+    var reasonTrigger = document.getElementById("rf-reason-trigger");
+    var reasonValueInput = document.getElementById("rf-reason-value");
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
       if (!form.checkValidity()) {
         form.reportValidity();
+        return;
+      }
+      if (!reasonValueInput.value) {
+        reasonTrigger.classList.add("select-trigger-invalid");
+        reasonTrigger.focus();
         return;
       }
 
