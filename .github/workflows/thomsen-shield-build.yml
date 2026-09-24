@@ -1,0 +1,60 @@
+name: Thomsen Shield - Windows build
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "thomsen-shield/**"
+      - ".github/workflows/thomsen-shield-build.yml"
+  pull_request:
+    paths:
+      - "thomsen-shield/**"
+      - ".github/workflows/thomsen-shield-build.yml"
+  workflow_dispatch:
+
+# This is the real Windows compile check the project's own development
+# happened without: every push gets an actual `windows-latest` build of
+# the Rust backend (Windows Firewall COM interop, IP Helper-backed
+# connection enumeration, DPAPI license storage) and the frontend, so a
+# mistake surfaces on the next push rather than the next time someone
+# happens to build it on a real Windows machine.
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: thomsen-shield
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: thomsen-shield/package-lock.json
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: thomsen-shield/src-tauri
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Typecheck and build frontend
+        run: npm run build
+
+      - name: Check Rust backend
+        working-directory: thomsen-shield/src-tauri
+        run: cargo check --all-targets
+
+      - name: Run Rust unit tests
+        working-directory: thomsen-shield/src-tauri
+        run: cargo test
+
+      - name: Build Tauri app (debug)
+        run: npx tauri build --debug --no-bundle

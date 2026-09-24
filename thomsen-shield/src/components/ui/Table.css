@@ -1,0 +1,105 @@
+/* Shared table styling - plain semantic <table> markup, reused by every
+ * page with tabular data (Live Connections, Firewall, Blocklist, Allowlist,
+ * Events & Logs). No abstraction beyond shared classes: each page's columns
+ * differ enough that a generic <Table> component would just move the same
+ * markup one layer down. */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border-faint);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+.table tbody tr.is-clickable {
+  cursor: pointer;
+}
+.table tbody tr:hover {
+  background: var(--surface-2);
+}
+.table tbody tr.is-selected {
+  background: var(--surface-2);
+}
+
+.table__primary {
+  font-weight: 600;
+  color: var(--text);
+}
+.table__mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.table__muted {
+  color: var(--text-faint);
+}
+.table__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.table__num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.table-toolbar__search {
+  flex: 1;
+  min-width: 180px;
+  max-width: 320px;
+  position: relative;
+}
+.table-toolbar__search svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  pointer-events: none;
+}
+.table-toolbar__search input {
+  padding-left: 34px;
+}
+.table-toolbar__spacer {
+  flex: 1;
+}

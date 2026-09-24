@@ -1,0 +1,77 @@
+[package]
+name = "thomsen-shield"
+version = "1.0.0"
+description = "Thomsen Shield"
+authors = ["Thomsen"]
+edition = "2021"
+rust-version = "1.81"
+
+# App logic lives in a library crate with a thin `main.rs` so the modules stay
+# testable and the layout matches the Tauri v2 template.
+[lib]
+name = "thomsen_shield_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-autostart = "2"
+tauri-plugin-dialog = "2"
+# Without this, launching the app again (double-clicking the shortcut while
+# it's already running) starts a second, fully independent monitoring
+# engine and a second set of firewall-rule bookkeeping. Registered first so
+# it can intercept a second launch before anything else initializes.
+tauri-plugin-single-instance = "2"
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4"] }
+
+# Async runtime for the background monitoring/detection loop and the
+# license HTTP client - never blocks the UI thread.
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "process", "sync"] }
+
+# Cross-platform (Windows-backed) active connection enumeration and process
+# lookup. Used instead of hand-rolled GetExtendedTcpTable/ToolHelp calls so
+# the tricky unsafe memory-layout work is a maintained crate's problem, not
+# ours.
+netstat2 = "0.11"
+sysinfo = "0.32"
+
+# License activation tokens: the backend signs, the client only ever
+# verifies with an embedded public key - see src/license/token.rs.
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+rand_core = { version = "0.6", features = ["getrandom"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+
+base64 = "0.22"
+sha2 = "0.10"
+
+# Windows Firewall (COM: INetFwPolicy2/INetFwRule) and DPAPI (license cache
+# encryption). This app only ever targets Windows - see README - so this is
+# a plain dependency rather than a `cfg(windows)` one.
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_NetworkManagement_WindowsFirewall",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Security_Cryptography",
+    "Win32_System_Com",
+    "Win32_System_Registry",
+    "Win32_System_Threading",
+] }
+
+[features]
+# Used by the Tauri CLI for production builds.
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

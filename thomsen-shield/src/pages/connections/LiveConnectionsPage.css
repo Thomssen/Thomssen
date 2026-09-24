@@ -1,0 +1,42 @@
+.lc__count {
+  font-size: 11.5px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.lc__inline-badge {
+  margin-left: 8px;
+}
+
+.lc__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lc__detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 8px;
+  border-bottom: 1px solid var(--border-faint);
+  font-size: 12.5px;
+}
+.lc__detail-row:last-child {
+  border-bottom: none;
+}
+.lc__detail-label {
+  color: var(--text-muted);
+}
+.lc__detail-value {
+  color: var(--text);
+  text-align: right;
+  word-break: break-all;
+}
+
+.lc__detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 22px 22px;
+}
