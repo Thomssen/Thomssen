@@ -102,13 +102,12 @@ function ProtectionTab() {
       </SettingsRow>
       <div className="rule set__spaced" />
       <SettingsRow title="Default block duration" hint="Used for new automatic blocks.">
-        <Select value={protection.blockDuration} onChange={(e) => patchProtection({ blockDuration: e.target.value as BlockDuration })} style={{ width: 160 }}>
-          {DURATIONS.map((d) => (
-            <option key={d} value={d}>
-              {BLOCK_DURATION_LABELS[d]}
-            </option>
-          ))}
-        </Select>
+        <Select
+          value={protection.blockDuration}
+          onChange={(v) => patchProtection({ blockDuration: v as BlockDuration })}
+          style={{ width: 160 }}
+          options={DURATIONS.map((d) => ({ value: d, label: BLOCK_DURATION_LABELS[d] }))}
+        />
       </SettingsRow>
       <p className="set__note">For the full detection configuration, see the Protection page.</p>
     </Card>

@@ -109,13 +109,12 @@ export function ProtectionPage() {
             <div className="rule prot__field-spaced" />
             <div className="prot__field-spaced">
               <Field label="Temporary block duration" hint="How long an automatic block lasts before it's lifted, unless you make it permanent.">
-                <Select value={protection.blockDuration} onChange={(e) => void patch({ blockDuration: e.target.value as BlockDuration })} disabled={!protection.enabled || !protection.autoBlockSuspiciousIps}>
-                  {DURATIONS.map((d) => (
-                    <option key={d} value={d}>
-                      {BLOCK_DURATION_LABELS[d]}
-                    </option>
-                  ))}
-                </Select>
+                <Select
+                  value={protection.blockDuration}
+                  onChange={(v) => void patch({ blockDuration: v as BlockDuration })}
+                  disabled={!protection.enabled || !protection.autoBlockSuspiciousIps}
+                  options={DURATIONS.map((d) => ({ value: d, label: BLOCK_DURATION_LABELS[d] }))}
+                />
               </Field>
             </div>
           </Card>
