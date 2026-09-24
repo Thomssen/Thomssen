@@ -39,9 +39,15 @@ and the shared tokens in `thomsen-shield/src/styles/tokens.css`.
    use so they inherit the same styling - the snippet above is a plain
    fallback. The three pages already cross-link each other the same way in
    their own footers.
-3. Open each page in a browser and click through - the back link and all
-   cross-links use relative paths (`index.html`, `terms.html`, `privacy.html`,
-   `refund.html`). Rename the hrefs if your files use different names.
+3. Open each page in a browser and click through. The back link points to
+   `/` (root) rather than `index.html` so it doesn't add `/index.html` to
+   the address bar - that only works if your host serves `index.html` as
+   the default document at `/`, which is standard on virtually every static
+   host. The three legal pages still cross-link each other with the `.html`
+   extension (`terms.html`, `privacy.html`, `refund.html`); dropping those
+   too needs a clean-URL rewrite rule at the host level (Vercel's
+   `cleanUrls`, Netlify's `_redirects`, an `.htaccess` rule, etc.) that
+   depends on where thomssen.dev is actually hosted, so it isn't done here.
 
 ## Editable policy values
 
