@@ -49,6 +49,7 @@ pub async fn set_firewall_rule_enabled(id: String, enabled: bool, state: State<'
 }
 
 #[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ResetResult {
     pub removed: usize,
 }
