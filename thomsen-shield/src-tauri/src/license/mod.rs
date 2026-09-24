@@ -128,7 +128,9 @@ impl Default for LicenseManager {
 /// confirmed quickly) and then on a multi-hour interval - never on
 /// startup's own critical path.
 pub fn spawn_revalidation_loop(manager: std::sync::Arc<LicenseManager>) {
-    tokio::spawn(async move {
+    // tauri::async_runtime::spawn, not a raw tokio::spawn - see the
+    // comment on the same fix in monitor::spawn for why.
+    tauri::async_runtime::spawn(async move {
         tokio::time::sleep(std::time::Duration::from_secs(15)).await;
         loop {
             manager.revalidate_once().await;
