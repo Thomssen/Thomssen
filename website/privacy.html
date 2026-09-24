@@ -4,97 +4,98 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#050607" />
-<meta name="description" content="Privacy Policy for thomssen.dev." />
-<title>Privacy Policy - Thomssen</title>
-<link rel="stylesheet" href="legal.css" />
+<meta name="description" content="Privacy Policy for Thomsen Shield." />
+<title>Privacy Policy - Thomsen Shield</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="page">
 
   <header class="topbar">
-    <a class="back" href="/">&larr; Back to thomssen.dev</a>
+    <a class="back" href="/">&larr; Back to Thomsen Shield</a>
   </header>
 
   <main class="doc">
 
-    <!-- ============================================================
-         EDITABLE POLICY VALUES
-         No general Privacy Policy was found anywhere in the connected
-         project, so this is placeholder copy sized to be safe and easy
-         to edit, not a finished legal document - especially the list
-         of third-party services, which depends on what this site
-         actually uses (analytics, hosting, etc). Each value below is
-         wrapped in a marker so you can find every occurrence with your
-         editor's search (Ctrl/Cmd+F):
-
-           BUSINESS_OWNER    - legal name behind thomssen.dev
-           SUPPORT_EMAIL     - contact address
-           LAST_UPDATED      - date shown under the title
-         ============================================================ -->
+    <!-- Matches the policy already published at
+         thomsen-shield-license-api/public/privacy.html - keep the two in
+         sync if either changes. LAST_UPDATED is the one value with no
+         other source of truth; update the date when this page's wording
+         changes materially. -->
 
     <h1>Privacy Policy</h1>
     <p class="updated">Last updated <!-- LAST_UPDATED -->September 24, 2026<!-- /LAST_UPDATED --></p>
 
-    <p class="lead">This page explains what thomssen.dev collects when you visit or buy something here, why, and what your options are. Run by <!-- BUSINESS_OWNER -->Kristian Thomsen<!-- /BUSINESS_OWNER --> ("we", "us").</p>
+    <p class="lead">Thomsen Shield is a network security tool, so we know privacy matters more than usual here. This page explains exactly what we collect and, just as importantly, what we don't.</p>
 
     <div class="info-list" style="margin-bottom: 44px;">
-      <strong style="color:var(--text)">The short version:</strong> we collect the minimum needed to run this site and fulfill a purchase - basic visit data, and if you buy something, your email and payment details (handled by our payment processor, not stored by us). We don't sell your data.
+      <strong style="color:var(--text)">The short version:</strong> Thomsen Shield's network monitoring and blocking runs entirely on your PC. Your connection activity, blocked IPs, and firewall rules are <strong>never uploaded to us</strong>. We only handle what's needed to sell you a license and keep it working: your email, a device identifier, and payment details handled by Stripe.
     </div>
 
     <section>
-      <h2>1. Information we collect</h2>
+      <h2>1. What we collect</h2>
       <ul>
-        <li><strong>Contact details</strong> - if you email us, use a contact form, or buy something, we get whatever you provide: typically your name and email address.</li>
-        <li><strong>Purchase information</strong> - order and license details tied to your email, so we can support you and process refunds.</li>
-        <li><strong>Payment information</strong> - handled entirely by our payment processor (e.g. Stripe). We never see or store your full card number.</li>
-        <li><strong>Cookies and similar technology</strong> - see the Cookies section below.</li>
-        <li><strong>Standard server logs</strong> - our hosting provider logs basic request metadata like IP address, as most web infrastructure does, mainly for security and abuse prevention.</li>
+        <li><strong>Email address</strong> - collected by Stripe at checkout, used to send your payment receipt and to look up your license if you contact support.</li>
+        <li><strong>License key and device identifier</strong> - when you activate Thomsen Shield, the app sends your license key and a hardware-derived identifier for that PC to our license server, so we can confirm the license is valid and bound to one device.</li>
+        <li><strong>Payment information</strong> - handled entirely by Stripe. We never see or store your card number.</li>
+        <li><strong>Standard server logs</strong> - our hosting providers (Vercel, Supabase) log request metadata like IP address for security and abuse prevention, as most web infrastructure does.</li>
       </ul>
     </section>
 
     <section>
-      <h2>2. Cookies</h2>
-      <p>This site uses a cookie banner to ask for your consent before setting anything beyond strictly necessary cookies. Necessary cookies keep the site working; optional cookies (e.g. analytics) are only set if you allow them, and you can change your choice at any time by revisiting the cookie banner or clearing your browser's site data for thomssen.dev.</p>
+      <h2>2. What we don't collect</h2>
+      <p>Thomsen Shield does not send us your network traffic, browsing history, the connections it observes, or the IPs it blocks. All detection and blocking logic runs locally on your machine. Nothing about your day-to-day usage of the app is transmitted anywhere.</p>
     </section>
 
     <section>
-      <h2>3. How we use it</h2>
-      <p>To operate this site, respond to you, process a purchase and its payment, prevent fraud (e.g. chargebacks, key sharing), and understand how the site is used so we can improve it. We don't use your data for advertising, and we don't sell it to anyone.</p>
+      <h2>3. Cookies</h2>
+      <p>This site uses a cookie banner to ask for your consent before setting anything beyond strictly necessary cookies. You can change your choice at any time by clearing your browser's site data for thomssen.dev.</p>
     </section>
 
     <section>
-      <h2>4. Who we share it with</h2>
-      <p>Only the services that make this site and its products work - for example a payment processor for purchases, and the infrastructure that hosts this site. Each processes data under their own privacy policy, and only as needed to provide their service to us.</p>
+      <h2>4. How we use it</h2>
+      <p>Solely to issue and validate your license, process your payment, prevent fraud (e.g. chargebacks, key sharing), and respond if you contact support. We don't use your data for advertising, and we don't sell it to anyone.</p>
     </section>
 
     <section>
-      <h2>5. Data retention</h2>
-      <p>We keep purchase and support records for as long as needed to provide support and honor a license, plus whatever period is required for tax and accounting records afterward.</p>
+      <h2>5. Who we share it with</h2>
+      <p>Only the services that make Thomsen Shield work:</p>
+      <ul>
+        <li><strong>Stripe</strong> - payment processing (<a href="https://stripe.com/privacy">their privacy policy</a>)</li>
+        <li><strong>Supabase</strong> - database hosting for license records</li>
+        <li><strong>Vercel</strong> - hosting for our license server and this website</li>
+      </ul>
+      <p>Each processes data under their own privacy policy and only as needed to provide their service to us.</p>
     </section>
 
     <section>
-      <h2>6. Your rights</h2>
-      <p>You can ask us to access, correct, or delete your data at any time by emailing <!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL -->. Note that deleting your data may mean we can no longer support an active license tied to it.</p>
+      <h2>6. Data retention</h2>
+      <p>We keep license and purchase records for as long as your license is active, plus whatever period is required for tax and accounting records afterward.</p>
     </section>
 
     <section>
-      <h2>7. Security</h2>
-      <p>Data in transit to and from this site is encrypted (TLS). Access to systems holding customer data is limited to what's needed to operate the site and support customers.</p>
+      <h2>7. Your rights</h2>
+      <p>You can ask us to access, correct, or delete your data at any time by emailing <a href="mailto:support@thomssen.dev">support@thomssen.dev</a>. Note that deleting your account data will deactivate your license.</p>
     </section>
 
     <section>
-      <h2>8. Children</h2>
-      <p>This site isn't directed at children under 16, and we don't knowingly collect data from them.</p>
+      <h2>8. Security</h2>
+      <p>Data in transit between the app and our server is encrypted (TLS). Your license token is cryptographically signed and stored encrypted on your own device.</p>
     </section>
 
     <section>
-      <h2>9. Changes to this policy</h2>
+      <h2>9. Children</h2>
+      <p>Thomsen Shield isn't directed at children under 16, and we don't knowingly collect data from them.</p>
+    </section>
+
+    <section>
+      <h2>10. Changes to this policy</h2>
       <p>If this policy changes materially, we'll update the date at the top of this page.</p>
     </section>
 
     <section>
-      <h2>10. Contact</h2>
-      <p><!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL --></p>
+      <h2>11. Contact</h2>
+      <p><a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
     </section>
 
     <div class="footer-links">

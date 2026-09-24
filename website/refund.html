@@ -4,48 +4,36 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#050607" />
-<meta name="description" content="Refund policy and refund request form." />
-<title>Refund Policy - Thomssen</title>
-<link rel="stylesheet" href="legal.css" />
+<meta name="description" content="Refund policy and refund request form for Thomsen Shield." />
+<title>Refund Policy - Thomsen Shield</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="page">
 
   <header class="topbar">
-    <a class="back" href="/">&larr; Back to thomssen.dev</a>
+    <a class="back" href="/">&larr; Back to Thomsen Shield</a>
   </header>
 
   <main class="doc">
 
-    <!-- ============================================================
-         EDITABLE POLICY VALUES
-         This page has no backend/template engine, so values are kept
-         directly in the text below. Each one is wrapped in an HTML
-         comment marker so you can find every occurrence with your
-         editor's search (Ctrl/Cmd+F):
+    <!-- These figures (7-day window, $19.99, Stripe, Denmark) match the
+         policy already published for Thomsen Shield at
+         thomsen-shield-license-api/public/{refund,terms}.html - keep the
+         two in sync if either changes. LAST_UPDATED is the one value with
+         no other source of truth; update the date whenever this page's
+         wording changes materially. -->
 
-           REFUND_WINDOW    - number of refund-eligible days (3 places)
-           REVIEW_TIME      - how long you take to review a request
-           PROCESSING_TIME  - how long an approved refund takes to land
-           SUPPORT_EMAIL    - support address (3 places)
-           LAST_UPDATED     - date shown under the title
-
-         None of the wording below is a legal promise pulled from an
-         existing policy - no refund terms were found in the connected
-         project, so this is placeholder copy sized to be safe and
-         easy to edit, not a finished legal document.
-         ============================================================ -->
-
-    <span class="badge"><!-- REFUND_WINDOW -->14<!-- /REFUND_WINDOW -->-day refund window</span>
+    <span class="badge">7-day refund window</span>
 
     <h1>Refund Policy</h1>
     <p class="updated">Last updated <!-- LAST_UPDATED -->September 24, 2026<!-- /LAST_UPDATED --></p>
 
-    <p class="lead">We want every purchase from Thomssen to feel safe. This page explains when a refund is available, what isn't covered, and how to request one - or use the form further down if you'd rather not send an email.</p>
+    <p class="lead">If Thomsen Shield isn't right for you, this page explains how to get a refund - or use the form further down if you'd rather not send an email.</p>
 
     <section>
       <h2>How refunds work</h2>
-      <p>Most purchases are eligible for a full refund if you request one within the window below. Each request is reviewed individually, and approved refunds are returned to your original payment method.</p>
+      <p>Email us within 7 days of purchase and we'll refund you in full - no questions asked, no forms. Past that window, refunds are handled case by case, for example if the app has a defect we're unable to fix.</p>
     </section>
 
     <section>
@@ -53,18 +41,16 @@
         <div class="card card-good">
           <h3><span class="dot dot-good"></span>Eligible for a refund</h3>
           <ul>
-            <li>Requested within <!-- REFUND_WINDOW -->14<!-- /REFUND_WINDOW --> days of the original purchase date</li>
-            <li>Purchased directly through thomssen.dev or an official Thomssen checkout</li>
+            <li>Requested within 7 days of the original purchase date</li>
+            <li>Purchased directly through the official Thomsen Shield checkout</li>
             <li>The order ID or license key provided matches an active purchase on file</li>
-            <li>The product or service hasn't been used in a way that breaks the Terms of Service</li>
           </ul>
         </div>
         <div class="card card-bad">
           <h3><span class="dot dot-bad"></span>Not eligible for a refund</h3>
           <ul>
-            <li>Requests made after the <!-- REFUND_WINDOW -->14<!-- /REFUND_WINDOW -->-day window, outside case-by-case exceptions</li>
-            <li>Custom or bespoke work that has already been completed and delivered</li>
-            <li>Licenses or accounts suspended for fraud, chargeback abuse, or a Terms violation</li>
+            <li>Requests made after the 7-day window, outside case-by-case exceptions</li>
+            <li>Licenses suspended for fraud, chargeback abuse, or a Terms of Service violation</li>
             <li>Chargebacks filed with your bank before contacting support first</li>
           </ul>
         </div>
@@ -76,8 +62,8 @@
       <div class="info-list">
         <ol>
           <li>Fill out the <a href="#refund-form">Request a Refund</a> form below, or email <!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL --> directly</li>
-          <li>Include your order ID or license key so the purchase can be found</li>
-          <li>You'll get a confirmation and, once reviewed, the outcome - both by email</li>
+          <li>Include your license key or the email address you purchased with</li>
+          <li>That's it - no forms, no justification needed within the 7-day window</li>
         </ol>
       </div>
     </section>
@@ -86,10 +72,9 @@
       <h2>Expected processing time</h2>
       <div class="info-list">
         <ul>
-          <li>Requests are reviewed within <!-- REVIEW_TIME -->2 business days<!-- /REVIEW_TIME --></li>
-          <li>Approved refunds are issued to your original payment method</li>
-          <li>Refunds typically appear on your statement within <!-- PROCESSING_TIME -->5-10 business days<!-- /PROCESSING_TIME -->, depending on your bank or card provider</li>
-          <li>Any associated license or access is deactivated once a refund is issued</li>
+          <li>We refund the full $19.99 to your original payment method through Stripe</li>
+          <li>Refunds typically appear on your statement within 5-10 business days, depending on your bank</li>
+          <li>Your license is deactivated once the refund is issued</li>
         </ul>
       </div>
     </section>
@@ -121,8 +106,8 @@
             <input type="text" id="rf-order" name="orderId" placeholder="e.g. TS-8F21-91AC" required />
           </div>
           <div class="field">
-            <label for="rf-product">Product / Service <span class="required">*</span></label>
-            <input type="text" id="rf-product" name="product" placeholder="e.g. Thomsen Shield" required />
+            <label for="rf-product">Product <span class="required">*</span></label>
+            <input type="text" id="rf-product" name="product" value="Thomsen Shield" required />
           </div>
         </div>
 
