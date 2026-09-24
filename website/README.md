@@ -14,8 +14,8 @@ fresh rather than adapted from any prior homepage content, per instruction.
 ## Files
 
 - **`index.html`** - the homepage: nav, hero, "how it works", features,
-  a protection/status showcase, a screenshot gallery, pricing, FAQ, and
-  the footer. Also owns the cookie banner and its consent JS.
+  a protection/status showcase, pricing, FAQ, and the footer. Also owns
+  the cookie banner and its consent JS.
 - **`refund.html`**, **`terms.html`**, **`privacy.html`** - legal pages,
   now written specifically for Thomsen Shield (not a generic multi-product
   site) using the same figures already live at
@@ -25,11 +25,14 @@ fresh rather than adapted from any prior homepage content, per instruction.
 - **`styles.css`** - shared tokens, reset, buttons, form fields, and the
   custom dropdown, used by all four pages.
 - **`home.css`** - homepage-only components (nav, hero, feature grid,
-  protection panel, gallery, pricing card, FAQ accordion, footer, cookie
-  banner). Only `index.html` links this file.
+  protection panel, pricing card, FAQ accordion, footer, cookie banner).
+  Only `index.html` links this file.
 - **`assets/thomsen-shield-dashboard.png`** - a real screenshot of the
-  app's Dashboard (copied from `thomsen-shield/website/assets/`), used in
-  the hero and the screenshot gallery.
+  app's Dashboard (copied from `thomsen-shield/website/assets/`). Not
+  currently used on the page (the hero and the screenshot-gallery section
+  that referenced it were both removed to declutter the homepage - see
+  "Removed for now" below) but kept in case you want to bring a
+  screenshot back in later.
 
 All four pages match the dark near-black/white/grey design used across
 the other Thomsen apps (see `thomsen-shield/src/styles/tokens.css`) - no
@@ -53,25 +56,34 @@ is. There's no separate free-download link - Shield's own README and the
 existing product section only ever show a single Buy CTA, so this follows
 that same pattern rather than inventing an unverified download URL.
 
-## Screenshot gallery
+## Removed for now
 
-The gallery section (`#gallery`) has one real screenshot and two
-placeholder tiles (`.gallery__placeholder`) marked "coming soon" for
-Live Connections and Firewall. To fill one in, copy a
-`.gallery__tile` block (see the Dashboard tile in `index.html`) in place
-of a placeholder, point its `<img src>` at a new file in `assets/`, and
-write accurate `alt` text.
+Two things were cut after an early review pass, to keep the page from
+feeling too busy:
+
+- **The hero screenshot.** The hero was originally a two-column layout
+  (copy left, framed Dashboard screenshot right); it's now a single
+  centered column with no image.
+- **The screenshot gallery section** ("More of the app"), which held the
+  same Dashboard screenshot plus two "coming soon" placeholder tiles for
+  Live Connections and Firewall.
+
+Both used `assets/thomsen-shield-dashboard.png`, which is still in the
+repo if you want to reintroduce a screenshot somewhere - e.g. inside the
+"Always-on protection" panel, or as its own section - just nothing
+references the file right now.
 
 ## Cookie banner
 
 There was no existing cookie banner in the connected project to carry
 over (this session never had access to your live site), so the one in
 `index.html`/`home.css` is a fresh build in the same visual language as
-the rest of the site: a translucent, blurred card, pill buttons, bottom
-corner placement. It stores the visitor's choice in `localStorage`
-(`thomsen-shield-cookie-consent`) - no cookie-consent library. If your
-real site already had a banner with specific legal wording, swap this
-one's copy in `index.html` for that instead.
+the rest of the site: a translucent, blurred card, pill buttons, anchored
+to the bottom-left corner on desktop (full-width bottom bar on small
+screens, where a corner card doesn't fit). It stores the visitor's choice
+in `localStorage` (`thomsen-shield-cookie-consent`) - no cookie-consent
+library. If your real site already had a banner with specific legal
+wording, swap this one's copy in `index.html` for that instead.
 
 ## What's still a placeholder
 
