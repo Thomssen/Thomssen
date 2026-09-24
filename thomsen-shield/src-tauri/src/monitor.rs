@@ -16,7 +16,15 @@ use crate::{logging, network, state::AppState};
 const POLL_INTERVAL: std::time::Duration = std::time::Duration::from_secs(3);
 
 pub fn spawn(state: Arc<AppState>) {
-    tokio::spawn(async move {
+    // tauri::async_runtime::spawn, not a raw tokio::spawn - called from
+    // Tauri's own setup() callback, which doesn't run inside an entered
+    // Tokio runtime context itself (confirmed the hard way: raw
+    // tokio::spawn here panics on every launch with "there is no reactor
+    // running, must be called from the context of a Tokio 1.x runtime" -
+    // never caught by CI, since nothing there actually launches the built
+    // app and waits to see it stay up). Tauri's wrapper always routes to
+    // whichever runtime it's actually driving internally.
+    tauri::async_runtime::spawn(async move {
         loop {
             if let Err(e) = tick(&state).await {
                 // A single bad poll (e.g. a transient permissions hiccup
