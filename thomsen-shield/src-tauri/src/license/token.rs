@@ -12,20 +12,20 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{AppError, AppResult};
 
-/// A placeholder public key - there is no corresponding private key
-/// anywhere in either repo, on purpose (a private key that ships in a
-/// public repo isn't private). Embedding a *public* key here is safe on
-/// its own merits - it can verify a signature, never create one - but
-/// this specific one verifies nothing real.
+/// The public half of the keypair generated for `api.thomssen.dev` via
+/// `npm run generate-keypair` in `thomsen-shield-license-api/`. The
+/// private half lives only in that Vercel project's environment
+/// variables - see that project's README ("Signing keypair"). Embedding
+/// a *public* key here is safe: it can verify a signature, never create
+/// one.
 ///
-/// Before this can activate against a real backend: run
-/// `npm run generate-keypair` in `thomsen-shield-license-api/` (once for
-/// local dev, again, separately, for production) and paste the printed
-/// public key's bytes in here, replacing these - see that project's
-/// README ("Signing keypair"). Production and development must never
-/// share a keypair.
-const DEV_PUBLIC_KEY: [u8; 32] = [
-    35, 41, 153, 249, 51, 61, 251, 143, 51, 209, 69, 146, 154, 86, 197, 25, 123, 247, 252, 130, 110, 10, 47, 120, 62, 96, 220, 108, 54, 204, 24, 243,
+/// Rotating keys later: generate a fresh pair, update
+/// `LICENSE_SIGNING_PRIVATE_KEY_B64` / `LICENSE_SIGNING_PUBLIC_KEY_B64` in
+/// Vercel, and paste the new public key's bytes in here in the same
+/// commit - an old client build won't verify tokens from a rotated key
+/// until it ships with the matching bytes.
+const LICENSE_SIGNING_PUBLIC_KEY: [u8; 32] = [
+    17, 212, 240, 241, 169, 211, 189, 228, 55, 91, 33, 231, 164, 54, 131, 246, 16, 192, 84, 15, 220, 180, 192, 73, 203, 61, 182, 84, 79, 93, 196, 70,
 ];
 
 /// camelCase to match the exact JSON the backend's `lib/signing.ts`
@@ -77,8 +77,8 @@ impl SignedToken {
     }
 }
 
-pub fn dev_public_key() -> VerifyingKey {
-    VerifyingKey::from_bytes(&DEV_PUBLIC_KEY).expect("embedded DEV public key is a valid Ed25519 key")
+pub fn license_signing_public_key() -> VerifyingKey {
+    VerifyingKey::from_bytes(&LICENSE_SIGNING_PUBLIC_KEY).expect("embedded license signing public key is a valid Ed25519 key")
 }
 
 #[cfg(test)]

@@ -96,12 +96,12 @@ npm run generate-keypair
 
 Paste the two printed values into your env as
 `LICENSE_SIGNING_PRIVATE_KEY_B64` / `LICENSE_SIGNING_PUBLIC_KEY_B64`.
-Then take the public key value and paste it into `DEV_PUBLIC_KEY` in
+Then take the public key value and paste it into `LICENSE_SIGNING_PUBLIC_KEY` in
 `thomsen-shield/src-tauri/src/license/token.rs` (it's a byte array - the
 comment there shows the format), so the desktop app you're testing
 against verifies tokens *this* backend actually issues. Run
 `generate-keypair` again for your production Vercel environment and
-repeat the same `DEV_PUBLIC_KEY` update before you ship - production and
+repeat the same `LICENSE_SIGNING_PUBLIC_KEY` update before you ship - production and
 development must never share a keypair.
 
 ### 4. Admin token

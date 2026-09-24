@@ -27,6 +27,6 @@ console.log("Generated a new Ed25519 signing keypair.\n");
 console.log("Add these to your Vercel project's environment variables:\n");
 console.log(`LICENSE_SIGNING_PRIVATE_KEY_B64=${privateKeyB64}`);
 console.log(`LICENSE_SIGNING_PUBLIC_KEY_B64=${publicKeyB64}`);
-console.log("\nIf you're rotating keys (not first setup), also update the DEV_PUBLIC_KEY");
+console.log("\nIf you're rotating keys (not first setup), also update the LICENSE_SIGNING_PUBLIC_KEY");
 console.log("bytes in thomsen-shield/src-tauri/src/license/token.rs to this public key,");
 console.log("or every existing activation will fail to verify after the rotation.");

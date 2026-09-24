@@ -53,7 +53,7 @@ impl LicenseManager {
 
     fn cached_payload(&self) -> Option<TokenPayload> {
         let token = store::load_token().ok().flatten()?;
-        token.verify(&token::dev_public_key()).ok()
+        token.verify(&token::license_signing_public_key()).ok()
     }
 
     pub async fn activate(&self, license_key: &str) -> AppResult<LicenseInfo> {
@@ -61,14 +61,14 @@ impl LicenseManager {
         // Verify locally before trusting/caching it, even though it just
         // came from the server over TLS - defense in depth, and it's the
         // exact same check `info()` will run on every future read.
-        token.verify(&token::dev_public_key())?;
+        token.verify(&token::license_signing_public_key())?;
         store::save_token(&token)?;
         Ok(self.info())
     }
 
     pub async fn deactivate(&self) -> AppResult<()> {
         if let Some(token) = store::load_token()? {
-            if let Some(payload) = token.verify(&token::dev_public_key()).ok() {
+            if let Some(payload) = token.verify(&token::license_signing_public_key()).ok() {
                 client::deactivate(&payload.license_key, &self.device_id, &token).await?;
             }
         }
@@ -81,10 +81,10 @@ impl LicenseManager {
     /// and it's simply left as-is until the next attempt succeeds.
     pub async fn revalidate_once(&self) {
         let Ok(Some(token)) = store::load_token() else { return };
-        let Ok(payload) = token.verify(&token::dev_public_key()) else { return };
+        let Ok(payload) = token.verify(&token::license_signing_public_key()) else { return };
 
         if let Ok(fresh) = client::validate(&payload.license_key, &self.device_id, &token).await {
-            if fresh.verify(&token::dev_public_key()).is_ok() {
+            if fresh.verify(&token::license_signing_public_key()).is_ok() {
                 let _ = store::save_token(&fresh);
             }
         }
