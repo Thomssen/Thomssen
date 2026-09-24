@@ -24,8 +24,14 @@ use crate::error::{AppError, AppResult};
 /// Vercel, and paste the new public key's bytes in here in the same
 /// commit - an old client build won't verify tokens from a rotated key
 /// until it ships with the matching bytes.
+///
+/// Rotated once already: the first keypair's private half was pasted into
+/// a chat response while nothing was deployed yet, so it was regenerated
+/// before anything ever went live rather than treated as a real rotation
+/// (no issued tokens to invalidate). This is that replacement's public
+/// half.
 const LICENSE_SIGNING_PUBLIC_KEY: [u8; 32] = [
-    17, 212, 240, 241, 169, 211, 189, 228, 55, 91, 33, 231, 164, 54, 131, 246, 16, 192, 84, 15, 220, 180, 192, 73, 203, 61, 182, 84, 79, 93, 196, 70,
+    251, 158, 149, 86, 46, 93, 143, 92, 163, 94, 211, 71, 165, 180, 70, 85, 63, 242, 98, 231, 108, 38, 214, 50, 58, 120, 162, 181, 47, 190, 68, 211,
 ];
 
 /// camelCase to match the exact JSON the backend's `lib/signing.ts`
