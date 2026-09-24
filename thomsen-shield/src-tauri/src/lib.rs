@@ -32,6 +32,16 @@ fn debug_log(msg: &str) {
     }
 }
 
+/// TEMPORARY, same reasoning as `debug_log` above: a frontend exception
+/// (render-time or otherwise) that isn't caught by a React error boundary
+/// can leave the WebView showing nothing at all, with no console attached
+/// to read from - so the frontend reports it here instead. Remove together
+/// with `debug_log` once startup is confirmed stable across the board.
+#[tauri::command]
+fn log_frontend_error(message: String) {
+    debug_log(&format!("FRONTEND ERROR: {message}"));
+}
+
 pub fn run() {
     std::panic::set_hook(Box::new(|info| {
         debug_log(&format!("PANIC: {info}"));
@@ -129,6 +139,7 @@ pub fn run() {
             commands::settings::get_settings,
             commands::settings::save_settings,
             commands::settings::complete_onboarding,
+            log_frontend_error,
         ])
         .build(tauri::generate_context!())
         .map(|app| {
