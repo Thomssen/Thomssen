@@ -12,15 +12,28 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{AppError, AppResult};
 
-/// The DEV keypair's public half, generated once for local/staging use -
-/// see `license/mod.rs` doc comment and the backend's own README for how
-/// production gets its own, separate keypair. Embedding a *public* key is
-/// safe: it can verify a signature, never create one.
+/// A placeholder public key - there is no corresponding private key
+/// anywhere in either repo, on purpose (a private key that ships in a
+/// public repo isn't private). Embedding a *public* key here is safe on
+/// its own merits - it can verify a signature, never create one - but
+/// this specific one verifies nothing real.
+///
+/// Before this can activate against a real backend: run
+/// `npm run generate-keypair` in `thomsen-shield-license-api/` (once for
+/// local dev, again, separately, for production) and paste the printed
+/// public key's bytes in here, replacing these - see that project's
+/// README ("Signing keypair"). Production and development must never
+/// share a keypair.
 const DEV_PUBLIC_KEY: [u8; 32] = [
     35, 41, 153, 249, 51, 61, 251, 143, 51, 209, 69, 146, 154, 86, 197, 25, 123, 247, 252, 130, 110, 10, 47, 120, 62, 96, 220, 108, 54, 204, 24, 243,
 ];
 
+/// camelCase to match the exact JSON the backend's `lib/signing.ts`
+/// produces - this is what gets parsed out of `payload_json` below once
+/// the signature over those bytes checks out, so the field casing has to
+/// agree with the signer, not just be internally consistent.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct TokenPayload {
     pub license_key: String,
     pub device_id: String,
@@ -28,12 +41,17 @@ pub struct TokenPayload {
     pub expires_at: DateTime<Utc>,
 }
 
-/// The wire/cache format. `payload_json` is kept as the exact string the
-/// signature was computed over - re-serializing the parsed struct before
-/// verifying would risk a byte-for-byte mismatch (field order, spacing)
-/// even when the data is logically identical, so the signature is always
-/// checked against these exact bytes, never a re-encoded copy.
+/// The wire/cache format - camelCase to match `SignedToken` in the
+/// backend's `lib/signing.ts` exactly, since this struct is deserialized
+/// directly from that API's JSON response as well as round-tripped
+/// through the local DPAPI cache. `payload_json` is kept as the exact
+/// string the signature was computed over - re-serializing the parsed
+/// struct before verifying would risk a byte-for-byte mismatch (field
+/// order, spacing) even when the data is logically identical, so the
+/// signature is always checked against these exact bytes, never a
+/// re-encoded copy.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct SignedToken {
     pub payload_json: String,
     pub signature_b64: String,

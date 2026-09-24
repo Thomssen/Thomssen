@@ -18,13 +18,18 @@ fn base_url() -> String {
     std::env::var("THOMSEN_SHIELD_LICENSE_API").unwrap_or_else(|_| "https://api.thomssen.dev".to_string())
 }
 
+// camelCase on all three: the API (thomsen-shield-license-api/api/license/*)
+// reads `req.body.licenseKey` / `req.body.deviceId` exactly, not the
+// snake_case Rust's default `Serialize` would otherwise produce.
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 struct ActivateRequest<'a> {
     license_key: &'a str,
     device_id: &'a str,
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 struct ValidateRequest<'a> {
     license_key: &'a str,
     device_id: &'a str,
@@ -32,6 +37,7 @@ struct ValidateRequest<'a> {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 struct DeactivateRequest<'a> {
     license_key: &'a str,
     device_id: &'a str,
