@@ -53,6 +53,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       // single-use-in-practice token - see api/purchase/success.ts) and
       // is deliberately not duplicated into Checkout's own metadata here.
       customer_creation: "always",
+      // Shows a promo-code field on Checkout - lets a 100%-off code (made
+      // in the Stripe Dashboard, Product catalog -> Coupons) exercise this
+      // exact real flow for $0, e.g. to verify production end to end
+      // without a real charge. No effect for a customer who doesn't have
+      // a code; nothing here grants a discount by itself.
+      allow_promotion_codes: true,
     });
 
     if (!session.url) {
