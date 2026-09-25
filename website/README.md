@@ -24,7 +24,7 @@ the old homepage's actual copy.
 - **`refund.html`**, **`terms.html`**, **`privacy.html`** — legal pages,
   same nav/footer/cookie system, content matching the figures already
   live at `thomsen-shield-license-api/public/{refund,terms,privacy}.html`
-  ($19.99 one-time, 7-day refund, Stripe, Denmark law).
+  (€50.00 one-time, 7-day refund, Stripe, Denmark law).
 - **`assets/main.css`** — one stylesheet for the whole site. Sections
   1–13 are your real site's CSS, unmodified, so this file is a drop-in
   superset of your actual `assets/styles.css` (nothing here would break

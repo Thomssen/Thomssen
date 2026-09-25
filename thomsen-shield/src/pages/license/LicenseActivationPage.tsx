@@ -58,7 +58,7 @@ export function LicenseActivationPage() {
           </form>
         </Card>
 
-        <p className="license-gate__hint">Thomsen Shield is a one-time purchase - $19.99, lifetime. Don't have a key yet? Visit thomssen.dev to buy one.</p>
+        <p className="license-gate__hint">Thomsen Shield is a one-time purchase - €50.00, lifetime. Don't have a key yet? Visit thomssen.dev to buy one.</p>
       </div>
     </div>
   );

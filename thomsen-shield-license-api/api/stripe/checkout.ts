@@ -5,10 +5,10 @@ import { optionalEnv } from "../../lib/env.js";
 /**
  * GET /api/stripe/checkout (aliased to /buy - see vercel.json).
  *
- * The website's "Buy - $19.99 Lifetime" button can be a plain `<a href>`
- * to this URL - no client-side JavaScript needed on a static site. This
- * creates a Checkout Session and immediately redirects to Stripe's own
- * hosted page.
+ * The website's "Purchase" button (€50.00 Lifetime) can be a plain
+ * `<a href>` to this URL - no client-side JavaScript needed on a static
+ * site. This creates a Checkout Session and immediately redirects to
+ * Stripe's own hosted page.
  *
  * The price is defined inline (price_data) rather than via a stored
  * Price/STRIPE_PRICE_ID: Stripe's Managed Payments, on by default for new
@@ -16,11 +16,11 @@ import { optionalEnv } from "../../lib/env.js";
  * of automatic_tax - and that code lives on the Product object, which is
  * entirely separate between test and live mode. A stored Price makes that
  * one more dashboard step to get right in the correct mode; defining the
- * tax code (and the $19.99 itself, already fixed everywhere else in this
+ * tax code (and the €50.00 itself, already fixed everywhere else in this
  * product) here means it's correct in both modes with nothing to configure
  * in Stripe at all. tax_code txcd_10000000 = "General - Electronically
  * Supplied Services", tax_behavior "inclusive" so the customer always pays
- * exactly $19.99 regardless of jurisdiction and Stripe (merchant of record
+ * exactly €50.00 regardless of jurisdiction and Stripe (merchant of record
  * under Managed Payments) carves the applicable tax out of that.
  */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -35,8 +35,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       line_items: [
         {
           price_data: {
-            currency: "usd",
-            unit_amount: 1999,
+            currency: "eur",
+            unit_amount: 5000,
             tax_behavior: "inclusive",
             product_data: {
               name: "Thomsen Shield - Lifetime License",

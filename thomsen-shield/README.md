@@ -31,7 +31,7 @@ only.
   to TXT or JSON.
 - **Lockdown Mode** - an optional, always-reversible stricter mode. A
   "Disable Lockdown" control is always visible while it's active.
-- **Licensing** - a one-time $19.99 lifetime purchase, activated with a
+- **Licensing** - a one-time €50.00 lifetime purchase, activated with a
   signed token from `thomsen-shield-license-api/` (see that project) and
   cached locally, encrypted with Windows DPAPI.
 
@@ -107,5 +107,5 @@ Built by **Thomsen**
 
 ## License
 
-Proprietary - $19.99 one-time purchase, lifetime license. Not
+Proprietary - €50.00 one-time purchase, lifetime license. Not
 open-source.
