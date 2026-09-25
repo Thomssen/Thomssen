@@ -840,15 +840,15 @@ ul { list-style: none; padding: 0; }
 .info-list li { margin-bottom: 10px; }
 .info-list li:last-child { margin-bottom: 0; }
 
-/* -- Steps ("how it works") ------------------------------------------------ */
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.step { padding: 26px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
-.step__icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); color: var(--text); margin-bottom: 18px; }
-.step__num { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.08em; }
-.step h3 { margin-top: 8px; font-size: 1.05rem; }
-.step p { font-size: 0.92rem; color: var(--text-muted); margin-top: 8px; }
+/* -- How it works cards ------------------------------------------------ */
+.hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.hiw-card { padding: 26px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.hiw-card__icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); color: var(--text); margin-bottom: 18px; }
+.hiw-card__num { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.08em; }
+.hiw-card h3 { margin-top: 8px; font-size: 1.05rem; }
+.hiw-card p { font-size: 0.92rem; color: var(--text-muted); margin-top: 8px; }
 
-@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .hiw-grid { grid-template-columns: 1fr; } }
 
 .status-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding-inline: 10px; border-radius: var(--radius-pill); background: var(--good-soft); color: var(--good); font-size: 12px; font-weight: 600; }
 .status-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
