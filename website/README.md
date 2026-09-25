@@ -25,6 +25,18 @@ the old homepage's actual copy.
   same nav/footer/cookie system, content matching the figures already
   live at `thomsen-shield-license-api/public/{refund,terms,privacy}.html`
   (€50.00 one-time, 7-day refund, Stripe, Denmark law).
+- **`thomsen-shield/index.html`** — the post-purchase download page. It's
+  a folder with an `index.html` inside, not a `thomsen-shield.html` file,
+  so the existing "Download Thomsen Shield" link on the Stripe success
+  page (`https://thomssen.dev/thomsen-shield`, no extension - see
+  `thomsen-shield-license-api/api/purchase/success.ts`) resolves without
+  needing a clean-URL rewrite. Its nav/footer links use root-relative
+  paths (`/index.html`, `/assets/main.css`, ...) rather than the relative
+  ones the top-level pages use, since it's one folder deeper. The
+  "Download for Windows" button is a placeholder (`href="#"`, clearly
+  marked in the file) since no installer is published yet - clicking it
+  shows a message pointing to `support@thomssen.dev` instead of doing
+  nothing. Swap in the real installer URL there once one exists.
 - **`assets/main.css`** — one stylesheet for the whole site. Sections
   1–13 are your real site's CSS, unmodified, so this file is a drop-in
   superset of your actual `assets/styles.css` (nothing here would break
