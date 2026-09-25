@@ -850,30 +850,8 @@ ul { list-style: none; padding: 0; }
 
 @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
 
-/* -- Protection / status showcase ------------------------------------------ */
-.protection-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; }
-.protection-panel__status { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 12px; }
-.protection-panel__status-card { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); }
-.protection-panel__status-label { font-size: 13.5px; font-weight: 600; color: var(--text); }
 .status-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding-inline: 10px; border-radius: var(--radius-pill); background: var(--good-soft); color: var(--good); font-size: 12px; font-weight: 600; }
 .status-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-
-.protection-panel__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
-.stat-card { padding: 18px 20px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); }
-.stat-card__label { font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
-.stat-card__value { margin-top: 8px; font-size: 26px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
-.stat-card__value.is-warn { color: var(--warn); }
-.stat-card__value.is-bad { color: var(--bad); }
-
-.protection-panel__graph { padding: 20px 22px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); }
-.protection-panel__graph-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
-.protection-panel__graph-head h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); margin: 0; }
-.protection-panel__graph-hint { font-size: 11.5px; color: var(--text-muted); }
-.protection-panel__graph svg { display: block; width: 100%; height: 70px; }
-
-.protection-panel__caption { margin: 22px 2px 0; font-size: 13px; color: var(--text-muted); }
-
-@media (max-width: 640px) { .protection-panel__stats { grid-template-columns: 1fr; } }
 
 /* -- Pricing ----------------------------------------------------------------- */
 .pricing { display: flex; justify-content: center; }
@@ -913,11 +891,6 @@ ul { list-style: none; padding: 0; }
 .faq-item[data-open="true"] .faq-item__chevron { transform: rotate(180deg); }
 .faq-item__a { max-height: 0; overflow: hidden; transition: max-height 260ms var(--ease); }
 .faq-item__a-inner { padding: 0 4px 22px; font-size: 0.92rem; line-height: 1.7; color: var(--text-muted); max-width: 68ch; }
-
-/* -- Final CTA ----------------------------------------------------------------- */
-.final-cta { text-align: center; padding-block: clamp(64px, 12vw, 96px); border-top: 1px solid var(--border); }
-.final-cta h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: 14px; }
-.final-cta p { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; }
 
 /* -- Form fields + custom dropdown (Request a Refund) ------------------------- */
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
