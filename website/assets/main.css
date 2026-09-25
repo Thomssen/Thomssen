@@ -345,16 +345,11 @@ ul { list-style: none; padding: 0; }
 
 .nav__brand { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .nav__mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 26px;
   height: 26px;
   border-radius: 8px;
-  border: 1px solid var(--border-strong);
-  background: var(--surface-2);
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 700;
+  flex-shrink: 0;
 }
 .nav__brand-text {
   font-size: 0.98rem;
@@ -633,16 +628,11 @@ ul { list-style: none; padding: 0; }
 }
 .footer__brand { display: flex; align-items: center; gap: 12px; }
 .footer__mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  border: 1px solid var(--border-strong);
-  background: var(--surface-2);
-  color: var(--text);
-  font-weight: 700;
-  font-size: 14px;
+  flex-shrink: 0;
 }
 .footer__name { color: var(--text); font-weight: 600; font-size: 0.95rem; }
 .footer__tag { color: var(--text-muted); font-size: 0.85rem; }
