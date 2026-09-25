@@ -1,265 +1,341 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#050607" />
-<meta name="description" content="Refund policy and refund request form for Thomsen Shield." />
-<title>Refund Policy - Thomsen Shield</title>
-<link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-<div class="page">
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Refund Policy - Thomsen Shield</title>
+    <meta name="description" content="Refund policy and refund request form for Thomsen Shield." />
+    <meta name="theme-color" content="#050607" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 
-  <header class="topbar">
-    <a class="back" href="/">&larr; Back to Thomsen Shield</a>
-  </header>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
 
-  <main class="doc">
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('thomsen-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t =
+              window.matchMedia &&
+              window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- These figures (7-day window, $19.99, Stripe, Denmark) match the
-         policy already published for Thomsen Shield at
-         thomsen-shield-license-api/public/{refund,terms}.html - keep the
-         two in sync if either changes. LAST_UPDATED is the one value with
-         no other source of truth; update the date whenever this page's
-         wording changes materially. -->
-
-    <span class="badge">7-day refund window</span>
-
-    <h1>Refund Policy</h1>
-    <p class="updated">Last updated <!-- LAST_UPDATED -->September 24, 2026<!-- /LAST_UPDATED --></p>
-
-    <p class="lead">If Thomsen Shield isn't right for you, this page explains how to get a refund - or use the form further down if you'd rather not send an email.</p>
-
-    <section>
-      <h2>How refunds work</h2>
-      <p>Email us within 7 days of purchase and we'll refund you in full - no questions asked, no forms. Past that window, refunds are handled case by case, for example if the app has a defect we're unable to fix.</p>
-    </section>
-
-    <section>
-      <div class="grid-2">
-        <div class="card card-good">
-          <h3><span class="dot dot-good"></span>Eligible for a refund</h3>
-          <ul>
-            <li>Requested within 7 days of the original purchase date</li>
-            <li>Purchased directly through the official Thomsen Shield checkout</li>
-            <li>The order ID or license key provided matches an active purchase on file</li>
-          </ul>
-        </div>
-        <div class="card card-bad">
-          <h3><span class="dot dot-bad"></span>Not eligible for a refund</h3>
-          <ul>
-            <li>Requests made after the 7-day window, outside case-by-case exceptions</li>
-            <li>Licenses suspended for fraud, chargeback abuse, or a Terms of Service violation</li>
-            <li>Chargebacks filed with your bank before contacting support first</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>How to request a refund</h2>
-      <div class="info-list">
-        <ol>
-          <li>Fill out the <a href="#refund-form">Request a Refund</a> form below, or email <!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL --> directly</li>
-          <li>Include your license key or the email address you purchased with</li>
-          <li>That's it - no forms, no justification needed within the 7-day window</li>
-        </ol>
-      </div>
-    </section>
-
-    <section>
-      <h2>Expected processing time</h2>
-      <div class="info-list">
-        <ul>
-          <li>We refund the full $19.99 to your original payment method through Stripe</li>
-          <li>Refunds typically appear on your statement within 5-10 business days, depending on your bank</li>
-          <li>Your license is deactivated once the refund is issued</li>
+    <header class="nav-wrap">
+      <div class="nav-scrim"></div>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__brand" href="index.html" aria-label="Thomsen Shield — home">
+          <span class="nav__mark" aria-hidden="true">S</span>
+          <span class="nav__brand-text">Thomsen Shield</span>
+        </a>
+        <ul class="nav__links">
+          <li><a class="nav__link" href="index.html">Home</a></li>
+          <li><a class="nav__link" href="index.html#features">Features</a></li>
+          <li><a class="nav__link" href="index.html#pricing">Pricing</a></li>
+          <li><a class="nav__link" href="index.html#faq">FAQ</a></li>
         </ul>
+        <div class="nav__actions">
+          <button type="button" class="theme-toggle" aria-label="Switch theme">
+            <span class="theme-toggle__icons" data-dark="true">
+              <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="17" height="17" fill="none" aria-hidden="true">
+                <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z" fill="currentColor" />
+              </svg>
+              <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none" />
+                <path d="M12 2.5v2M12 19.5v2M4.5 12h-2M21.5 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4" />
+              </svg>
+            </span>
+          </button>
+          <a class="btn btn--primary btn--sm nav__cta" href="https://api.thomssen.dev/buy">Purchase</a>
+          <button type="button" class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-panel">
+            <span></span><span></span>
+          </button>
+        </div>
+      </nav>
+      <div class="nav-panel" id="nav-panel">
+        <ul class="nav-panel__links">
+          <li><a class="nav-panel__link" href="index.html">Home</a></li>
+          <li><a class="nav-panel__link" href="index.html#features">Features</a></li>
+          <li><a class="nav-panel__link" href="index.html#pricing">Pricing</a></li>
+          <li><a class="nav-panel__link" href="index.html#faq">FAQ</a></li>
+        </ul>
+        <a class="btn btn--primary nav-panel__cta" href="https://api.thomssen.dev/buy">Purchase</a>
       </div>
-    </section>
+    </header>
 
-    <section>
-      <h2>Contact &amp; support</h2>
-      <p>Questions before you request a refund? Reach out at <!-- SUPPORT_EMAIL --><a href="mailto:support@thomssen.dev">support@thomssen.dev</a><!-- /SUPPORT_EMAIL --> and we'll get back to you.</p>
-    </section>
+    <main id="main" class="page">
+      <section class="section">
+        <div class="container doc">
 
-    <section id="refund-form" class="form-card">
-      <h2>Request a Refund</h2>
-      <p class="form-sub">Prefer not to email? Fill this out and we'll follow up at the address you provide.</p>
+          <!-- Figures below (7-day window, $19.99, Stripe, Denmark) match the
+               policy already published at
+               thomsen-shield-license-api/public/{refund,terms}.html - keep
+               the two in sync if either changes. LAST_UPDATED is the one
+               value with no other source of truth. -->
 
-      <form id="refund-request-form" novalidate>
-        <div class="field-row">
-          <div class="field">
-            <label for="rf-name">Name <span class="required">*</span></label>
-            <input type="text" id="rf-name" name="name" autocomplete="name" required />
-          </div>
-          <div class="field">
-            <label for="rf-email">Email <span class="required">*</span></label>
-            <input type="email" id="rf-email" name="email" autocomplete="email" required />
+          <span class="status-badge">7-day refund window</span>
+          <h1>Refund Policy</h1>
+          <p class="updated">Last updated <!-- LAST_UPDATED -->September 25, 2026<!-- /LAST_UPDATED --></p>
+
+          <p>If Thomsen Shield isn't right for you, this page explains how to get a refund - or use the form further down if you'd rather not send an email.</p>
+
+          <section>
+            <h2>How refunds work</h2>
+            <p>Email us within 7 days of purchase and we'll refund you in full - no questions asked, no forms. Past that window, refunds are handled case by case, for example if the app has a defect we're unable to fix.</p>
+          </section>
+
+          <section>
+            <div class="grid-2">
+              <div class="card">
+                <h3><span class="dot dot-good"></span>Eligible for a refund</h3>
+                <ul>
+                  <li>Requested within 7 days of the original purchase date</li>
+                  <li>Purchased directly through the official Thomsen Shield checkout</li>
+                  <li>The order ID or license key provided matches an active purchase on file</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3><span class="dot dot-bad"></span>Not eligible for a refund</h3>
+                <ul>
+                  <li>Requests made after the 7-day window, outside case-by-case exceptions</li>
+                  <li>Licenses suspended for fraud, chargeback abuse, or a Terms of Service violation</li>
+                  <li>Chargebacks filed with your bank before contacting support first</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>How to request a refund</h2>
+            <div class="info-list">
+              <ol>
+                <li>Fill out the <a href="#refund-form">Request a Refund</a> form below, or email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> directly</li>
+                <li>Include your license key or the email address you purchased with</li>
+                <li>That's it - no forms, no justification needed within the 7-day window</li>
+              </ol>
+            </div>
+          </section>
+
+          <section>
+            <h2>Expected processing time</h2>
+            <div class="info-list">
+              <ul>
+                <li>We refund the full $19.99 to your original payment method through Stripe</li>
+                <li>Refunds typically appear on your statement within 5-10 business days, depending on your bank</li>
+                <li>Your license is deactivated once the refund is issued</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h2>Contact &amp; support</h2>
+            <p>Questions before you request a refund? Reach out at <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> and we'll get back to you.</p>
+          </section>
+
+          <section id="refund-form" class="form-card">
+            <h2>Request a Refund</h2>
+            <p class="form-sub">Prefer not to email? Fill this out and we'll follow up at the address you provide.</p>
+
+            <form id="refund-request-form" novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="rf-name">Name <span class="required">*</span></label>
+                  <input type="text" id="rf-name" name="name" autocomplete="name" required />
+                </div>
+                <div class="field">
+                  <label for="rf-email">Email <span class="required">*</span></label>
+                  <input type="email" id="rf-email" name="email" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="rf-order">Order ID / License Key <span class="required">*</span></label>
+                  <input type="text" id="rf-order" name="orderId" placeholder="e.g. TS-8F21-91AC" required />
+                </div>
+                <div class="field">
+                  <label for="rf-product">Product <span class="required">*</span></label>
+                  <input type="text" id="rf-product" name="product" value="Thomsen Shield" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label id="rf-reason-label" for="rf-reason-trigger">Reason for refund <span class="required">*</span></label>
+                <div class="select" id="rf-reason-select">
+                  <button type="button" class="select-trigger" id="rf-reason-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="rf-reason-label rf-reason-trigger">
+                    <span class="select-trigger-text is-placeholder">Select a reason</span>
+                    <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <ul class="select-list" id="rf-reason-listbox" role="listbox" aria-labelledby="rf-reason-label" tabindex="-1" hidden>
+                    <li role="option" tabindex="-1" data-value="Not what I expected">Not what I expected</li>
+                    <li role="option" tabindex="-1" data-value="Technical issue">Technical issue</li>
+                    <li role="option" tabindex="-1" data-value="Accidental purchase">Accidental purchase</li>
+                    <li role="option" tabindex="-1" data-value="Found a better alternative">Found a better alternative</li>
+                    <li role="option" tabindex="-1" data-value="Other">Other</li>
+                  </ul>
+                </div>
+                <input type="hidden" id="rf-reason-value" name="reason" />
+              </div>
+
+              <div class="field">
+                <label for="rf-details">Additional details</label>
+                <textarea id="rf-details" name="details" placeholder="Anything that helps us understand what happened (optional)"></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn--primary btn--block">Submit Refund Request</button>
+                <p class="form-note" id="rf-success" hidden role="status" aria-live="polite">
+                  Your email app should now open with this pre-filled to support@thomssen.dev. Nothing happened? Email us directly instead.
+                </p>
+              </div>
+            </form>
+          </section>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <span class="footer__mark" aria-hidden="true">S</span>
+          <div>
+            <p class="footer__name">Thomsen Shield</p>
+            <p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
           </div>
         </div>
+        <nav class="footer__links" aria-label="Footer">
+          <a class="footer__link" href="index.html">Home</a>
+          <a class="footer__link" href="index.html#features">Features</a>
+          <a class="footer__link" href="index.html#pricing">Pricing</a>
+          <a class="footer__link" href="index.html#faq">FAQ</a>
+          <a class="footer__link" href="terms.html">Terms</a>
+          <a class="footer__link" href="privacy.html">Privacy</a>
+          <a class="footer__link" href="refund.html">Refund Policy</a>
+          <a class="footer__link" href="#" data-cc-open>Cookie Settings</a>
+        </nav>
+        <p class="footer__copy">© <span data-year>2026</span> Thomsen Shield</p>
+      </div>
+    </footer>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="rf-order">Order ID / License Key <span class="required">*</span></label>
-            <input type="text" id="rf-order" name="orderId" placeholder="e.g. TS-8F21-91AC" required />
-          </div>
-          <div class="field">
-            <label for="rf-product">Product <span class="required">*</span></label>
-            <input type="text" id="rf-product" name="product" value="Thomsen Shield" required />
-          </div>
-        </div>
+    <script src="assets/site.js" defer></script>
+    <script src="assets/consent.js" defer></script>
+    <script>
+      // Zero-backend default: builds a pre-filled mailto: to the support
+      // address so the request works without any server. If you later
+      // want this posted to a real endpoint (e.g. your license API),
+      // replace the body of this handler with a fetch() call instead.
+      (function () {
+        var SUPPORT_EMAIL = "support@thomssen.dev";
 
-        <div class="field">
-          <label id="rf-reason-label" for="rf-reason-trigger">Reason for refund <span class="required">*</span></label>
-          <div class="select" id="rf-reason-select">
-            <button type="button" class="select-trigger" id="rf-reason-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="rf-reason-label rf-reason-trigger">
-              <span class="select-trigger-text is-placeholder">Select a reason</span>
-              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <ul class="select-list" id="rf-reason-listbox" role="listbox" aria-labelledby="rf-reason-label" tabindex="-1" hidden>
-              <li role="option" tabindex="-1" data-value="Not what I expected">Not what I expected</li>
-              <li role="option" tabindex="-1" data-value="Technical issue">Technical issue</li>
-              <li role="option" tabindex="-1" data-value="Accidental purchase">Accidental purchase</li>
-              <li role="option" tabindex="-1" data-value="Found a better alternative">Found a better alternative</li>
-              <li role="option" tabindex="-1" data-value="Other">Other</li>
-            </ul>
-          </div>
-          <input type="hidden" id="rf-reason-value" name="reason" />
-        </div>
+        var wrapper = document.getElementById("rf-reason-select");
+        var trigger = document.getElementById("rf-reason-trigger");
+        var triggerText = trigger.querySelector(".select-trigger-text");
+        var listbox = document.getElementById("rf-reason-listbox");
+        var hiddenInput = document.getElementById("rf-reason-value");
+        var options = Array.prototype.slice.call(listbox.querySelectorAll('[role="option"]'));
 
-        <div class="field">
-          <label for="rf-details">Additional details</label>
-          <textarea id="rf-details" name="details" placeholder="Anything that helps us understand what happened (optional)"></textarea>
-        </div>
+        function closeList() {
+          listbox.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+        }
+        function openList() {
+          listbox.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          var current = listbox.querySelector('[aria-selected="true"]') || options[0];
+          current.focus();
+        }
+        function selectOption(opt) {
+          options.forEach(function (o) { o.setAttribute("aria-selected", "false"); });
+          opt.setAttribute("aria-selected", "true");
+          hiddenInput.value = opt.getAttribute("data-value");
+          triggerText.textContent = opt.textContent;
+          triggerText.classList.remove("is-placeholder");
+          trigger.classList.remove("select-trigger-invalid");
+          closeList();
+          trigger.focus();
+        }
 
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary btn-block">Submit Refund Request</button>
-          <p class="form-note" id="rf-success" hidden role="status" aria-live="polite">
-            Your email app should now open with this pre-filled to <!-- SUPPORT_EMAIL -->support@thomssen.dev<!-- /SUPPORT_EMAIL -->. Nothing happened? Email us directly instead.
-          </p>
-        </div>
-      </form>
-    </section>
+        trigger.addEventListener("click", function () {
+          if (listbox.hidden) { openList(); } else { closeList(); }
+        });
+        options.forEach(function (opt) {
+          opt.addEventListener("click", function () { selectOption(opt); });
+        });
+        listbox.addEventListener("keydown", function (event) {
+          var idx = options.indexOf(document.activeElement);
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            (options[idx + 1] || options[0]).focus();
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            (options[idx - 1] || options[options.length - 1]).focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectOption(document.activeElement);
+          } else if (event.key === "Escape") {
+            closeList();
+            trigger.focus();
+          }
+        });
+        document.addEventListener("click", function (event) {
+          if (!wrapper.contains(event.target)) { closeList(); }
+        });
 
-    <div class="footer-links">
-      <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund.html" aria-current="page">Refunds</a>
-    </div>
+        var form = document.getElementById("refund-request-form");
+        var successNote = document.getElementById("rf-success");
 
-  </main>
-</div>
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
 
-<script>
-  // Custom "Reason for refund" dropdown - a styled listbox instead of a
-  // native <select>, so the open list matches the site's dark theme on
-  // every OS/browser instead of falling back to a native popup. Keeps
-  // its value in the hidden #rf-reason-value input for the form to read.
-  (function () {
-    var wrapper = document.getElementById("rf-reason-select");
-    var trigger = document.getElementById("rf-reason-trigger");
-    var triggerText = trigger.querySelector(".select-trigger-text");
-    var listbox = document.getElementById("rf-reason-listbox");
-    var hiddenInput = document.getElementById("rf-reason-value");
-    var options = Array.prototype.slice.call(listbox.querySelectorAll('[role="option"]'));
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          if (!hiddenInput.value) {
+            trigger.classList.add("select-trigger-invalid");
+            trigger.focus();
+            return;
+          }
 
-    function closeList() {
-      listbox.hidden = true;
-      trigger.setAttribute("aria-expanded", "false");
-    }
-    function openList() {
-      listbox.hidden = false;
-      trigger.setAttribute("aria-expanded", "true");
-      var current = listbox.querySelector('[aria-selected="true"]') || options[0];
-      current.focus();
-    }
-    function selectOption(opt) {
-      options.forEach(function (o) { o.setAttribute("aria-selected", "false"); });
-      opt.setAttribute("aria-selected", "true");
-      hiddenInput.value = opt.getAttribute("data-value");
-      triggerText.textContent = opt.textContent;
-      triggerText.classList.remove("is-placeholder");
-      trigger.classList.remove("select-trigger-invalid");
-      closeList();
-      trigger.focus();
-    }
+          var data = new FormData(form);
+          var subject = "Refund Request - " + (data.get("orderId") || "no order ID");
+          var body = [
+            "Name: " + data.get("name"),
+            "Email: " + data.get("email"),
+            "Order ID / License Key: " + data.get("orderId"),
+            "Product: " + data.get("product"),
+            "Reason: " + data.get("reason"),
+            "",
+            "Additional details:",
+            data.get("details") || "(none provided)"
+          ].join("\n");
 
-    trigger.addEventListener("click", function () {
-      if (listbox.hidden) { openList(); } else { closeList(); }
-    });
+          var mailtoUrl = "mailto:" + SUPPORT_EMAIL
+            + "?subject=" + encodeURIComponent(subject)
+            + "&body=" + encodeURIComponent(body);
 
-    options.forEach(function (opt) {
-      opt.addEventListener("click", function () { selectOption(opt); });
-    });
-
-    listbox.addEventListener("keydown", function (event) {
-      var idx = options.indexOf(document.activeElement);
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        (options[idx + 1] || options[0]).focus();
-      } else if (event.key === "ArrowUp") {
-        event.preventDefault();
-        (options[idx - 1] || options[options.length - 1]).focus();
-      } else if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        selectOption(document.activeElement);
-      } else if (event.key === "Escape") {
-        closeList();
-        trigger.focus();
-      }
-    });
-
-    document.addEventListener("click", function (event) {
-      if (!wrapper.contains(event.target)) { closeList(); }
-    });
-  })();
-
-  // Zero-backend default: builds a pre-filled mailto: to the support
-  // address so the request works without any server. If you later
-  // want this posted to a real endpoint (e.g. your license API),
-  // replace the body of this handler with a fetch() call instead.
-  (function () {
-    var SUPPORT_EMAIL = "support@thomssen.dev"; // EDIT: keep in sync with the SUPPORT_EMAIL markers above
-
-    var form = document.getElementById("refund-request-form");
-    var successNote = document.getElementById("rf-success");
-    var reasonTrigger = document.getElementById("rf-reason-trigger");
-    var reasonValueInput = document.getElementById("rf-reason-value");
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      if (!reasonValueInput.value) {
-        reasonTrigger.classList.add("select-trigger-invalid");
-        reasonTrigger.focus();
-        return;
-      }
-
-      var data = new FormData(form);
-      var subject = "Refund Request - " + (data.get("orderId") || "no order ID");
-      var body = [
-        "Name: " + data.get("name"),
-        "Email: " + data.get("email"),
-        "Order ID / License Key: " + data.get("orderId"),
-        "Product / Service: " + data.get("product"),
-        "Reason: " + data.get("reason"),
-        "",
-        "Additional details:",
-        data.get("details") || "(none provided)"
-      ].join("\n");
-
-      var mailtoUrl = "mailto:" + SUPPORT_EMAIL
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(body);
-
-      window.location.href = mailtoUrl;
-      successNote.hidden = false;
-    });
-  })();
-</script>
-</body>
+          window.location.href = mailtoUrl;
+          successNote.hidden = false;
+        });
+      })();
+    </script>
+  </body>
 </html>

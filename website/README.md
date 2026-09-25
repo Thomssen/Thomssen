@@ -1,94 +1,79 @@
 # website/
 
-The Thomsen Shield product site (`index.html` + the legal pages), staged
-here because the connected repo has no other home for it - it isn't
-checked in anywhere else, and this session can't reach your local
-`C:\Users\krist\Desktop\Thomsen Site` or the live `thomssen.dev` to edit
-either directly. Copy this folder's contents into wherever thomssen.dev is
-actually served from.
+The Thomsen Shield product site, staged here because the connected repo has
+no other home for it — copy this folder's contents into wherever
+thomssen.dev is actually served from, preserving the folder structure
+(everything shared lives under `assets/`, matching the real site's layout).
 
-This is a full rebuild of the homepage around Thomsen Shield as the main
-product (not a personal-portfolio page with a product section) - built
-fresh rather than adapted from any prior homepage content, per instruction.
+## Why this looks the way it does
+
+This was rebuilt against your **actual** thomssen.dev `index.html` and
+`assets/styles.css` (pasted into this session directly, since neither the
+live site nor your local disk are reachable from here). Every structural
+piece — the pill-shaped floating nav with its mobile burger menu, the
+dark/light theme toggle, the button system, the footer, and the cookie
+consent banner + settings modal — is copied from your real classes and
+CSS almost verbatim. The Thomsen Shield content (hero, features, pricing,
+FAQ, protection panel) is new, per the earlier instruction not to reuse
+the old homepage's actual copy.
 
 ## Files
 
-- **`index.html`** - the homepage: nav, hero, "how it works", features,
-  a protection/status showcase, pricing, FAQ, and the footer. Also owns
-  the cookie banner and its consent JS.
-- **`refund.html`**, **`terms.html`**, **`privacy.html`** - legal pages,
-  now written specifically for Thomsen Shield (not a generic multi-product
-  site) using the same figures already live at
-  `thomsen-shield-license-api/public/{refund,terms,privacy}.html`
-  ($19.99 one-time, 7-day refund, Stripe, Denmark law). Keep both copies
-  in sync if a figure changes.
-- **`styles.css`** - shared tokens, reset, buttons, form fields, and the
-  custom dropdown, used by all four pages.
-- **`home.css`** - homepage-only components (nav, hero, feature grid,
-  protection panel, pricing card, FAQ accordion, footer, cookie banner).
-  Only `index.html` links this file.
-- **`assets/thomsen-shield-dashboard.png`** - a real screenshot of the
-  app's Dashboard (copied from `thomsen-shield/website/assets/`). Not
-  currently used on the page (the hero and the screenshot-gallery section
-  that referenced it were both removed to declutter the homepage - see
-  "Removed for now" below) but kept in case you want to bring a
-  screenshot back in later.
-
-All four pages match the dark near-black/white/grey design used across
-the other Thomsen apps (see `thomsen-shield/src/styles/tokens.css`) - no
-colors beyond the existing muted status green/amber/red, no external
-fonts or JS libraries.
+- **`index.html`** — the homepage: nav, hero, "how it works", features,
+  a protection/status showcase, pricing, FAQ, final CTA, and the footer.
+- **`refund.html`**, **`terms.html`**, **`privacy.html`** — legal pages,
+  same nav/footer/cookie system, content matching the figures already
+  live at `thomsen-shield-license-api/public/{refund,terms,privacy}.html`
+  ($19.99 one-time, 7-day refund, Stripe, Denmark law).
+- **`assets/styles.css`** — one stylesheet for the whole site. Sections
+  1–13 are your real site's CSS, unmodified, so this file is a drop-in
+  superset of your actual `assets/styles.css` (nothing here would break
+  your existing `apps.html` or other pages if you swap it in — it adds
+  Shield's components in a clearly marked section 14, on top of your file
+  rather than instead of it). Both dark and light themes are supported,
+  same as the real site.
+- **`assets/site.js`** — theme toggle, mobile nav burger, footer year,
+  and the FAQ accordion.
+- **`assets/consent.js`** — builds the cookie banner and the "Cookie
+  Settings" modal (Essential/Analytics toggle) and stores the choice in
+  `localStorage` under `thomsen-consent`. No third-party consent library.
+- **`assets/thomsen-shield-dashboard.png`** — a real screenshot of the
+  app's Dashboard. Not currently referenced by any page (removed from an
+  earlier hero/gallery draft to declutter), kept here in case you want to
+  use it somewhere later.
 
 ## To install
 
-Copy everything in this folder (including `assets/`) into the root of
-your site folder, preserving the relative paths - `index.html` expects
-`styles.css`, `home.css`, and `assets/thomsen-shield-dashboard.png`
-alongside it.
+Copy everything in this folder into the root of your site, keeping
+`assets/` as a subfolder — `index.html` (and the legal pages) expect
+`assets/styles.css`, `assets/site.js`, and `assets/consent.js` alongside
+it, exactly like your real site's own pages.
 
-## Buy / download
+If you're merging this into your existing site rather than replacing it
+outright: your real `assets/styles.css` sections 1–13 are reproduced
+unchanged here, so you can most likely just replace your file with this
+one and add these new HTML pages — the classes `.product`, `.apps-hero`,
+etc. from your real Apps page are preserved too.
 
-Every "Buy" button (nav, hero, pricing, final CTA) points at
-`https://api.thomssen.dev/buy` - the real Stripe Checkout redirect built
-in `thomsen-shield-license-api/`, per `thomsen-shield/website/README.md`.
-It 404s until that endpoint is deployed; nothing to change here once it
-is. There's no separate free-download link - Shield's own README and the
-existing product section only ever show a single Buy CTA, so this follows
-that same pattern rather than inventing an unverified download URL.
+## Buy
 
-## Removed for now
+Every "Purchase" button (nav, hero, pricing, final CTA) points at
+`https://api.thomssen.dev/buy` — the real Stripe Checkout redirect built
+in `thomsen-shield-license-api/`. It 404s until that endpoint is
+deployed; nothing to change here once it is.
 
-Two things were cut after an early review pass, to keep the page from
-feeling too busy:
-
-- **The hero screenshot.** The hero was originally a two-column layout
-  (copy left, framed Dashboard screenshot right); it's now a single
-  centered column with no image.
-- **The screenshot gallery section** ("More of the app"), which held the
-  same Dashboard screenshot plus two "coming soon" placeholder tiles for
-  Live Connections and Firewall.
-
-Both used `assets/thomsen-shield-dashboard.png`, which is still in the
-repo if you want to reintroduce a screenshot somewhere - e.g. inside the
-"Always-on protection" panel, or as its own section - just nothing
-references the file right now.
-
-## Cookie banner
-
-There was no existing cookie banner in the connected project to carry
-over (this session never had access to your live site), so the one in
-`index.html`/`home.css` is a fresh build in the same visual language as
-the rest of the site: a translucent, blurred card, pill buttons, anchored
-to the bottom-left corner on desktop (full-width bottom bar on small
-screens, where a corner card doesn't fit). It stores the visitor's choice
-in `localStorage` (`thomsen-shield-cookie-consent`) - no cookie-consent
-library. If your real site already had a banner with specific legal
-wording, swap this one's copy in `index.html` for that instead.
-
-## What's still a placeholder
+## Editable values
 
 Only `LAST_UPDATED` on the three legal pages has no other source of
-truth - update the date whenever a page's wording changes materially.
+truth — update the date whenever a page's wording changes materially.
 Everything else (pricing, refund window, features, requirements) is
-pulled from `thomsen-shield/README.md`, its Terms/Privacy/Refund pages,
-and the real Dashboard screenshot, not invented.
+pulled from `thomsen-shield/README.md`, its real Terms/Privacy/Refund
+pages, and the real Dashboard screenshot — not invented.
+
+## Fonts
+
+Like the real site, these pages load Inter from Google Fonts. If you'd
+rather self-host it or drop the external request, remove the two
+`<link rel="preconnect">` tags and the `fonts.googleapis.com` stylesheet
+link from each page's `<head>` — the `--font-sans` stack already falls
+back to system fonts if Inter fails to load.
