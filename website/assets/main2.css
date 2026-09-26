@@ -876,7 +876,6 @@ ul { list-style: none; padding: 0; }
 .pricing-card__price-amount--free { font-size: 26px; }
 .pricing-card__price-period { font-size: 14px; color: var(--text-muted); }
 .pricing-card__note { margin: 8px 0 0; font-size: 12.5px; color: var(--text-muted); }
-.pricing-card__tagline { margin: 10px 0 0; font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); }
 .pricing-card .btn { margin-top: 26px; }
 .pricing-card__list { list-style: none; padding: 0; margin: 26px 0 0; text-align: left; display: flex; flex-direction: column; gap: 12px; }
 .pricing-card__list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--text-secondary); margin: 0; }
