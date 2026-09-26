@@ -183,7 +183,7 @@
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
                 </div>
                 <h3 class="feature-card__title">Dashboard</h3>
-                <p class="feature-card__text">Protection and firewall status, active connection count, blocked IPs, and a small live activity graph — the whole picture in one deliberately minimal screen. It's the first thing you see on launch, and every number on it updates in real time, so you never have to dig through separate tabs just to confirm the app is actually watching.</p>
+                <p class="feature-card__text">Protection and firewall status, active connection count, blocked IPs, and a small live activity graph — the whole picture in one deliberately minimal screen.</p>
               </div>
               <div class="image-frame">
                 <img src="assets/thomsen-shield-dashboard.png" alt="Thomsen Shield dashboard showing protection status, active connections, blocked IPs, and live network activity" width="1320" height="470" loading="lazy" />
@@ -194,28 +194,28 @@
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="4.5" r="1.8"/><circle cx="4.5" cy="15.5" r="1.8"/><circle cx="15.5" cy="15.5" r="1.8"/><path d="M10 6.3v3M10 9.3l-4.3 4.5M10 9.3l4.3 4.5"/></svg>
               </div>
               <h3 class="feature-card__title">Live Connections</h3>
-              <p class="feature-card__text">Every active TCP/UDP connection with the owning app, remote address, and status. Block, allow, or copy an IP straight from its details. The list updates live as connections open and close, so what you're looking at always matches what's actually happening on the wire right now.</p>
+              <p class="feature-card__text">Every active TCP/UDP connection with the owning app, remote address, and status. Block, allow, or copy an IP from its details.</p>
             </article>
             <article class="feature-card">
               <div class="feature-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5l6.5 2.6v4.6c0 4.2-2.8 6.9-6.5 7.4-3.7-.5-6.5-3.2-6.5-7.4V5.1L10 2.5z"/></svg>
               </div>
               <h3 class="feature-card__title">Protection</h3>
-              <p class="feature-card__text">Automatic detection of connection spikes and repeated connections from one IP, with a Low / Normal / High sensitivity control. It starts watching the moment Thomsen Shield opens, with nothing to configure first, and every flagged connection shows up in Live Connections and the activity log so you can see exactly what tripped it.</p>
+              <p class="feature-card__text">Automatic detection of connection spikes and repeated connections from one IP, with a Low / Normal / High sensitivity control.</p>
             </article>
             <article class="feature-card">
               <div class="feature-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><path d="M6.7 10.2l2.2 2.2 4.4-4.6"/></svg>
               </div>
               <h3 class="feature-card__title">Firewall</h3>
-              <p class="feature-card__text">View, create, enable, disable, and remove rules — all prefixed so Thomsen Shield only ever touches rules it created itself. It's built on top of the Windows Firewall you already have rather than replacing it, so you get a friendlier interface without anything changing about how Windows actually filters your traffic.</p>
+              <p class="feature-card__text">View, create, enable, disable, and remove rules — all prefixed so Thomsen Shield only ever touches rules it created itself.</p>
             </article>
             <article class="feature-card">
               <div class="feature-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h9M7 10h9M7 15h6"/><circle cx="4" cy="5" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="15" r="1" fill="currentColor" stroke="none"/></svg>
               </div>
               <h3 class="feature-card__title">Blocklist &amp; Allowlist</h3>
-              <p class="feature-card__text">Every blocked IP with its reason and expiration. Trusted IPs and private ranges are protected from auto-blocking. Add or remove entries by hand whenever you like, and choose whether a block expires on its own or stays in place until you lift it yourself.</p>
+              <p class="feature-card__text">Every blocked IP with its reason and expiration. Trusted IPs and private ranges are protected from auto-blocking.</p>
             </article>
             <article class="feature-card feature-card--wide">
               <div class="feature-card__icon" aria-hidden="true">
@@ -223,7 +223,7 @@
               </div>
               <div>
                 <h3 class="feature-card__title">Events &amp; Logs</h3>
-                <p class="feature-card__text">A readable, filterable activity history — exportable to TXT or JSON whenever you need it. Blocks, rule changes, and detected spikes all land here, so if something happened while you weren't watching, there's still a record of exactly what and when.</p>
+                <p class="feature-card__text">A readable, filterable activity history — exportable to TXT or JSON whenever you need it.</p>
               </div>
             </article>
           </div>
@@ -312,12 +312,15 @@
             <h2>Thomsen Shield</h2>
             <p class="feature-modal__desc">€50.00 one-time &middot; Lifetime license &middot; Windows 10 / 11</p>
             <ul>
-              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span><strong>Live connection monitoring.</strong> Every active TCP/UDP connection with its app, remote address, and status, updated in real time.</span></li>
-              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span><strong>Automatic abuse detection &amp; blocking.</strong> Connection spikes and repeated connections from one IP are flagged automatically, with a Low / Normal / High sensitivity you control.</span></li>
-              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span><strong>Full Windows Firewall control.</strong> View, create, enable, disable, and remove rules — all prefixed so Shield only ever touches rules it created itself.</span></li>
-              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span><strong>Blocklist, allowlist &amp; exportable logs.</strong> Every block with its reason and expiration, trusted IPs and private ranges protected from auto-blocking, and a filterable history you can export to TXT or JSON.</span></li>
-              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span><strong>Free updates for the life of the license.</strong> New versions and improvements at no extra cost, for as long as you own a Windows PC.</span></li>
-              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span><strong>One device at a time, transfer anytime.</strong> Deactivate your license on one PC and activate it on another whenever you like, right from the app.</span></li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Live connection monitoring</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Automatic abuse detection &amp; blocking</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Low / Normal / High detection sensitivity</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Full Windows Firewall control</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Blocklist, allowlist &amp; exportable logs</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Runs entirely locally &mdash; nothing is ever uploaded</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Admin rights requested only when a change needs them</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Free updates for the life of the license</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>One device at a time, transfer anytime</li>
             </ul>
           </template>
           <template id="feature-modal-vm">
