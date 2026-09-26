@@ -257,19 +257,23 @@
             <p>No subscriptions, no tiers to compare. Buy once, use it for as long as you own a Windows PC.</p>
           </div>
           <div class="pricing">
-            <!-- PENDING: waiting on real Thomsen OSINT details (what it does, price
-                 or free, and its actual features) - see feature-modal-osint below
-                 for the placeholder that needs replacing once that's known. -->
             <div class="pricing-card pricing-card--osint">
               <p class="pricing-card__name">Thomsen OSINT</p>
               <div class="pricing-card__price">
                 <span class="pricing-card__price-amount pricing-card__price-amount--free">Free</span>
               </div>
               <p class="pricing-card__note">Free program &middot; Windows 10 / 11</p>
-              <!-- EDIT: replace THOMSEN_OSINT_DOWNLOAD_URL with the real installer URL once one is published. -->
-              <a class="btn btn--primary btn--block" href="THOMSEN_OSINT_DOWNLOAD_URL">Free Download</a>
+              <!-- Not published yet - swap for a real download link (and drop
+                   btn--disabled/disabled) once Thomsen OSINT ships. -->
+              <button type="button" class="btn btn--primary btn--block btn--disabled" disabled>Coming Soon</button>
+              <ul class="pricing-card__list pricing-card__list--tight">
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Concurrent username search across 30+ platforms with live status results</li>
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Domain intelligence with DNS, RDAP/WHOIS, TLS certificates, and subdomain discovery</li>
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>IP intelligence with ASN/ISP, geolocation, and reverse DNS</li>
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Fully local-first &mdash; no cloud account, no telemetry</li>
+              </ul>
               <button type="button" class="pricing-card__more" data-feature-modal="osint">
-                See more
+                See all features
                 <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 6-6 6"/></svg>
               </button>
             </div>
@@ -347,10 +351,21 @@
               <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Support for QEMU-backed guests such as Arch Linux, Windows, and other ISOs</li>
             </ul>
           </template>
-          <!-- EDIT: placeholder until the real Thomsen OSINT description/features are known - see the comment above the OSINT card. -->
           <template id="feature-modal-osint">
             <h2>Thomsen OSINT</h2>
-            <p class="feature-modal__desc">Details coming soon.</p>
+            <p class="feature-modal__desc">Free &middot; Windows 10 / 11 &middot; Coming soon</p>
+            <ul>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Concurrent username search across 30+ platforms with live status results</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Domain intelligence with DNS, RDAP/WHOIS, TLS certificates, and subdomain discovery</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>IP intelligence with ASN/ISP, geolocation, and reverse DNS</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Email OSINT with optional Have I Been Pwned breach checking</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>GitHub user and repository intelligence lookup</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Local file metadata extraction (EXIF, PDF, Office) &mdash; never uploaded</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Investigation case management with saved history and exportable reports</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Built-in hash toolkit (MD5, SHA-1, SHA-256, SHA-512)</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Optional local app lock with password protection and auto-lock</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Fully local-first &mdash; no cloud account, no telemetry</li>
+            </ul>
           </template>
         </div>
       </section>
