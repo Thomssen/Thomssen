@@ -31,22 +31,23 @@ the old homepage's actual copy.
   page (`https://thomssen.dev/thomsen-shield`, no extension - see
   `thomsen-shield-license-api/api/purchase/success.ts`) resolves without
   needing a clean-URL rewrite. Its nav/footer links use root-relative
-  paths (`/index.html`, `/assets/main2.css`, ...) rather than the relative
+  paths (`/index.html`, `/assets/main3.css`, ...) rather than the relative
   ones the top-level pages use, since it's one folder deeper. The
   "Download for Windows" button is a placeholder (`href="#"`, clearly
   marked in the file) since no installer is published yet - clicking it
   shows a message pointing to `support@thomssen.dev` instead of doing
   nothing. Swap in the real installer URL there once one exists.
-- **`assets/main2.css`** — one stylesheet for the whole site. Sections
+- **`assets/main3.css`** — one stylesheet for the whole site. Sections
   1–13 are your real site's CSS, unmodified, so this file is a drop-in
   superset of your actual `assets/styles.css` (nothing here would break
   your existing `apps.html` or other pages if you swap it in — it adds
   Shield's components in a clearly marked section 14, on top of your file
   rather than instead of it). Both dark and light themes are supported,
-  same as the real site. Named `main2.css` (not `styles.css`, not even
-  `main.css` anymore) - see "A caching gotcha" below for why.
-- **`assets/site.js`** — theme toggle, mobile nav burger, footer year,
-  and the FAQ accordion.
+  same as the real site. Named `main3.css` (not `styles.css`, `main.css`,
+  or `main2.css` anymore) - see "A caching gotcha" below for why.
+- **`assets/site2.js`** — theme toggle, mobile nav burger, footer year,
+  the FAQ accordion, and the pricing cards' "see more" feature modal.
+  Named `site2.js`, not `site.js` - see "A caching gotcha" below.
 - **`assets/consent.js`** — builds the cookie banner and the "Cookie
   Settings" modal (Essential/Analytics toggle) and stores the choice in
   `localStorage` under `thomsen-consent`. No third-party consent library.
@@ -59,7 +60,7 @@ the old homepage's actual copy.
 
 Copy everything in this folder into the root of your site, keeping
 `assets/` as a subfolder — `index.html` (and the legal pages) expect
-`assets/main2.css`, `assets/site.js`, and `assets/consent.js` alongside
+`assets/main3.css`, `assets/site2.js`, and `assets/consent.js` alongside
 it, exactly like your real site's own pages.
 
 If you're merging this into your existing site rather than replacing it
@@ -85,34 +86,47 @@ pages, and the real Dashboard screenshot — not invented.
 
 ## A caching gotcha (Hostinger)
 
-This stylesheet has already been renamed once for a real reason, not a
-style choice: on this Hostinger (hPanel) account, updates to
+This stylesheet has already been renamed **twice** for a real reason,
+not a style choice: on this Hostinger (hPanel) account, updates to
 `assets/styles.css` stopped taking effect at some point - the file on
 disk was confirmed correct (right size, right content, no hidden
 characters), but the live URL kept serving an old version missing entire
 CSS rules, even after cache-clearing, incognito testing, and ruling out
 a CDN. Renaming it to `assets/main.css` fixed it immediately.
 
-It then happened a **second time** to `main.css` itself: after several
+It happened a **second time** to `main.css` itself: after several
 further edits, the live site kept showing an old layout (wrong card
 order, wrong sizing) even though the HTML on the same pages was clearly
 up to date, and the CSS on disk in this repo was correct. Same fix -
-renamed again, this time to `assets/main2.css` (the name live now, and
-the one every page's `<link rel="stylesheet">` points to).
+renamed to `assets/main2.css`.
+
+It happened a **third time** to `main2.css`, and this round `assets/site.js`
+showed the same symptom at the same time - the footer's column layout
+wasn't applying at all (everything stacked as plain unstyled text,
+exactly what you'd see if the CSS simply didn't load), and the pricing
+cards' "See all features" button looked like it did nothing (the JS was
+almost certainly still toggling the modal's `is-in` class correctly, but
+without a fresh copy of the CSS that makes `.is-in` visible, it stayed
+invisible and unclickable-looking). Confirmed the actual code was correct
+by testing it locally before touching anything. Same fix, on both files
+this time: renamed to `assets/main3.css` and `assets/site2.js` (the
+names live now, and the ones every page's `<link>`/`<script>` tags point
+to).
 
 This points to some cache keyed to the exact file path, on a layer that
 has never shown up in hPanel's visible settings (not the cache manager,
 not LiteSpeed Cache, nothing found), and it can apparently recur on a
-name that's already been "fixed" once. If a future edit to
-`assets/main2.css` doesn't show up live after a hard refresh **and**
-after confirming the uploaded file's content is actually correct, this
-is almost certainly the same thing again - rename the file once more
-(update the five `<link>` tags that reference it: `index.html`,
-`terms.html`, `privacy.html`, `refund.html`, `thomsen-shield/index.html`)
-rather than debugging further. Given it's now recurred twice, it's
-probably worth raising with Hostinger support directly - it's
-server-side behavior no one has been able to pin down from outside
-their infrastructure.
+name that's already been "fixed" before, on more than one file type. If
+a future edit to `assets/main3.css` or `assets/site2.js` doesn't show up
+live after a hard refresh **and** after confirming the uploaded file's
+content is actually correct, this is almost certainly the same thing
+again - rename the affected file once more (update the `<link>`/`<script>`
+tags that reference it across all five pages: `index.html`, `terms.html`,
+`privacy.html`, `refund.html`, `thomsen-shield/index.html`) rather than
+debugging further. Given it's now recurred three times across two
+different file types, this is worth raising with Hostinger support
+directly - it's server-side behavior no one has been able to pin down
+from outside their infrastructure.
 
 ## Fonts
 
