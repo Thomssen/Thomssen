@@ -117,10 +117,10 @@
            HERO
            ════════════════════════════════════════════════════════════════ -->
       <section class="hero">
-        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="hero__grid" aria-hidden="true"></div>
         <div class="container hero__inner hero__inner--centered">
           <div class="hero__copy">
-            <p class="eyebrow">Windows Network Protection</p>
+            <p class="hero__badge"><span class="dot dot-good"></span>Windows Network Protection</p>
             <h1 class="hero__title">Welcome to Thomsen Shield.</h1>
             <p class="hero__desc" style="max-width: 52ch;">
               Real-time connection monitoring, automatic abuse blocking, and full
@@ -148,26 +148,32 @@
           </div>
           <div class="hiw-grid">
             <div class="hiw-card">
-              <div class="hiw-card__icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h3l2-5 3 10 2-7 2 4h4"/></svg>
+              <div class="hiw-card__head">
+                <div class="hiw-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h3l2-5 3 10 2-7 2 4h4"/></svg>
+                </div>
+                <p class="hiw-card__num">01</p>
               </div>
-              <p class="hiw-card__num">01</p>
               <h3>Monitor</h3>
               <p>See every active connection on your PC — the app behind it, the remote address, and its status — updated live.</p>
             </div>
             <div class="hiw-card">
-              <div class="hiw-card__icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5l7.5 13h-15z"/><path d="M10 8.5v3.5"/><circle cx="10" cy="14.6" r=".6" fill="currentColor" stroke="none"/></svg>
+              <div class="hiw-card__head">
+                <div class="hiw-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5l7.5 13h-15z"/><path d="M10 8.5v3.5"/><circle cx="10" cy="14.6" r=".6" fill="currentColor" stroke="none"/></svg>
+                </div>
+                <p class="hiw-card__num">02</p>
               </div>
-              <p class="hiw-card__num">02</p>
               <h3>Detect</h3>
               <p>Connection spikes and repeated connections from one IP are flagged automatically, with a sensitivity level you control.</p>
             </div>
             <div class="hiw-card">
-              <div class="hiw-card__icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="9" width="11" height="7.5" rx="1.8"/><path d="M6.5 9V6.8a3.5 3.5 0 017 0V9"/></svg>
+              <div class="hiw-card__head">
+                <div class="hiw-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="9" width="11" height="7.5" rx="1.8"/><path d="M6.5 9V6.8a3.5 3.5 0 017 0V9"/></svg>
+                </div>
+                <p class="hiw-card__num">03</p>
               </div>
-              <p class="hiw-card__num">03</p>
               <h3>Control</h3>
               <p>Block an IP or app in one click, or manage Windows Firewall rules directly — Thomsen Shield only ever touches rules it created.</p>
             </div>
@@ -185,13 +191,18 @@
             <h2>Everything you need, nothing you don't.</h2>
             <p>A full set of network and firewall tools in one deliberately minimal interface.</p>
           </div>
-          <div class="home-features home-features--3up">
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
+          <div class="features-grid">
+            <article class="feature-card feature-card--dashboard">
+              <div class="feature-card__body">
+                <div class="feature-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
+                </div>
+                <h3 class="feature-card__title">Dashboard</h3>
+                <p class="feature-card__text">Protection and firewall status, active connection count, blocked IPs, and a small live activity graph — the whole picture in one deliberately minimal screen.</p>
               </div>
-              <h3 class="feature-card__title">Dashboard</h3>
-              <p class="feature-card__text">Protection and firewall status, active connection count, blocked IPs, and a small live activity graph. Deliberately minimal.</p>
+              <div class="image-frame">
+                <img src="assets/thomsen-shield-dashboard.png" alt="Thomsen Shield dashboard showing protection status, active connections, blocked IPs, and live network activity" width="1320" height="470" loading="lazy" />
+              </div>
             </article>
             <article class="feature-card">
               <div class="feature-card__icon" aria-hidden="true">
@@ -221,12 +232,14 @@
               <h3 class="feature-card__title">Blocklist &amp; Allowlist</h3>
               <p class="feature-card__text">Every blocked IP with its reason and expiration. Trusted IPs and private ranges are protected from auto-blocking.</p>
             </article>
-            <article class="feature-card">
+            <article class="feature-card feature-card--wide">
               <div class="feature-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h6l3 3v11.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-13.5a1 1 0 011-1z"/><path d="M12 2.5V6h3.5"/><path d="M7.5 10.5h5M7.5 13h5"/></svg>
               </div>
-              <h3 class="feature-card__title">Events &amp; Logs</h3>
-              <p class="feature-card__text">A readable, filterable activity history — exportable to TXT or JSON whenever you need it.</p>
+              <div>
+                <h3 class="feature-card__title">Events &amp; Logs</h3>
+                <p class="feature-card__text">A readable, filterable activity history — exportable to TXT or JSON whenever you need it.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -244,7 +257,25 @@
             <p>No subscriptions, no tiers to compare. Buy once, use it for as long as you own a Windows PC.</p>
           </div>
           <div class="pricing">
+            <!-- PENDING: waiting on real Thomsen OSINT details (what it does, price
+                 or free, and its actual features) - see feature-modal-osint below
+                 for the placeholder that needs replacing once that's known. -->
+            <div class="pricing-card pricing-card--osint">
+              <p class="pricing-card__name">Thomsen OSINT</p>
+              <div class="pricing-card__price">
+                <span class="pricing-card__price-amount pricing-card__price-amount--free">Free</span>
+              </div>
+              <p class="pricing-card__note">Free program &middot; Windows 10 / 11</p>
+              <!-- EDIT: replace THOMSEN_OSINT_DOWNLOAD_URL with the real installer URL once one is published. -->
+              <a class="btn btn--primary btn--block" href="THOMSEN_OSINT_DOWNLOAD_URL">Free Download</a>
+              <button type="button" class="pricing-card__more" data-feature-modal="osint">
+                See more
+                <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 6-6 6"/></svg>
+              </button>
+            </div>
+
             <div class="pricing-card pricing-card--shield">
+              <span class="pricing-card__badge">Main Product</span>
               <p class="pricing-card__name">Thomsen Shield</p>
               <div class="pricing-card__price">
                 <span class="pricing-card__price-amount">€50.00</span>
@@ -252,35 +283,17 @@
               </div>
               <p class="pricing-card__note">Lifetime license &middot; Windows 10 / 11</p>
               <a class="btn btn--primary btn--block btn--lg" href="https://api.thomssen.dev/buy">Purchase</a>
-              <ul class="pricing-card__list">
-                <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Live connection monitoring</li>
-                <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Automatic abuse detection &amp; blocking</li>
-                <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Full Windows Firewall control</li>
-                <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Blocklist, allowlist &amp; exportable logs</li>
-                <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Free updates for the life of the license</li>
-                <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>One device at a time, transfer anytime</li>
-              </ul>
-              <p class="pricing-card__refund">Covered by a <a href="refund.html">7-day, no-questions-asked refund</a>.</p>
-            </div>
-
-            <div class="pricing-card pricing-card--tablet">
-              <p class="pricing-card__name">Thomsen Tablet</p>
-              <div class="pricing-card__price">
-                <span class="pricing-card__price-amount pricing-card__price-amount--free">Free</span>
-              </div>
-              <p class="pricing-card__note">Free program &middot; Windows 10 / 11</p>
-              <!-- EDIT: replace THOMSEN_TABLET_DOWNLOAD_URL with the real installer URL once one is published. -->
-              <a class="btn btn--primary btn--block" href="THOMSEN_TABLET_DOWNLOAD_URL">Free Download</a>
               <ul class="pricing-card__list pricing-card__list--tight">
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Tablet area editor</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Absolute and relative mode</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Multi-monitor support</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Smoothing and input filters</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Profiles</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Input testing</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>osu! setup/check</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Support for tablets such as the Wacom CTL-472</li>
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Live connection monitoring</li>
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Automatic abuse detection &amp; blocking</li>
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Full Windows Firewall control</li>
+                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Free updates for the life of the license</li>
               </ul>
+              <button type="button" class="pricing-card__more" data-feature-modal="shield">
+                See all features
+                <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 6-6 6"/></svg>
+              </button>
+              <p class="pricing-card__refund">Covered by a <a href="refund.html">7-day, no-questions-asked refund</a>.</p>
             </div>
 
             <div class="pricing-card pricing-card--vm">
@@ -294,17 +307,51 @@
               <ul class="pricing-card__list pricing-card__list--tight">
                 <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Guided VM creation wizard with ISO auto-detection</li>
                 <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>UEFI and Legacy BIOS firmware, per VM</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>True full screen with multi-monitor support</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Scaling modes (Fit / Stretch / Native)</li>
                 <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Snapshots (create, restore, delete)</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Force Stop for guests that won't respond to a normal shutdown</li>
                 <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Live CPU, RAM, disk, and network monitoring</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>App lock with password protection</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Per-VM hardware and network profiles</li>
-                <li><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Support for QEMU-backed guests such as Arch Linux, Windows, and other ISOs</li>
               </ul>
+              <button type="button" class="pricing-card__more" data-feature-modal="vm">
+                See all features
+                <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 6-6 6"/></svg>
+              </button>
             </div>
           </div>
+
+          <!-- Full feature lists for the "See more" modal - cloned into
+               .feature-modal__body by site.js. Not rendered on their own. -->
+          <template id="feature-modal-shield">
+            <h2>Thomsen Shield</h2>
+            <p class="feature-modal__desc">€50.00 one-time &middot; Lifetime license &middot; Windows 10 / 11</p>
+            <ul>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Live connection monitoring</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Automatic abuse detection &amp; blocking</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Full Windows Firewall control</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Blocklist, allowlist &amp; exportable logs</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Free updates for the life of the license</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>One device at a time, transfer anytime</li>
+            </ul>
+          </template>
+          <template id="feature-modal-vm">
+            <h2>Thomsen VM</h2>
+            <p class="feature-modal__desc">Free &middot; Windows 10 / 11</p>
+            <ul>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Guided VM creation wizard with ISO auto-detection</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>UEFI and Legacy BIOS firmware, per VM</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>True full screen with multi-monitor support</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Scaling modes (Fit / Stretch / Native)</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Snapshots (create, restore, delete)</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Force Stop for guests that won't respond to a normal shutdown</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Live CPU, RAM, disk, and network monitoring</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>App lock with password protection</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Per-VM hardware and network profiles</li>
+              <li><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>Support for QEMU-backed guests such as Arch Linux, Windows, and other ISOs</li>
+            </ul>
+          </template>
+          <!-- EDIT: placeholder until the real Thomsen OSINT description/features are known - see the comment above the OSINT card. -->
+          <template id="feature-modal-osint">
+            <h2>Thomsen OSINT</h2>
+            <p class="feature-modal__desc">Details coming soon.</p>
+          </template>
         </div>
       </section>
 
@@ -385,28 +432,51 @@
          FOOTER   (keep in sync with refund.html / terms.html / privacy.html)
          ══════════════════════════════════════════════════════════════════ -->
     <footer class="footer">
-      <div class="container footer__inner">
-        <div class="footer__brand">
-          <img class="footer__mark" src="assets/logo.png" alt="" width="30" height="30" />
-          <div>
-            <p class="footer__name">Thomsen Shield</p>
-            <p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
+      <div class="container">
+        <div class="footer__top">
+          <a class="footer__brand" href="index.html">
+            <img class="footer__mark" src="assets/logo.png" alt="" width="30" height="30" />
+            <div>
+              <p class="footer__name">Thomsen Shield</p>
+              <p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
+            </div>
+          </a>
+          <div class="footer__cols">
+            <div class="footer__col">
+              <p class="footer__col-title">Product</p>
+              <a class="footer__link" href="index.html">Home</a>
+              <a class="footer__link" href="#features">Features</a>
+              <a class="footer__link" href="#pricing">Pricing</a>
+              <a class="footer__link" href="#faq">FAQ</a>
+            </div>
+            <div class="footer__col">
+              <p class="footer__col-title">Community</p>
+              <a class="footer__link" href="https://discord.gg/FCUZwKwpU" target="_blank" rel="noopener">Discord</a>
+            </div>
+            <div class="footer__col">
+              <p class="footer__col-title">Legal</p>
+              <a class="footer__link" href="terms.html">Terms</a>
+              <a class="footer__link" href="privacy.html">Privacy</a>
+              <a class="footer__link" href="refund.html">Refund Policy</a>
+              <a class="footer__link" href="#" data-cc-open>Cookie Settings</a>
+            </div>
           </div>
         </div>
-        <nav class="footer__links" aria-label="Footer">
-          <a class="footer__link" href="index.html">Home</a>
-          <a class="footer__link" href="#features">Features</a>
-          <a class="footer__link" href="#pricing">Pricing</a>
-          <a class="footer__link" href="#faq">FAQ</a>
-          <a class="footer__link" href="https://discord.gg/FCUZwKwpU" target="_blank" rel="noopener">Discord</a>
-          <a class="footer__link" href="terms.html">Terms</a>
-          <a class="footer__link" href="privacy.html">Privacy</a>
-          <a class="footer__link" href="refund.html">Refund Policy</a>
-          <a class="footer__link" href="#" data-cc-open>Cookie Settings</a>
-        </nav>
-        <p class="footer__copy">© <span data-year>2026</span> Thomsen Shield</p>
+        <div class="footer__bottom">
+          <p class="footer__copy">© <span data-year>2026</span> Thomsen Shield</p>
+        </div>
       </div>
     </footer>
+
+    <!-- Shared "See more" modal shell for the pricing cards - site.js clones
+         the matching #feature-modal-<key> template into .feature-modal__body. -->
+    <div class="feature-modal" aria-hidden="true">
+      <div class="feature-modal__backdrop" data-feature-modal-close></div>
+      <div class="feature-modal__card" role="dialog" aria-modal="true" aria-label="Full feature list">
+        <button type="button" class="feature-modal__x" data-feature-modal-close aria-label="Close">×</button>
+        <div class="feature-modal__body"></div>
+      </div>
+    </div>
 
     <script src="assets/site.js" defer></script>
     <script src="assets/consent.js" defer></script>

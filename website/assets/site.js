@@ -71,4 +71,36 @@
       }
     });
   });
+
+  // Feature modal (pricing card "See more") - clones a hidden <template>
+  // per product into the shared modal shell. See main2.css section 13b.
+  var featureModal = document.querySelector('.feature-modal');
+  if (featureModal) {
+    var featureModalBody = featureModal.querySelector('.feature-modal__body');
+
+    function openFeatureModal(key) {
+      var tpl = document.getElementById('feature-modal-' + key);
+      if (!tpl || !featureModalBody) return;
+      featureModalBody.innerHTML = '';
+      featureModalBody.appendChild(tpl.content.cloneNode(true));
+      featureModal.classList.add('is-in');
+      featureModal.setAttribute('aria-hidden', 'false');
+    }
+    function closeFeatureModal() {
+      featureModal.classList.remove('is-in');
+      featureModal.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelectorAll('[data-feature-modal]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openFeatureModal(btn.getAttribute('data-feature-modal'));
+      });
+    });
+    featureModal.querySelectorAll('[data-feature-modal-close]').forEach(function (el) {
+      el.addEventListener('click', closeFeatureModal);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeFeatureModal();
+    });
+  }
 })();
