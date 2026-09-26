@@ -883,8 +883,9 @@ ul { list-style: none; padding: 0; }
 .feature-modal__body h2 { font-size: 1.15rem; padding-right: 28px; }
 .feature-modal__body .feature-modal__desc { margin-top: 8px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
 .feature-modal__body ul { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-direction: column; gap: 12px; }
-.feature-modal__body li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--text-secondary); }
+.feature-modal__body li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; line-height: 1.55; color: var(--text-secondary); }
 .feature-modal__body li svg { flex: none; margin-top: 2px; color: var(--good); }
+.feature-modal__body li strong { color: var(--text); font-weight: 600; }
 
 .pricing-card__more {
   display: inline-flex;
