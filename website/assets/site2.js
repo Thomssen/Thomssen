@@ -53,6 +53,25 @@
     el.textContent = new Date().getFullYear();
   });
 
+  // Footer "Email" link - copies the support address instead of navigating
+  var copyEmailLink = document.getElementById('copyEmail');
+  if (copyEmailLink) {
+    copyEmailLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      var email = 'support@thomssen.dev';
+      var oldText = copyEmailLink.textContent;
+      function showCopied() {
+        copyEmailLink.textContent = 'Copied!';
+        window.setTimeout(function () { copyEmailLink.textContent = oldText; }, 1500);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showCopied, showCopied);
+      } else {
+        showCopied();
+      }
+    });
+  }
+
   // FAQ accordion (Thomsen Shield product page)
   document.querySelectorAll('.faq-item').forEach(function (item) {
     var button = item.querySelector('.faq-item__q');
