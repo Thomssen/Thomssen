@@ -887,7 +887,7 @@ ul { list-style: none; padding: 0; }
 @media (min-width: 920px) {
   .pricing {
     grid-template-columns: 1fr 1.3fr 1fr;
-    align-items: center;
+    align-items: start;
     gap: 32px;
   }
   .pricing-card { max-width: 300px; }
