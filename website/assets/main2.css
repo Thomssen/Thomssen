@@ -253,9 +253,9 @@ ul { list-style: none; padding: 0; }
   gap: 8px;
   height: var(--btn-h);
   padding-inline: 20px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -264,26 +264,19 @@ ul { list-style: none; padding: 0; }
   transition:
     background-color 160ms var(--ease),
     border-color 160ms var(--ease),
-    color 160ms var(--ease),
-    transform 160ms var(--ease),
-    box-shadow 160ms var(--ease);
+    color 160ms var(--ease);
 }
-.btn:active { transform: translateY(0.5px) scale(0.99); }
+.btn:active { transform: scale(0.99); }
 
-.btn--sm { --btn-h: 38px; padding-inline: 16px; font-size: 0.88rem; }
-.btn--lg { --btn-h: 50px; padding-inline: 26px; font-size: 1rem; }
+.btn--sm { --btn-h: 36px; padding-inline: 15px; font-size: 0.85rem; }
+.btn--lg { --btn-h: 48px; padding-inline: 24px; font-size: 0.96rem; }
 .btn--block { width: 100%; }
 
 .btn--primary {
   background: var(--btn-primary-bg);
   color: var(--btn-primary-text);
-  box-shadow: var(--shadow-sm);
 }
-.btn--primary:hover {
-  background: var(--btn-primary-bg-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
+.btn--primary:hover { background: var(--btn-primary-bg-hover); }
 
 .btn--secondary {
   background: var(--btn-secondary-bg);
@@ -293,7 +286,6 @@ ul { list-style: none; padding: 0; }
 .btn--secondary:hover {
   background: var(--btn-secondary-bg-hover);
   border-color: var(--border-strong);
-  transform: translateY(-1px);
 }
 
 .btn--ghost {
@@ -309,8 +301,6 @@ ul { list-style: none; padding: 0; }
 .btn--disabled:hover {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
 /* ---------------------------------------------------------------------------
@@ -524,9 +514,9 @@ ul { list-style: none; padding: 0; }
   align-items: center;
   gap: 8px;
   margin-bottom: 22px;
-  padding: 7px 14px;
+  padding: 6px 12px;
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
   font-size: 12px;
   font-weight: 600;
@@ -595,23 +585,17 @@ ul { list-style: none; padding: 0; }
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--surface);
-  transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+  transition: border-color 180ms var(--ease);
 }
-.feature-card:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-md);
-}
+.feature-card:hover { border-color: var(--border-strong); }
 .feature-card__icon {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text);
+  width: 22px;
+  height: 22px;
+  color: var(--text-secondary);
 }
-.feature-card__title { margin-top: 16px; font-size: 1.02rem; font-weight: 600; }
+.feature-card__title { margin-top: 18px; font-size: 1.02rem; font-weight: 600; }
 .feature-card__text { margin-top: 8px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
 
 /* The one featured card: full width, real Dashboard screenshot on the right */
@@ -712,10 +696,8 @@ ul { list-style: none; padding: 0; }
   padding: 18px 18px 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  background: var(--surface);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 50px -12px rgba(0, 0, 0, 0.55);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  backdrop-filter: blur(16px) saturate(150%);
   transform: translateY(14px);
   opacity: 0;
   transition: transform 320ms var(--ease), opacity 260ms var(--ease);
@@ -947,43 +929,27 @@ ul { list-style: none; padding: 0; }
 .info-list li { margin-bottom: 10px; }
 .info-list li:last-child { margin-bottom: 0; }
 
-/* -- How it works cards --------------------------------------------------
-   A hairline connector runs behind the row, z-indexed under the opaque
-   cards, so it only shows through in the gaps between them - a cheap way
-   to read as one connected process instead of three unrelated cards. */
-.hiw-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.hiw-grid::before {
-  content: "";
-  position: absolute;
-  top: 40px;
-  left: calc(100% / 6);
-  right: calc(100% / 6);
-  height: 1px;
-  background: var(--border);
-  z-index: 0;
+/* -- How it works -------------------------------------------------------
+   Deliberately not boxed cards: a numbered, rule-separated sequence reads
+   as one editorial flow rather than three more bordered tiles, and drops
+   the icon-in-a-square treatment repeated everywhere else on the page. */
+.hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.hiw-card { padding-top: 20px; border-top: 1px solid var(--border); }
+.hiw-card__num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
 }
-.hiw-card {
-  position: relative;
-  z-index: 1;
-  padding: 22px 22px 24px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: border-color 180ms var(--ease);
-}
-.hiw-card:hover { border-color: var(--border-strong); }
-.hiw-card__head { display: flex; align-items: center; justify-content: space-between; }
-.hiw-card__icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); color: var(--text); }
-.hiw-card__num { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.08em; }
-.hiw-card h3 { margin-top: 16px; font-size: 1.05rem; }
-.hiw-card p { font-size: 0.92rem; color: var(--text-muted); margin-top: 8px; }
+.hiw-card h3 { margin-top: 14px; font-size: 1.15rem; }
+.hiw-card p { font-size: 0.92rem; color: var(--text-muted); margin-top: 10px; line-height: 1.65; max-width: 32ch; }
 
 @media (max-width: 760px) {
-  .hiw-grid { grid-template-columns: 1fr; }
-  .hiw-grid::before { display: none; }
+  .hiw-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 
-.status-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding-inline: 10px; border-radius: var(--radius-pill); background: var(--good-soft); color: var(--good); font-size: 12px; font-weight: 600; }
+.status-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding-inline: 10px; border-radius: var(--radius-sm); background: var(--good-soft); color: var(--good); font-size: 12px; font-weight: 600; }
 .status-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
 /* -- Pricing ------------------------------------------------------------------
@@ -1006,9 +972,7 @@ ul { list-style: none; padding: 0; }
 }
 .pricing-card {
   width: 100%; max-width: 420px;
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  backdrop-filter: blur(20px) saturate(150%);
+  background: var(--surface);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   padding: 32px;
@@ -1020,16 +984,12 @@ ul { list-style: none; padding: 0; }
   border-color: color-mix(in srgb, var(--text) 24%, transparent);
 }
 .pricing-card__badge {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 14px;
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-strong);
+  display: block;
+  margin-bottom: 10px;
   color: var(--text-secondary);
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .pricing-card__name { font-size: 13px; font-weight: 600; color: var(--text-muted); }
@@ -1144,9 +1104,7 @@ textarea { resize: vertical; min-height: 96px; }
 .select-list li[aria-selected="true"] { color: var(--text); background: var(--btn-secondary-bg); }
 
 .form-card {
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  backdrop-filter: blur(20px) saturate(150%);
+  background: var(--surface);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   padding: 32px;
