@@ -1,6 +1,6 @@
 # Thomsen Shield - License API
 
-The backend for Thomsen Shield's €50.00 lifetime license: Stripe Checkout
+The backend for Thomsen Shield's €30.00 lifetime license: Stripe Checkout
 for payment, a Supabase table as the license database, and a small set of
 Vercel serverless functions in between. The desktop app never talks to
 Stripe or Supabase directly - only to this API, and only over these
@@ -12,7 +12,7 @@ shared hosting isn't a reliable place to run a payment webhook handler;
 everything else about the site is untouched. See **Hosting** below.
 
 ```
-Customer clicks "Purchase" (€50.00 Lifetime)
+Customer clicks "Purchase" (€30.00 Lifetime)
         |
         v
 GET /buy (= /api/stripe/checkout) --> redirects to Stripe Checkout
@@ -97,7 +97,7 @@ Project URL and the **service_role** key (Settings -> API) into your env
 ### 2. Stripe
 
 No product/price to create in the Dashboard - `api/stripe/checkout.ts`
-defines the €50.00 price inline (`price_data`), tax code included, so
+defines the €30.00 price inline (`price_data`), tax code included, so
 it's correct in both test and live mode with nothing to keep in sync
 between them (see that file's comment for why: Managed Payments, on by
 default for new accounts, requires a product tax code on every line item,

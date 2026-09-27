@@ -62,7 +62,7 @@ function successBody(licenseKey: string): string {
     <span class="key-label">License Key</span>
     <code class="key" id="license-key">${safeKey}</code>
     <hr class="rule" />
-    <div class="meta-row"><span>Price</span><span>€50.00 Lifetime</span></div>
+    <div class="meta-row"><span>Price</span><span>€30.00 Lifetime</span></div>
     <div class="meta-row"><span>Compatibility</span><span>Windows 10 / 11</span></div>
   </div>
 
