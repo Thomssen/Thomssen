@@ -87,21 +87,29 @@
       <section class="section">
         <div class="container doc">
 
-          <!-- Figures below (7-day window, €50.00, Stripe, Denmark) match the
-               policy already published at
+          <!-- Figures below (7-day window, Stripe, Denmark) match the policy
+               already published at
                thomsen-shield-license-api/public/{refund,terms}.html - keep
-               the two in sync if either changes. LAST_UPDATED is the one
-               value with no other source of truth. -->
+               the two in sync if either changes. Refund amounts are written
+               dynamically ("the full amount you paid") since Thomsen Shield
+               and Thomsen OSINT are priced differently - don't hardcode a
+               single price back in here. LAST_UPDATED is the one value with
+               no other source of truth. -->
 
           <span class="status-badge">7-day refund window</span>
           <h1>Refund Policy</h1>
-          <p class="updated">Last updated <!-- LAST_UPDATED -->September 25, 2026<!-- /LAST_UPDATED --></p>
+          <p class="updated">Last updated <!-- LAST_UPDATED -->September 27, 2026<!-- /LAST_UPDATED --></p>
 
-          <p>If Thomsen Shield isn't right for you, this page explains how to get a refund - or use the form further down if you'd rather not send an email.</p>
+          <p>If a Thomsen product you paid for isn't right for you, this page explains how to get a refund - or use the form further down if you'd rather not send an email.</p>
 
           <section>
             <h2>How refunds work</h2>
-            <p>Email us within 7 days of purchase and we'll refund you in full - no questions asked, no forms. Past that window, refunds are handled case by case, for example if the app has a defect we're unable to fix.</p>
+            <p>Email us or use the form below within 7 days of purchase and we'll refund you in full. The form asks for a short reason to help us track why, but within the 7-day window that doesn't affect whether you get the refund. Past that window, refunds are handled case by case, for example if the app has a defect we're unable to fix.</p>
+          </section>
+
+          <section>
+            <h2>Your right of withdrawal (EU/EEA consumers)</h2>
+            <p>Separately from the voluntary refund above, EU/EEA consumer law generally gives you a 14-day right to withdraw from an online purchase without giving a reason. That right doesn't apply once a trader has started supplying digital content that isn't on a physical disc or similar, if you gave your prior express consent to immediate delivery and acknowledged that you'd lose the right of withdrawal by doing so. Where that consent and acknowledgment weren't validly obtained from you before your purchase, your statutory right of withdrawal still applies in addition to the 7-day window above.</p>
           </section>
 
           <section>
@@ -110,7 +118,7 @@
                 <h3><span class="dot dot-good"></span>Eligible for a refund</h3>
                 <ul>
                   <li>Requested within 7 days of the original purchase date</li>
-                  <li>Purchased directly through the official Thomsen Shield checkout</li>
+                  <li>Purchased directly through the official Thomsen checkout</li>
                   <li>The order ID or license key provided matches an active purchase on file</li>
                 </ul>
               </div>
@@ -130,8 +138,8 @@
             <div class="info-list">
               <ol>
                 <li>Fill out the <a href="#refund-form">Request a Refund</a> form below, or email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> directly</li>
-                <li>Include your license key or the email address you purchased with</li>
-                <li>That's it - no forms, no justification needed within the 7-day window</li>
+                <li>Include your license key or the email address you purchased with, and a short reason</li>
+                <li>Within the 7-day window, that's all we need - the reason doesn't gate your refund</li>
               </ol>
             </div>
           </section>
@@ -140,7 +148,7 @@
             <h2>Expected processing time</h2>
             <div class="info-list">
               <ul>
-                <li>We refund the full €50.00 to your original payment method through Stripe</li>
+                <li>We refund the full amount you paid to your original payment method through Stripe</li>
                 <li>Refunds typically appear on your statement within 5-10 business days, depending on your bank</li>
                 <li>Your license is deactivated once the refund is issued</li>
               </ul>

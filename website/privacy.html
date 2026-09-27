@@ -88,77 +88,101 @@
         <div class="container doc">
 
           <h1>Privacy Policy</h1>
-          <p class="updated">Last updated <!-- LAST_UPDATED -->September 25, 2026<!-- /LAST_UPDATED --></p>
+          <p class="updated">Last updated <!-- LAST_UPDATED -->September 27, 2026<!-- /LAST_UPDATED --></p>
 
-          <p>Thomsen Shield is a network security tool, so we know privacy matters more than usual here. This page explains exactly what we collect and, just as importantly, what we don't.</p>
+          <p>Thomsen Shield, Thomsen OSINT, and Thomsen VM are Windows tools built to run locally on your PC, so we know privacy matters more than usual here. This page explains what we collect when you buy or use them, and just as importantly, what we don't. Thomsen VM is free and involves no purchase or account. Thomsen OSINT is not yet released - this policy will be updated first if anything here changes once it ships.</p>
 
           <div class="info-list" style="margin-bottom: 40px;">
-            <strong style="color:var(--text)">The short version:</strong> Thomsen Shield's network monitoring and blocking runs entirely on your PC. Your connection activity, blocked IPs, and firewall rules are <strong>never uploaded to us</strong>. We only handle what's needed to sell you a license and keep it working: your email, a device identifier, and payment details handled by Stripe.
+            <strong style="color:var(--text)">The short version:</strong> Thomsen Shield's network monitoring and blocking runs entirely on your PC. Your connection activity, blocked IPs, and firewall rules are <strong>never uploaded to us</strong>. To sell you a license and keep it working, we handle: your email address, a device identifier, and payment details (handled by Stripe - we never see your card details).
           </div>
 
           <section>
-            <h2>1. What we collect</h2>
+            <h2>1. Who is responsible for your data</h2>
+            <p>Thomsen Shield is operated by Kristian Thomsen ("we", "us"), who is the data controller for the personal data described in this policy. Email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> for any privacy question or to exercise the rights in section 9.</p>
+          </section>
+
+          <section>
+            <h2>2. What we collect, and why</h2>
             <ul>
-              <li><strong>Email address</strong> - collected by Stripe at checkout, used to send your payment receipt and to look up your license if you contact support.</li>
-              <li><strong>License key and device identifier</strong> - when you activate Thomsen Shield, the app sends your license key and a hardware-derived identifier for that PC to our license server, so we can confirm the license is valid and bound to one device.</li>
-              <li><strong>Payment information</strong> - handled entirely by Stripe. We never see or store your card number.</li>
-              <li><strong>Standard server logs</strong> - our hosting providers (Vercel, Supabase) log request metadata like IP address for security and abuse prevention, as most web infrastructure does.</li>
+              <li><strong>Email address</strong> - collected by Stripe at checkout, used to send your payment receipt and to look up your license if you contact support. Legal basis: performing the purchase contract with you.</li>
+              <li><strong>License key and device identifier</strong> - when you activate Thomsen Shield, the app sends your license key and a hardware-derived identifier for that PC to our license server, so we can confirm the license is valid and bound to one device. Legal basis: performing the contract (delivering the license you paid for).</li>
+              <li><strong>Payment information</strong> - handled entirely by Stripe. We never see or store your card number. Legal basis: performing the contract, and our legal obligation to keep financial and accounting records.</li>
+              <li><strong>Standard server and security logs</strong> - Vercel and Supabase (which run our license server and database) and Hostinger (which hosts thomssen.dev itself) log routine request metadata such as IP address, as most web infrastructure does. Legal basis: our legitimate interest in keeping the service secure and working.</li>
+              <li><strong>Google Fonts requests</strong> - every page loads the Inter typeface from Google's font service, which may see your IP address in the process. Legal basis: legitimate interest in displaying the site correctly; governed by <a href="https://policies.google.com/privacy">Google's own privacy policy</a>.</li>
+              <li><strong>Theme and cookie preference</strong> - stored in your browser only, not sent to us. Legal basis: consent, where used for anything beyond strictly necessary storage (see Cookies below).</li>
             </ul>
           </section>
 
           <section>
-            <h2>2. What we don't collect</h2>
-            <p>Thomsen Shield does not send us your network traffic, browsing history, the connections it observes, or the IPs it blocks. All detection and blocking logic runs locally on your machine. Nothing about your day-to-day usage of the app is transmitted anywhere.</p>
+            <h2>3. What we don't collect</h2>
+            <p>Thomsen Shield does not send us your network traffic, browsing history, the connections it observes, or the IPs it blocks. All detection and blocking logic runs locally on your machine. Nothing about your day-to-day usage of the app is transmitted anywhere. Thomsen OSINT is likewise built local-first - its lookups and case data stay on your PC, with no cloud account. Thomsen VM doesn't require a purchase, account, or license activation, so there's nothing tied to your identity for it to send us.</p>
           </section>
 
           <section>
-            <h2>3. Cookies</h2>
-            <p>This site uses a small cookie banner to ask for your consent before setting anything beyond strictly necessary cookies. You can change your choice at any time from the "Cookie Settings" link in the footer.</p>
+            <h2>4. Cookies</h2>
+            <p>This site stores your theme and cookie choice in your browser's local storage - strictly necessary, and not used to track you. Beyond that, this site does not currently run any analytics or advertising scripts. The cookie banner's "analytics" option is reserved for future use and currently makes no difference either way; if we ever turn on real analytics, we'll only do so with your consent and will update this section first. Change your choice anytime from "Cookie Settings" in the footer.</p>
           </section>
 
           <section>
-            <h2>4. How we use it</h2>
-            <p>Solely to issue and validate your license, process your payment, prevent fraud (e.g. chargebacks, key sharing), and respond if you contact support. We don't use your data for advertising, and we don't sell it to anyone.</p>
+            <h2>5. How we use it</h2>
+            <p>In short: to issue and validate your license, process your payment, prevent fraud (e.g. chargebacks, key sharing), keep the service secure, and respond if you contact support. We don't use your data for advertising, and we don't sell it to anyone.</p>
           </section>
 
           <section>
-            <h2>5. Who we share it with</h2>
+            <h2>6. Who we share it with</h2>
             <p>Only the services that make Thomsen Shield work:</p>
             <ul>
               <li><strong>Stripe</strong> - payment processing (<a href="https://stripe.com/privacy">their privacy policy</a>)</li>
               <li><strong>Supabase</strong> - database hosting for license records</li>
-              <li><strong>Vercel</strong> - hosting for our license server and this website</li>
+              <li><strong>Vercel</strong> - hosting for our license server (api.thomssen.dev)</li>
+              <li><strong>Hostinger</strong> - hosting for this website (thomssen.dev)</li>
+              <li><strong>Google Fonts</strong> - delivers the Inter typeface used on this site</li>
             </ul>
-            <p>Each processes data under their own privacy policy and only as needed to provide their service to us.</p>
+            <p>Each processes data under their own privacy policy and only as needed to provide their service to us. We don't sell your data or share it for anyone else's advertising.</p>
           </section>
 
           <section>
-            <h2>6. Data retention</h2>
-            <p>We keep license and purchase records for as long as your license is active, plus whatever period is required for tax and accounting records afterward.</p>
+            <h2>7. International transfers</h2>
+            <p>Some of these providers (for example Stripe and Vercel) are based in, or may process data in, the United States or other countries outside the EU/EEA. Where that happens, they're required to provide appropriate safeguards for the transfer, such as the EU Standard Contractual Clauses or an adequacy decision - see their own privacy policies (linked above where available) for how each handles this.</p>
           </section>
 
           <section>
-            <h2>7. Your rights</h2>
-            <p>You can ask us to access, correct, or delete your data at any time by emailing <a href="mailto:support@thomssen.dev">support@thomssen.dev</a>. Note that deleting your account data will deactivate your license.</p>
+            <h2>8. Data retention</h2>
+            <p>We keep license and purchase records for as long as your license is active, and afterward for as long as applicable tax and accounting law requires us to keep financial records. Support emails are kept only as long as needed to handle your request, unless we're legally required to keep them longer.</p>
           </section>
 
           <section>
-            <h2>8. Security</h2>
+            <h2>9. Your rights</h2>
+            <p>Subject to the conditions in applicable law, you have the right to:</p>
+            <ul>
+              <li><strong>Access</strong> - get a copy of the personal data we hold about you</li>
+              <li><strong>Correction</strong> - have inaccurate or incomplete data fixed</li>
+              <li><strong>Deletion</strong> - ask us to delete your data, except what we're legally required to keep (e.g. financial records)</li>
+              <li><strong>Restriction</strong> - ask us to limit how we use your data in certain circumstances</li>
+              <li><strong>Objection</strong> - object to processing based on our legitimate interests</li>
+              <li><strong>Portability</strong> - receive certain data in a portable format</li>
+              <li><strong>Withdraw consent</strong> - where processing relies on your consent (e.g. optional analytics, once active), withdraw it anytime without affecting what already happened</li>
+            </ul>
+            <p>To exercise any of these, email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a>. Note that deleting your account data will deactivate your license. You also have the right to lodge a complaint with a data protection supervisory authority - in Denmark, the <a href="https://www.datatilsynet.dk">Danish Data Protection Agency (Datatilsynet)</a>, or the authority in the EU/EEA country where you live or work, if different.</p>
+          </section>
+
+          <section>
+            <h2>10. Security</h2>
             <p>Data in transit between the app and our server is encrypted (TLS). Your license token is cryptographically signed and stored encrypted on your own device.</p>
           </section>
 
           <section>
-            <h2>9. Children</h2>
+            <h2>11. Children</h2>
             <p>Thomsen Shield isn't directed at children under 16, and we don't knowingly collect data from them.</p>
           </section>
 
           <section>
-            <h2>10. Changes to this policy</h2>
+            <h2>12. Changes to this policy</h2>
             <p>If this policy changes materially, we'll update the date at the top of this page.</p>
           </section>
 
           <section>
-            <h2>11. Contact</h2>
+            <h2>13. Contact</h2>
             <p><a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
           </section>
 

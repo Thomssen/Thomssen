@@ -24,7 +24,8 @@ the old homepage's actual copy.
 - **`refund.html`**, **`terms.html`**, **`privacy.html`** — legal pages,
   same nav/footer/cookie system, content matching the figures already
   live at `thomsen-shield-license-api/public/{refund,terms,privacy}.html`
-  (€50.00 one-time, 7-day refund, Stripe, Denmark law).
+  (€30.00 one-time for Shield, €10.00 planned for OSINT, VM free, 7-day
+  refund, Stripe, Denmark law).
 - **`thomsen-shield/index.html`** — the post-purchase download page. It's
   a folder with an `index.html` inside, not a `thomsen-shield.html` file,
   so the existing "Download Thomsen Shield" link on the Stripe success

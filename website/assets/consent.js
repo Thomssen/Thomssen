@@ -29,7 +29,7 @@
     banner.setAttribute('aria-label', 'Cookie preferences');
     banner.innerHTML =
       '<p class="tp-cc__title">Cookies</p>' +
-      '<p class="tp-cc__text">We use essential cookies to run this site, and optional analytics cookies to help us understand how it’s used.</p>' +
+      '<p class="tp-cc__text">We use essential local storage to run this site. The optional analytics choice below is reserved for future use - we don’t currently run any analytics or tracking scripts.</p>' +
       '<div class="tp-cc__actions">' +
         '<button type="button" class="btn btn--secondary" data-cc-decline>Essential only</button>' +
         '<button type="button" class="btn btn--primary" data-cc-accept>Accept all</button>' +
@@ -75,7 +75,7 @@
         '<div class="tp-modal__row">' +
           '<div>' +
             '<p class="tp-modal__name">Analytics</p>' +
-            '<p class="tp-modal__desc">Helps us understand how the site is used. See the <a href="privacy.html">Privacy Policy</a>.</p>' +
+            '<p class="tp-modal__desc">Reserved for future use - no analytics currently runs on this site either way. See the <a href="privacy.html">Privacy Policy</a>.</p>' +
           '</div>' +
           '<label class="tp-switch"><input type="checkbox" id="cc-analytics" /><span></span></label>' +
         '</div>' +
