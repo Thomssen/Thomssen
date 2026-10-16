@@ -59,8 +59,8 @@
 </a>
 <ul class="nav__links">
 <li><a class="nav__link is-active" href="index.html">Home</a></li>
-<li><a class="nav__link" href="#pricing">Shield</a></li>
-<li><a class="nav__link" href="#products">Products</a></li>
+<li><a class="nav__link" href="#features">Features</a></li>
+<li><a class="nav__link" href="#pricing">Products</a></li>
 <li><a class="nav__link" href="#faq">FAQ</a></li>
 </ul>
 <div class="nav__actions">
@@ -84,8 +84,8 @@
 <div class="nav-panel" id="nav-panel">
 <ul class="nav-panel__links">
 <li><a class="nav-panel__link is-active" href="index.html">Home</a></li>
-<li><a class="nav-panel__link" href="#pricing">Shield</a></li>
-<li><a class="nav-panel__link" href="#products">Products</a></li>
+<li><a class="nav-panel__link" href="#features">Features</a></li>
+<li><a class="nav-panel__link" href="#pricing">Products</a></li>
 <li><a class="nav-panel__link" href="#faq">FAQ</a></li>
 </ul>
 <a class="btn btn--primary nav-panel__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
@@ -97,76 +97,186 @@
            ════════════════════════════════════════════════════════════════ -->
 <section class="hero">
 <div aria-hidden="true" class="hero__grid"></div>
-<div class="container hero__inner">
+<div class="container hero__inner hero__inner--centered">
 <div class="hero__copy">
-<p class="eyebrow">Windows Network Protection</p>
-<h1 class="hero__title">Network monitoring, firewall control.</h1>
-<p class="hero__desc">Real-time connection monitoring, automatic abuse blocking, and full Windows Firewall control — in one clean, lightweight app.</p>
+<p class="hero__badge"><span class="dot dot-good"></span>Windows Network Protection</p>
+<h1 class="hero__title">Welcome to Thomsen Software.</h1>
+<p class="hero__desc" style="max-width: 52ch;">
+              Real-time connection monitoring, automatic abuse blocking, and full
+              Windows Firewall control — in one clean, lightweight app built for
+              people who actually want to see what's happening on their network.
+            </p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="#pricing">Get Thomsen Shield — €30</a>
-<a class="btn btn--secondary btn--lg" href="#products">See all products</a>
+<a class="btn btn--primary btn--lg" href="https://thomssen.dev/#pricing">Products</a>
+<a class="btn btn--secondary btn--lg" href="#how-it-works">See how it works</a>
 </div>
 <p class="hero__meta">Windows 10 / 11 · One-time payment · Lifetime license</p>
 </div>
-<div class="hero__visual">
-<div class="image-frame">
-<img alt="Thomsen Shield dashboard showing protection status, active connections, blocked IPs, and live network activity" height="470" loading="eager" src="assets/thomsen-shield-dashboard.png" width="1320"/>
+</div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════
+           HOW IT WORKS
+           ════════════════════════════════════════════════════════════════ -->
+<section class="section band" id="how-it-works">
+<div class="container">
+<div class="section-head">
+<p class="eyebrow">How it works</p>
+<h2>Three things, done well.</h2>
+<p>Thomsen Shield doesn't try to do everything. It watches your connections, flags what looks wrong, and gives you full control over Windows Firewall — nothing more, nothing hidden.</p>
+</div>
+<div class="hiw-grid">
+<div class="hiw-card">
+<p class="hiw-card__num">01</p>
+<h3>Monitor</h3>
+<p>See every active connection on your PC — the app behind it, the remote address, and its status — updated live.</p>
+</div>
+<div class="hiw-card">
+<p class="hiw-card__num">02</p>
+<h3>Detect</h3>
+<p>Connection spikes and repeated connections from one IP are flagged automatically, with a sensitivity level you control.</p>
+</div>
+<div class="hiw-card">
+<p class="hiw-card__num">03</p>
+<h3>Control</h3>
+<p>Block an IP or app in one click, or manage Windows Firewall rules directly — Thomsen Shield only ever touches rules it created.</p>
 </div>
 </div>
 </div>
 </section>
 <!-- ════════════════════════════════════════════════════════════════
-           THOMSEN SHIELD — the one flagship product, as its own section
-           (folds in what used to be separate "how it works" and feature-
-           grid sections) rather than a card in a pricing row.
+           FEATURES
+           ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="features">
+<div class="container">
+<div class="section-head">
+<p class="eyebrow">Features</p>
+<h2>Everything you need, nothing you don't.</h2>
+<p>A full set of network and firewall tools in one deliberately minimal interface.</p>
+</div>
+<div class="features-grid">
+<article class="feature-card feature-card--dashboard">
+<div class="feature-card__body">
+<div aria-hidden="true" class="feature-card__icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="20"><rect height="6" rx="1.2" width="6" x="3" y="3"></rect><rect height="6" rx="1.2" width="6" x="11" y="3"></rect><rect height="6" rx="1.2" width="6" x="3" y="11"></rect><rect height="6" rx="1.2" width="6" x="11" y="11"></rect></svg>
+</div>
+<h3 class="feature-card__title">Dashboard</h3>
+<p class="feature-card__text">Protection and firewall status, active connection count, blocked IPs, and a small live activity graph — the whole picture in one deliberately minimal screen. It’s the first thing you see on launch, and every number on it updates in real time, so you never have to dig through separate tabs just to confirm the app is actually watching.</p>
+</div>
+<div class="image-frame">
+<img alt="Thomsen Shield dashboard showing protection status, active connections, blocked IPs, and live network activity" height="470" loading="lazy" src="assets/thomsen-shield-dashboard.png" width="1320"/>
+</div>
+</article>
+<article class="feature-card">
+<div aria-hidden="true" class="feature-card__icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="20"><circle cx="10" cy="4.5" r="1.8"></circle><circle cx="4.5" cy="15.5" r="1.8"></circle><circle cx="15.5" cy="15.5" r="1.8"></circle><path d="M10 6.3v3M10 9.3l-4.3 4.5M10 9.3l4.3 4.5"></path></svg>
+</div>
+<h3 class="feature-card__title">Live Connections</h3>
+<p class="feature-card__text">Every active TCP/UDP connection with the owning app, remote address, and status. Block, allow, or copy an IP straight from its details. The list updates live as connections open and close, so what you’re looking at always matches what’s actually happening on the wire right now.</p>
+</article>
+<article class="feature-card">
+<div aria-hidden="true" class="feature-card__icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="20"><path d="M10 2.5l6.5 2.6v4.6c0 4.2-2.8 6.9-6.5 7.4-3.7-.5-6.5-3.2-6.5-7.4V5.1L10 2.5z"></path></svg>
+</div>
+<h3 class="feature-card__title">Protection</h3>
+<p class="feature-card__text">Automatic detection of connection spikes and repeated connections from one IP, with a Low / Normal / High sensitivity control. It starts watching the moment Thomsen Shield opens, with nothing to configure first, and every flagged connection shows up in Live Connections and the activity log so you can see exactly what tripped it.</p>
+</article>
+<article class="feature-card">
+<div aria-hidden="true" class="feature-card__icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="20"><circle cx="10" cy="10" r="7.5"></circle><path d="M6.7 10.2l2.2 2.2 4.4-4.6"></path></svg>
+</div>
+<h3 class="feature-card__title">Firewall</h3>
+<p class="feature-card__text">View, create, enable, disable, and remove rules — all prefixed so Thomsen Shield only ever touches rules it created itself. It’s built on top of the Windows Firewall you already have rather than replacing it, so you get a friendlier interface without anything changing about how Windows actually filters your traffic.</p>
+</article>
+<article class="feature-card">
+<div aria-hidden="true" class="feature-card__icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="20"><path d="M7 5h9M7 10h9M7 15h6"></path><circle cx="4" cy="5" fill="currentColor" r="1" stroke="none"></circle><circle cx="4" cy="10" fill="currentColor" r="1" stroke="none"></circle><circle cx="4" cy="15" fill="currentColor" r="1" stroke="none"></circle></svg>
+</div>
+<h3 class="feature-card__title">Blocklist &amp; Allowlist</h3>
+<p class="feature-card__text">Every blocked IP with its reason and expiration. Trusted IPs and private ranges are protected from auto-blocking. Add or remove entries by hand whenever you like, and choose whether a block expires on its own or stays in place until you lift it yourself.</p>
+</article>
+<article class="feature-card feature-card--wide">
+<div aria-hidden="true" class="feature-card__icon">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="20"><path d="M6 2.5h6l3 3v11.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-13.5a1 1 0 011-1z"></path><path d="M12 2.5V6h3.5"></path><path d="M7.5 10.5h5M7.5 13h5"></path></svg>
+</div>
+<div>
+<h3 class="feature-card__title">Events &amp; Logs</h3>
+<p class="feature-card__text">A readable, filterable activity history — exportable to TXT or JSON whenever you need it. Blocks, rule changes, and detected spikes all land here, so if something happened while you weren’t watching, there’s still a record of exactly what and when.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════
+           PRICING
            ════════════════════════════════════════════════════════════════ -->
 <section class="section" id="pricing">
 <div class="container">
-<div class="section-head">
-<p class="eyebrow">Thomsen Shield · €30 one-time</p>
-<h2>See your network. Control your firewall.</h2>
-<p>Thomsen Shield doesn't try to do everything. It watches your connections, flags what looks wrong, and gives you full control over Windows Firewall — nothing more, nothing hidden.</p>
+<div class="section-head section-head--center">
+<p class="eyebrow">Product</p>
+<h2>One price. Yours for good.</h2>
+<p>No subscriptions, no tiers to compare. Buy once, use it for as long as you own a Windows PC.</p>
 </div>
-<div class="product">
-<div class="product__capabilities">
-<div class="product__group">
-<p class="product__group-title">Monitoring</p>
-<ul class="pricing-card__list">
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>See every active connection the moment it opens — the app behind it, the remote address, and its status, updated live</li>
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Connection spikes and repeated connections from one IP are flagged automatically, with a Low / Normal / High sensitivity level you control</li>
+<div class="pricing">
+<div class="pricing-card pricing-card--osint">
+<p class="pricing-card__name">Thomsen OSINT</p>
+<div class="pricing-card__price">
+<span class="pricing-card__price-amount">€10</span>
+<span class="pricing-card__price-period">one-time</span>
+</div>
+<p class="pricing-card__note">Lifetime license · Windows 10 / 11</p>
+<!-- Not published yet - swap for a real download link (and drop
+                   btn--disabled/disabled) once Thomsen OSINT ships. -->
+<button class="btn btn--primary btn--block btn--disabled" disabled="" type="button">Coming Soon</button>
+<ul class="pricing-card__list pricing-card__list--tight">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Username search across 30+ platforms</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Domain, DNS &amp; subdomain intelligence</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>IP, ISP &amp; geolocation lookup</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Local-first — no cloud or telemetry</li>
 </ul>
-</div>
-<div class="product__group">
-<p class="product__group-title">Control</p>
-<ul class="pricing-card__list">
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Block or allow any connection in one click, or manage Windows Firewall rules directly from the same screen</li>
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Shield only ever touches firewall rules it created itself — nothing else on your system is ever modified</li>
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Every blocked IP is logged with its reason and expiration, and the full history exports to TXT or JSON whenever you need it</li>
-</ul>
-</div>
-<div class="product__group">
-<p class="product__group-title">Privacy &amp; updates</p>
-<ul class="pricing-card__list">
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Everything runs locally — your connection activity and blocked IPs are never uploaded anywhere</li>
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Admin rights are requested only for the specific action that needs them — never just to open the app</li>
-<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Free updates for as long as you own the license — no separate upgrade fee, ever</li>
-</ul>
-</div>
-<button class="pricing-card__more" data-feature-modal="shield" type="button">
-                Full feature list
+<button class="pricing-card__more" data-feature-modal="osint" type="button">
+                See all features
                 <svg aria-hidden="true" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="12"><path d="M7 4l6 6-6 6"></path></svg>
 </button>
 </div>
-<div class="product__buybox">
+<div class="pricing-card pricing-card--shield">
+<span class="pricing-card__badge">Main Product</span>
 <p class="pricing-card__name">Thomsen Shield</p>
 <div class="pricing-card__price">
 <span class="pricing-card__price-amount">€30</span>
 <span class="pricing-card__price-period">one-time</span>
 </div>
 <p class="pricing-card__note">Lifetime license · Windows 10 / 11</p>
-<a class="btn btn--primary btn--lg" href="https://api.thomssen.dev/buy">Purchase</a>
-<p class="pricing-card__note" style="margin-top: 16px;">One-time payment · No subscription · Secure checkout via Stripe</p>
+<a class="btn btn--primary btn--block btn--lg" href="https://api.thomssen.dev/buy">Purchase</a>
+<ul class="pricing-card__list pricing-card__list--tight">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Live connection monitoring</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Automatic abuse detection &amp; blocking</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Full Windows Firewall control</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Free updates for the life of the license</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Blocklist, allowlist &amp; exportable logs</li>
+</ul>
+<button class="pricing-card__more" data-feature-modal="shield" type="button">
+                See all features
+                <svg aria-hidden="true" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="12"><path d="M7 4l6 6-6 6"></path></svg>
+</button>
 <p class="pricing-card__refund">Covered by our <a href="refund.html">14-day refund policy</a>.</p>
+</div>
+<div class="pricing-card pricing-card--vm">
+<p class="pricing-card__name">Thomsen VM</p>
+<div class="pricing-card__price">
+<span class="pricing-card__price-amount pricing-card__price-amount--free">Free</span>
+</div>
+<p class="pricing-card__note">Free program · Windows 10 / 11</p>
+<a class="btn btn--primary btn--block" href="https://github.com/Thomssen/Thomsen-VM/releases/download/v1.0.0/Thomsen-VM-Setup.exe">VM Download</a>
+<ul class="pricing-card__list pricing-card__list--tight">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Guided VM creation wizard with ISO auto-detection</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>UEFI and Legacy BIOS firmware, per VM</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Snapshots (create, restore, delete)</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Live CPU, RAM, disk, and network monitoring</li>
+</ul>
+<button class="pricing-card__more" data-feature-modal="vm" type="button">
+                See all features
+                <svg aria-hidden="true" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="12"><path d="M7 4l6 6-6 6"></path></svg>
+</button>
 </div>
 </div>
 <!-- Full feature lists for the "See more" modal - cloned into
@@ -220,44 +330,18 @@
 </template>
 </div>
 </section>
-<!-- ════════════════════════════════════════════════════════════════
-           MORE PRODUCTS — OSINT, VM, the Discord bot. An editorial list,
-           not three more pricing cards: these are smaller, free, or not
-           yet released, and shouldn't look like Shield's equals.
-           ════════════════════════════════════════════════════════════════ -->
-<section class="section band" id="products">
+<!-- Discord bot — a small standalone card below the existing products -->
+<section aria-labelledby="discord-promo-title" class="section discord-promo">
 <div class="container">
-<div class="section-head">
-<p class="eyebrow">More from Thomsen Software</p>
-<h2>Beyond Shield.</h2>
+<div class="discord-promo__card">
+
+<div class="discord-promo__copy">
+<span class="discord-promo__eyebrow">Discord Bot · Free</span>
+<h2 id="discord-promo-title">Thomsen Protection</h2>
+<p>A Discord bot for server protection and moderation.</p>
 </div>
-<ul class="product-list">
-<li class="product-row">
-<p class="product-row__name">Thomsen OSINT</p>
-<p class="product-row__desc">Username search across 30+ platforms, domain and IP intelligence, and metadata tools — local-first, no cloud account, no telemetry.</p>
-<p class="product-row__meta">€10 lifetime · Coming soon</p>
-<div class="product-row__actions">
-<button class="product-row__action" data-feature-modal="osint" type="button">Details</button>
+<button aria-controls="thomsen-bot-dialog" aria-haspopup="dialog" class="btn btn--primary discord-promo__action" data-bot-popup-open="" type="button">View Discord Bot <span aria-hidden="true">↗</span></button>
 </div>
-</li>
-<li class="product-row">
-<p class="product-row__name">Thomsen VM</p>
-<p class="product-row__desc">Create and run Windows or Linux VMs with a guided setup wizard, snapshots, and live CPU, RAM, and disk monitoring.</p>
-<p class="product-row__meta">Free</p>
-<div class="product-row__actions">
-<button class="product-row__action" data-feature-modal="vm" type="button">Details</button>
-<a class="product-row__action" href="https://github.com/Thomssen/Thomsen-VM/releases/download/v1.0.0/Thomsen-VM-Setup.exe">Download</a>
-</div>
-</li>
-<li class="product-row">
-<p class="product-row__name">Thomsen Protection</p>
-<p class="product-row__desc">Automated protection against raids, spam, and malicious links, with a full moderation command set for your server.</p>
-<p class="product-row__meta">Free</p>
-<div class="product-row__actions">
-<button aria-controls="thomsen-bot-dialog" aria-haspopup="dialog" class="product-row__action" data-bot-popup-open="" type="button">View bot</button>
-</div>
-</li>
-</ul>
 </div>
 </section>
 <!-- ════════════════════════════════════════════════════════════════
@@ -347,8 +431,9 @@
 <div class="footer__col">
 <p class="footer__col-title">Product</p>
 <a class="footer__link" href="index.html">Home</a>
-<a class="footer__link" href="#pricing">Thomsen Shield</a>
-<a class="footer__link" href="#products">Products</a>
+<a class="footer__link" href="#features">Features</a>
+<a class="footer__link" href="#pricing">Product</a>
+
 <a class="footer__link" href="#faq">FAQ</a>
 </div>
 <div class="footer__col">

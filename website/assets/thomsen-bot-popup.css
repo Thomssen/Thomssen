@@ -1,6 +1,50 @@
-/* Thomsen Protection modal; main3.css is unchanged. The homepage trigger is
-   now a plain .product-row__action text link (see main3.css's product-list
-   rules), not a standalone promo card - only the dialog itself lives here. */
+/* Thomsen Protection modal and compact promo card; main3.css is unchanged. */
+/* Compact product-style homepage card (no logo). */
+.discord-promo { padding-top: 0; }
+.discord-promo__card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 780px;
+  margin-inline: auto;
+  padding: 12px 18px;
+  border: 1px solid var(--border-strong); /* same outline as .pricing-card */
+  border-radius: var(--radius-lg);        /* same corners as .pricing-card */
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.discord-promo__copy { flex: 1; min-width: 0; }
+.discord-promo__eyebrow {
+  display: block;
+  color: var(--text-muted);
+  font-size: 9px;
+  line-height: 1.15;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.discord-promo__copy h2 {
+  margin: 3px 0 2px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+.discord-promo__copy p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+.discord-promo__action {
+  --btn-h: 34px;
+  flex: none;
+  padding-inline: 15px;
+  font-size: 11px;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+}
 .tb-footer-open { background:none; border:0; padding:0; margin:0; cursor:pointer; text-align:left; font:inherit; }
 .tb-footer-open:hover { text-decoration:underline; }
 html.tb-dialog-open { overflow:hidden; }
@@ -52,6 +96,10 @@ html[data-theme="light"] .tb-dialog { --tb-bg:#ffffff; --tb-card:#f7f7f8; --tb-b
 .tb-join-btn:hover { opacity:.88; }
 .tb-dialog :focus-visible { outline:2px solid var(--tb-strong); outline-offset:3px; }
 @media(max-width:700px) {
+ .discord-promo__card { padding: 11px 14px; gap: 12px; }
+ .discord-promo__action { --btn-h: 33px; padding-inline: 12px; font-size: 11px; }
+ .discord-promo__copy h2 { font-size: 13.5px; }
+ .discord-promo__copy p { font-size: 10.5px; }
  .tb-dialog { max-height:calc(100dvh - 20px); width:calc(100% - 18px); border-radius:13px; }
  .tb-dialog__inner { padding:22px 18px; }
  .tb-dialog__top h2 { font-size:23px; }
@@ -63,6 +111,13 @@ html[data-theme="light"] .tb-dialog { --tb-bg:#ffffff; --tb-card:#f7f7f8; --tb-b
 }
 @media(prefers-reduced-motion:reduce) { .tb-more summary svg { transition:none; } }
 
+@media (max-width: 430px) {
+  .discord-promo__card { flex-wrap: wrap; }
+  .discord-promo__action { margin-left: auto; }
+}
+@media (max-width: 345px) {
+  .discord-promo__action { margin-left: 0; }
+}
 /* Rounded, thin scrollbar for the commands popup. */
 .tb-dialog { scrollbar-width: thin; scrollbar-color: var(--tb-scroll, #3f444b) transparent; }
 html[data-theme="light"] .tb-dialog { --tb-scroll: #b3b7bf; --tb-scroll-hover: #9298a2; }

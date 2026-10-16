@@ -24,7 +24,7 @@
   --bg-alt: #08090b;        /* the slightly lighter "band" sections */
   --surface: #0d0f11;       /* cards */
   --surface-2: #131619;     /* hover / nested surfaces */
-  --nav-bg: #0a0c0e;
+  --nav-bg: rgba(10, 12, 14, 0.66);
 
   --text: #f2f3f4;          /* headings */
   --text-secondary: #b4b9be;/* body text */
@@ -64,7 +64,7 @@
   --bg-alt: #f6f7f8;
   --surface: #ffffff;
   --surface-2: #f2f3f5;
-  --nav-bg: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.72);
 
   --text: #0b0c0e;
   --text-secondary: #40464d;
@@ -314,6 +314,8 @@ ul { list-style: none; padding: 0; }
   z-index: 100;
   background: var(--nav-bg);
   border-bottom: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
 }
 
 .nav {
@@ -398,6 +400,8 @@ ul { list-style: none; padding: 0; }
   border: 1px solid var(--border);
   background: var(--nav-bg);
   box-shadow: var(--shadow-lg);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
   opacity: 0;
   transform: translateY(-8px) scale(0.98);
   transform-origin: top;
@@ -507,7 +511,43 @@ ul { list-style: none; padding: 0; }
   mask-image: radial-gradient(ellipse 60% 55% at 50% 20%, #000 0%, transparent 72%);
   pointer-events: none;
 }
-.hero__inner { position: relative; }
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero__badge .dot { animation: pulse-dot 2.4s var(--ease) infinite; }
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 var(--good-soft); }
+  50% { box-shadow: 0 0 0 4px var(--good-soft); }
+}
+.hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.28fr 0.72fr;
+  align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+}
+/* Centered, single-column variant — used when there's no hero visual */
+.hero__inner--centered {
+  grid-template-columns: 1fr;
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+}
+.hero__inner--centered .hero__copy { max-width: none; margin-inline: auto; }
+.hero__inner--centered .hero__desc { margin-inline: auto; }
+.hero__inner--centered .hero__actions { justify-content: center; }
+
 .hero__copy { max-width: 640px; }
 .hero__title {
   font-size: clamp(2.2rem, 6.4vw, 3.8rem);
@@ -523,11 +563,76 @@ ul { list-style: none; padding: 0; }
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .hero__meta { margin-top: 28px; color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.01em; }
-.hero__visual { margin-top: clamp(40px, 6vw, 64px); max-width: 1000px; }
-.hero__visual .image-frame { box-shadow: var(--shadow-md); }
+.hero__visual { justify-self: center; width: 100%; }
 
 @media (max-width: 900px) {
+  .hero__inner { grid-template-columns: 1fr; gap: 44px; }
   .hero__desc { max-width: 42ch; }
+  .hero__visual { max-width: 320px; justify-self: start; }
+}
+@media (max-width: 560px) {
+  .hero__visual { display: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   9. FEATURE CARDS (bento) — one featured card with a real product
+   screenshot, three even cards, then a normal + wide pair. Deliberately
+   not a uniform grid: see the "General" instructions this was built
+   against for why.
+   ------------------------------------------------------------------------- */
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.feature-card {
+  padding: 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color 180ms var(--ease);
+}
+.feature-card:hover { border-color: var(--border-strong); }
+.feature-card__icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: var(--text-secondary);
+}
+.feature-card__title { margin-top: 18px; font-size: 1.02rem; font-weight: 600; }
+.feature-card__text { margin-top: 8px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+
+/* The one featured card: full width, real Dashboard screenshot on the right */
+.feature-card--dashboard {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 280px) 1fr;
+  gap: 32px;
+  align-items: center;
+  padding: 28px;
+}
+.feature-card--dashboard .feature-card__body { align-self: center; }
+.feature-card--dashboard .image-frame { aspect-ratio: 1320 / 470; }
+.feature-card--dashboard .image-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+
+/* The wide closer card: icon beside the text instead of above it */
+.feature-card--wide {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.feature-card--wide .feature-card__icon { flex: none; }
+.feature-card--wide .feature-card__title { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .feature-card--dashboard { grid-column: 1 / -1; grid-template-columns: 1fr; }
+  .feature-card--dashboard .image-frame { aspect-ratio: 16 / 9; }
+  .feature-card--wide { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-card--wide { flex-direction: column; align-items: flex-start; }
+  .feature-card--wide .feature-card__title { margin-top: 16px; }
 }
 
 /* the framed screenshot */
@@ -826,75 +931,94 @@ ul { list-style: none; padding: 0; }
 .info-list li { margin-bottom: 10px; }
 .info-list li:last-child { margin-bottom: 0; }
 
+/* -- How it works -------------------------------------------------------
+   Deliberately not boxed cards: a numbered, rule-separated sequence reads
+   as one editorial flow rather than three more bordered tiles, and drops
+   the icon-in-a-square treatment repeated everywhere else on the page. */
+.hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.hiw-card { padding-top: 20px; border-top: 1px solid var(--border); }
+.hiw-card__num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+.hiw-card h3 { margin-top: 14px; font-size: 1.15rem; }
+.hiw-card p { font-size: 0.92rem; color: var(--text-muted); margin-top: 10px; line-height: 1.65; max-width: 32ch; }
+
+@media (max-width: 760px) {
+  .hiw-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
 .status-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding-inline: 10px; border-radius: var(--radius-sm); background: var(--good-soft); color: var(--good); font-size: 12px; font-weight: 600; }
 .status-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
-/* -- Shield: the one flagship product --------------------------------------
-   A dedicated section instead of a card in a pricing grid: grouped
-   capability list on the left (reuses the checkmark-list look, just not
-   boxed), a single buy box on the right. Folds in what used to be separate
-   "How it works" and feature-grid sections - one product, one section. */
-.product { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
-.product__group + .product__group { margin-top: 28px; }
-.product__group-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
-
-.pricing-card__name { font-size: 13px; font-weight: 600; color: var(--text-muted); }
-.pricing-card__price { margin: 12px 0 0; display: flex; align-items: baseline; gap: 6px; }
-.pricing-card__price-amount { font-size: 44px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
-.pricing-card__price-amount--free { font-size: 24px; }
-.pricing-card__price-period { font-size: 14px; color: var(--text-muted); }
-.pricing-card__note { margin: 8px 0 0; font-size: 12.5px; color: var(--text-muted); }
-.pricing-card__list { list-style: none; padding: 0; margin: 0; text-align: left; display: flex; flex-direction: column; gap: 12px; }
-.pricing-card__list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--text-secondary); margin: 0; }
-.pricing-card__list svg { flex: none; margin-top: 2px; color: var(--good); }
-.pricing-card__refund { margin: 18px 0 0; font-size: 12.5px; color: var(--text-muted); }
-.pricing-card__refund a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px; }
-.pricing-card__more {
-  display: inline-flex; align-items: center; gap: 6px; margin-top: 26px;
-  color: var(--text-secondary); font-size: 13.5px; font-weight: 600;
+/* -- Pricing ------------------------------------------------------------------
+   Three separate cards, one shared design (same border, radius, background,
+   shadow and button/list system throughout). Shield is the base card sized
+   up via .pricing-card--shield (wider + more padding); OSINT/VM stay at
+   the smaller base size so Shield is unmistakably the larger, main card,
+   not a same-size sibling. Each card shows only 3-4 key features - the rest
+   live behind its "See more"/"See all features" button in the shared
+   .feature-modal (see section 13b), which keeps the three cards short and
+   close in height instead of growing with every feature added. Source
+   order is Shield, OSINT, VM (so Shield is first on mobile and in tab
+   order); the desktop media query below reorders them visually into
+   OSINT | Shield | VM without touching that source order.
+-------------------------------------------------------------------------- */
+.pricing {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
 }
-.pricing-card__more:hover { color: var(--text); }
-.pricing-card__more svg { transition: transform 150ms var(--ease); }
-.pricing-card__more:hover svg { transform: translateX(2px); }
-
-.product__buybox {
+.pricing-card {
+  width: 100%; max-width: 420px;
+  background: var(--surface);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
-  background: var(--surface);
   padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
 }
-.product__buybox .btn { width: 100%; margin-top: 24px; }
-
-@media (max-width: 860px) {
-  .product { grid-template-columns: 1fr; }
+.pricing-card--shield {
+  padding: 56px 44px;
+  border-color: color-mix(in srgb, var(--text) 24%, transparent);
 }
-
-/* -- Secondary products: OSINT, VM, the Discord bot -------------------------
-   An editorial list, not three more cards - these are smaller, free, or not
-   yet released, so they read as clearly secondary to Shield rather than
-   same-size siblings in a tier grid. */
-.product-list { border-top: 1px solid var(--border); max-width: 760px; }
-.product-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 20px;
-  padding: 26px 0;
-  border-bottom: 1px solid var(--border);
+.pricing-card__badge {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
-.product-row__name { font-size: 1.02rem; font-weight: 600; color: var(--text); flex: none; width: 168px; }
-.product-row__desc { color: var(--text-muted); font-size: 0.92rem; flex: 1 1 240px; }
-.product-row__meta { color: var(--text-muted); font-size: 0.85rem; flex: none; }
-.product-row__actions { display: flex; gap: 18px; flex: none; margin-left: auto; }
-.product-row__action { font-size: 0.85rem; font-weight: 600; color: var(--accent); }
-.product-row__action:hover { text-decoration: underline; }
+.pricing-card__name { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+.pricing-card__price { margin: 12px 0 0; display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.pricing-card__price-amount { font-size: 48px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+.pricing-card__price-amount--free { font-size: 26px; }
+.pricing-card__price-period { font-size: 14px; color: var(--text-muted); }
+.pricing-card__note { margin: 8px 0 0; font-size: 12.5px; color: var(--text-muted); }
+.pricing-card .btn { margin-top: 26px; }
+.pricing-card__list { list-style: none; padding: 0; margin: 26px 0 0; text-align: left; display: flex; flex-direction: column; gap: 12px; }
+.pricing-card__list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--text-secondary); margin: 0; }
+.pricing-card__list svg { flex: none; margin-top: 2px; color: var(--good); }
+.pricing-card__list--tight { margin-top: 20px; gap: 10px; }
+.pricing-card__refund { margin: 22px 0 0; font-size: 12.5px; color: var(--text-muted); }
+.pricing-card__refund a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px; }
 
-@media (max-width: 620px) {
-  .product-row { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .product-row__name,
-  .product-row__desc,
-  .product-row__meta { flex: none; width: auto; }
-  .product-row__actions { margin-left: 0; margin-top: 6px; }
+@media (min-width: 920px) {
+  .pricing {
+    grid-template-columns: 1fr 1.3fr 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+  .pricing-card { max-width: 300px; }
+  .pricing-card.pricing-card--shield { max-width: 400px; }
+  .pricing-card--osint { order: 1; }
+  .pricing-card--shield { order: 2; }
+  .pricing-card--vm { order: 3; }
 }
 
 /* -- FAQ (accordion) ---------------------------------------------------------- */
