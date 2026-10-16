@@ -1,229 +1,104 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark light" />
-    <title>Privacy Policy - Thomsen Shield</title>
-    <meta name="description" content="Privacy Policy for Thomsen Shield." />
-    <meta name="theme-color" content="#050607" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <link rel="icon" href="assets/favicon.ico" sizes="any" />
-    <link rel="icon" href="assets/logo.png" type="image/png" />
-    <link rel="apple-touch-icon" href="assets/logo.png" />
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy - Thomsen Shield</title>
+<style>
+  :root {
+    --bg: #050607; --surface: #0d0f11; --text: #f2f3f4;
+    --text-secondary: #b4b9be; --text-muted: #7c838a;
+    --border: rgba(255,255,255,0.08); --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px; line-height: 1.7; padding: 48px 20px 96px;
+  }
+  .doc { max-width: 720px; margin: 0 auto; }
+  a { color: var(--text); }
+  .back { display: inline-block; margin-bottom: 28px; font-size: 13px; color: var(--text-muted); text-decoration: none; }
+  .back:hover { color: var(--text); }
+  h1 { color: var(--text); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .updated { font-size: 12.5px; color: var(--text-muted); margin: 0 0 36px; }
+  h2 { color: var(--text); font-size: 17px; font-weight: 600; margin: 34px 0 10px; }
+  p, li { margin: 0 0 12px; }
+  ul { padding-left: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; font-size: 13.5px; }
+  .footer-links { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; }
+  .footer-links a { color: var(--text-muted); margin-right: 16px; }
+  .footer-links a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="doc">
+  <a class="back" href="https://thomssen.dev/">&larr; Thomsen Software</a>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated September 27, 2026</p>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/main3.css" />
+  <p>Thomsen Shield, Thomsen OSINT, and Thomsen VM are Windows tools built to run locally on your PC, so we know privacy matters more than usual here. This page explains what we collect when you buy or use them, and just as importantly, what we don't. Thomsen VM is free and involves no purchase or account. Thomsen OSINT is not yet released - this policy will be updated first if anything here changes once it ships.</p>
 
-    <script>
-      (function () {
-        try {
-          var t = localStorage.getItem('thomsen-theme');
-          if (t !== 'light' && t !== 'dark') {
-            t =
-              window.matchMedia &&
-              window.matchMedia('(prefers-color-scheme: light)').matches
-                ? 'light'
-                : 'dark';
-          }
-          document.documentElement.setAttribute('data-theme', t);
-        } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+  <div class="card">
+    <strong style="color:var(--text)">The short version:</strong> Thomsen Shield's network monitoring and blocking runs entirely on your PC. Your connection activity, blocked IPs, and firewall rules are <strong>never uploaded to us</strong>. To sell you a license and keep it working, we handle: your email address, a device identifier, and payment details (handled by Stripe - we never see your card details).
+  </div>
 
-    <header class="nav-wrap">
-      <div class="nav-scrim"></div>
-      <nav class="nav" aria-label="Primary">
-        <a class="nav__brand" href="index.html" aria-label="Thomsen Shield — home">
-          <img class="nav__mark" src="assets/logo.png" alt="" width="26" height="26" />
-          <span class="nav__brand-text">Thomsen Shield</span>
-        </a>
-        <ul class="nav__links">
-          <li><a class="nav__link" href="index.html">Home</a></li>
-          <li><a class="nav__link" href="index.html#features">Features</a></li>
-          <li><a class="nav__link" href="index.html#pricing">Product</a></li>
-          <li><a class="nav__link" href="index.html#faq">FAQ</a></li>
-        </ul>
-        <div class="nav__actions">
-          <button type="button" class="theme-toggle" aria-label="Switch theme">
-            <span class="theme-toggle__icons" data-dark="true">
-              <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="17" height="17" fill="none" aria-hidden="true">
-                <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z" fill="currentColor" />
-              </svg>
-              <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none" />
-                <path d="M12 2.5v2M12 19.5v2M4.5 12h-2M21.5 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4" />
-              </svg>
-            </span>
-          </button>
-          <a class="btn btn--primary btn--sm nav__cta" href="https://api.thomssen.dev/buy">Purchase</a>
-          <button type="button" class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-panel">
-            <span></span><span></span>
-          </button>
-        </div>
-      </nav>
-      <div class="nav-panel" id="nav-panel">
-        <ul class="nav-panel__links">
-          <li><a class="nav-panel__link" href="index.html">Home</a></li>
-          <li><a class="nav-panel__link" href="index.html#features">Features</a></li>
-          <li><a class="nav-panel__link" href="index.html#pricing">Product</a></li>
-          <li><a class="nav-panel__link" href="index.html#faq">FAQ</a></li>
-        </ul>
-        <a class="btn btn--primary nav-panel__cta" href="https://api.thomssen.dev/buy">Purchase</a>
-      </div>
-    </header>
+  <h2>1. Who is responsible for your data</h2>
+  <p>Thomsen Shield is operated by Thomsen ("we", "us"), who is the data controller for the personal data described in this policy. Email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> for any privacy question or to exercise the rights in section 9.</p>
 
-    <main id="main" class="page">
-      <section class="section">
-        <div class="container doc">
+  <h2>2. What we collect, and why</h2>
+  <ul>
+    <li><strong>Email address</strong> - collected by Stripe at checkout, used to send your payment receipt and to look up your license if you contact support. Legal basis: performing the purchase contract with you.</li>
+    <li><strong>License key and device identifier</strong> - when you activate Thomsen Shield, the app sends your license key and a hardware-derived identifier for that PC to our license server, so we can confirm the license is valid and bound to one device. Legal basis: performing the contract (delivering the license you paid for).</li>
+    <li><strong>Payment information</strong> - handled entirely by Stripe. We never see or store your card number. Legal basis: performing the contract, and our legal obligation to keep financial and accounting records.</li>
+    <li><strong>Standard server and security logs</strong> - Vercel and Supabase (which run our license server and database) and Hostinger (which hosts thomssen.dev itself) log routine request metadata such as IP address, as most web infrastructure does. Legal basis: our legitimate interest in keeping the service secure and working.</li>
+    <li><strong>Theme and cookie preference</strong> (on thomssen.dev) - stored in your browser only, not sent to us. Legal basis: consent, where used for anything beyond strictly necessary storage.</li>
+  </ul>
 
-          <h1>Privacy Policy</h1>
-          <p class="updated">Last updated <!-- LAST_UPDATED -->September 27, 2026<!-- /LAST_UPDATED --></p>
+  <h2>3. What we don't collect</h2>
+  <p>Thomsen Shield does not send us your network traffic, browsing history, the connections it observes, or the IPs it blocks. All detection and blocking logic runs locally on your machine. Nothing about your day-to-day usage of the app is transmitted anywhere. Thomsen OSINT is likewise built local-first - its lookups and case data stay on your PC, with no cloud account. Thomsen VM doesn't require a purchase, account, or license activation, so there's nothing tied to your identity for it to send us.</p>
 
-          <p>Thomsen Shield, Thomsen OSINT, and Thomsen VM are Windows tools built to run locally on your PC, so we know privacy matters more than usual here. This page explains what we collect when you buy or use them, and just as importantly, what we don't. Thomsen VM is free and involves no purchase or account. Thomsen OSINT is not yet released - this policy will be updated first if anything here changes once it ships.</p>
+  <h2>4. Cookies</h2>
+  <p>Our main site (thomssen.dev) stores your theme and cookie choice in your browser's local storage - strictly necessary, and not used to track you. It does not currently run any analytics or advertising scripts; if that ever changes, it will only happen with your consent. This page itself (api.thomssen.dev) sets no cookies of its own.</p>
 
-          <div class="info-list" style="margin-bottom: 40px;">
-            <strong style="color:var(--text)">The short version:</strong> Thomsen Shield's network monitoring and blocking runs entirely on your PC. Your connection activity, blocked IPs, and firewall rules are <strong>never uploaded to us</strong>. To sell you a license and keep it working, we handle: your email address, a device identifier, and payment details (handled by Stripe - we never see your card details).
-          </div>
+  <h2>5. How we use it</h2>
+  <p>In short: to issue and validate your license, process your payment, prevent fraud (e.g. chargebacks, key sharing), keep the service secure, and respond if you contact support. We don't use your data for advertising, and we don't sell it to anyone.</p>
 
-          <section>
-            <h2>1. Who is responsible for your data</h2>
-            <p>Thomsen Shield is operated by Kristian Thomsen ("we", "us"), who is the data controller for the personal data described in this policy. Email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> for any privacy question or to exercise the rights in section 9.</p>
-          </section>
+  <h2>6. Who we share it with</h2>
+  <p>Only the services that make Thomsen Shield work:</p>
+  <ul>
+    <li><strong>Stripe</strong> - payment processing (<a href="https://stripe.com/privacy">their privacy policy</a>)</li>
+    <li><strong>Supabase</strong> - database hosting for license records</li>
+    <li><strong>Vercel</strong> - hosting for our license server (api.thomssen.dev)</li>
+    <li><strong>Hostinger</strong> - hosting for our main website (thomssen.dev)</li>
+  </ul>
+  <p>Each processes data under their own privacy policy and only as needed to provide their service to us. We don't sell your data or share it for anyone else's advertising.</p>
 
-          <section>
-            <h2>2. What we collect, and why</h2>
-            <ul>
-              <li><strong>Email address</strong> - collected by Stripe at checkout, used to send your payment receipt and to look up your license if you contact support. Legal basis: performing the purchase contract with you.</li>
-              <li><strong>License key and device identifier</strong> - when you activate Thomsen Shield, the app sends your license key and a hardware-derived identifier for that PC to our license server, so we can confirm the license is valid and bound to one device. Legal basis: performing the contract (delivering the license you paid for).</li>
-              <li><strong>Payment information</strong> - handled entirely by Stripe. We never see or store your card number. Legal basis: performing the contract, and our legal obligation to keep financial and accounting records.</li>
-              <li><strong>Standard server and security logs</strong> - Vercel and Supabase (which run our license server and database) and Hostinger (which hosts thomssen.dev itself) log routine request metadata such as IP address, as most web infrastructure does. Legal basis: our legitimate interest in keeping the service secure and working.</li>
-              <li><strong>Google Fonts requests</strong> - every page loads the Inter typeface from Google's font service, which may see your IP address in the process. Legal basis: legitimate interest in displaying the site correctly; governed by <a href="https://policies.google.com/privacy">Google's own privacy policy</a>.</li>
-              <li><strong>Theme and cookie preference</strong> - stored in your browser only, not sent to us. Legal basis: consent, where used for anything beyond strictly necessary storage (see Cookies below).</li>
-            </ul>
-          </section>
+  <h2>7. International transfers</h2>
+  <p>Some of these providers (for example Stripe and Vercel) are based in, or may process data in, the United States or other countries outside the EU/EEA. Where that happens, they're required to provide appropriate safeguards for the transfer, such as the EU Standard Contractual Clauses or an adequacy decision - see their own privacy policies (linked above where available) for how each handles this.</p>
 
-          <section>
-            <h2>3. What we don't collect</h2>
-            <p>Thomsen Shield does not send us your network traffic, browsing history, the connections it observes, or the IPs it blocks. All detection and blocking logic runs locally on your machine. Nothing about your day-to-day usage of the app is transmitted anywhere. Thomsen OSINT is likewise built local-first - its lookups and case data stay on your PC, with no cloud account. Thomsen VM doesn't require a purchase, account, or license activation, so there's nothing tied to your identity for it to send us.</p>
-          </section>
+  <h2>8. Data retention</h2>
+  <p>We keep license and purchase records for as long as your license is active, and afterward for as long as applicable tax and accounting law requires us to keep financial records. Support emails are kept only as long as needed to handle your request, unless we're legally required to keep them longer.</p>
 
-          <section>
-            <h2>4. Cookies</h2>
-            <p>This site stores your theme and cookie choice in your browser's local storage - strictly necessary, and not used to track you. Beyond that, this site does not currently run any analytics or advertising scripts. The cookie banner's "analytics" option is reserved for future use and currently makes no difference either way; if we ever turn on real analytics, we'll only do so with your consent and will update this section first. Change your choice anytime from "Cookie Settings" in the footer.</p>
-          </section>
+  <h2>9. Your rights</h2>
+<p>Subject to the conditions in applicable law, you have the right to access, correct, delete, restrict, or object to our use of your data, and to receive certain data in a portable format. Where processing relies on your consent, you can withdraw it anytime. To exercise any of these, email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> - note that deleting your account data will deactivate your license. You also have the right to lodge a complaint with a data protection supervisory authority in the EU/EEA country where you live or work. You can find the relevant authority through the <a href="https://www.edpb.europa.eu/about-edpb/our-members_en">European Data Protection Board (EDPB)</a>.</p>
 
-          <section>
-            <h2>5. How we use it</h2>
-            <p>In short: to issue and validate your license, process your payment, prevent fraud (e.g. chargebacks, key sharing), keep the service secure, and respond if you contact support. We don't use your data for advertising, and we don't sell it to anyone.</p>
-          </section>
+  <h2>10. Security</h2>
+  <p>Data in transit between the app and our server is encrypted (TLS). Your license token is cryptographically signed and stored encrypted on your own device.</p>
 
-          <section>
-            <h2>6. Who we share it with</h2>
-            <p>Only the services that make Thomsen Shield work:</p>
-            <ul>
-              <li><strong>Stripe</strong> - payment processing (<a href="https://stripe.com/privacy">their privacy policy</a>)</li>
-              <li><strong>Supabase</strong> - database hosting for license records</li>
-              <li><strong>Vercel</strong> - hosting for our license server (api.thomssen.dev)</li>
-              <li><strong>Hostinger</strong> - hosting for this website (thomssen.dev)</li>
-              <li><strong>Google Fonts</strong> - delivers the Inter typeface used on this site</li>
-            </ul>
-            <p>Each processes data under their own privacy policy and only as needed to provide their service to us. We don't sell your data or share it for anyone else's advertising.</p>
-          </section>
+  <h2>11. Children</h2>
+  <p>Thomsen Shield isn't directed at children under 16, and we don't knowingly collect data from them.</p>
 
-          <section>
-            <h2>7. International transfers</h2>
-            <p>Some of these providers (for example Stripe and Vercel) are based in, or may process data in, the United States or other countries outside the EU/EEA. Where that happens, they're required to provide appropriate safeguards for the transfer, such as the EU Standard Contractual Clauses or an adequacy decision - see their own privacy policies (linked above where available) for how each handles this.</p>
-          </section>
+  <h2>12. Changes to this policy</h2>
+  <p>If this policy changes materially, we'll update the date at the top of this page.</p>
 
-          <section>
-            <h2>8. Data retention</h2>
-            <p>We keep license and purchase records for as long as your license is active, and afterward for as long as applicable tax and accounting law requires us to keep financial records. Support emails are kept only as long as needed to handle your request, unless we're legally required to keep them longer.</p>
-          </section>
+  <h2>13. Contact</h2>
+  <p><a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
 
-          <section>
-            <h2>9. Your rights</h2>
-            <p>Subject to the conditions in applicable law, you have the right to:</p>
-            <ul>
-              <li><strong>Access</strong> - get a copy of the personal data we hold about you</li>
-              <li><strong>Correction</strong> - have inaccurate or incomplete data fixed</li>
-              <li><strong>Deletion</strong> - ask us to delete your data, except what we're legally required to keep (e.g. financial records)</li>
-              <li><strong>Restriction</strong> - ask us to limit how we use your data in certain circumstances</li>
-              <li><strong>Objection</strong> - object to processing based on our legitimate interests</li>
-              <li><strong>Portability</strong> - receive certain data in a portable format</li>
-              <li><strong>Withdraw consent</strong> - where processing relies on your consent (e.g. optional analytics, once active), withdraw it anytime without affecting what already happened</li>
-            </ul>
-            <p>To exercise any of these, email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a>. Note that deleting your account data will deactivate your license. You also have the right to lodge a complaint with a data protection supervisory authority - in Denmark, the <a href="https://www.datatilsynet.dk">Danish Data Protection Agency (Datatilsynet)</a>, or the authority in the EU/EEA country where you live or work, if different.</p>
-          </section>
-
-          <section>
-            <h2>10. Security</h2>
-            <p>Data in transit between the app and our server is encrypted (TLS). Your license token is cryptographically signed and stored encrypted on your own device.</p>
-          </section>
-
-          <section>
-            <h2>11. Children</h2>
-            <p>Thomsen Shield isn't directed at children under 16, and we don't knowingly collect data from them.</p>
-          </section>
-
-          <section>
-            <h2>12. Changes to this policy</h2>
-            <p>If this policy changes materially, we'll update the date at the top of this page.</p>
-          </section>
-
-          <section>
-            <h2>13. Contact</h2>
-            <p><a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
-          </section>
-
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer__top">
-          <a class="footer__brand" href="index.html">
-            <img class="footer__mark" src="assets/logo.png" alt="" width="30" height="30" />
-            <div>
-              <p class="footer__name">Thomsen Shield</p>
-              <p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
-            </div>
-          </a>
-          <div class="footer__cols">
-            <div class="footer__col">
-              <p class="footer__col-title">Product</p>
-              <a class="footer__link" href="index.html">Home</a>
-              <a class="footer__link" href="index.html#features">Features</a>
-              <a class="footer__link" href="index.html#pricing">Product</a>
-              <a class="footer__link" href="index.html#faq">FAQ</a>
-            </div>
-            <div class="footer__col">
-              <p class="footer__col-title">Legal</p>
-              <a class="footer__link" href="terms.html">Terms</a>
-              <a class="footer__link" href="privacy.html">Privacy</a>
-              <a class="footer__link" href="refund.html">Refund Policy</a>
-              <a class="footer__link" href="#" data-cc-open>Cookie Settings</a>
-            </div>
-          </div>
-        </div>
-        <div class="footer__bottom">
-          <p class="footer__copy">© <span data-year>2026</span> Thomsen Shield</p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="assets/site2.js" defer></script>
-    <script src="assets/consent.js" defer></script>
-  </body>
+  <div class="footer-links">
+    <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a><a href="/refund.html">Refunds</a>
+  </div>
+</div>
+</body>
 </html>

@@ -33,16 +33,16 @@
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.14);
 
-  --btn-primary-bg: #f3f4f5;      /* white button in dark mode */
-  --btn-primary-bg-hover: #ffffff;
-  --btn-primary-text: #0a0b0c;
+  --btn-primary-bg: #5865f2;      /* brand accent — Discord blurple */
+  --btn-primary-bg-hover: #4752c4;
+  --btn-primary-text: #ffffff;
 
   --btn-secondary-bg: rgba(255, 255, 255, 0.05);
   --btn-secondary-bg-hover: rgba(255, 255, 255, 0.09);
   --btn-secondary-text: var(--text);
 
-  --accent: #ffffff;                     /* focus ring, hero dot, selection */
-  --accent-soft: rgba(255, 255, 255, 0.12);
+  --accent: #5865f2;                     /* focus ring, links, active nav, selection */
+  --accent-soft: rgba(88, 101, 242, 0.16);
   --glow: rgba(255, 255, 255, 0.06);     /* the faint light bloom */
 
   --good: #6f9e8f;
@@ -73,16 +73,16 @@
   --border: rgba(11, 12, 16, 0.1);
   --border-strong: rgba(11, 12, 16, 0.16);
 
-  --btn-primary-bg: #0b0c0e;      /* black button in light mode */
-  --btn-primary-bg-hover: #000000;
+  --btn-primary-bg: #5865f2;      /* brand accent — Discord blurple, same in both themes */
+  --btn-primary-bg-hover: #4752c4;
   --btn-primary-text: #ffffff;
 
   --btn-secondary-bg: rgba(11, 12, 16, 0.04);
   --btn-secondary-bg-hover: rgba(11, 12, 16, 0.08);
   --btn-secondary-text: var(--text);
 
-  --accent: #0b0c0e;
-  --accent-soft: rgba(11, 12, 16, 0.07);
+  --accent: #5865f2;
+  --accent-soft: rgba(88, 101, 242, 0.14);
   --glow: rgba(11, 12, 16, 0.035);
 
   --good: #4f8a77;
@@ -145,6 +145,8 @@ body {
 img, svg, video, canvas { display: block; max-width: 100%; }
 button { border: 0; background: none; padding: 0; cursor: pointer; font: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
+a[href]:not([class]) { color: var(--accent); }
+a[href]:not([class]):hover { text-decoration: underline; }
 
 h1, h2, h3, h4 {
   color: var(--text);
@@ -356,7 +358,7 @@ ul { list-style: none; padding: 0; }
   transition: color 150ms var(--ease), background-color 150ms var(--ease);
 }
 .nav__link:hover { color: var(--text); }
-.nav__link.is-active { color: var(--text); background: var(--btn-secondary-bg); }
+.nav__link.is-active { color: var(--accent); background: var(--btn-secondary-bg); }
 
 .nav__actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
@@ -423,7 +425,7 @@ ul { list-style: none; padding: 0; }
   font-weight: 500;
 }
 .nav-panel__link:hover,
-.nav-panel__link.is-active { color: var(--text); background: var(--btn-secondary-bg); }
+.nav-panel__link.is-active { color: var(--accent); background: var(--btn-secondary-bg); }
 .nav-panel__cta { width: 100%; margin-top: 6px; }
 
 .nav-scrim {
@@ -1129,3 +1131,48 @@ textarea { resize: vertical; min-height: 96px; }
 .doc p, .doc li { margin-bottom: 12px; font-size: 0.95rem; }
 .doc li:last-child { margin-bottom: 0; }
 .doc ul, .doc ol { padding-left: 20px; }
+
+
+/* --------------------------------------------------------------------------
+   15. CUSTOM SCROLLBARS — subtle and theme-aware, matching product outlines
+   -------------------------------------------------------------------------- */
+:root[data-theme='dark'], :root {
+  --scroll-thumb: #42474d;
+  --scroll-thumb-hover: #626a72;
+  --scroll-track: #08090b;
+}
+:root[data-theme='light'] {
+  --scroll-thumb: #bec3ca;
+  --scroll-thumb-hover: #989fa8;
+  --scroll-track: #f6f7f8;
+}
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
+html::-webkit-scrollbar { width: 9px; }
+html::-webkit-scrollbar-track { background: var(--scroll-track); }
+html::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border: 2px solid var(--scroll-track);
+  border-radius: 999px;
+}
+html::-webkit-scrollbar-thumb:hover { background-color: var(--scroll-thumb-hover); }
+/* Other scrollable panels use the same restrained appearance. */
+.select-list, .feature-modal__card, .tp-modal__card {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) transparent;
+}
+.select-list::-webkit-scrollbar,
+.feature-modal__card::-webkit-scrollbar,
+.tp-modal__card::-webkit-scrollbar { width: 8px; }
+.select-list::-webkit-scrollbar-thumb,
+.feature-modal__card::-webkit-scrollbar-thumb,
+.tp-modal__card::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border: 2px solid var(--surface);
+  border-radius: 999px;
+}
+.select-list::-webkit-scrollbar-thumb:hover,
+.feature-modal__card::-webkit-scrollbar-thumb:hover,
+.tp-modal__card::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }

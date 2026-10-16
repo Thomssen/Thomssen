@@ -1,0 +1,22 @@
+/* Minimal Discord bot addition — uses existing site buttons, type, colors. */
+.discord-promo{padding-top:0}
+.discord-promo__card{display:flex;align-items:center;gap:20px;border:1px solid var(--border,rgba(140,145,155,.2));background:var(--surface,rgba(140,145,155,.03));border-radius:15px;padding:22px 24px}
+.discord-promo__icon{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--border,rgba(140,145,155,.2));color:var(--text,#eee)}
+.discord-promo__icon svg{width:20px;height:20px}
+.discord-promo__copy{flex:1;min-width:0}
+.discord-promo__eyebrow{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#999)}
+.discord-promo__copy h2{font-size:19px;letter-spacing:-.03em;margin:5px 0}
+.discord-promo__copy p{font-size:13px;line-height:1.5;color:var(--muted,#999);margin:0}
+.discord-promo__action{white-space:nowrap}
+/* Simple, compact second page — inherited theme and typography. */
+.bot-simple{min-height:60vh}
+.bot-simple__inner{max-width:760px;padding-top:75px;padding-bottom:65px}
+.bot-simple h1{font-size:clamp(32px,4.5vw,48px);letter-spacing:-.05em;line-height:1.12;margin:14px 0}
+.bot-simple__intro{font-size:15px;line-height:1.7;color:var(--muted,#999);margin:0 0 25px;max-width:500px}
+.bot-simple__commands{margin-top:64px}
+.bot-simple__commands h2{font-size:23px;letter-spacing:-.03em;margin:0 0 22px}
+.bot-simple__command{display:flex;gap:16px;justify-content:space-between;align-items:center;padding:18px 0;border-top:1px solid var(--border,rgba(140,145,155,.2));border-bottom:1px solid var(--border,rgba(140,145,155,.2))}
+.bot-simple__command code{font-size:13px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--text,#eee)}
+.bot-simple__command span,.bot-simple__hint{color:var(--muted,#999);font-size:13px}
+.bot-simple__hint{margin:14px 0 0}
+@media(max-width:700px){.discord-promo__card{flex-wrap:wrap;gap:14px;padding:20px}.discord-promo__copy{flex-basis:calc(100% - 65px)}.discord-promo__action{width:100%;justify-content:center}.bot-simple__inner{padding-top:45px;padding-bottom:45px}.bot-simple__commands{margin-top:45px}.bot-simple__command{flex-direction:column;align-items:flex-start;gap:8px}}
