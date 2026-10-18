@@ -33,16 +33,16 @@
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.14);
 
-  --btn-primary-bg: #5865f2;      /* brand accent — Discord blurple */
-  --btn-primary-bg-hover: #4752c4;
-  --btn-primary-text: #ffffff;
+  --btn-primary-bg: #f3f4f5;      /* white button in dark mode */
+  --btn-primary-bg-hover: #ffffff;
+  --btn-primary-text: #0a0b0c;
 
   --btn-secondary-bg: rgba(255, 255, 255, 0.05);
   --btn-secondary-bg-hover: rgba(255, 255, 255, 0.09);
   --btn-secondary-text: var(--text);
 
-  --accent: #5865f2;                     /* focus ring, links, active nav, selection */
-  --accent-soft: rgba(88, 101, 242, 0.16);
+  --accent: #ffffff;                     /* focus ring, hero dot, selection */
+  --accent-soft: rgba(255, 255, 255, 0.12);
   --glow: rgba(255, 255, 255, 0.06);     /* the faint light bloom */
 
   --good: #6f9e8f;
@@ -73,16 +73,16 @@
   --border: rgba(11, 12, 16, 0.1);
   --border-strong: rgba(11, 12, 16, 0.16);
 
-  --btn-primary-bg: #5865f2;      /* brand accent — Discord blurple, same in both themes */
-  --btn-primary-bg-hover: #4752c4;
+  --btn-primary-bg: #0b0c0e;      /* black button in light mode */
+  --btn-primary-bg-hover: #000000;
   --btn-primary-text: #ffffff;
 
   --btn-secondary-bg: rgba(11, 12, 16, 0.04);
   --btn-secondary-bg-hover: rgba(11, 12, 16, 0.08);
   --btn-secondary-text: var(--text);
 
-  --accent: #5865f2;
-  --accent-soft: rgba(88, 101, 242, 0.14);
+  --accent: #0b0c0e;
+  --accent-soft: rgba(11, 12, 16, 0.07);
   --glow: rgba(11, 12, 16, 0.035);
 
   --good: #4f8a77;
@@ -145,8 +145,6 @@ body {
 img, svg, video, canvas { display: block; max-width: 100%; }
 button { border: 0; background: none; padding: 0; cursor: pointer; font: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
-a[href]:not([class]) { color: var(--accent); }
-a[href]:not([class]):hover { text-decoration: underline; }
 
 h1, h2, h3, h4 {
   color: var(--text);
@@ -358,7 +356,7 @@ ul { list-style: none; padding: 0; }
   transition: color 150ms var(--ease), background-color 150ms var(--ease);
 }
 .nav__link:hover { color: var(--text); }
-.nav__link.is-active { color: var(--accent); background: var(--btn-secondary-bg); }
+.nav__link.is-active { color: var(--text); background: var(--btn-secondary-bg); }
 
 .nav__actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
@@ -425,7 +423,7 @@ ul { list-style: none; padding: 0; }
   font-weight: 500;
 }
 .nav-panel__link:hover,
-.nav-panel__link.is-active { color: var(--accent); background: var(--btn-secondary-bg); }
+.nav-panel__link.is-active { color: var(--text); background: var(--btn-secondary-bg); }
 .nav-panel__cta { width: 100%; margin-top: 6px; }
 
 .nav-scrim {
