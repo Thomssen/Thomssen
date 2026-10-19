@@ -1,98 +1,175 @@
-# Thomssen
+<!--
+  THOMSSEN — GitHub Profile
+  Repository: Thomssen/Thomssen
+-->
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&height=180&color=0d0d0d&text=THOMSSEN&fontColor=ffffff&fontSize=55&fontAlignY=43&desc=FOUNDER%20%2F%20SOFTWARE%20DEVELOPER&descAlignY=65&descSize=15" width="100%" />
-</p>
+<div align="center">
 
-<p align="center">
-  <a href="https://thomssen.dev/">
-    <img src="https://img.shields.io/badge/THOMSEN%20SOFTWARE-WEBSITE-white?style=flat-square" />
-  </a>
-  <a href="https://github.com/Thomssen">
-    <img src="https://img.shields.io/badge/GITHUB-PROFILE-181818?style=flat-square&logo=github&logoColor=white" />
-  </a>
-</p>
+<img src="https://capsule-render.vercel.app/api?type=rect&height=220&color=0a0a0a&text=THOMSSEN&fontColor=ffffff&fontSize=64&fontAlignY=42&desc=INDEPENDENT%20SOFTWARE%20DEVELOPER&descSize=13&descAlignY=62&animation=fadeIn" width="100%" alt="Thomssen — Independent Software Developer"/>
 
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=16&duration=3000&pause=1000&color=AAAAAA&center=true&vCenter=true&width=600&lines=Building+independent+software.;Cybersecurity+%2F+OSINT+%2F+Windows+Apps.;Turning+ideas+into+real+products." alt="Developer introduction" />
-</p>
+<br/>
+
+[![Website](https://img.shields.io/badge/WEBSITE-thomssen.dev-f5f5f5?style=for-the-badge&labelColor=111111)](https://thomssen.dev/)
+[![GitHub](https://img.shields.io/badge/GITHUB-THOMSSEN-f5f5f5?style=for-the-badge&logo=github&logoColor=white&labelColor=111111)](https://github.com/Thomssen)
+
+<br/>
+
+*Building software. Solving problems. Shipping products.*
+
+</div>
 
 ---
 
-## `01` / ABOUT
+## `01` &nbsp; INTRODUCTION
 
-I'm an independent software developer and the founder of **Thomsen Software**.
+I'm **Thomsen**, founder and developer at **Thomsen Software**.
 
-I build software focused on cybersecurity, digital investigations, networking, and desktop applications. My goal is to develop useful products with thoughtful interfaces, reliable functionality, and a clear purpose.
+I independently design and develop software products, with a focus on cybersecurity, digital investigations, and Windows applications.
 
-- **Role:** Founder & Developer
-- **Company:** Thomsen Software
-- **Interests:** Cybersecurity, OSINT, systems & software engineering
-- **Website:** [thomssen.dev](https://thomssen.dev/)
+I believe software should have a clear purpose, a thoughtful interface, and functionality that solves real problems.
 
-## `02` / TECHNOLOGIES
+<br/>
 
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=cs,dotnet,ts,js,react,html,css,git,github,vscode&theme=dark" alt="Technologies" />
-</p>
+| | |
+|:--|:--|
+| **POSITION** | Founder & Developer |
+| **ORGANIZATION** | Thomsen Software |
+| **PRIMARY INTERESTS** | Cybersecurity · OSINT · Systems |
+| **PLATFORM** | Windows · Desktop Software |
+| **WEBSITE** | [thomssen.dev](https://thomssen.dev/) |
 
-## `03` / SELECTED PROJECTS
+---
+
+## `02` &nbsp; WHAT I BUILD
 
 <table>
-  <tr>
-    <td width="50%">
-      <h3>Thomsen Shield</h3>
-      Windows network monitoring and protection software.
-      <br/><br/>
-      <sub>NETWORK SECURITY · WINDOWS</sub>
-    </td>
-    <td width="50%">
-      <h3>Thomsen OSINT</h3>
-      Digital investigation and information-gathering tools.
-      <br/><br/>
-      <sub>OSINT · DIGITAL INVESTIGATIONS</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3>Thomsen VM</h3>
-      A virtualization-focused software project.
-      <br/><br/>
-      <sub>VIRTUALIZATION · SYSTEMS</sub>
-    </td>
-    <td width="50%">
-      <h3>Thomsen Tablet</h3>
-      A Windows tablet driver project for rhythm games and drawing tablets.
-      <br/><br/>
-      <sub>WINDOWS · HARDWARE</sub>
-    </td>
-  </tr>
+<tr>
+<td width="50%" valign="top">
+
+### 01 / Cybersecurity
+
+Developing tools for network monitoring, traffic inspection, and Windows security.
+
+</td>
+<td width="50%" valign="top">
+
+### 02 / Digital Intelligence
+
+Building OSINT tools for discovering, analyzing, and organizing publicly available information.
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 03 / Desktop Software
+
+Creating Windows applications with modern interfaces and practical functionality.
+
+</td>
+<td width="50%" valign="top">
+
+### 04 / Systems & APIs
+
+Exploring backend services, integrations, networking, and software infrastructure.
+
+</td>
+</tr>
 </table>
-
-## `04` / GITHUB ACTIVITY
-
-<p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=aaaaaa&icon_color=ffffff&rank_icon=github" alt="GitHub statistics" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=aaaaaa" alt="Most used languages" />
-</p>
-
-<p align="center">
-  <img width="95%" src="https://github-readme-streak-stats.herokuapp.com/?user=Thomssen&hide_border=true&background=0d1117&stroke=30363d&ring=ffffff&fire=ffffff&currStreakLabel=ffffff&sideLabels=aaaaaa&currStreakNum=ffffff&sideNums=ffffff&dates=777777" alt="GitHub contribution streak" />
-</p>
-
-## `05` / CURRENT FOCUS
-
-```text
-> Building software under Thomsen Software
-> Developing cybersecurity and OSINT tools
-> Improving Windows application design
-> Exploring new technologies and systems
-```
 
 ---
 
-<p align="center">
-  <a href="https://thomssen.dev/"><strong>THOMSEN SOFTWARE</strong></a>
-  <br/>
-  <sub>Independent software development.</sub>
-</p>
+## `03` &nbsp; SELECTED WORK
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**THOMSEN SHIELD**
+
+Network protection for Windows.
+
+Monitoring connections and identifying suspicious network activity.
+
+`NETWORK SECURITY`
+
+</td>
+<td width="50%" valign="top">
+
+**THOMSEN OSINT**
+
+A digital investigation toolkit.
+
+Tools for information gathering, analysis, and investigation workflows.
+
+`OPEN-SOURCE INTELLIGENCE`
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**THOMSEN VM**
+
+Virtualization-focused software.
+
+Exploring virtual machines and system environments.
+
+`VIRTUALIZATION`
+
+</td>
+<td width="50%" valign="top">
+
+**THOMSEN TABLET**
+
+Windows tablet input software.
+
+A driver project focused on drawing tablets and rhythm-game input.
+
+`WINDOWS · HARDWARE`
+
+</td>
+</tr>
+</table>
+
+<div align="center">
+
+[**EXPLORE THOMSEN SOFTWARE →**](https://thomssen.dev/)
+
+</div>
+
+---
+
+## `04` &nbsp; TECHNOLOGY
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=cs,dotnet,js,ts,react,html,css,git,github,vscode&theme=dark&perline=5" alt="Technology stack"/>
+
+</div>
+
+---
+
+## `05` &nbsp; GITHUB ANALYTICS
+
+<div align="center">
+
+<img width="49%" src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=9ca3af&icon_color=ffffff&include_all_commits=true" alt="GitHub statistics"/><img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=9ca3af" alt="Most used languages"/>
+
+<br/><br/>
+
+<img width="96%" src="https://github-readme-activity-graph.vercel.app/graph?username=Thomssen&bg_color=0d1117&color=ffffff&line=777777&point=ffffff&area=true&hide_border=true&custom_title=CONTRIBUTION%20ACTIVITY" alt="GitHub contribution activity"/>
+
+</div>
+
+---
+
+<div align="center">
+
+**THOMSSEN**
+
+Founder & Developer · [Thomsen Software](https://thomssen.dev/)
+
+<sub>Independent by design. Built with purpose.</sub>
+
+</div>
