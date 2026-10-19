@@ -608,7 +608,7 @@ ul { list-style: none; padding: 0; }
   padding: 28px;
 }
 .feature-card--dashboard .feature-card__body { align-self: center; }
-.feature-card--dashboard .image-frame { aspect-ratio: 643 / 264; }
+.feature-card--dashboard .image-frame { aspect-ratio: 1266 / 519; }
 .feature-card--dashboard .image-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
 
 /* The wide closer card: icon beside the text instead of above it */
