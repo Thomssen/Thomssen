@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<title>Thomsen VM — Free Windows Virtualization</title>
+<meta content="Thomsen VM is a free virtualization program for Windows — a guided creation wizard, QEMU-backed guests, snapshots, and live resource monitoring, in one app." name="description"/>
+<meta content="#050607" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
+<link href="../../assets/favicon.ico" rel="icon" sizes="any"/>
+<link href="../../assets/logo.png" rel="icon" type="image/png"/>
+<link href="../../assets/logo.png" rel="apple-touch-icon"/>
+<link href="https://thomssen.dev/products/vm/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Thomsen Software" property="og:site_name"/>
+<meta content="https://thomssen.dev/products/vm/" property="og:url"/>
+<meta content="Thomsen VM — Free Windows Virtualization" property="og:title"/>
+<meta content="A free, guided virtualization program for Windows." property="og:description"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="../../assets/main3.css" rel="stylesheet"/>
+<script>
+      (function () {
+        try {
+          var t = localStorage.getItem('thomsen-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t =
+              window.matchMedia &&
+              window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav-wrap">
+<div class="nav-scrim"></div>
+<nav aria-label="Primary" class="nav">
+<a aria-label="Thomsen Software — home" class="nav__brand" href="../../index.html">
+<img alt="" class="nav__mark" height="26" src="../../assets/logo.png" width="26"/>
+<span class="nav__brand-text">Thomsen Software</span>
+</a>
+<ul class="nav__links">
+<li><a class="nav__link" href="../../index.html">Home</a></li>
+<li><a class="nav__link" href="../../index.html#features">Features</a></li>
+<li><a class="nav__link is-active" href="../../index.html#pricing">Products</a></li>
+<li><a class="nav__link" href="../../index.html#faq">FAQ</a></li>
+</ul>
+<div class="nav__actions">
+<button aria-label="Switch theme" class="theme-toggle" type="button">
+<span class="theme-toggle__icons" data-dark="true">
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--moon" fill="none" height="17" viewbox="0 0 24 24" width="17">
+<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z" fill="currentColor"></path>
+</svg>
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--sun" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" viewbox="0 0 24 24" width="17">
+<circle cx="12" cy="12" fill="currentColor" r="4" stroke="none"></circle>
+<path d="M12 2.5v2M12 19.5v2M4.5 12h-2M21.5 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4"></path>
+</svg>
+</span>
+</button>
+<a class="btn btn--primary btn--sm nav__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+<button aria-controls="nav-panel" aria-expanded="false" aria-label="Open menu" class="nav__burger" type="button">
+<span></span><span></span>
+</button>
+</div>
+</nav>
+<div class="nav-panel" id="nav-panel">
+<ul class="nav-panel__links">
+<li><a class="nav-panel__link" href="../../index.html">Home</a></li>
+<li><a class="nav-panel__link" href="../../index.html#features">Features</a></li>
+<li><a class="nav-panel__link is-active" href="../../index.html#pricing">Products</a></li>
+<li><a class="nav-panel__link" href="../../index.html#faq">FAQ</a></li>
+</ul>
+<a class="btn btn--primary nav-panel__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+</div>
+</header>
+<main class="page" id="main">
+
+<section class="hero">
+<div aria-hidden="true" class="hero__grid"></div>
+<div class="container hero__inner">
+<div class="hero__copy">
+<p class="hero__badge"><span class="dot dot-good"></span>Thomsen VM</p>
+<h1 class="hero__title" style="font-size: var(--text-3xl);">Virtualization that gets out of your way.</h1>
+<p class="hero__desc" style="max-width: 42ch;">
+              A guided wizard to create a VM, snapshots when you need to undo
+              something, and live resource monitoring while it runs — free,
+              with no account and no catch.
+            </p>
+<div class="hero__actions">
+<a class="btn btn--primary btn--lg" href="https://github.com/Thomssen/Thomsen-VM/releases/download/v1.0.0/Thomsen-VM-Setup.exe">Download — Free</a>
+<a class="btn btn--secondary btn--lg" href="#features">See all features</a>
+</div>
+<p class="hero__meta">Windows 10 / 11 · Free program · <a href="https://github.com/Thomssen/Thomsen-VM" style="color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px;">Source on GitHub</a></p>
+</div>
+<div class="hero__visual">
+<div class="product-illustration product-illustration--frames" role="img" aria-label="Stylised illustration of several virtual machine windows layered side by side">
+<div class="stack-frames">
+<div class="stack-frame stack-frame--back"><div class="stack-frame__bar"><span></span><span></span><span></span></div></div>
+<div class="stack-frame stack-frame--mid"><div class="stack-frame__bar"><span></span><span></span><span></span></div></div>
+<div class="stack-frame stack-frame--front">
+<div class="stack-frame__bar"><span></span><span></span><span></span></div>
+<div class="stack-frame__body">
+<div class="stack-frame__body-line"></div>
+<div class="stack-frame__body-line stack-frame__body-line--sm"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section band" id="how-it-works">
+<div class="container">
+<div class="section-head">
+<p class="eyebrow">How it works</p>
+<h2>From ISO to running guest in a few steps.</h2>
+<p>Thomsen VM is built around one idea: creating and running a virtual machine shouldn't require reading documentation first.</p>
+</div>
+<div class="hiw-grid">
+<div class="hiw-card">
+<p class="hiw-card__num">01</p>
+<h3>Create</h3>
+<p>The wizard auto-detects your ISO, picks sensible defaults, and lets you choose UEFI or Legacy BIOS firmware per VM.</p>
+</div>
+<div class="hiw-card">
+<p class="hiw-card__num">02</p>
+<h3>Run</h3>
+<p>True full screen with multi-monitor support, and scaling modes (Fit / Stretch / Native) for everything in between.</p>
+</div>
+<div class="hiw-card">
+<p class="hiw-card__num">03</p>
+<h3>Manage</h3>
+<p>Take a snapshot before a risky change, restore it if something goes wrong, or force-stop a guest that's stopped responding.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="features">
+<div class="container">
+<div class="section-head">
+<p class="eyebrow">Features</p>
+<h2>Everything you need to run a VM.</h2>
+<p>Ten features, grouped by what they're actually for.</p>
+</div>
+
+<div class="feature-group">
+<p class="feature-group__title">Creating a VM</p>
+<ul class="pricing-card__list">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Guided VM creation wizard with ISO auto-detection</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>UEFI and Legacy BIOS firmware, per VM</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Support for QEMU-backed guests such as Arch Linux, Windows, and other ISOs</li>
+</ul>
+</div>
+
+<div class="feature-group">
+<p class="feature-group__title">Display</p>
+<ul class="pricing-card__list">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>True full screen with multi-monitor support</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Scaling modes (Fit / Stretch / Native)</li>
+</ul>
+</div>
+
+<div class="feature-group">
+<p class="feature-group__title">Lifecycle &amp; snapshots</p>
+<ul class="pricing-card__list">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Snapshots (create, restore, delete)</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Force Stop for guests that won't respond to a normal shutdown</li>
+</ul>
+</div>
+
+<div class="feature-group">
+<p class="feature-group__title">Monitoring &amp; profiles</p>
+<ul class="pricing-card__list">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Live CPU, RAM, disk, and network monitoring</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Per-VM hardware and network profiles</li>
+</ul>
+</div>
+
+<div class="feature-group">
+<p class="feature-group__title">Security</p>
+<ul class="pricing-card__list">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>App lock with password protection</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<section class="section band">
+<div class="container">
+<div class="section-head">
+<p class="eyebrow">Technical details</p>
+<h2>Compatibility &amp; source.</h2>
+</div>
+<div class="grid-2">
+<div class="card">
+<h3>System requirements</h3>
+<ul>
+<li>Windows 10 or Windows 11</li>
+<li>Free — no license key, no account, no telemetry to opt out of</li>
+</ul>
+</div>
+<div class="card">
+<h3>Open source</h3>
+<ul>
+<li>Guests run on QEMU — the same virtualization engine behind many other free hypervisors</li>
+<li>Source code and releases are public on <a href="https://github.com/Thomssen/Thomsen-VM" style="color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px;">GitHub</a></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section--tight">
+<div class="container section-head--center" style="text-align: center;">
+<p class="eyebrow" style="justify-content: center;">Get Thomsen VM</p>
+<h2>Free. No catch.</h2>
+<p style="margin-top: 14px; color: var(--text-muted);">Download the installer directly, no account required.</p>
+<div style="max-width: 420px; margin: 32px auto 0;">
+<div class="pricing-card pricing-card--vm">
+<p class="pricing-card__name">Thomsen VM</p>
+<div class="pricing-card__price">
+<span class="pricing-card__price-amount pricing-card__price-amount--free">Free</span>
+</div>
+<p class="pricing-card__note">Free program · Windows 10 / 11</p>
+<a class="btn btn--primary btn--block" href="https://github.com/Thomssen/Thomsen-VM/releases/download/v1.0.0/Thomsen-VM-Setup.exe">VM Download</a>
+</div>
+</div>
+<p style="margin-top: 28px; font-size: var(--text-base-sm); color: var(--text-muted);">Questions? Join the <a href="https://discord.gg/x7JNcz5tqb" style="color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px;">Discord</a>.</p>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="container">
+<div class="footer__top">
+<a class="footer__brand" href="../../index.html">
+<img alt="" class="footer__mark" height="30" src="../../assets/logo.png" width="30"/>
+<div>
+<p class="footer__name">Thomsen Software</p>
+<p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
+</div>
+</a>
+<div class="footer__cols">
+<div class="footer__col">
+<p class="footer__col-title">Products</p>
+<a class="footer__link" href="../../index.html">Home</a>
+<a class="footer__link" href="../../index.html#features">Features</a>
+<a class="footer__link" href="../../index.html#pricing">Products</a>
+<a class="footer__link" href="../../index.html#faq">FAQ</a>
+</div>
+<div class="footer__col">
+<p class="footer__col-title">Community</p>
+<a class="footer__link" href="https://discord.gg/x7JNcz5tqb" rel="noopener" target="_blank">Discord</a>
+<a class="footer__link" href="../../server-rules/">Server Rules</a>
+<a class="footer__link" href="https://github.com/Thomssen" rel="noopener" target="_blank">GitHub</a>
+<a class="footer__link" href="https://www.youtube.com/@Thomsssen" rel="noopener" target="_blank">YouTube</a>
+<a class="footer__link" href="#" id="copyEmail">Email</a>
+</div>
+<script>
+            const emailLink = document.getElementById("copyEmail");
+
+            emailLink.addEventListener("click", async (e) => {
+                e.preventDefault();
+                const email = "support@thomssen.dev";
+                await navigator.clipboard.writeText(email);
+                const oldText = emailLink.textContent;
+                emailLink.textContent = "Copied!";
+                setTimeout(() => {
+                emailLink.textContent = oldText;
+                 }, 1500);
+                 });
+            </script>
+<div class="footer__col">
+<p class="footer__col-title">Legal</p>
+<a class="footer__link" href="../../terms.html">Terms</a>
+<a class="footer__link" href="../../privacy.html">Privacy</a>
+<a class="footer__link" href="../../refund.html">Refund Policy</a>
+<a class="footer__link" data-cc-open="" href="#">Cookie Settings</a>
+</div>
+</div>
+</div>
+<div class="footer__bottom">
+<p class="footer__copy">© <span data-year="">2026</span> Thomsen Software</p>
+</div>
+</div>
+</footer>
+
+<script src="../../assets/site2.js" defer></script>
+<script src="../../assets/consent.js" defer></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 /* Discord Server Rules page — reuses site tokens/typography, no new patterns. */
 .rules-head { max-width: 640px; }
-.rules-head p.lead { margin-top: 14px; color: var(--text-secondary); font-size: 15.5px; line-height: 1.7; }
+.rules-head p.lead { margin-top: 14px; color: var(--text-secondary); font-size: var(--text-base); line-height: var(--lh-relaxed); }
 
 .rules-list { margin-top: 48px; border-top: 1px solid var(--border); }
 .rules-item {
@@ -13,22 +13,22 @@
   flex: none;
   width: 30px;
   padding-top: 3px;
-  font-size: 12.5px;
+  font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--text-muted);
 }
 .rules-item__body h2 {
   margin: 0 0 6px;
-  font-size: 16.5px;
+  font-size: var(--text-md);
   font-weight: 600;
-  letter-spacing: -0.015em;
+  letter-spacing: var(--tracking-snug);
 }
 .rules-item__body p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 14.5px;
-  line-height: 1.65;
+  font-size: var(--text-base-sm);
+  line-height: var(--lh-normal);
   max-width: 62ch;
 }
 

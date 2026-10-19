@@ -49,13 +49,13 @@
 .tb-footer-open:hover { text-decoration:underline; }
 html.tb-dialog-open { overflow:hidden; }
 .tb-dialog {
-  --tb-bg:#0b0c0e; --tb-card:#101113; --tb-border:#2a2c30; --tb-strong:#f0f1f2; --tb-muted:#93979d; --tb-button:#f0f0f0; --tb-button-text:#111215;
+  --tb-bg: var(--surface); --tb-card: var(--surface-2); --tb-border: var(--border-strong); --tb-strong: var(--text); --tb-muted: var(--text-muted); --tb-button: var(--btn-primary-bg); --tb-button-text: var(--btn-primary-text);
   box-sizing:border-box; width:min(860px, calc(100% - 28px)); max-height:min(800px, calc(100dvh - 36px)); margin:auto; padding:0;
   border:1px solid var(--tb-border); border-radius:18px; color:var(--tb-strong); background:var(--tb-bg);
   box-shadow:0 28px 100px #0009; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain;
   font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI',sans-serif; font-size:13px; line-height:1.5;
 }
-html[data-theme="light"] .tb-dialog { --tb-bg:#ffffff; --tb-card:#f7f7f8; --tb-border:#e1e2e5; --tb-strong:#1a1c20; --tb-muted:#6c7179; --tb-button:#17191c; --tb-button-text:#fff; box-shadow:0 28px 90px #0003; }
+html[data-theme="light"] .tb-dialog { box-shadow:0 28px 90px #0003; }
 .tb-dialog::backdrop { background:rgba(0,0,0,.77); backdrop-filter:blur(6px); }
 .tb-dialog *, .tb-dialog *::before,.tb-dialog *::after { box-sizing:border-box; }
 .tb-dialog__inner { padding:26px 32px 22px; }

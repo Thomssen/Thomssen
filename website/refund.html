@@ -1,72 +1,182 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE HTML>
+
+<html data-theme="dark" lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Refund Policy - Thomsen Software</title>
-<style>
-  :root {
-    --bg: #050607; --surface: #0d0f11; --text: #f2f3f4;
-    --text-secondary: #b4b9be; --text-muted: #7c838a;
-    --border: rgba(255,255,255,0.08); --radius: 16px;
-    --good: #6f9e8f; --good-soft: rgba(111,158,143,0.14);
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--bg); color: var(--text-secondary);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px; line-height: 1.7; padding: 48px 20px 96px;
-  }
-  .doc { max-width: 720px; margin: 0 auto; }
-  a { color: var(--text); }
-  .back { display: inline-block; margin-bottom: 28px; font-size: 13px; color: var(--text-muted); text-decoration: none; }
-  .back:hover { color: var(--text); }
-  h1 { color: var(--text); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
-  .updated { font-size: 12.5px; color: var(--text-muted); margin: 0 0 36px; }
-  h2 { color: var(--text); font-size: 17px; font-weight: 600; margin: 34px 0 10px; }
-  p, li { margin: 0 0 12px; }
-  ul { padding-left: 20px; }
-  .badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding-inline: 10px; border-radius: 999px; background: var(--good-soft); color: var(--good); font-size: 12.5px; font-weight: 600; margin-bottom: 20px; }
-  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; font-size: 13.5px; }
-  .footer-links { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; }
-  .footer-links a { color: var(--text-muted); margin-right: 16px; }
-  .footer-links a:hover { color: var(--text); }
-</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<title>Refund Policy — Thomsen Software</title>
+<meta content="Refund Policy for Thomsen Shield, Thomsen OSINT, and Thomsen VM — a 14-day money-back guarantee." name="description"/>
+<meta content="#050607" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
+<link href="assets/favicon.ico" rel="icon" sizes="any"/>
+<link href="assets/logo.png" rel="icon" type="image/png"/>
+<link href="assets/logo.png" rel="apple-touch-icon"/>
+<link href="https://thomssen.dev/refund.html" rel="canonical"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="assets/main3.css" rel="stylesheet"/>
+<script>
+      (function () {
+        try {
+          var t = localStorage.getItem('thomsen-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t =
+              window.matchMedia &&
+              window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
 </head>
 <body>
-<div class="doc">
-  <a class="back" href="https://thomssen.dev/">&larr; Thomsen Software</a>
-  <h1>Refund Policy</h1>
-  <p class="updated">Last updated September 27, 2026</p>
-
-  <span class="badge">14-day money-back guarantee</span>
-
-  <p>If a Thomsen product you paid for isn't right for you, email us within 14 days of purchase and we'll refund you in full - no questions asked, no forms.</p>
-
-  <h2>Your right of withdrawal (EU/EEA consumers)</h2>
-  <p>Separately from the voluntary refund above, EU/EEA consumer law generally gives you a 14-day right to withdraw from an online purchase without giving a reason. That right doesn't apply once a trader has started supplying digital content that isn't on a physical disc or similar, if you gave your prior express consent to immediate delivery and acknowledged that you'd lose the right of withdrawal by doing so. Where that consent and acknowledgment weren't validly obtained from you before your purchase, your statutory right of withdrawal still applies in addition to the 14-day window above.</p>
-
-  <h2>How to request a refund</h2>
-  <p>Email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> with your license key or the email address you purchased with. That's it.</p>
-
-  <h2>What happens next</h2>
-  <ul>
-    <li>We refund the full amount you paid to your original payment method through Stripe.</li>
-    <li>Refunds typically appear on your statement within 5-10 business days, depending on your bank.</li>
-    <li>Your license is deactivated once the refund is issued.</li>
-  </ul>
-
-  <h2>After 14 days</h2>
-  <p>Past the 14-day window, refunds are handled case by case - for example, if the software has a defect we're unable to fix. Reach out and we'll take a look.</p>
-
-  <h2>Questions</h2>
-  <p><a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
-
-  <div class="footer-links">
-    <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a><a href="/refund.html">Refunds</a>
-  </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav-wrap">
+<div class="nav-scrim"></div>
+<nav aria-label="Primary" class="nav">
+<a aria-label="Thomsen Software — home" class="nav__brand" href="index.html">
+<img alt="" class="nav__mark" height="26" src="assets/logo.png" width="26"/>
+<span class="nav__brand-text">Thomsen Software</span>
+</a>
+<ul class="nav__links">
+<li><a class="nav__link" href="index.html">Home</a></li>
+<li><a class="nav__link" href="index.html#features">Features</a></li>
+<li><a class="nav__link" href="index.html#pricing">Products</a></li>
+<li><a class="nav__link" href="index.html#faq">FAQ</a></li>
+</ul>
+<div class="nav__actions">
+<button aria-label="Switch theme" class="theme-toggle" type="button">
+<span class="theme-toggle__icons" data-dark="true">
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--moon" fill="none" height="17" viewbox="0 0 24 24" width="17">
+<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z" fill="currentColor"></path>
+</svg>
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--sun" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" viewbox="0 0 24 24" width="17">
+<circle cx="12" cy="12" fill="currentColor" r="4" stroke="none"></circle>
+<path d="M12 2.5v2M12 19.5v2M4.5 12h-2M21.5 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4"></path>
+</svg>
+</span>
+</button>
+<a class="btn btn--primary btn--sm nav__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+<button aria-controls="nav-panel" aria-expanded="false" aria-label="Open menu" class="nav__burger" type="button">
+<span></span><span></span>
+</button>
 </div>
+</nav>
+<div class="nav-panel" id="nav-panel">
+<ul class="nav-panel__links">
+<li><a class="nav-panel__link" href="index.html">Home</a></li>
+<li><a class="nav-panel__link" href="index.html#features">Features</a></li>
+<li><a class="nav-panel__link" href="index.html#pricing">Products</a></li>
+<li><a class="nav-panel__link" href="index.html#faq">FAQ</a></li>
+</ul>
+<a class="btn btn--primary nav-panel__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+</div>
+</header>
+<main class="page" id="main">
+<section class="section">
+<div class="container doc">
+<h1>Refund Policy</h1>
+<p class="updated">Last updated September 27, 2026</p>
+
+<span class="status-badge">14-day money-back guarantee</span>
+
+<p>If a Thomsen product you paid for isn't right for you, email us within 14 days of purchase and we'll refund you in full - no questions asked, no forms.</p>
+
+<section>
+<h2>Your right of withdrawal (EU/EEA consumers)</h2>
+<p>Separately from the voluntary refund above, EU/EEA consumer law generally gives you a 14-day right to withdraw from an online purchase without giving a reason. That right doesn't apply once a trader has started supplying digital content that isn't on a physical disc or similar, if you gave your prior express consent to immediate delivery and acknowledged that you'd lose the right of withdrawal by doing so. Where that consent and acknowledgment weren't validly obtained from you before your purchase, your statutory right of withdrawal still applies in addition to the 14-day window above.</p>
+</section>
+
+<section>
+<h2>How to request a refund</h2>
+<p>Email <a href="mailto:support@thomssen.dev">support@thomssen.dev</a> with your license key or the email address you purchased with. That's it.</p>
+</section>
+
+<section>
+<h2>What happens next</h2>
+<ul>
+<li>We refund the full amount you paid to your original payment method through Stripe.</li>
+<li>Refunds typically appear on your statement within 5-10 business days, depending on your bank.</li>
+<li>Your license is deactivated once the refund is issued.</li>
+</ul>
+</section>
+
+<section>
+<h2>After 14 days</h2>
+<p>Past the 14-day window, refunds are handled case by case - for example, if the software has a defect we're unable to fix. Reach out and we'll take a look.</p>
+</section>
+
+<section>
+<h2>Questions</h2>
+<p><a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
+</section>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="container">
+<div class="footer__top">
+<a class="footer__brand" href="index.html">
+<img alt="" class="footer__mark" height="30" src="assets/logo.png" width="30"/>
+<div>
+<p class="footer__name">Thomsen Software</p>
+<p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
+</div>
+</a>
+<div class="footer__cols">
+<div class="footer__col">
+<p class="footer__col-title">Products</p>
+<a class="footer__link" href="index.html">Home</a>
+<a class="footer__link" href="index.html#features">Features</a>
+<a class="footer__link" href="index.html#pricing">Products</a>
+<a class="footer__link" href="index.html#faq">FAQ</a>
+</div>
+<div class="footer__col">
+<p class="footer__col-title">Community</p>
+<a class="footer__link" href="https://discord.gg/x7JNcz5tqb" rel="noopener" target="_blank">Discord</a>
+<a class="footer__link" href="server-rules/">Server Rules</a>
+<a class="footer__link" href="https://github.com/Thomssen" rel="noopener" target="_blank">GitHub</a>
+<a class="footer__link" href="https://www.youtube.com/@Thomsssen" rel="noopener" target="_blank">YouTube</a>
+<a class="footer__link" href="#" id="copyEmail">Email</a>
+</div>
+<script>
+            const emailLink = document.getElementById("copyEmail");
+
+            emailLink.addEventListener("click", async (e) => {
+                e.preventDefault();
+                const email = "support@thomssen.dev";
+                await navigator.clipboard.writeText(email);
+                const oldText = emailLink.textContent;
+                emailLink.textContent = "Copied!";
+                setTimeout(() => {
+                emailLink.textContent = oldText;
+                 }, 1500);
+                 });
+            </script>
+<div class="footer__col">
+<p class="footer__col-title">Legal</p>
+<a class="footer__link" href="terms.html">Terms</a>
+<a class="footer__link" href="privacy.html">Privacy</a>
+<a class="footer__link" href="refund.html">Refund Policy</a>
+<a class="footer__link" data-cc-open="" href="#">Cookie Settings</a>
+</div>
+</div>
+</div>
+<div class="footer__bottom">
+<p class="footer__copy">© <span data-year="">2026</span> Thomsen Software</p>
+</div>
+</div>
+</footer>
+
+<script src="assets/site2.js" defer></script>
+<script src="assets/consent.js" defer></script>
 </body>
 </html>

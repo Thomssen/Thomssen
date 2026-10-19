@@ -1,87 +1,212 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE HTML>
+
+<html data-theme="dark" lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Terms of Service - Thomsen Shield</title>
-<style>
-  :root {
-    --bg: #050607; --surface: #0d0f11; --text: #f2f3f4;
-    --text-secondary: #b4b9be; --text-muted: #7c838a;
-    --border: rgba(255,255,255,0.08); --radius: 16px;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--bg); color: var(--text-secondary);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px; line-height: 1.7; padding: 48px 20px 96px;
-  }
-  .doc { max-width: 720px; margin: 0 auto; }
-  a { color: var(--text); }
-  .back { display: inline-block; margin-bottom: 28px; font-size: 13px; color: var(--text-muted); text-decoration: none; }
-  .back:hover { color: var(--text); }
-  h1 { color: var(--text); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
-  .updated { font-size: 12.5px; color: var(--text-muted); margin: 0 0 36px; }
-  h2 { color: var(--text); font-size: 17px; font-weight: 600; margin: 34px 0 10px; }
-  p, li { margin: 0 0 12px; }
-  ul { padding-left: 20px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 20px 0; font-size: 13.5px; }
-  .footer-links { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; }
-  .footer-links a { color: var(--text-muted); margin-right: 16px; }
-  .footer-links a:hover { color: var(--text); }
-</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<title>Terms of Service — Thomsen Software</title>
+<meta content="Terms of Service for Thomsen Shield, Thomsen OSINT, and Thomsen VM." name="description"/>
+<meta content="#050607" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
+<link href="assets/favicon.ico" rel="icon" sizes="any"/>
+<link href="assets/logo.png" rel="icon" type="image/png"/>
+<link href="assets/logo.png" rel="apple-touch-icon"/>
+<link href="https://thomssen.dev/terms.html" rel="canonical"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="assets/main3.css" rel="stylesheet"/>
+<script>
+      (function () {
+        try {
+          var t = localStorage.getItem('thomsen-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t =
+              window.matchMedia &&
+              window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
 </head>
 <body>
-<div class="doc">
-  <a class="back" href="https://thomssen.dev/">&larr; Thomsen Software</a>
-  <h1>Terms of Service</h1>
-  <p class="updated">Last updated September 27, 2026</p>
-
-  <p>These terms cover your purchase and use of Thomsen Shield, Thomsen OSINT, and Thomsen VM, Windows desktop applications sold or distributed by Thomsen ("we", "us"). By buying or using any of them you agree to the terms below.</p>
-
-  <h2>1. What you're buying</h2>
-  <p>Thomsen Shield is a one-time purchase of <strong>€30.00</strong> for a lifetime license. Thomsen VM is free. Thomsen OSINT isn't available for purchase yet - once released, it's planned as a one-time <strong>€10.00</strong> lifetime license, and this page will be updated if that changes before launch. None of these are subscriptions: there's no recurring charge for any of them, unless a future product explicitly says otherwise.</p>
-  <p>Your Thomsen Shield license lets you install and activate it on <strong>one Windows PC at a time</strong>. You can deactivate it on one PC and activate it on another whenever you like - the app has a Deactivate option for this. Licenses are for personal use and aren't for resale or redistribution. All three products require Windows 10 or 11, 64-bit.</p>
-
-  <h2>2. Digital delivery</h2>
-  <p>Thomsen Shield (and, once released, Thomsen OSINT) is delivered digitally: right after payment, your license key is shown on the checkout confirmation page and is ready to use immediately - no physical product is shipped, and there's normally no waiting period. See our <a href="/refund.html">Refund Policy</a> for how this affects your right of withdrawal.</p>
-
-  <h2>3. What Thomsen Shield does</h2>
-  <p>Thomsen Shield monitors network connections on your PC and lets you block, allow, and manage them through the Windows Firewall. It's a tool to help you see and control your PC's network activity - it is <strong>not</strong> a guarantee against malware, intrusion, data loss, DDoS attacks, or any other security incident. No security software can promise that. Use it as one part of your overall security practice, not the only one.</p>
-
-  <h2>4. Payment</h2>
-  <p>Payments are processed by Stripe. We never see or store your card details. Prices shown include any applicable tax.</p>
-
-  <h2>5. Refunds</h2>
-  <p>See our <a href="/refund.html">Refund Policy</a> for how refunds and the EU right of withdrawal work. In short: we offer a voluntary 14-day refund window on top of your statutory rights.</p>
-
-  <h2>6. Acceptable use</h2>
-  <ul>
-    <li>Don't reverse-engineer, decompile, or redistribute the software.</li>
-    <li>Don't share or resell your license key.</li>
-    <li>Don't use Thomsen Shield for any unlawful purpose.</li>
-  </ul>
-
-  <h2>7. Suspension and termination</h2>
-  <p>We may disable a license that was obtained fraudulently, charged back, or used in violation of these terms. Outside of that, your license lasts for the lifetime of the product - we're not going to take it away.</p>
-
-  <h2>8. No warranty, limitation of liability</h2>
-  <p>Thomsen Shield is provided "as is," without warranty of any kind, to the maximum extent permitted by law. We aren't liable for indirect, incidental, or consequential damages - including lost data or a security incident the software didn't catch - arising from your use of it. Our total liability for any claim is capped at the amount you paid for the applicable license.</p>
-  <p>Nothing in these Terms limits or excludes any mandatory right you have as a consumer under applicable law - including your statutory rights regarding defective digital content and, where it applies, your right of withdrawal (see our Refund Policy) - and nothing here excludes liability that can't lawfully be excluded, such as liability for death, personal injury, or fraud.</p>
-
-  <h2>9. Changes to these terms</h2>
-  <p>We may update these terms as the product evolves. Material changes will be reflected here with an updated date. Continued use after a change means you accept the update.</p>
-
-  <h2>10. Governing law</h2>
-  <p>These Terms are governed by applicable law within the European Union and European Economic Area (EU/EEA). If you are a consumer, you retain any mandatory consumer protection rights provided by the laws of the country where you normally reside.</p>
-
-  <h2>11. Contact</h2>
-  <p>Questions about these terms: <a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
-
-  <div class="footer-links">
-    <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a><a href="/refund.html">Refunds</a>
-  </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav-wrap">
+<div class="nav-scrim"></div>
+<nav aria-label="Primary" class="nav">
+<a aria-label="Thomsen Software — home" class="nav__brand" href="index.html">
+<img alt="" class="nav__mark" height="26" src="assets/logo.png" width="26"/>
+<span class="nav__brand-text">Thomsen Software</span>
+</a>
+<ul class="nav__links">
+<li><a class="nav__link" href="index.html">Home</a></li>
+<li><a class="nav__link" href="index.html#features">Features</a></li>
+<li><a class="nav__link" href="index.html#pricing">Products</a></li>
+<li><a class="nav__link" href="index.html#faq">FAQ</a></li>
+</ul>
+<div class="nav__actions">
+<button aria-label="Switch theme" class="theme-toggle" type="button">
+<span class="theme-toggle__icons" data-dark="true">
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--moon" fill="none" height="17" viewbox="0 0 24 24" width="17">
+<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z" fill="currentColor"></path>
+</svg>
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--sun" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" viewbox="0 0 24 24" width="17">
+<circle cx="12" cy="12" fill="currentColor" r="4" stroke="none"></circle>
+<path d="M12 2.5v2M12 19.5v2M4.5 12h-2M21.5 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4"></path>
+</svg>
+</span>
+</button>
+<a class="btn btn--primary btn--sm nav__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+<button aria-controls="nav-panel" aria-expanded="false" aria-label="Open menu" class="nav__burger" type="button">
+<span></span><span></span>
+</button>
 </div>
+</nav>
+<div class="nav-panel" id="nav-panel">
+<ul class="nav-panel__links">
+<li><a class="nav-panel__link" href="index.html">Home</a></li>
+<li><a class="nav-panel__link" href="index.html#features">Features</a></li>
+<li><a class="nav-panel__link" href="index.html#pricing">Products</a></li>
+<li><a class="nav-panel__link" href="index.html#faq">FAQ</a></li>
+</ul>
+<a class="btn btn--primary nav-panel__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+</div>
+</header>
+<main class="page" id="main">
+<section class="section">
+<div class="container doc">
+<h1>Terms of Service</h1>
+<p class="updated">Last updated September 27, 2026</p>
+
+<p>These terms cover your purchase and use of Thomsen Shield, Thomsen OSINT, and Thomsen VM, Windows desktop applications sold or distributed by Thomsen ("we", "us"). By buying or using any of them you agree to the terms below.</p>
+
+<section>
+<h2>1. What you're buying</h2>
+<p>Thomsen Shield is a one-time purchase of <strong>€30.00</strong> for a lifetime license. Thomsen VM is free. Thomsen OSINT isn't available for purchase yet - once released, it's planned as a one-time <strong>€10.00</strong> lifetime license, and this page will be updated if that changes before launch. None of these are subscriptions: there's no recurring charge for any of them, unless a future product explicitly says otherwise.</p>
+<p>Your Thomsen Shield license lets you install and activate it on <strong>one Windows PC at a time</strong>. You can deactivate it on one PC and activate it on another whenever you like - the app has a Deactivate option for this. Licenses are for personal use and aren't for resale or redistribution. All three products require Windows 10 or 11, 64-bit.</p>
+</section>
+
+<section>
+<h2>2. Digital delivery</h2>
+<p>Thomsen Shield (and, once released, Thomsen OSINT) is delivered digitally: right after payment, your license key is shown on the checkout confirmation page and is ready to use immediately - no physical product is shipped, and there's normally no waiting period. See our <a href="refund.html">Refund Policy</a> for how this affects your right of withdrawal.</p>
+</section>
+
+<section>
+<h2>3. What Thomsen Shield does</h2>
+<p>Thomsen Shield monitors network connections on your PC and lets you block, allow, and manage them through the Windows Firewall. It's a tool to help you see and control your PC's network activity - it is <strong>not</strong> a guarantee against malware, intrusion, data loss, DDoS attacks, or any other security incident. No security software can promise that. Use it as one part of your overall security practice, not the only one.</p>
+</section>
+
+<section>
+<h2>4. Payment</h2>
+<p>Payments are processed by Stripe. We never see or store your card details. Prices shown include any applicable tax.</p>
+</section>
+
+<section>
+<h2>5. Refunds</h2>
+<p>See our <a href="refund.html">Refund Policy</a> for how refunds and the EU right of withdrawal work. In short: we offer a voluntary 14-day refund window on top of your statutory rights.</p>
+</section>
+
+<section>
+<h2>6. Acceptable use</h2>
+<ul>
+<li>Don't reverse-engineer, decompile, or redistribute the software.</li>
+<li>Don't share or resell your license key.</li>
+<li>Don't use Thomsen Shield for any unlawful purpose.</li>
+</ul>
+</section>
+
+<section>
+<h2>7. Suspension and termination</h2>
+<p>We may disable a license that was obtained fraudulently, charged back, or used in violation of these terms. Outside of that, your license lasts for the lifetime of the product - we're not going to take it away.</p>
+</section>
+
+<section>
+<h2>8. No warranty, limitation of liability</h2>
+<p>Thomsen Shield is provided "as is," without warranty of any kind, to the maximum extent permitted by law. We aren't liable for indirect, incidental, or consequential damages - including lost data or a security incident the software didn't catch - arising from your use of it. Our total liability for any claim is capped at the amount you paid for the applicable license.</p>
+<p>Nothing in these Terms limits or excludes any mandatory right you have as a consumer under applicable law - including your statutory rights regarding defective digital content and, where it applies, your right of withdrawal (see our Refund Policy) - and nothing here excludes liability that can't lawfully be excluded, such as liability for death, personal injury, or fraud.</p>
+</section>
+
+<section>
+<h2>9. Changes to these terms</h2>
+<p>We may update these terms as the product evolves. Material changes will be reflected here with an updated date. Continued use after a change means you accept the update.</p>
+</section>
+
+<section>
+<h2>10. Governing law</h2>
+<p>These Terms are governed by applicable law within the European Union and European Economic Area (EU/EEA). If you are a consumer, you retain any mandatory consumer protection rights provided by the laws of the country where you normally reside.</p>
+</section>
+
+<section>
+<h2>11. Contact</h2>
+<p>Questions about these terms: <a href="mailto:support@thomssen.dev">support@thomssen.dev</a></p>
+</section>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="container">
+<div class="footer__top">
+<a class="footer__brand" href="index.html">
+<img alt="" class="footer__mark" height="30" src="assets/logo.png" width="30"/>
+<div>
+<p class="footer__name">Thomsen Software</p>
+<p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
+</div>
+</a>
+<div class="footer__cols">
+<div class="footer__col">
+<p class="footer__col-title">Products</p>
+<a class="footer__link" href="index.html">Home</a>
+<a class="footer__link" href="index.html#features">Features</a>
+<a class="footer__link" href="index.html#pricing">Products</a>
+<a class="footer__link" href="index.html#faq">FAQ</a>
+</div>
+<div class="footer__col">
+<p class="footer__col-title">Community</p>
+<a class="footer__link" href="https://discord.gg/x7JNcz5tqb" rel="noopener" target="_blank">Discord</a>
+<a class="footer__link" href="server-rules/">Server Rules</a>
+<a class="footer__link" href="https://github.com/Thomssen" rel="noopener" target="_blank">GitHub</a>
+<a class="footer__link" href="https://www.youtube.com/@Thomsssen" rel="noopener" target="_blank">YouTube</a>
+<a class="footer__link" href="#" id="copyEmail">Email</a>
+</div>
+<script>
+            const emailLink = document.getElementById("copyEmail");
+
+            emailLink.addEventListener("click", async (e) => {
+                e.preventDefault();
+                const email = "support@thomssen.dev";
+                await navigator.clipboard.writeText(email);
+                const oldText = emailLink.textContent;
+                emailLink.textContent = "Copied!";
+                setTimeout(() => {
+                emailLink.textContent = oldText;
+                 }, 1500);
+                 });
+            </script>
+<div class="footer__col">
+<p class="footer__col-title">Legal</p>
+<a class="footer__link" href="terms.html">Terms</a>
+<a class="footer__link" href="privacy.html">Privacy</a>
+<a class="footer__link" href="refund.html">Refund Policy</a>
+<a class="footer__link" data-cc-open="" href="#">Cookie Settings</a>
+</div>
+</div>
+</div>
+<div class="footer__bottom">
+<p class="footer__copy">© <span data-year="">2026</span> Thomsen Software</p>
+</div>
+</div>
+</footer>
+
+<script src="assets/site2.js" defer></script>
+<script src="assets/consent.js" defer></script>
 </body>
 </html>

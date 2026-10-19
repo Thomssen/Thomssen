@@ -15,4 +15,13 @@
   <url>
     <loc>https://thomssen.dev/server-rules/</loc>
   </url>
+  <url>
+    <loc>https://thomssen.dev/products/shield/</loc>
+  </url>
+  <url>
+    <loc>https://thomssen.dev/products/osint/</loc>
+  </url>
+  <url>
+    <loc>https://thomssen.dev/products/vm/</loc>
+  </url>
 </urlset>
