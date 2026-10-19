@@ -67,7 +67,12 @@ A tablet input driver project for drawing tablets and rhythm-game input.
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=cs,dotnet,ts,js,react,tauri,git,github&theme=dark" alt="Technologies"/>
+<img src="https://img.shields.io/badge/C%23-181818?style=flat-square&logo=csharp&logoColor=white" />
+<img src="https://img.shields.io/badge/.NET-181818?style=flat-square&logo=dotnet&logoColor=white" />
+<img src="https://img.shields.io/badge/TypeScript-181818?style=flat-square&logo=typescript&logoColor=white" />
+<img src="https://img.shields.io/badge/JavaScript-181818?style=flat-square&logo=javascript&logoColor=white" />
+<img src="https://img.shields.io/badge/React-181818?style=flat-square&logo=react&logoColor=white" />
+<img src="https://img.shields.io/badge/Tauri-181818?style=flat-square&logo=tauri&logoColor=white" />
 
 </div>
 
@@ -75,8 +80,13 @@ A tablet input driver project for drawing tablets and rhythm-game input.
 
 <div align="center">
 
-<img width="49%" src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=aaaaaa&icon_color=aaaaaa" alt="GitHub statistics"/><img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=aaaaaa" alt="Top languages"/>
+<img src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=999999&icon_color=999999&ring_color=999999&hide_rank=true" width="65%" alt="GitHub statistics"/>
 
+<br/>
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=999999" width="65%" alt="Most used languages"/>
+
+</div>
 </div>
 
 ---
