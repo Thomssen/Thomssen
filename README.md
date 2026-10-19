@@ -4,7 +4,7 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:050505,50:171717,100:303030&height=240&section=header&text=THOMSSEN&fontSize=72&fontColor=ffffff&fontAlignY=38&desc=FOUNDER%20%2F%20SOFTWARE%20DEVELOPER&descSize=14&descColor=b0b0b0&descAlignY=58&animation=fadeIn" width="100%" alt="THOMSSEN — Founder and Software Developer"/>
 
-</div>
+
 [Website](https://thomssen.dev/) &nbsp; · &nbsp; [GitHub Repositories](https://github.com/Thomssen?tab=repositories)
 
 </div>
