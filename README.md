@@ -1,87 +1,49 @@
  <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0D0D0D&height=150&section=header&text=THOMSSEN&fontSize=54&fontColor=FFFFFF&fontAlignY=45&desc=SOFTWARE%20DEVELOPER&descSize=12&descColor=888888&descAlignY=72" width="100%" alt="THOMSSEN" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:1A1A1A&height=180&section=header&text=thomssen&fontSize=68&fontColor=FFFFFF&fontAlignY=45&animation=fadeIn" width="100%" alt="Thomssen" />
 
-<br/>
+<sub>INDEPENDENT DEVELOPER &nbsp; / &nbsp; FOUNDER OF THOMSEN SOFTWARE</sub>
 
-**Founder @ Thomsen Software**
+<br/><br/>
 
-Building desktop software, cybersecurity tools, and practical applications.
+**I build software with a purpose.**
 
-[Website](https://thomssen.dev/) &nbsp;·&nbsp; [Repositories](https://github.com/Thomssen?tab=repositories)
+Cybersecurity. Desktop applications. Digital investigations.
+
+[thomssen.dev](https://thomssen.dev/) &nbsp;&nbsp; [GitHub Repositories](https://github.com/Thomssen?tab=repositories)
 
 </div>
 
 ---
 
-### About
+### `01` — About
 
-I'm an independent software developer focused on building useful, reliable software with clean interfaces. Through **Thomsen Software**, I develop projects spanning Windows applications, network security, and digital investigations.
+I'm an independent developer building software under **Thomsen Software**. My work focuses on practical Windows applications, security tools, and utilities designed with functionality and simplicity in mind.
 
----
+I handle projects from concept and development through to interface design, testing, and release.
 
-### Selected Projects
+### `02` — Selected Work
 
-<table>
-<tr>
-<td width="50%" valign="top">
+| Project | Description |
+|:--|:--|
+| **01 / Shield** | Windows network monitoring and protection |
+| **02 / OSINT** | Tools for open-source intelligence and digital investigations |
+| **03 / VM** | Virtualization and system software |
+| **04 / Tablet** | Windows tablet input and driver development |
 
-**Thomsen Shield**
+<sub>Explore the complete collection on [GitHub →](https://github.com/Thomssen?tab=repositories)</sub>
 
-Network monitoring and protection for Windows.
-
-<sub>NETWORK SECURITY · WINDOWS</sub>
-
-</td>
-<td width="50%" valign="top">
-
-**Thomsen OSINT**
-
-Tools for digital research and open-source intelligence.
-
-<sub>OSINT · INVESTIGATION</sub>
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-**Thomsen VM**
-
-Virtualization and system software.
-
-<sub>VIRTUALIZATION · SYSTEMS</sub>
-
-</td>
-<td width="50%" valign="top">
-
-**Thomsen Tablet**
-
-Windows tablet input and driver development.
-
-<sub>WINDOWS · HARDWARE</sub>
-
-</td>
-</tr>
-</table>
-
-[Explore all repositories →](https://github.com/Thomssen?tab=repositories)
-
----
-
-### Technologies
+### `03` — Technologies
 
 `C#` &nbsp; ` .NET` &nbsp; `WPF` &nbsp; `XAML` &nbsp; `TypeScript` &nbsp; `React` &nbsp; `Tauri`
 
----
-
-### GitHub Activity
+### `04` — GitHub
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0D0D0D&title_color=FFFFFF&text_color=999999&icon_color=999999&hide_title=false" width="48%" alt="GitHub statistics" />
+<img src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=000000&title_color=FFFFFF&text_color=999999&icon_color=888888&rank_icon=github" width="49%" alt="GitHub statistics" />
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=0D0D0D&title_color=FFFFFF&text_color=999999" width="40%" alt="Most used languages" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=000000&title_color=FFFFFF&text_color=999999" width="41%" alt="Top programming languages" />
 
 </div>
 
@@ -89,6 +51,10 @@ Windows tablet input and driver development.
 
 <div align="center">
 
-<sub>THOMSSEN · Independent Software Development</sub>
+<sub>THOMSSEN</sub>
+
+<sub>Design with intent. Build with purpose.</sub>
+
+[WEBSITE](https://thomssen.dev/) &nbsp; / &nbsp; [GITHUB](https://github.com/Thomssen)
 
 </div>
