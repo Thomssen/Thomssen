@@ -1,92 +1,70 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:09090b,45:211638,100:09090b&height=240&section=header&text=THOMSSEN&fontSize=68&fontColor=ffffff&fontAlignY=40&desc=FOUNDER%20%20%E2%80%A2%20%20DEVELOPER%20%20%E2%80%A2%20%20BUILDER&descSize=14&descAlignY=61&animation=fadeIn" width="100%" alt="Thomssen"/>
+<img src="https://capsule-render.vercel.app/api?type=venom&height=260&color=0:09090b,50:292929,100:09090b&text=Thomssen&fontSize=76&fontColor=ffffff&fontAlignY=48&stroke=ffffff&strokeWidth=1" width="100%" alt="Thomssen"/>
 
-<br/>
+### Independent Developer · Founder of Thomsen Software
 
-<a href="https://thomssen.dev/"><img src="https://img.shields.io/badge/Website-thomssen.dev-17151d?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website"/></a>
-<a href="https://github.com/Thomssen"><img src="https://img.shields.io/badge/GitHub-Thomssen-17151d?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
+Building software at the intersection of **security, technology, and practical problem-solving.**
 
-<br/><br/>
-
-**I don't just write code. I build products.**
+[Website](https://thomssen.dev/) &nbsp; / &nbsp; [Repositories](https://github.com/Thomssen?tab=repositories)
 
 </div>
-
-## `~/ introduction`
-
-I'm Thomsen — an independent developer and founder of **Thomsen Software**.
-
-I turn ideas into real applications, from Windows utilities and cybersecurity tools to digital investigation software. I work across product design, development, and infrastructure, with a focus on building software that is useful, polished, and made to last.
-
-- **Building:** Independent software products
-- **Interested in:** Cybersecurity, OSINT, systems, and application development
-- **Working toward:** A growing portfolio of useful software
-
-## `~/ projects`
-
-<div align="center">
-
-<a href="https://thomssen.dev/">
-<img src="https://img.shields.io/badge/THOMSEN_SHIELD-NETWORK_PROTECTION-18141f?style=for-the-badge&labelColor=6d45a6" alt="Thomsen Shield"/>
-</a>
-
-</div>
-
-### Thomsen Shield
-
-Windows network monitoring and protection software, designed to help users inspect connections and identify suspicious network activity.
-
-<sub>WINDOWS · NETWORK SECURITY</sub>
 
 ---
 
+## The person behind the code
+
+I'm an independent developer building my own software products through **Thomsen Software**. I focus on turning ideas into real applications, from the first concept to the finished product.
+
+My work revolves around Windows development, cybersecurity, OSINT, and the systems that connect everything together.
+
+## Currently building
+
+<details>
+<summary><strong>Thomsen Shield</strong> — Network security</summary>
+
+Windows software for monitoring network connections and identifying suspicious activity.
+
+</details>
+
+<details>
+<summary><strong>Thomsen OSINT</strong> — Digital investigations</summary>
+
+A toolkit for gathering and analyzing publicly available information.
+
+</details>
+
+<details>
+<summary><strong>Thomsen VM</strong> — Virtualization</summary>
+
+A project exploring virtual machines and system environments.
+
+</details>
+
+<details>
+<summary><strong>Thomsen Tablet</strong> — Hardware tools</summary>
+
+A Windows tablet input driver project for drawing tablets and rhythm games.
+
+[Source code](https://github.com/Thomssen/thomsen-tablet)
+
+</details>
+
+## Tools of the trade
+
 <div align="center">
 
-<a href="https://thomssen.dev/">
-<img src="https://img.shields.io/badge/THOMSEN_OSINT-DIGITAL_INVESTIGATIONS-18141f?style=for-the-badge&labelColor=6d45a6" alt="Thomsen OSINT"/>
-</a>
+<img src="https://skillicons.dev/icons?i=cs,dotnet,ts,js,react,tauri,git,github&theme=dark" alt="Development tools"/>
 
 </div>
 
-### Thomsen OSINT
-
-A digital investigation toolkit for gathering, organizing, and analyzing publicly available information.
-
-<sub>OSINT · RESEARCH · ANALYSIS</sub>
-
----
+## Open-source activity
 
 <div align="center">
 
-<a href="https://github.com/Thomssen">
-<img src="https://img.shields.io/badge/THOMSEN_VM-SYSTEMS_%26_VIRTUALIZATION-18141f?style=for-the-badge&labelColor=6d45a6" alt="Thomsen VM"/>
-</a>
+<img src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=00000000&title_color=888888&text_color=999999&icon_color=ffffff" width="49%" alt="GitHub statistics"/><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=00000000&title_color=888888&text_color=999999" width="49%" alt="Most used languages"/>
 
-<a href="https://github.com/Thomssen/thomsen-tablet">
-<img src="https://img.shields.io/badge/THOMSEN_TABLET-WINDOWS_HARDWARE_TOOLS-18141f?style=for-the-badge&labelColor=6d45a6" alt="Thomsen Tablet"/>
-</a>
-
-</div>
-
-## `~/ stack`
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=cs,dotnet,ts,js,react,tauri,html,css,git,github,vscode&theme=dark&perline=6" alt="Development stack"/>
-
-</div>
-
-## `~/ github`
-
-<div align="center">
-
-<img width="49%" src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0d0b12&title_color=c4a5ff&text_color=c9c5d1&icon_color=a78bfa" alt="GitHub statistics"/>
-<img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=0d0b12&title_color=c4a5ff&text_color=c9c5d1" alt="Most used languages"/>
-
-<br/><br/>
-
-<img width="96%" src="https://github-readme-activity-graph.vercel.app/graph?username=Thomssen&bg_color=0d0b12&color=c9c5d1&line=a78bfa&point=ffffff&area=true&hide_border=true" alt="GitHub activity"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Thomssen&bg_color=00000000&color=999999&line=888888&point=ffffff&area=true&hide_border=true" width="100%" alt="Contribution graph"/>
 
 </div>
 
@@ -94,8 +72,10 @@ A digital investigation toolkit for gathering, organizing, and analyzing publicl
 
 <div align="center">
 
-<a href="https://thomssen.dev/"><strong>THOMSEN SOFTWARE</strong></a>
+**Have a project in mind?**
 
-<sub>Independent ideas. Real products. Continuous development.</sub>
+[thomssen.dev](https://thomssen.dev/)
+
+<sub>Designing, developing, and building independently.</sub>
 
 </div>
