@@ -1,55 +1,104 @@
  <div align="center">
 
-<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,50:111111,100:292929&height=230&section=header&text=THOMSSEN&fontSize=72&fontColor=ffffff&fontAlignY=37&desc=INDEPENDENT%20SOFTWARE%20DEVELOPER&descSize=14&descColor=aaaaaa&descAlignY=58&animation=fadeIn" width="100%" alt="THOMSSEN" />
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:050505,50:171717,100:303030&height=240&section=header&text=THOMSSEN&fontSize=72&fontColor=ffffff&fontAlignY=38&desc=FOUNDER%20%2F%20SOFTWARE%20DEVELOPER&descSize=14&descColor=b0b0b0&descAlignY=58&animation=fadeIn" width="100%" alt="THOMSSEN — Founder and Software Developer"/>
+**Founder of Thomsen Software**
 
+Developing independent software focused on cybersecurity, digital investigations, and Windows applications.
 
-[Website](https://thomssen.dev/) &nbsp; · &nbsp; [GitHub Repositories](https://github.com/Thomssen?tab=repositories)
-
-</div>
-
-## About
-
-I'm an independent software developer and founder of **Thomsen Software**.
-
-I build software focused on cybersecurity, digital investigations, and Windows applications, with an emphasis on practical functionality, clean design, and reliable performance.
-
-## Areas of Focus
-
-- Cybersecurity and network protection
-- Open-source intelligence (OSINT)
-- Windows application development
-- APIs and software infrastructure
-
-## Projects
-
-**Thomsen Shield** — Windows network monitoring and protection software.
-
-**Thomsen OSINT** — Tools for digital investigations and information gathering.
-
-**Thomsen VM** — Virtualization and system software.
-
-**Thomsen Tablet** — Windows tablet input driver development.
-
-## Technologies
-
-`C#` · `.NET` · `JavaScript` · `TypeScript` · `React` · `Tauri`
-
-## GitHub
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0d1117&title_color=ffffff&text_color=aaaaaa&icon_color=aaaaaa&hide_rank=true" width="60%" alt="GitHub statistics"/>
+[Website](https://thomssen.dev/) · [GitHub](https://github.com/Thomssen)
 
 </div>
 
 ---
 
+## About Me
+
+I'm an independent software developer and the founder of **Thomsen Software**.
+
+I build software designed to solve practical problems, with an emphasis on functionality, performance, security, and clean user interfaces.
+
+My projects range from Windows desktop applications to cybersecurity tools and system utilities. I enjoy working across the entire development process, from planning and implementation to interface design, testing, and release preparation.
+
+- **Focus:** Software development and cybersecurity
+- **Platform:** Windows and desktop applications
+- **Approach:** Practical features, clean design, and maintainable code
+- **Company:** Thomsen Software
+
+---
+
+## Featured Projects
+
+### Thomsen Shield
+Windows network monitoring and protection software.
+
+Designed to help users monitor network connections, identify suspicious traffic, and manage network protection.
+
+### Thomsen OSINT
+A desktop toolkit for open-source intelligence and digital investigations.
+
+Focused on gathering and organizing publicly available information to support structured investigations.
+
+### Thomsen VM
+Virtualization and system software.
+
+Exploring desktop virtualization, virtual machines, and system configuration through a dedicated application.
+
+### Thomsen Tablet
+Windows tablet input and driver development.
+
+Focused on tablet-device integration and input handling for compatible hardware.
+
+### More Projects
+
+Explore my GitHub repositories for additional applications, experiments, utilities, and development work.
+
+[Browse all repositories →](https://github.com/Thomssen?tab=repositories)
+
+---
+
+## Technical Skills
+
+**Languages**  
+`C#` · `JavaScript` · `TypeScript` · `HTML` · `CSS`
+
+**Frameworks & Development**  
+`.NET` · `WPF` · `XAML` · `React` · `Tauri`
+
+**Areas of Interest**  
+`Windows Development` · `Cybersecurity` · `OSINT` · `Networking` · `Desktop Applications`
+
+**Tools & Platforms**  
+`Git` · `GitHub` · `Visual Studio` · `VS Code` · `Windows`
+
+---
+
+## Current Focus
+
+- Developing and improving the Thomsen Software product lineup
+- Building reliable Windows applications with modern interfaces
+- Expanding cybersecurity and digital investigation tools
+- Improving software quality, performance, and maintainability
+- Preparing projects for stable public releases
+
+---
+
+## Development Philosophy
+
+**Functionality first. Design with purpose. Build for reliability.**
+
+I aim to create software that is useful, straightforward to operate, and consistent in both its design and behavior. Every project should have a clear purpose and deliver practical value.
+
+---
+
 <div align="center">
 
-[thomssen.dev](https://thomssen.dev/)
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:111111,100:000000&height=2&section=footer" width="100%" alt="" />
 
-<sub>Thomsen Software · Independent software development</sub>
+**THOMSSEN**
+
+<sub>Independent development · Thomsen Software</sub>
+
+[thomssen.dev](https://thomssen.dev/)
 
 </div>
