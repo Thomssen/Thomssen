@@ -93,8 +93,6 @@ I aim to create software that is useful, straightforward to operate, and consist
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:111111,100:000000&height=2&section=footer" width="100%" alt="" />
-
 **THOMSSEN**
 
 <sub>Independent development · Thomsen Software</sub>
