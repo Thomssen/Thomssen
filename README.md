@@ -1,156 +1,104 @@
  <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,35:101010,70:1c1c1c,100:303030&height=250&section=header&text=THOMSSEN&fontSize=76&fontColor=ffffff&fontAlignY=36&desc=SOFTWARE%20DEVELOPMENT%20%2F%20CYBERSECURITY&descSize=13&descColor=b5b5b5&descAlignY=57&animation=fadeIn" width="100%" alt="THOMSSEN — Software Development and Cybersecurity" />
-
-# Independent Software Developer
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,50:111111,100:292929&height=230&section=header&text=THOMSSEN&fontSize=72&fontColor=ffffff&fontAlignY=37&desc=INDEPENDENT%20SOFTWARE%20DEVELOPER&descSize=14&descColor=aaaaaa&descAlignY=58&animation=fadeIn" width="100%" alt="THOMSSEN" />
 
 **Founder of Thomsen Software**
 
-Building desktop applications, cybersecurity tools, and software designed around functionality, reliability, and clean interfaces.
+Developing independent software focused on cybersecurity, digital investigations, and Windows applications.
 
-[WEBSITE](https://thomssen.dev/) &nbsp; / &nbsp; [REPOSITORIES](https://github.com/Thomssen?tab=repositories) &nbsp; / &nbsp; [CONTACT](https://thomssen.dev/)
-
-</div>
-
----
-
-## 01 / Profile
-
-I'm an independent software developer and the founder of **Thomsen Software**, where I develop software products and tools for everyday users and technical environments.
-
-My work combines application development, system-level functionality, cybersecurity, and user interface design. I enjoy taking an idea from the initial concept through development, testing, refinement, and release.
-
-I aim to build software that is purposeful, efficient, and straightforward to use, without compromising on the details that make an application feel complete.
-
-| | |
-|:--|:--|
-| **Role** | Founder & Software Developer |
-| **Organization** | Thomsen Software |
-| **Primary platform** | Windows |
-| **Main interests** | Cybersecurity, OSINT, desktop software |
-| **Development style** | Independent product development |
-
----
-
-## 02 / Selected Projects
-
-### THOMSEN SHIELD
-<sub>NETWORK SECURITY · WINDOWS</sub>
-
-A Windows application focused on network visibility and protection.
-
-- Network connection monitoring
-- Suspicious traffic inspection
-- IP blocking and protection controls
-- A dedicated desktop interface
-
-[Explore Thomsen Software](https://thomssen.dev/)
-
----
-
-### THOMSEN OSINT
-<sub>OPEN-SOURCE INTELLIGENCE · DIGITAL INVESTIGATIONS</sub>
-
-A desktop toolkit designed to help organize digital investigations and gather publicly available information.
-
-- Username and online presence research
-- Domain and network intelligence
-- Metadata and digital footprint analysis
-- Investigation organization and reporting
-
-[Explore Thomsen Software](https://thomssen.dev/)
-
----
-
-### THOMSEN VM
-<sub>VIRTUALIZATION · SYSTEM SOFTWARE</sub>
-
-A project focused on making virtual machine workflows more accessible through a dedicated desktop application.
-
-[View GitHub repositories](https://github.com/Thomssen?tab=repositories)
-
----
-
-### THOMSEN TABLET
-<sub>WINDOWS · INPUT DEVICES</sub>
-
-A Windows tablet input and driver project focused on hardware integration and responsive input handling.
-
-[View GitHub repositories](https://github.com/Thomssen?tab=repositories)
-
----
-
-## 03 / Technology
-
-<div align="center">
-
-**LANGUAGES**
-
-`C#` &nbsp; `JavaScript` &nbsp; `TypeScript` &nbsp; `HTML` &nbsp; `CSS`
-
-**FRAMEWORKS & APPLICATION DEVELOPMENT**
-
-`.NET` &nbsp; `WPF` &nbsp; `XAML` &nbsp; `React` &nbsp; `Tauri`
-
-**TOOLS & ENVIRONMENTS**
-
-`Git` &nbsp; `GitHub` &nbsp; `Visual Studio` &nbsp; `VS Code` &nbsp; `Windows`
+[Website](https://thomssen.dev/) · [GitHub](https://github.com/Thomssen)
 
 </div>
 
 ---
 
-## 04 / Areas of Focus
+## About Me
 
-| Area | Focus |
-|:--|:--|
-| **Desktop development** | Building Windows applications with practical interfaces |
-| **Cybersecurity** | Network visibility, protection, and security utilities |
-| **OSINT** | Research tools for publicly available digital information |
-| **System software** | Exploring lower-level functionality and device integration |
-| **Product development** | Turning concepts into usable, maintainable software |
+I'm an independent software developer and the founder of **Thomsen Software**.
 
----
+I build software designed to solve practical problems, with an emphasis on functionality, performance, security, and clean user interfaces.
 
-## 05 / Development Principles
+My projects range from Windows desktop applications to cybersecurity tools and system utilities. I enjoy working across the entire development process, from planning and implementation to interface design, testing, and release preparation.
 
-**Purposeful functionality**  
-Every feature should serve a clear purpose and improve the user experience.
-
-**Clean interfaces**  
-Software should be easy to understand, visually consistent, and straightforward to navigate.
-
-**Reliability first**  
-Testing, error handling, and maintainability are essential parts of development.
-
-**Continuous improvement**  
-Projects evolve through iteration, feedback, and practical improvements.
+- **Focus:** Software development and cybersecurity
+- **Platform:** Windows and desktop applications
+- **Approach:** Practical features, clean design, and maintainable code
+- **Company:** Thomsen Software
 
 ---
 
-## 06 / GitHub
+## Featured Projects
+
+### Thomsen Shield
+Windows network monitoring and protection software.
+
+Designed to help users monitor network connections, identify suspicious traffic, and manage network protection.
+
+### Thomsen OSINT
+A desktop toolkit for open-source intelligence and digital investigations.
+
+Focused on gathering and organizing publicly available information to support structured investigations.
+
+### Thomsen VM
+Virtualization and system software.
+
+Exploring desktop virtualization, virtual machines, and system configuration through a dedicated application.
+
+### Thomsen Tablet
+Windows tablet input and driver development.
+
+Focused on tablet-device integration and input handling for compatible hardware.
+
+### More Projects
+
+Explore my GitHub repositories for additional applications, experiments, utilities, and development work.
+
+[Browse all repositories →](https://github.com/Thomssen?tab=repositories)
+
+---
+
+## Technical Skills
+
+**Languages**  
+`C#` · `JavaScript` · `TypeScript` · `HTML` · `CSS`
+
+**Frameworks & Development**  
+`.NET` · `WPF` · `XAML` · `React` · `Tauri`
+
+**Areas of Interest**  
+`Windows Development` · `Cybersecurity` · `OSINT` · `Networking` · `Desktop Applications`
+
+**Tools & Platforms**  
+`Git` · `GitHub` · `Visual Studio` · `VS Code` · `Windows`
+
+---
+
+## Current Focus
+
+- Developing and improving the Thomsen Software product lineup
+- Building reliable Windows applications with modern interfaces
+- Expanding cybersecurity and digital investigation tools
+- Improving software quality, performance, and maintainability
+- Preparing projects for stable public releases
+
+---
+
+## Development Philosophy
+
+**Functionality first. Design with purpose. Build for reliability.**
+
+I aim to create software that is useful, straightforward to operate, and consistent in both its design and behavior. Every project should have a clear purpose and deliver practical value.
+
+---
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=Thomssen&show_icons=true&hide_border=true&bg_color=0d0d0d&title_color=ffffff&text_color=aaaaaa&icon_color=888888&ring_color=888888" width="49%" alt="GitHub statistics" />
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:111111,100:000000&height=2&section=footer" width="100%" alt="" />
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thomssen&layout=compact&hide_border=true&bg_color=0d0d0d&title_color=ffffff&text_color=aaaaaa" width="41%" alt="Most used programming languages" />
+**THOMSSEN**
 
-<br/>
+<sub>Independent development · Thomsen Software</sub>
 
-<img src="https://streak-stats.demolab.com?user=Thomssen&hide_border=true&background=0D0D0D&ring=888888&fire=AAAAAA&currStreakLabel=FFFFFF&sideLabels=AAAAAA&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=777777" width="75%" alt="GitHub contribution streak" />
-
-</div>
-
----
-
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0d0d0d&height=1&section=footer" width="100%" alt="" />
-
-**THOMSSEN**  
-<sub>Independent Software Development · Thomsen Software</sub>
-
-[Website](https://thomssen.dev/) &nbsp; · &nbsp; [GitHub](https://github.com/Thomssen)
+[thomssen.dev](https://thomssen.dev/)
 
 </div>
