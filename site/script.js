@@ -93,3 +93,9 @@ links.forEach(a => a.addEventListener('click', () => {
   }
   track(".hero", false); track(".wcard, .qa, .discord", false); track("[data-art]", true);
 })();
+
+;(function () {
+  document.querySelectorAll(".bcard").forEach(function (el) {
+    el.addEventListener("pointermove", function (e) { var r = el.getBoundingClientRect(); el.style.setProperty("--mx", (e.clientX - r.left) + "px"); el.style.setProperty("--my", (e.clientY - r.top) + "px"); });
+  });
+})();
