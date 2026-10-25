@@ -265,6 +265,11 @@ h2 { font-size: clamp(34px, 5vw, 52px); letter-spacing: -.045em; line-height: 1;
 .discord__tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .discord__tags li { font-size: 11px; font-weight: 600; color: var(--muted); padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(0,0,0,.35); }
 @media (max-width: 820px) { .faq__grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 56px; } }
+
+.stats { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px; background: rgba(0,0,0,.35); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stats[hidden] { display: none; }
+.stats b { color: #fff; font-weight: 700; }
+.stats i { width: 8px; height: 8px; border-radius: 50%; background: #a6dcc2; box-shadow: 0 0 10px #a6dcc2; }
 </style>
 
   <header class="nav">
@@ -480,6 +485,7 @@ h2 { font-size: clamp(34px, 5vw, 52px); letter-spacing: -.045em; line-height: 1;
         <div class="discord__copy">
           <h2>Come build with us on Discord.</h2>
           <p>Sneak peeks, changelogs, help and support, answered by the developer.</p>
+          <span class="stats" id="discord-stats" hidden><i></i><b id="d-members">0</b> members · <b id="d-online">0</b> online</span>
         </div>
         <div class="discord__side">
           <ul class="discord__tags"><li>Support</li><li>Updates</li><li>Sneak peeks</li></ul>
@@ -490,4 +496,26 @@ h2 { font-size: clamp(34px, 5vw, 52px); letter-spacing: -.045em; line-height: 1;
   </section>
 
   <script>(function(){var t=document.getElementById("track");if(!t)return;function by(d){t.scrollBy({left:d*312,behavior:"smooth"})}document.getElementById("prev").addEventListener("click",function(){by(-1)});document.getElementById("next").addEventListener("click",function(){by(1)})})();</script>
-  <script>document.querySelectorAll(".nav__links a").forEach(function(a){a.addEventListener("click",function(){document.querySelectorAll(".nav__links a").forEach(function(l){l.classList.toggle("active",l===a)})})})</script>
+  <script>document.querySelectorAll(".nav__links a").forEach(function(a){a.addEventListener("click",function(){document.querySelectorAll(".nav__links a").forEach(function(l){l.classList.toggle("active",l===a)})})});
+// Live Discord counts. Set DISCORD_INVITE to the code in your invite link (discord.gg/CODE).
+(function () {
+  var DISCORD_INVITE = "";
+  var box = document.getElementById("discord-stats");
+  var join = document.getElementById("discord-link");
+  if (!box || !DISCORD_INVITE) return;
+  join.href = "https://discord.gg/" + DISCORD_INVITE;
+  function fmt(n) { return Number(n).toLocaleString("en-US"); }
+  function update() {
+    fetch("https://discord.com/api/v10/invites/" + DISCORD_INVITE + "?with_counts=true")
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) {
+        document.getElementById("d-members").textContent = fmt(d.approximate_member_count);
+        document.getElementById("d-online").textContent = fmt(d.approximate_presence_count);
+        box.hidden = false;
+      })
+      .catch(function () {});
+  }
+  update();
+  setInterval(update, 60000);
+})();
+</script>
