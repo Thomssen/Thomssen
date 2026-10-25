@@ -1,9 +1,8 @@
 <title>Thomsen Software</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  color-scheme: dark;
   --bg: #09090a;
   --bg-2: #111113;
   --panel: rgba(255,255,255,.04);
@@ -21,14 +20,13 @@ body {
   font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  zoom: .85;
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
 /* Nav */
-.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(9,9,10,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-.nav__inner { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); height: 64px; display: flex; align-items: center; gap: 36px; }
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(9,9,10,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.nav__inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 36px; }
 .logo { font-weight: 800; font-size: 26px; letter-spacing: -.04em; }
 .logo span { color: var(--muted); }
 .nav__links { display: flex; gap: 6px; flex: 1; }
@@ -49,7 +47,7 @@ ul { list-style: none; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; display: inline-block; }
 
 /* Hero */
-.hero { position: relative; min-height: 0; display: flex; align-items: center; overflow: hidden; }
+.hero { position: relative; min-height: calc(100vh - 64px); display: flex; align-items: center; overflow: hidden; }
 .hero__glow { position: absolute; inset: 0; background:
   radial-gradient(60% 50% at 85% 25%, rgba(255,255,255,.09), transparent 70%),
   radial-gradient(40% 40% at 5% 100%, rgba(255,255,255,.05), transparent 70%); }
@@ -58,7 +56,7 @@ ul { list-style: none; }
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(70% 70% at 60% 40%, #000, transparent 75%);
           mask-image: radial-gradient(70% 70% at 60% 40%, #000, transparent 75%); }
-.hero__inner { position: relative; z-index: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding-block: 60px 110px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
+.hero__inner { position: relative; z-index: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 60px 24px 100px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
 
 .pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; font-size: 12px; font-weight: 600; margin-bottom: 36px; }
 .pill i { width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px #fff; }
@@ -116,9 +114,12 @@ h1 em { font-style: normal; background: linear-gradient(180deg, #fff, #777); -we
 .scroll span { position: absolute; top: 6px; left: 50%; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: #fff; animation: wheel 1.8s infinite; }
 @keyframes wheel { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(12px); } }
 
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
 @media (max-width: 960px) {
   .hero__inner { grid-template-columns: 1fr; padding-top: 40px; }
-  .hero__copy { min-width: 0; }
   .nav__links { display: none; }
   .nav__inner { justify-content: space-between; }
   .stage { height: 520px; max-width: 520px; margin: 0 auto; width: 100%; }
@@ -130,10 +131,6 @@ h1 em { font-style: normal; background: linear-gradient(180deg, #fff, #777); -we
   .mono--perf { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .float, .scroll span { animation: none; } html { scroll-behavior: auto; } }
-
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bg); }
-:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-
 
 /* Releases */
 .releases { padding-block: 40px 100px; border-top: 1px solid var(--line); }
@@ -434,49 +431,122 @@ h1 em { background-size: 220% 100%; background: linear-gradient(100deg, #6e6e74 
 @keyframes msgin { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (max-width: 860px) { .faq__grid, .discord { grid-template-columns: 1fr; } .faq__intro { position: static; } .chat { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .orbit i, .sweepw, .caret, .ping, .tg, .tg i, .bv--check p, .typing i { animation: none !important; } }
+
+
+/* ===== v2 redesign ===== */
+:root { --display: "Bricolage Grotesque", Inter, system-ui, sans-serif; }
+h1, h2, h3, .logo, .manifesto__text, .foot__word { font-family: var(--display); }
+html { scroll-padding-top: 90px; }
+
+.nav2 { position: fixed; z-index: 60; top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 20px; max-width: calc(100% - 32px); border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(16,16,18,.62); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+.nav2 .logo { font-size: 22px; margin-right: 10px; }
+.nav2 .btn { white-space: nowrap; }
+.nav2__links { display: flex; gap: 2px; }
+.nav2__links a { padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--muted); transition: color .2s, background .2s; }
+.nav2__links a:hover { color: #fff; }
+.nav2__links a.active { color: #fff; background: rgba(255,255,255,.1); }
+@media (max-width: 720px) { .nav2__links { display: none; } .nav2 { gap: 18px; } }
+
+.hero2 { position: relative; overflow: hidden; text-align: center; padding: clamp(130px, 15vw, 180px) 0 0; }
+.hero2__beam { position: absolute; inset: 0 0 auto; height: 780px; background: radial-gradient(60% 70% at 50% 0%, rgba(255,255,255,.2), transparent 70%); pointer-events: none; }
+.hero2__grid { position: absolute; inset: 0; opacity: .5; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 72px 72px; -webkit-mask-image: radial-gradient(60% 55% at 50% 22%, #000, transparent 75%); mask-image: radial-gradient(60% 55% at 50% 22%, #000, transparent 75%); }
+.hero2__top { position: relative; max-width: 980px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; align-items: center; }
+.hero2 h1 { font-size: clamp(44px, 8.2vw, 104px); line-height: .96; letter-spacing: -.05em; margin-bottom: 26px; text-wrap: balance; }
+.hero2 .pill { margin-bottom: 30px; }
+.hero2 .lead { max-width: 580px; margin-inline: auto; }
+.hero2 .cta { justify-content: center; margin-bottom: 0; }
+.hero2__stage { position: relative; max-width: 1060px; margin: clamp(50px, 7vw, 90px) auto 0; padding-inline: max(16px, env(safe-area-inset-left, 0px)); perspective: 1800px; }
+.hero2 .hwin { max-width: none; transform: rotateX(var(--rx, 18deg)); transform-origin: 50% 0; transition: none; -webkit-mask-image: linear-gradient(#000 62%, transparent 98%); mask-image: linear-gradient(#000 62%, transparent 98%); box-shadow: 0 -30px 120px rgba(255,255,255,.07), 0 50px 120px rgba(0,0,0,.7); }
+.hero2 .hwin:hover { transform: rotateX(var(--rx, 18deg)); }
+.hero2 .hchip--a { top: 8%; right: 1%; } .hero2 .hchip--b { left: 0; bottom: 34%; } .hero2 .hchip--c { right: 6%; bottom: 14%; }
+.hero2 .hwin .ring { animation: ringfill 3.2s ease-in-out infinite alternate; }
+@media (max-width: 640px) { .hero2 .hchip { display: none; } }
+
+.story { position: relative; height: 430vh; }
+.story__pin { position: sticky; top: 0; height: 100vh; display: grid; grid-template-columns: .85fr 1.3fr; align-items: center; gap: clamp(30px, 5vw, 80px); max-width: 1180px; margin: 0 auto; padding: 70px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+.story__left { min-width: 0; }
+.story__left h2 { font-size: clamp(38px, 5vw, 62px); }
+.story__list { list-style: none; margin-top: 38px; border-left: 1px solid var(--line); }
+.story__item { position: relative; padding: 14px 0 14px 24px; cursor: pointer; opacity: .38; transition: opacity .4s; }
+.story__item::before { content: ""; position: absolute; left: -1px; top: 0; bottom: 0; width: 2px; background: #fff; transform: scaleY(0); transform-origin: top; transition: transform .45s; }
+.story__item.active { opacity: 1; } .story__item.active::before { transform: scaleY(1); }
+.story__item:hover { opacity: .8; } .story__item.active:hover { opacity: 1; }
+.story__cat { display: block; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.story__item h3 { font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -.045em; line-height: 1.05; margin: 0; }
+.story__more { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .6s ease, opacity .5s; }
+.story__item.active .story__more { max-height: 190px; opacity: 1; }
+.story__more p { font-size: 16px; line-height: 1.5; color: var(--muted); max-width: 400px; margin: 14px 0 18px; }
+.story__links { display: flex; align-items: center; gap: 20px; }
+.story__more small { display: block; margin-top: 16px; font-size: 12px; color: var(--dim); }
+.story__stack { position: relative; width: 100%; aspect-ratio: 520 / 340; }
+.sslide { position: absolute; inset: 0; padding: 6px; border-radius: 24px; border: 1px solid rgba(255,255,255,.12); background: #0d0d0e; box-shadow: 0 50px 120px rgba(0,0,0,.65), 0 0 90px rgba(255,255,255,.04); opacity: 0; transform: translateY(26px) scale(.97); transition: opacity .6s ease, transform .7s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+.sslide.active { opacity: 1; transform: none; pointer-events: auto; }
+.sslide svg { display: block; width: 100%; height: 100%; }
+.sslide .ring { animation: ringfill 3.2s ease-in-out infinite alternate; }
+.sslide .flow { stroke-dasharray: 5 7; animation: flow 1.4s linear infinite; }
+.sslide .flow2 { stroke-dasharray: 260; animation: draw 3.5s ease-in-out infinite; }
+.sslide .blink { animation: blink 1.2s steps(2, jump-none) infinite; }
+.sslide .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.8s ease-out infinite; }
+.sslide .pulse.d2 { animation-delay: 1.4s; }
+.sslide .bar { transform-box: fill-box; transform-origin: left; animation: barx 4s ease-in-out infinite alternate; }
+.sslide .bar.b2 { animation-delay: -1s; } .sslide .bar.b3 { animation-delay: -2s; }
+@media (max-width: 860px) {
+  .story { height: auto; padding-block: 70px; }
+  .story__pin { position: static; height: auto; grid-template-columns: 1fr; padding-top: 0; }
+  .story__item { opacity: 1; cursor: default; } .story__item::before { transform: scaleY(1); }
+  .story__more { max-height: none; opacity: 1; }
+  .story__stack { aspect-ratio: auto; display: flex; flex-direction: column; gap: 20px; }
+  .sslide { position: relative; opacity: 1; transform: none; aspect-ratio: 520 / 340; }
+}
+
+.stack { padding-block: clamp(80px, 12vw, 140px); }
+.stack__inner { max-width: 1180px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.stack h2 { margin-bottom: 50px; }
+.stack__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 24px; }
+.stack__col h4 { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+.stack__col ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.stack__col li { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.03); font-size: 13px; font-weight: 500; transition: background .2s, border-color .2s, transform .2s; }
+.stack__col li:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.35); transform: translateY(-2px); }
+@media (max-width: 860px) { .stack__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .stack__grid { grid-template-columns: 1fr; } }
+
+.foot { border-top: 1px solid var(--line); overflow: hidden; }
+.foot__inner { max-width: 1180px; margin: 0 auto; padding: 70px max(16px, env(safe-area-inset-left, 0px)) 28px; }
+.foot__cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+.foot__brand .logo { font-size: 28px; display: inline-block; margin-bottom: 14px; }
+.foot__brand p { font-size: 14px; line-height: 1.6; color: var(--muted); max-width: 320px; }
+.foot h4 { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+.foot__cols a:not(.logo) { display: block; font-size: 14px; color: var(--muted); padding: 5px 0; transition: color .2s; }
+.foot__cols a:not(.logo):hover { color: #fff; }
+.foot__word { margin-top: 40px; text-align: center; font-weight: 800; letter-spacing: -.06em; line-height: .8; font-size: clamp(64px, 17.5vw, 232px); background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 85%); -webkit-background-clip: text; background-clip: text; color: transparent; user-select: none; }
+.foot__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 10px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; color: var(--dim); }
+@media (max-width: 720px) { .foot__cols { grid-template-columns: 1fr 1fr; } .foot__brand { grid-column: 1 / -1; } }
+@media (prefers-reduced-motion: reduce) { .sslide, .story__more { transition: none; } .sslide * { animation: none !important; } }
+
 </style>
 
-  <header class="nav">
-    <div class="nav__inner">
-      <a class="logo" href="#home">thomsen<span>.</span></a>
-      <nav class="nav__links" aria-label="Main">
-        <a class="active" href="#home">Home</a>
-        <a href="#products">Products</a>
-        <a href="#tools">Tools</a>
-        <a href="#docs">Docs</a>
-      </nav>
-      <div class="nav__right">
-        <a class="icon-btn" href="https://github.com/Thomssen" aria-label="GitHub">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
-        </a>
-        <a class="btn btn--light btn--sm" href="#products">Get started</a>
-      </div>
-    </div>
+  <header class="nav2" id="nav">
+    <a class="logo" href="#home">thomsen<span>.</span></a>
+    <nav class="nav2__links" aria-label="Main">
+      <a href="#home" class="active">Home</a>
+      <a href="#products">Products</a>
+      <a href="#why">Why</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--light btn--sm" href="https://discord.gg/thomsen">Join Discord</a>
   </header>
 
-  <main id="home" class="hero">
-    <div class="hero__glow" aria-hidden="true"></div>
-    <div class="hero__grid" aria-hidden="true"></div>
-
-    <div class="hero__inner">
-      <section class="hero__copy">
-        <span class="pill"><i></i>Windows software · independent developer</span>
-        <h1>Software you<br>can actually<br><em>trust.</em></h1>
-        <p class="lead">Independent Windows applications for cybersecurity, digital investigations and system utilities. Light on your system, clean in design, and supported by the person who wrote them.</p>
-        <div class="cta">
-          <a class="btn btn--light" href="#products">Browse software <span aria-hidden="true">→</span></a>
-          <a class="btn btn--ghost" href="https://github.com/Thomssen"><i class="dot"></i>View GitHub</a>
-        </div>
-        <ul class="facts">
-          <li>Native Windows apps</li>
-          <li>C# · .NET · WPF</li>
-          <li>Built &amp; supported by one developer</li>
-        </ul>
-      </section>
-
-      <section class="stage2" aria-label="Product preview">
-        <div class="orbit" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="hwin" data-tilt><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen Shield</text>
+  <main class="hero2" id="home">
+    <div class="hero2__beam" aria-hidden="true"></div>
+    <div class="hero2__grid" aria-hidden="true"></div>
+    <div class="hero2__top">
+      <span class="pill"><i></i>Windows software · independent developer</span>
+      <h1>Software you can actually <em>trust.</em></h1>
+      <p class="lead">Independent Windows applications for cybersecurity, digital investigations and system utilities. Light on your system, clean in design, and supported by the person who wrote them.</p>
+      <div class="cta"><a class="btn btn--light" href="#products">Browse software <span aria-hidden="true">→</span></a><a class="btn btn--ghost" href="https://github.com/Thomssen"><i class="dot"></i>View GitHub</a></div>
+    </div>
+    <div class="hero2__stage">
+      <div class="hwin" id="hwin"><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen Shield</text>
 <path d="M120 46 V330" stroke-opacity=".08"/>
 <rect x="22" y="62" width="88" height="26" rx="8" fill="#fff" fill-opacity=".09" stroke="none"/><text x="34" y="79" font-size="10" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.95" stroke="none">Overview</text><text x="34" y="107" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Connections</text><text x="34" y="135" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Rules</text><text x="34" y="163" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Logs</text>
 <circle cx="236" cy="150" r="52" stroke-opacity=".1" stroke-width="9"/>
@@ -486,13 +556,10 @@ h1 em { background-size: 220% 100%; background: linear-gradient(100deg, #6e6e74 
 <path class="flow2" d="M340 140 L362 124 L384 132 L406 104 L428 118 L450 94 L488 108" stroke-width="2"/>
 <g stroke-opacity=".14"><path d="M340 150 H488"/></g>
 <g><rect x="330" y="172" width="168" height="30" rx="9" fill="#fff" fill-opacity=".04" stroke="none"/><circle class="" cx="346" cy="187" r="3.5" fill="#fff" stroke="none"/><text x="358" y="191" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.7" stroke="none">chrome.exe</text><text x="488" y="191" font-size="9" font-weight="400" text-anchor="end" fill="#fff" fill-opacity="0.4" stroke="none">443 · TLS</text><rect x="330" y="208" width="168" height="30" rx="9" fill="#fff" fill-opacity=".04" stroke="none"/><circle class="blink" cx="346" cy="223" r="3.5" fill="#a6dcc2" stroke="none"/><text x="358" y="227" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.7" stroke="none">unknown.exe</text><text x="488" y="227" font-size="9" font-weight="400" text-anchor="end" fill="#fff" fill-opacity="0.4" stroke="none">blocked</text><rect x="330" y="244" width="168" height="30" rx="9" fill="#fff" fill-opacity=".04" stroke="none"/><circle class="" cx="346" cy="259" r="3.5" fill="#fff" stroke="none"/><text x="358" y="263" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.7" stroke="none">steam.exe</text><text x="488" y="263" font-size="9" font-weight="400" text-anchor="end" fill="#fff" fill-opacity="0.4" stroke="none">443 · TLS</text></g></svg></div>
-        <div class="hchip hchip--a float" style="--d:0s"><i></i>VPN connected</div>
-        <div class="hchip hchip--b float" style="--d:-2s"><i></i>24 results found</div>
-        <div class="hchip hchip--c float" style="--d:-4s"><i></i>Ubuntu 24.04 running</div>
-      </section>
+      <div class="hchip hchip--a float" style="--d:0s"><i></i>VPN connected</div>
+      <div class="hchip hchip--b float" style="--d:-2s"><i></i>24 results found</div>
+      <div class="hchip hchip--c float" style="--d:-4s"><i></i>Ubuntu 24.04 running</div>
     </div>
-
-    <div class="scroll" aria-hidden="true"><span></span></div>
   </main>
 
   <div class="marquee" aria-hidden="true"><div class="marquee__row"><span>Native Windows apps</span><span>C# · .NET · WPF</span><span>Cybersecurity</span><span>Digital investigations</span><span>Virtualization</span><span>Built by one developer</span><span>Native Windows apps</span><span>C# · .NET · WPF</span><span>Cybersecurity</span><span>Digital investigations</span><span>Virtualization</span><span>Built by one developer</span></div></div>
@@ -501,21 +568,36 @@ h1 em { background-size: 220% 100%; background: linear-gradient(100deg, #6e6e74 
     <p class="manifesto__text" data-fill>Functionality first. Design with purpose. Build for reliability. Software that is useful, straightforward to operate, and consistent in both its design and behavior.</p>
   </section>
 
-  <section class="releases" id="products">
-    <div class="releases__inner">
-      <div class="lineup">
-        <span class="eyebrow reveal">The lineup</span>
-        <h2 class="reveal">Four tools.<br>One developer.</h2>
+  <section class="story" id="products" data-story>
+    <div class="story__pin">
+      <div class="story__left">
+        <span class="eyebrow">The lineup</span>
+        <h2>Four tools.<br>One developer.</h2>
+        <ol class="story__list">
+          <li class="story__item active" data-i="0">
+            <span class="story__cat">Network protection</span>
+            <h3>Thomsen Shield</h3>
+            <div class="story__more"><p>See every connection. Stop the ones you do not trust.</p><div class="story__links"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div><small>Windows 10 · Windows 11 · .NET</small></div>
+          </li>
+          <li class="story__item" data-i="1">
+            <span class="story__cat">Privacy</span>
+            <h3>Thomsen VPN</h3>
+            <div class="story__more"><p>Your traffic, encrypted. One click to connect.</p><div class="story__links"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div><small>Windows 10 · Windows 11 · .NET</small></div>
+          </li>
+          <li class="story__item" data-i="2">
+            <span class="story__cat">Investigations</span>
+            <h3>Thomsen OSINT</h3>
+            <div class="story__more"><p>Public information, organized into one clear picture.</p><div class="story__links"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div><small>Windows 10 · Windows 11 · WPF</small></div>
+          </li>
+          <li class="story__item" data-i="3">
+            <span class="story__cat">Virtualization</span>
+            <h3>Thomsen VM</h3>
+            <div class="story__more"><p>A full machine, running inside your desktop.</p><div class="story__links"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div><small>Windows 10 · Windows 11 · .NET</small></div>
+          </li>
+        </ol>
       </div>
-      <article class="scene" data-scene>
-        <div class="scene__text">
-          <span class="eyebrow reveal">Network protection</span>
-          <h3 class="reveal">Thomsen Shield.</h3>
-          <p class="scene__line reveal">See every connection. Stop the ones you do not trust.</p>
-          <div class="scene__links reveal"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div>
-          <p class="scene__spec reveal">Windows 10 · Windows 11 · .NET</p>
-        </div>
-        <div class="scene__art" data-art><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen Shield</text>
+      <div class="story__stack">
+          <div class="sslide active" data-i="0"><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen Shield</text>
 <path d="M120 46 V330" stroke-opacity=".08"/>
 <rect x="22" y="62" width="88" height="26" rx="8" fill="#fff" fill-opacity=".09" stroke="none"/><text x="34" y="79" font-size="10" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.95" stroke="none">Overview</text><text x="34" y="107" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Connections</text><text x="34" y="135" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Rules</text><text x="34" y="163" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Logs</text>
 <circle cx="236" cy="150" r="52" stroke-opacity=".1" stroke-width="9"/>
@@ -525,58 +607,38 @@ h1 em { background-size: 220% 100%; background: linear-gradient(100deg, #6e6e74 
 <path class="flow2" d="M340 140 L362 124 L384 132 L406 104 L428 118 L450 94 L488 108" stroke-width="2"/>
 <g stroke-opacity=".14"><path d="M340 150 H488"/></g>
 <g><rect x="330" y="172" width="168" height="30" rx="9" fill="#fff" fill-opacity=".04" stroke="none"/><circle class="" cx="346" cy="187" r="3.5" fill="#fff" stroke="none"/><text x="358" y="191" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.7" stroke="none">chrome.exe</text><text x="488" y="191" font-size="9" font-weight="400" text-anchor="end" fill="#fff" fill-opacity="0.4" stroke="none">443 · TLS</text><rect x="330" y="208" width="168" height="30" rx="9" fill="#fff" fill-opacity=".04" stroke="none"/><circle class="blink" cx="346" cy="223" r="3.5" fill="#a6dcc2" stroke="none"/><text x="358" y="227" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.7" stroke="none">unknown.exe</text><text x="488" y="227" font-size="9" font-weight="400" text-anchor="end" fill="#fff" fill-opacity="0.4" stroke="none">blocked</text><rect x="330" y="244" width="168" height="30" rx="9" fill="#fff" fill-opacity=".04" stroke="none"/><circle class="" cx="346" cy="259" r="3.5" fill="#fff" stroke="none"/><text x="358" y="263" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.7" stroke="none">steam.exe</text><text x="488" y="263" font-size="9" font-weight="400" text-anchor="end" fill="#fff" fill-opacity="0.4" stroke="none">443 · TLS</text></g></svg></div>
-      </article>
-      <article class="scene" data-scene>
-        <div class="scene__text">
-          <span class="eyebrow reveal">Privacy</span>
-          <h3 class="reveal">Thomsen VPN.</h3>
-          <p class="scene__line reveal">Your traffic, encrypted. One click to connect.</p>
-          <div class="scene__links reveal"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div>
-          <p class="scene__spec reveal">Windows 10 · Windows 11 · .NET</p>
-        </div>
-        <div class="scene__art" data-art><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen VPN</text>
+          <div class="sslide" data-i="1"><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen VPN</text>
 <g class="pulse"><circle cx="260" cy="150" r="46" stroke="#a6dcc2" stroke-opacity=".6"/></g><g class="pulse d2"><circle cx="260" cy="150" r="46" stroke="#a6dcc2" stroke-opacity=".6"/></g>
 <circle cx="260" cy="150" r="46" fill="#fff" fill-opacity=".06" stroke-opacity=".5" stroke-width="1.6"/>
 <path d="M247 135 A19 19 0 1 0 273 135 M260 128 V150" stroke="#a6dcc2" stroke-width="3"/><text x="260" y="226" font-size="16" font-weight="700" text-anchor="middle" fill="#fff" fill-opacity="1" stroke="none">Connected</text><text x="260" y="244" font-size="10" font-weight="400" text-anchor="middle" fill="#fff" fill-opacity="0.5" stroke="none">Frankfurt · 12 ms</text>
 <path class="flow" d="M80 150 C 140 56, 380 56, 440 150" stroke-opacity=".6"/>
 <g fill="#0f0f11" stroke-width="1.5"><circle cx="80" cy="150" r="7"/><circle cx="440" cy="150" r="7" stroke="#a6dcc2"/></g><text x="80" y="176" font-size="10" font-weight="400" text-anchor="middle" fill="#fff" fill-opacity="0.6" stroke="none">Copenhagen</text><text x="440" y="176" font-size="10" font-weight="400" text-anchor="middle" fill="#fff" fill-opacity="0.6" stroke="none">Frankfurt</text><rect x="34" y="270" width="140" height="42" rx="11" fill="#fff" fill-opacity=".04" stroke-opacity=".12"/><text x="48" y="288" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.45" stroke="none">DOWNLOAD</text><text x="48" y="304" font-size="12" font-weight="700" text-anchor="start" fill="#fff" fill-opacity="0.95" stroke="none">412 Mbps</text><rect x="190" y="270" width="140" height="42" rx="11" fill="#fff" fill-opacity=".04" stroke-opacity=".12"/><text x="204" y="288" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.45" stroke="none">UPLOAD</text><text x="204" y="304" font-size="12" font-weight="700" text-anchor="start" fill="#fff" fill-opacity="0.95" stroke="none">188 Mbps</text><rect x="346" y="270" width="140" height="42" rx="11" fill="#fff" fill-opacity=".04" stroke-opacity=".12"/><text x="360" y="288" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.45" stroke="none">ENCRYPTION</text><text x="360" y="304" font-size="12" font-weight="700" text-anchor="start" fill="#fff" fill-opacity="0.95" stroke="none">AES-256</text></svg></div>
-      </article>
-      <article class="scene" data-scene>
-        <div class="scene__text">
-          <span class="eyebrow reveal">Investigations</span>
-          <h3 class="reveal">Thomsen OSINT.</h3>
-          <p class="scene__line reveal">Public information, organized into one clear picture.</p>
-          <div class="scene__links reveal"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div>
-          <p class="scene__spec reveal">Windows 10 · Windows 11 · WPF</p>
-        </div>
-        <div class="scene__art" data-art><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen OSINT</text>
+          <div class="sslide" data-i="2"><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen OSINT</text>
 <rect x="30" y="62" width="300" height="30" rx="15" stroke-opacity=".25"/><circle cx="48" cy="77" r="5"/><path d="M52 81 L56 85"/><text x="66" y="81" font-size="11" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.85" stroke="none">thomsen.dev</text><rect class="blink" x="136" y="70" width="1.5" height="14" fill="#fff" stroke="none"/>
 <g stroke-opacity=".3"><path class="flow" d="M200 190 L96 170"/><path class="" d="M200 190 L170 128"/><path class="flow" d="M200 190 L250 140"/><path class="" d="M200 190 L250 230"/><path class="flow" d="M200 190 L160 262"/><path class="" d="M200 190 L60 246"/></g>
 <g fill="#0f0f11" stroke-width="1.5"><circle cx="96" cy="170" r="9"/><circle cx="170" cy="128" r="9"/><circle cx="250" cy="140" r="9"/><circle cx="250" cy="230" r="9"/><circle cx="160" cy="262" r="9"/><circle cx="60" cy="246" r="9"/></g>
 <g class="pulse"><circle cx="200" cy="190" r="18" stroke="#a6dcc2"/></g><circle cx="200" cy="190" r="18" fill="#a6dcc2" fill-opacity=".18" stroke="#a6dcc2" stroke-width="1.6"/><circle cx="200" cy="184" r="5"/><path d="M190 200 C192 192 208 192 210 200"/>
 <rect x="352" y="62" width="146" height="248" rx="12" stroke-opacity=".14"/><text x="364" y="82" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.45" stroke="none">RESULTS · 24</text><rect x="360" y="94" width="130" height="40" rx="9" fill="#fff" fill-opacity="0.09" stroke="none"/><circle cx="378" cy="114" r="7" stroke-opacity=".6"/><rect x="394" y="106" width="76" height="5" rx="2.5" fill="#fff" fill-opacity=".55" stroke="none"/><rect x="394" y="117" width="52" height="4" rx="2" fill="#fff" fill-opacity=".25" stroke="none"/><rect x="360" y="142" width="130" height="40" rx="9" fill="#fff" fill-opacity="0.035" stroke="none"/><circle cx="378" cy="162" r="7" stroke-opacity=".6"/><rect x="394" y="154" width="64" height="5" rx="2.5" fill="#fff" fill-opacity=".55" stroke="none"/><rect x="394" y="165" width="40" height="4" rx="2" fill="#fff" fill-opacity=".25" stroke="none"/><rect x="360" y="190" width="130" height="40" rx="9" fill="#fff" fill-opacity="0.035" stroke="none"/><circle cx="378" cy="210" r="7" stroke-opacity=".6"/><rect x="394" y="202" width="80" height="5" rx="2.5" fill="#fff" fill-opacity=".55" stroke="none"/><rect x="394" y="213" width="56" height="4" rx="2" fill="#fff" fill-opacity=".25" stroke="none"/><rect x="360" y="238" width="130" height="40" rx="9" fill="#fff" fill-opacity="0.035" stroke="none"/><circle cx="378" cy="258" r="7" stroke-opacity=".6"/><rect x="394" y="250" width="58" height="5" rx="2.5" fill="#fff" fill-opacity=".55" stroke="none"/><rect x="394" y="261" width="34" height="4" rx="2" fill="#fff" fill-opacity=".25" stroke="none"/></svg></div>
-      </article>
-      <article class="scene" data-scene>
-        <div class="scene__text">
-          <span class="eyebrow reveal">Virtualization</span>
-          <h3 class="reveal">Thomsen VM.</h3>
-          <p class="scene__line reveal">A full machine, running inside your desktop.</p>
-          <div class="scene__links reveal"><a class="btn btn--light btn--sm" href="#">Coming soon</a><a class="scene__more" href="https://github.com/Thomssen">Learn more <span aria-hidden="true">→</span></a></div>
-          <p class="scene__spec reveal">Windows 10 · Windows 11 · .NET</p>
-        </div>
-        <div class="scene__art" data-art><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen VM</text>
+          <div class="sslide" data-i="3"><svg viewBox="0 0 520 340" aria-hidden="true" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" font-family="Inter, sans-serif"><rect x="10" y="10" width="500" height="320" rx="16" fill="#0f0f11" stroke-opacity=".2"/><path d="M10 46 H510" stroke-opacity=".1"/><g fill="#fff" stroke="none" opacity=".28"><circle cx="30" cy="28" r="4"/><circle cx="46" cy="28" r="4"/><circle cx="62" cy="28" r="4"/></g><text x="260" y="32" text-anchor="middle" font-size="10" fill="#fff" fill-opacity=".45" stroke="none">Thomsen VM</text>
 <path d="M150 46 V330" stroke-opacity=".08"/><text x="24" y="70" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.45" stroke="none">MACHINES</text>
 <rect x="20" y="82" width="122" height="30" rx="8" fill="#fff" fill-opacity=".09" stroke="none"/><circle class="blink" cx="34" cy="97" r="3.5" fill="#a6dcc2" stroke="none"/><text x="46" y="101" font-size="10" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.95" stroke="none">Ubuntu 24.04</text><circle cx="34" cy="129" r="3.5" fill="#fff" fill-opacity=".25" stroke="none"/><text x="46" y="133" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Windows 11</text><circle cx="34" cy="157" r="3.5" fill="#fff" fill-opacity=".25" stroke="none"/><text x="46" y="161" font-size="10" font-weight="400" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">Kali Linux</text>
 <rect x="170" y="62" width="324" height="170" rx="12" fill="#fff" fill-opacity=".04" stroke-opacity=".2"/>
 <rect x="182" y="74" width="300" height="146" rx="6" fill="#0a0a0c" stroke-opacity=".15"/>
 <rect x="206" y="92" width="130" height="86" rx="6" fill="#17171a" stroke-opacity=".3"/><path d="M206 108 H336" stroke-opacity=".2"/><g fill="#fff" stroke="none" opacity=".4"><circle cx="216" cy="100" r="2"/><circle cx="224" cy="100" r="2"/><circle cx="232" cy="100" r="2"/></g><path d="M218 126 H300 M218 138 H278 M218 150 H292" stroke-opacity=".3" stroke-width="3"/>
 <rect x="182" y="204" width="300" height="16" fill="#fff" fill-opacity=".05" stroke="none"/><g fill="#fff" stroke="none" opacity=".6"><rect x="190" y="209" width="10" height="6" rx="2"/><rect x="206" y="209" width="10" height="6" rx="2" opacity=".5"/></g><text x="470" y="214" font-size="8" font-weight="400" text-anchor="end" fill="#fff" fill-opacity="0.5" stroke="none">21:37</text><text x="176" y="254" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">CPU</text><rect x="206" y="247" width="288" height="6" rx="3" fill="#fff" fill-opacity=".1" stroke="none"/><rect class="bar" x="206" y="247" width="288" height="6" rx="3" fill="#fff" fill-opacity=".8" stroke="none" style="--w:.62"/><text x="176" y="282" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">RAM</text><rect x="206" y="275" width="288" height="6" rx="3" fill="#fff" fill-opacity=".1" stroke="none"/><rect class="bar b2" x="206" y="275" width="288" height="6" rx="3" fill="#fff" fill-opacity=".55" stroke="none" style="--w:.38"/><text x="176" y="310" font-size="9" font-weight="600" text-anchor="start" fill="#fff" fill-opacity="0.5" stroke="none">DISK</text><rect x="206" y="303" width="288" height="6" rx="3" fill="#fff" fill-opacity=".1" stroke="none"/><rect class="bar b3" x="206" y="303" width="288" height="6" rx="3" fill="#fff" fill-opacity=".35" stroke="none" style="--w:.24"/></svg></div>
-      </article>
+      </div>
     </div>
   </section>
 
+  <section class="stack" id="stack">
+    <div class="stack__inner">
+      <span class="eyebrow">Built with</span>
+      <h2>Tools of the trade.</h2>
+      <div class="stack__grid"><div class="stack__col"><h4>Languages</h4><ul><li>C#</li><li>JavaScript</li><li>TypeScript</li><li>HTML</li><li>CSS</li></ul></div><div class="stack__col"><h4>Frameworks</h4><ul><li>.NET</li><li>WPF</li><li>XAML</li><li>React</li><li>Tauri</li></ul></div><div class="stack__col"><h4>Focus</h4><ul><li>Windows development</li><li>Cybersecurity</li><li>OSINT</li><li>Networking</li><li>Desktop apps</li></ul></div><div class="stack__col"><h4>Tools</h4><ul><li>Git</li><li>GitHub</li><li>Visual Studio</li><li>VS Code</li><li>Windows</li></ul></div></div>
+    </div>
+  </section>
 
-  <section class="why" id="tools">
+  <section class="why" id="why">
     <div class="why__inner">
       <span class="eyebrow">Why Thomsen Software</span>
       <h2>Quiet on your system.<br>Clear in your results.</h2>
@@ -612,8 +674,7 @@ h1 em { background-size: 220% 100%; background: linear-gradient(100deg, #6e6e74 
     </div>
   </section>
 
-
-  <section class="faq" id="docs">
+  <section class="faq" id="faq">
     <div class="faq__inner">
       <div class="faq__grid">
         <div class="faq__intro reveal">
@@ -651,93 +712,119 @@ h1 em { background-size: 220% 100%; background: linear-gradient(100deg, #6e6e74 
     </div>
   </section>
 
-  <script>(function(){var t=document.getElementById("track");if(!t)return;function by(d){t.scrollBy({left:d*312,behavior:"smooth"})}document.getElementById("prev").addEventListener("click",function(){by(-1)});document.getElementById("next").addEventListener("click",function(){by(1)})})();</script>
-  <script>document.querySelectorAll(".nav__links a").forEach(function(a){a.addEventListener("click",function(){document.querySelectorAll(".nav__links a").forEach(function(l){l.classList.toggle("active",l===a)})})});
-// Live Discord counts. Set DISCORD_INVITE to the code in your invite link (discord.gg/CODE).
+  <footer class="foot">
+    <div class="foot__inner">
+      <div class="foot__cols">
+        <div class="foot__brand"><a class="logo" href="#home">thomsen<span>.</span></a><p>Independent Windows software for cybersecurity, investigations and system utilities.</p></div>
+        <div><h4>Software</h4><a href="#products">Thomsen Shield</a><a href="#products">Thomsen VPN</a><a href="#products">Thomsen OSINT</a><a href="#products">Thomsen VM</a></div>
+        <div><h4>Links</h4><a href="https://github.com/Thomssen">GitHub</a><a href="https://discord.gg/thomsen">Discord</a><a href="https://thomssen.dev/">thomssen.dev</a></div>
+      </div>
+      <div class="foot__word" aria-hidden="true">thomsen.</div>
+      <div class="foot__legal"><span>© 2026 Thomsen Software</span><span>Independent development</span></div>
+    </div>
+  </footer>
+
+  <script>// Thomsen Software front page behavior.
 (function () {
-  var DISCORD_INVITE = "thomsen";
-  var box = document.getElementById("discord-stats");
-  var join = document.getElementById("discord-link");
-  if (!box || !DISCORD_INVITE) return;
-  join.href = "https://discord.gg/" + DISCORD_INVITE;
-  function fmt(n) { return Number(n).toLocaleString("en-US"); }
-  function update() {
-    fetch("https://discord.com/api/v10/invites/" + DISCORD_INVITE + "?with_counts=true")
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
-      .then(function (d) {
-        document.getElementById("d-members").textContent = fmt(d.approximate_member_count);
-        document.getElementById("d-online").textContent = fmt(d.approximate_presence_count);
-        box.hidden = false;
-      })
-      .catch(function () {});
-  }
-  update();
-  setInterval(update, 60000);
-})();
-
-;(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var root = document.documentElement;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll(".why h2, .why .eyebrow, .wcard, .faq h2, .faq .eyebrow, .faq__intro p, .qa, .discord").forEach(function (el) { el.classList.add("reveal"); });
-  if (reduce || !("IntersectionObserver" in window)) return;
-  root.classList.add("js");
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  var vh = function () { return window.innerHeight || 800; };
 
-  var arts = [].slice.call(document.querySelectorAll("[data-art]"));
-  function tick() {
-    var vh = window.innerHeight || 800;
-    arts.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      var p = Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.75)));
-      el.style.transform = "scale(" + (0.9 + 0.1 * p).toFixed(3) + ") translateY(" + ((1 - p) * 24).toFixed(1) + "px)";
-      el.style.opacity = (0.35 + 0.65 * p).toFixed(3);
-    });
+  // Scroll reveal
+  document.querySelectorAll(".hero2__top > *, .stack__col, .stack h2, .stack .eyebrow, .why .eyebrow, .why h2, .bcard, .faq__intro, .qa, .discord, .story__left > .eyebrow, .story__left > h2, .foot__cols > *").forEach(function (el) { el.classList.add("reveal"); });
+  if (!reduce && "IntersectionObserver" in window) {
+    root.classList.add("js");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
   }
-  tick();
-  window.addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true });
-  window.addEventListener("resize", tick);
-})();
 
-;(function () {
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // Word-by-word fill for the manifesto.
+  var hwin = document.getElementById("hwin");
+  var story = document.querySelector("[data-story]");
+  var items = [].slice.call(document.querySelectorAll(".story__item"));
+  var slides = [].slice.call(document.querySelectorAll(".sslide"));
+  var navLinks = [].slice.call(document.querySelectorAll(".nav2__links a"));
+  var spy = ["home", "products", "why", "faq"].map(function (id) { return document.getElementById(id); });
   var m = document.querySelector("[data-fill]");
   var words = [];
   if (m) {
     m.innerHTML = m.textContent.trim().split(/\s+/).map(function (w) { return '<span class="w">' + w + "</span>"; }).join(" ");
     words = [].slice.call(m.querySelectorAll(".w"));
   }
-  function fill() {
-    if (!m) return;
-    var vh = window.innerHeight || 800, r = m.getBoundingClientRect();
-    var p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.55 + r.height * 0.5)));
-    var n = p * words.length;
-    words.forEach(function (w, i) { w.style.opacity = reduce ? 1 : Math.max(0.18, Math.min(1, n - i + 0.3)).toFixed(2); });
+  var wide = window.matchMedia("(min-width: 861px)");
+  var current = -1;
+
+  function setActive(i) {
+    if (i === current) return;
+    current = i;
+    items.forEach(function (el, k) { el.classList.toggle("active", k === i); });
+    slides.forEach(function (el, k) { el.classList.toggle("active", k === i); });
   }
-  fill();
-  window.addEventListener("scroll", function () { requestAnimationFrame(fill); }, { passive: true });
-  window.addEventListener("resize", fill);
-  if (reduce) return;
-  // Cursor light on hero, cards and product panels. Tilt on product panels.
-  function track(sel, tilt) {
-    document.querySelectorAll(sel).forEach(function (el) {
+
+  function update() {
+    var y = window.scrollY || 0;
+    if (hwin && !reduce) hwin.style.setProperty("--rx", Math.max(0, 18 - (y / (vh() * 0.55)) * 18).toFixed(2) + "deg");
+    if (m) {
+      var r = m.getBoundingClientRect();
+      var p = Math.max(0, Math.min(1, (vh() * 0.85 - r.top) / (vh() * 0.55 + r.height * 0.5)));
+      var n = p * words.length;
+      words.forEach(function (w, i) { w.style.opacity = reduce ? 1 : Math.max(0.18, Math.min(1, n - i + 0.3)).toFixed(2); });
+    }
+    if (story && wide.matches) {
+      var sr = story.getBoundingClientRect();
+      var span = Math.max(1, sr.height - vh());
+      var prog = Math.max(0, Math.min(0.999, -sr.top / span));
+      setActive(Math.floor(prog * items.length));
+    }
+    var cur = 0;
+    spy.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= vh() * 0.4) cur = i; });
+    navLinks.forEach(function (a, i) { a.classList.toggle("active", i === cur); });
+  }
+  var queued = false;
+  function onScroll() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; update(); }); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+
+  items.forEach(function (el, i) {
+    el.addEventListener("click", function () {
+      if (!story || !wide.matches) return;
+      var top = story.offsetTop + ((i + 0.5) / items.length) * (story.offsetHeight - vh());
+      window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+    });
+  });
+
+  // Cursor light on cards
+  if (!reduce) {
+    document.querySelectorAll(".bcard, .qa, .discord").forEach(function (el) {
       el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-        el.style.setProperty("--mx", x + "px"); el.style.setProperty("--my", y + "px");
-        if (tilt) { var s = el.querySelector("svg"); if (s) s.style.transform = "rotateY(" + ((x / r.width - 0.5) * 7).toFixed(2) + "deg) rotateX(" + ((0.5 - y / r.height) * 7).toFixed(2) + "deg)"; }
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top) + "px");
       });
-      if (tilt) el.addEventListener("pointerleave", function () { var s = el.querySelector("svg"); if (s) s.style.transform = ""; });
     });
   }
-  track(".hero", false); track(".wcard, .qa, .discord", false); track("[data-art]", true);
-})();
 
-;(function () {
-  document.querySelectorAll(".bcard").forEach(function (el) {
-    el.addEventListener("pointermove", function (e) { var r = el.getBoundingClientRect(); el.style.setProperty("--mx", (e.clientX - r.left) + "px"); el.style.setProperty("--my", (e.clientY - r.top) + "px"); });
-  });
+  // Live Discord counts. Set DISCORD_INVITE to the code in your invite link (discord.gg/CODE).
+  var DISCORD_INVITE = "thomsen";
+  var box = document.getElementById("discord-stats");
+  var join = document.getElementById("discord-link");
+  if (box && DISCORD_INVITE) {
+    join.href = "https://discord.gg/" + DISCORD_INVITE;
+    var fmt = function (n) { return Number(n).toLocaleString("en-US"); };
+    var refresh = function () {
+      fetch("https://discord.com/api/v10/invites/" + DISCORD_INVITE + "?with_counts=true")
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (d) {
+          document.getElementById("d-members").textContent = fmt(d.approximate_member_count);
+          document.getElementById("d-online").textContent = fmt(d.approximate_presence_count);
+          box.hidden = false;
+        })
+        .catch(function () {});
+    };
+    refresh();
+    setInterval(refresh, 60000);
+  }
 })();
 </script>

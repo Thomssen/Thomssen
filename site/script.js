@@ -1,101 +1,103 @@
-// Fade the hero content in on load.
-document.querySelectorAll('.hero__copy > *, .stage').forEach((el, i) => {
-  el.classList.add('reveal');
-  setTimeout(() => el.classList.add('in'), 80 + i * 90);
-});
-
-// Mark the nav link for the section in view.
-const links = [...document.querySelectorAll('.nav__links a')];
-links.forEach(a => a.addEventListener('click', () => {
-  links.forEach(l => l.classList.toggle('active', l === a));
-}));
-
-(function(){var t=document.getElementById("track");if(!t)return;function by(d){t.scrollBy({left:d*312,behavior:"smooth"})}document.getElementById("prev").addEventListener("click",function(){by(-1)});document.getElementById("next").addEventListener("click",function(){by(1)})})();
-
-;// Live Discord counts. Set DISCORD_INVITE to the code in your invite link (discord.gg/CODE).
+// Thomsen Software front page behavior.
 (function () {
-  var DISCORD_INVITE = "thomsen";
-  var box = document.getElementById("discord-stats");
-  var join = document.getElementById("discord-link");
-  if (!box || !DISCORD_INVITE) return;
-  join.href = "https://discord.gg/" + DISCORD_INVITE;
-  function fmt(n) { return Number(n).toLocaleString("en-US"); }
-  function update() {
-    fetch("https://discord.com/api/v10/invites/" + DISCORD_INVITE + "?with_counts=true")
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
-      .then(function (d) {
-        document.getElementById("d-members").textContent = fmt(d.approximate_member_count);
-        document.getElementById("d-online").textContent = fmt(d.approximate_presence_count);
-        box.hidden = false;
-      })
-      .catch(function () {});
-  }
-  update();
-  setInterval(update, 60000);
-})();
-
-;(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var root = document.documentElement;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll(".why h2, .why .eyebrow, .wcard, .faq h2, .faq .eyebrow, .faq__intro p, .qa, .discord").forEach(function (el) { el.classList.add("reveal"); });
-  if (reduce || !("IntersectionObserver" in window)) return;
-  root.classList.add("js");
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  var vh = function () { return window.innerHeight || 800; };
 
-  var arts = [].slice.call(document.querySelectorAll("[data-art]"));
-  function tick() {
-    var vh = window.innerHeight || 800;
-    arts.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      var p = Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.75)));
-      el.style.transform = "scale(" + (0.9 + 0.1 * p).toFixed(3) + ") translateY(" + ((1 - p) * 24).toFixed(1) + "px)";
-      el.style.opacity = (0.35 + 0.65 * p).toFixed(3);
-    });
+  // Scroll reveal
+  document.querySelectorAll(".hero2__top > *, .stack__col, .stack h2, .stack .eyebrow, .why .eyebrow, .why h2, .bcard, .faq__intro, .qa, .discord, .story__left > .eyebrow, .story__left > h2, .foot__cols > *").forEach(function (el) { el.classList.add("reveal"); });
+  if (!reduce && "IntersectionObserver" in window) {
+    root.classList.add("js");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
   }
-  tick();
-  window.addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true });
-  window.addEventListener("resize", tick);
-})();
 
-;(function () {
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // Word-by-word fill for the manifesto.
+  var hwin = document.getElementById("hwin");
+  var story = document.querySelector("[data-story]");
+  var items = [].slice.call(document.querySelectorAll(".story__item"));
+  var slides = [].slice.call(document.querySelectorAll(".sslide"));
+  var navLinks = [].slice.call(document.querySelectorAll(".nav2__links a"));
+  var spy = ["home", "products", "why", "faq"].map(function (id) { return document.getElementById(id); });
   var m = document.querySelector("[data-fill]");
   var words = [];
   if (m) {
     m.innerHTML = m.textContent.trim().split(/\s+/).map(function (w) { return '<span class="w">' + w + "</span>"; }).join(" ");
     words = [].slice.call(m.querySelectorAll(".w"));
   }
-  function fill() {
-    if (!m) return;
-    var vh = window.innerHeight || 800, r = m.getBoundingClientRect();
-    var p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.55 + r.height * 0.5)));
-    var n = p * words.length;
-    words.forEach(function (w, i) { w.style.opacity = reduce ? 1 : Math.max(0.18, Math.min(1, n - i + 0.3)).toFixed(2); });
+  var wide = window.matchMedia("(min-width: 861px)");
+  var current = -1;
+
+  function setActive(i) {
+    if (i === current) return;
+    current = i;
+    items.forEach(function (el, k) { el.classList.toggle("active", k === i); });
+    slides.forEach(function (el, k) { el.classList.toggle("active", k === i); });
   }
-  fill();
-  window.addEventListener("scroll", function () { requestAnimationFrame(fill); }, { passive: true });
-  window.addEventListener("resize", fill);
-  if (reduce) return;
-  // Cursor light on hero, cards and product panels. Tilt on product panels.
-  function track(sel, tilt) {
-    document.querySelectorAll(sel).forEach(function (el) {
+
+  function update() {
+    var y = window.scrollY || 0;
+    if (hwin && !reduce) hwin.style.setProperty("--rx", Math.max(0, 18 - (y / (vh() * 0.55)) * 18).toFixed(2) + "deg");
+    if (m) {
+      var r = m.getBoundingClientRect();
+      var p = Math.max(0, Math.min(1, (vh() * 0.85 - r.top) / (vh() * 0.55 + r.height * 0.5)));
+      var n = p * words.length;
+      words.forEach(function (w, i) { w.style.opacity = reduce ? 1 : Math.max(0.18, Math.min(1, n - i + 0.3)).toFixed(2); });
+    }
+    if (story && wide.matches) {
+      var sr = story.getBoundingClientRect();
+      var span = Math.max(1, sr.height - vh());
+      var prog = Math.max(0, Math.min(0.999, -sr.top / span));
+      setActive(Math.floor(prog * items.length));
+    }
+    var cur = 0;
+    spy.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= vh() * 0.4) cur = i; });
+    navLinks.forEach(function (a, i) { a.classList.toggle("active", i === cur); });
+  }
+  var queued = false;
+  function onScroll() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; update(); }); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+
+  items.forEach(function (el, i) {
+    el.addEventListener("click", function () {
+      if (!story || !wide.matches) return;
+      var top = story.offsetTop + ((i + 0.5) / items.length) * (story.offsetHeight - vh());
+      window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+    });
+  });
+
+  // Cursor light on cards
+  if (!reduce) {
+    document.querySelectorAll(".bcard, .qa, .discord").forEach(function (el) {
       el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-        el.style.setProperty("--mx", x + "px"); el.style.setProperty("--my", y + "px");
-        if (tilt) { var s = el.querySelector("svg"); if (s) s.style.transform = "rotateY(" + ((x / r.width - 0.5) * 7).toFixed(2) + "deg) rotateX(" + ((0.5 - y / r.height) * 7).toFixed(2) + "deg)"; }
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top) + "px");
       });
-      if (tilt) el.addEventListener("pointerleave", function () { var s = el.querySelector("svg"); if (s) s.style.transform = ""; });
     });
   }
-  track(".hero", false); track(".wcard, .qa, .discord", false); track("[data-art]", true);
-})();
 
-;(function () {
-  document.querySelectorAll(".bcard").forEach(function (el) {
-    el.addEventListener("pointermove", function (e) { var r = el.getBoundingClientRect(); el.style.setProperty("--mx", (e.clientX - r.left) + "px"); el.style.setProperty("--my", (e.clientY - r.top) + "px"); });
-  });
+  // Live Discord counts. Set DISCORD_INVITE to the code in your invite link (discord.gg/CODE).
+  var DISCORD_INVITE = "thomsen";
+  var box = document.getElementById("discord-stats");
+  var join = document.getElementById("discord-link");
+  if (box && DISCORD_INVITE) {
+    join.href = "https://discord.gg/" + DISCORD_INVITE;
+    var fmt = function (n) { return Number(n).toLocaleString("en-US"); };
+    var refresh = function () {
+      fetch("https://discord.com/api/v10/invites/" + DISCORD_INVITE + "?with_counts=true")
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (d) {
+          document.getElementById("d-members").textContent = fmt(d.approximate_member_count);
+          document.getElementById("d-online").textContent = fmt(d.approximate_presence_count);
+          box.hidden = false;
+        })
+        .catch(function () {});
+    };
+    refresh();
+    setInterval(refresh, 60000);
+  }
 })();
