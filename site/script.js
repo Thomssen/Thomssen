@@ -9,3 +9,5 @@ const links = [...document.querySelectorAll('.nav__links a')];
 links.forEach(a => a.addEventListener('click', () => {
   links.forEach(l => l.classList.toggle('active', l === a));
 }));
+
+(function(){var t=document.getElementById("track");if(!t)return;function by(d){t.scrollBy({left:d*312,behavior:"smooth"})}document.getElementById("prev").addEventListener("click",function(){by(-1)});document.getElementById("next").addEventListener("click",function(){by(1)})})();
