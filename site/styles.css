@@ -652,3 +652,13 @@ button.btn--ghost { color: #fff; }
 .buynote p { font-size: 13px; line-height: 1.55; color: var(--muted); }
 .buynote .btn { flex: none; white-space: nowrap; }
 @media (max-width: 640px) { .buynote { flex-wrap: wrap; } .buynote .btn { width: 100%; justify-content: center; } }
+
+/* theme */
+html[data-theme="light"] { filter: invert(1) hue-rotate(180deg); }
+.bv--code { position: relative; height: auto; min-height: 132px; }
+.bv--code pre { white-space: pre-wrap; word-break: break-word; }
+.bv--code:focus-within { border-color: rgba(255,255,255,.3); }
+.theme-in { font: inherit; letter-spacing: inherit; color: #a6dcc2; background: transparent; border: 0; border-bottom: 1px dotted transparent; border-radius: 0; margin: 0; padding: 0; outline: none; text-align: left; caret-color: #fff; field-sizing: content; }
+.theme-in:hover { border-bottom-color: rgba(255,255,255,.35); cursor: text; }
+.theme-in:focus { border-bottom-color: #a6dcc2; }
+.theme-in::selection { background: rgba(166,220,194,.3); }

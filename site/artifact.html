@@ -1,6 +1,7 @@
 <title>Thomsen Software</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("thomsen_theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
 <style>
 :root {
   --bg: #09090a;
@@ -657,6 +658,16 @@ button.btn--ghost { color: #fff; }
 .buynote .btn { flex: none; white-space: nowrap; }
 @media (max-width: 640px) { .buynote { flex-wrap: wrap; } .buynote .btn { width: 100%; justify-content: center; } }
 
+/* theme */
+html[data-theme="light"] { filter: invert(1) hue-rotate(180deg); }
+.bv--code { position: relative; height: auto; min-height: 132px; }
+.bv--code pre { white-space: pre-wrap; word-break: break-word; }
+.bv--code:focus-within { border-color: rgba(255,255,255,.3); }
+.theme-in { font: inherit; letter-spacing: inherit; color: #a6dcc2; background: transparent; border: 0; border-bottom: 1px dotted transparent; border-radius: 0; margin: 0; padding: 0; outline: none; text-align: left; caret-color: #fff; field-sizing: content; }
+.theme-in:hover { border-bottom-color: rgba(255,255,255,.35); cursor: text; }
+.theme-in:focus { border-bottom-color: #a6dcc2; }
+.theme-in::selection { background: rgba(166,220,194,.3); }
+
 </style>
 
   <header class="nav2" id="nav">
@@ -744,8 +755,9 @@ button.btn--ghost { color: #fff; }
       <h2>Quiet on your system.<br>Clear in your results.</h2>
       <div class="bento">
         <article class="bcard bcard--big reveal">
-          <div class="bv bv--code" aria-hidden="true"><pre><span class="c">// Windows 10 and 11</span>
+          <div class="bv bv--code" id="term"><pre><span class="c">// Windows 10 and 11</span>
 <span class="k">var</span> shield = <span class="k">new</span> <span class="t">Shield</span>();
+shield.<span class="f">Theme</span> = "<input id="theme-in" class="theme-in" type="text" value="dark" size="4" maxlength="12" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Theme value">";
 <span class="k">await</span> shield.<span class="f">StartAsync</span>();<span class="caret"></span></pre></div>
           <h3>Native Windows apps</h3>
           <p>Every program is written in C# for Windows 10 and 11. They start fast, run locally and behave like the rest of your desktop.</p>
@@ -926,6 +938,29 @@ button.btn--ghost { color: #fff; }
     refresh();
     setInterval(refresh, 60000);
   }
+})();
+
+// Easter egg: edit the theme string in the code block on the home page.
+// Type "light" (or "dark") and the whole site switches theme. The choice is saved in the browser.
+(function () {
+  var inp = document.getElementById("theme-in");
+  if (!inp) return;
+  var root = document.documentElement;
+  function current() { return root.getAttribute("data-theme") === "light" ? "light" : "dark"; }
+  function fit() { inp.size = Math.max(4, inp.value.length || 1); }
+  function setTheme(t) {
+    if (t === "light") root.setAttribute("data-theme", "light"); else root.removeAttribute("data-theme");
+    try { localStorage.setItem("thomsen_theme", t); } catch (e) {}
+  }
+  inp.value = current(); fit();
+  inp.addEventListener("focus", function () { inp.select(); });
+  inp.addEventListener("input", function () {
+    var v = inp.value.trim().toLowerCase();
+    if ((v === "light" || v === "dark") && v !== current()) { setTheme(v); inp.value = v; inp.blur(); }
+    fit();
+  });
+  inp.addEventListener("keydown", function (e) { if (e.key === "Enter") inp.blur(); });
+  inp.addEventListener("blur", function () { inp.value = current(); fit(); });
 })();
 </script>
   <script>// Cookie settings: stores only the visitor's own choice in local storage.

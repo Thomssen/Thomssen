@@ -101,3 +101,26 @@
     setInterval(refresh, 60000);
   }
 })();
+
+// Easter egg: edit the theme string in the code block on the home page.
+// Type "light" (or "dark") and the whole site switches theme. The choice is saved in the browser.
+(function () {
+  var inp = document.getElementById("theme-in");
+  if (!inp) return;
+  var root = document.documentElement;
+  function current() { return root.getAttribute("data-theme") === "light" ? "light" : "dark"; }
+  function fit() { inp.size = Math.max(4, inp.value.length || 1); }
+  function setTheme(t) {
+    if (t === "light") root.setAttribute("data-theme", "light"); else root.removeAttribute("data-theme");
+    try { localStorage.setItem("thomsen_theme", t); } catch (e) {}
+  }
+  inp.value = current(); fit();
+  inp.addEventListener("focus", function () { inp.select(); });
+  inp.addEventListener("input", function () {
+    var v = inp.value.trim().toLowerCase();
+    if ((v === "light" || v === "dark") && v !== current()) { setTheme(v); inp.value = v; inp.blur(); }
+    fit();
+  });
+  inp.addEventListener("keydown", function (e) { if (e.key === "Enter") inp.blur(); });
+  inp.addEventListener("blur", function () { inp.value = current(); fit(); });
+})();

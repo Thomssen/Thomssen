@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>try{if(localStorage.getItem("thomsen_theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
 </head>
 <body>
   <header class="nav2" id="nav">
@@ -96,8 +97,9 @@
       <h2>Quiet on your system.<br>Clear in your results.</h2>
       <div class="bento">
         <article class="bcard bcard--big reveal">
-          <div class="bv bv--code" aria-hidden="true"><pre><span class="c">// Windows 10 and 11</span>
+          <div class="bv bv--code" id="term"><pre><span class="c">// Windows 10 and 11</span>
 <span class="k">var</span> shield = <span class="k">new</span> <span class="t">Shield</span>();
+shield.<span class="f">Theme</span> = "<input id="theme-in" class="theme-in" type="text" value="dark" size="4" maxlength="12" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Theme value">";
 <span class="k">await</span> shield.<span class="f">StartAsync</span>();<span class="caret"></span></pre></div>
           <h3>Native Windows apps</h3>
           <p>Every program is written in C# for Windows 10 and 11. They start fast, run locally and behave like the rest of your desktop.</p>
