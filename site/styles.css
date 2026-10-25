@@ -474,7 +474,7 @@ html { scroll-padding-top: 90px; }
 .story__more p { font-size: 16px; line-height: 1.5; color: var(--muted); max-width: 400px; margin: 14px 0 18px; }
 .story__links { display: flex; align-items: center; gap: 20px; }
 .story__more small { display: block; margin-top: 16px; font-size: 12px; color: var(--dim); }
-.story__stack { position: relative; width: 100%; aspect-ratio: 1280 / 840; }
+.story__stack { position: relative; width: 100%; aspect-ratio: 1280 / 620; }
 .sslide { position: absolute; inset: 0; padding: 6px; border-radius: 24px; border: 1px solid rgba(255,255,255,.12); background: #0d0d0e; box-shadow: 0 50px 120px rgba(0,0,0,.65), 0 0 90px rgba(255,255,255,.04); opacity: 0; transform: translateY(26px) scale(.97); transition: opacity .6s ease, transform .7s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
 .sslide.active { opacity: 1; transform: none; pointer-events: auto; }
 .sslide svg { display: block; width: 100%; height: 100%; }
@@ -492,7 +492,7 @@ html { scroll-padding-top: 90px; }
   .story__item { opacity: 1; cursor: default; } .story__item::before { transform: scaleY(1); }
   .story__more { max-height: none; opacity: 1; }
   .story__stack { aspect-ratio: auto; display: flex; flex-direction: column; gap: 20px; }
-  .sslide { position: relative; opacity: 1; transform: none; aspect-ratio: 1280 / 840; }
+  .sslide { position: relative; opacity: 1; transform: none; aspect-ratio: 1280 / 620; }
 }
 
 .stack { padding-block: clamp(80px, 12vw, 140px); }
@@ -518,3 +518,17 @@ html { scroll-padding-top: 90px; }
 .foot__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 10px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; color: var(--dim); }
 @media (max-width: 720px) { .foot__cols { grid-template-columns: 1fr 1fr; } .foot__brand { grid-column: 1 / -1; } }
 @media (prefers-reduced-motion: reduce) { .sslide, .story__more { transition: none; } .sslide * { animation: none !important; } }
+
+/* illustration motion */
+.hwin .draw, .sslide .draw { stroke-dasharray: 1400; animation: drawl 5s ease-in-out infinite; }
+@keyframes drawl { 0% { stroke-dashoffset: 1400; } 55%, 100% { stroke-dashoffset: 0; } }
+.hwin .blink, .sslide .blink, .sslide .caret { animation: blink 1.2s steps(2, jump-none) infinite; }
+.sslide .type { transform-box: fill-box; transform-origin: left; animation: typex 5s steps(9) infinite; }
+.sslide .caret { animation: caretx 5s steps(9) infinite, blink 1s steps(2, jump-none) infinite; }
+@keyframes typex { 0% { transform: scaleX(.02); } 55%, 100% { transform: scaleX(1); } }
+@keyframes caretx { 0% { transform: translateX(0); } 55%, 100% { transform: translateX(100px); } }
+.sslide .rise { animation: riseIn 5s ease-out infinite; }
+@keyframes riseIn { 0%, 50% { opacity: 0; transform: translateY(14px); } 65%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.sslide .swap { animation: swapIn 6s ease-in-out infinite; }
+@keyframes swapIn { 0%, 35% { opacity: 0; } 50%, 85% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hwin *, .sslide * { animation: none !important; } .sslide .rise, .sslide .swap { opacity: 1; } }
