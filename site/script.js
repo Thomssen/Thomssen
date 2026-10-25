@@ -14,7 +14,7 @@ links.forEach(a => a.addEventListener('click', () => {
 
 ;// Live Discord counts. Set DISCORD_INVITE to the code in your invite link (discord.gg/CODE).
 (function () {
-  var DISCORD_INVITE = "";
+  var DISCORD_INVITE = "thomsen";
   var box = document.getElementById("discord-stats");
   var join = document.getElementById("discord-link");
   if (!box || !DISCORD_INVITE) return;
