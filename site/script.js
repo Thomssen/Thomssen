@@ -33,3 +33,29 @@ links.forEach(a => a.addEventListener('click', () => {
   update();
   setInterval(update, 60000);
 })();
+
+;(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".why h2, .why .eyebrow, .wcard, .faq h2, .faq .eyebrow, .faq__intro p, .qa, .discord").forEach(function (el) { el.classList.add("reveal"); });
+  if (reduce || !("IntersectionObserver" in window)) return;
+  root.classList.add("js");
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+  var arts = [].slice.call(document.querySelectorAll("[data-art]"));
+  function tick() {
+    var vh = window.innerHeight || 800;
+    arts.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      var p = Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.75)));
+      el.style.transform = "scale(" + (0.9 + 0.1 * p).toFixed(3) + ") translateY(" + ((1 - p) * 24).toFixed(1) + "px)";
+      el.style.opacity = (0.35 + 0.65 * p).toFixed(3);
+    });
+  }
+  tick();
+  window.addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true });
+  window.addEventListener("resize", tick);
+})();
