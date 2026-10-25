@@ -662,3 +662,8 @@ html[data-theme="light"] { filter: invert(1) hue-rotate(180deg); }
 .theme-in:hover { border-bottom-color: rgba(255,255,255,.35); cursor: text; }
 .theme-in:focus { border-bottom-color: #a6dcc2; }
 .theme-in::selection { background: rgba(166,220,194,.3); }
+
+.nf__head { text-align: center; padding-block: clamp(30px, 8vw, 90px) clamp(40px, 8vw, 100px); }
+.nf__head .legal__intro { margin: 0 auto 30px; }
+.nf__head .cta { justify-content: center; }
+.nf__head .eyebrow { display: block; margin-bottom: 16px; }
