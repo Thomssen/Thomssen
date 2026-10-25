@@ -10,10 +10,10 @@
 </head>
 <body>
   <header class="nav2" id="nav">
-    <a class="logo" href="index.html">thomsen<span>.</span></a>
+    <a class="logo" href="index.html#top">thomsen<span>.</span></a>
     <nav class="nav2__links" aria-label="Main">
-      <a href="index.html">Home</a>
-      <a href="index.html">Products</a>
+      <a href="index.html#top">Home</a>
+      <a href="index.html#top">Products</a>
       <a href="index.html#why">Why</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -23,7 +23,7 @@
   <main class="legal">
     <div class="hero2__beam" aria-hidden="true"></div>
     <header class="legal__head">
-      <a class="scene__more" href="index.html"><span aria-hidden="true">←</span> Thomsen Software</a>
+      <a class="scene__more" href="index.html#top"><span aria-hidden="true">←</span> Thomsen Software</a>
       <h1>Privacy Policy</h1>
       <p class="legal__date">Last updated September 27, 2026</p>
       <p class="legal__intro">Thomsen Shield, Thomsen OSINT, and Thomsen VM are Windows tools built to run locally on your PC, so we know privacy matters more than usual here. This page explains what we collect when you buy or use them, and just as importantly, what we don't. Thomsen VM is free and involves no purchase or account. Thomsen OSINT is not yet released - this policy will be updated first if anything here changes once it ships.<br><br>The short version: Thomsen Shield's network monitoring and blocking runs entirely on your PC. Your connection activity, blocked IPs, and firewall rules are never uploaded to us. To sell you a license and keep it working, we handle: your email address, a device identifier, and payment details (handled by Stripe - we never see your card details).</p>
@@ -38,14 +38,14 @@
     <div class="foot__inner">
       <div class="foot__cols">
         <div class="foot__brand"><a class="logo" href="#home">thomsen<span>.</span></a><p>Independent Windows software for cybersecurity, investigations and system utilities.</p></div>
-        <div><h4>Software</h4><a href="shield.html">Thomsen Shield</a><a href="vpn.html">Thomsen VPN</a><a href="osint.html">Thomsen OSINT</a><a href="vm.html">Thomsen VM</a></div>
-        <div><h4>Legal</h4><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a><button class="linkbtn" type="button" data-cookie-settings>Cookie settings</button></div><div><h4>Links</h4><a href="https://github.com/Thomssen">GitHub</a><a href="https://discord.gg/thomsen">Discord</a><a href="https://thomssen.dev/">thomssen.dev</a></div>
+        <div><h4>Software</h4><a href="shield.html#top">Thomsen Shield</a><a href="vpn.html#top">Thomsen VPN</a><a href="osint.html#top">Thomsen OSINT</a><a href="vm.html#top">Thomsen VM</a></div>
+        <div><h4>Legal</h4><a href="terms.html#top">Terms of Service</a><a href="privacy.html#top">Privacy Policy</a><a href="refund.html#top">Refund Policy</a><button class="linkbtn" type="button" data-cookie-settings>Cookie settings</button></div><div><h4>Links</h4><a href="https://github.com/Thomssen">GitHub</a><a href="https://discord.gg/thomsen">Discord</a><a href="https://thomssen.dev/">thomssen.dev</a></div>
       </div>
       <div class="foot__word" aria-hidden="true">thomsen.</div>
       <div class="foot__legal"><span>© 2026 Thomsen Software</span><span>Independent development</span></div>
     </div>
   </footer>
-  <script>if ("scrollRestoration" in history) history.scrollRestoration = "manual"; if (!location.hash) window.scrollTo(0, 0);</script>
+  <script>if ("scrollRestoration" in history) history.scrollRestoration = "manual"; function toTop() { if (!location.hash || location.hash === "#top") window.scrollTo({ top: 0, left: 0, behavior: "instant" }); } toTop(); addEventListener("load", toTop); addEventListener("pageshow", toTop); setTimeout(toTop, 150);</script>
   <script src="cookies.js"></script>
 </body>
 </html>

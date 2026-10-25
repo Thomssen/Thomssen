@@ -10,10 +10,10 @@
 </head>
 <body>
   <header class="nav2" id="nav">
-    <a class="logo" href="index.html">thomsen<span>.</span></a>
+    <a class="logo" href="index.html#top">thomsen<span>.</span></a>
     <nav class="nav2__links" aria-label="Main">
-      <a href="index.html">Home</a>
-      <a href="index.html" class="active">Products</a>
+      <a href="index.html#top">Home</a>
+      <a href="index.html#top" class="active">Products</a>
       <a href="index.html#why">Why</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -27,7 +27,7 @@
       <span class="eyebrow">Investigations</span>
       <h1>Thomsen OSINT</h1>
       <p class="lead">A desktop toolkit for open-source intelligence and digital investigations. It gathers and organizes publicly available information so your work stays structured.</p>
-      <div class="cta"><a class="btn btn--light" href="https://discord.gg/thomsen">Join Discord to buy <span aria-hidden="true">→</span></a><a class="btn btn--ghost" href="index.html">All software</a></div>
+      <div class="cta"><a class="btn btn--light" href="https://discord.gg/thomsen">Join Discord to buy <span aria-hidden="true">→</span></a><a class="btn btn--ghost" href="index.html#top">All software</a></div>
       <div class="buynote" role="note">
         <span class="buynote__i" aria-hidden="true">!</span>
         <div><strong>To buy, join our Discord</strong><p>We are having a problem with Stripe right now, so online checkout is unavailable. Join the Discord to buy Thomsen OSINT.</p></div>
@@ -49,28 +49,28 @@
     <section class="pp__sec">
       <span class="eyebrow">More from Thomsen</span>
       <h2>The rest of the lineup.</h2>
-      <div class="pp__others"><a class="pp__more" href="shield.html"><span class="story__cat">Network protection</span><strong>Thomsen Shield</strong><span>See every connection. Stop the ones you do not trust.</span><em aria-hidden="true">→</em></a><a class="pp__more" href="vpn.html"><span class="story__cat">Privacy</span><strong>Thomsen VPN</strong><span>Your traffic, encrypted. One click to connect.</span><em aria-hidden="true">→</em></a><a class="pp__more" href="vm.html"><span class="story__cat">Virtualization</span><strong>Thomsen VM</strong><span>A full machine, running inside your desktop.</span><em aria-hidden="true">→</em></a></div>
+      <div class="pp__others"><a class="pp__more" href="shield.html#top"><span class="story__cat">Network protection</span><strong>Thomsen Shield</strong><span>See every connection. Stop the ones you do not trust.</span><em aria-hidden="true">→</em></a><a class="pp__more" href="vpn.html#top"><span class="story__cat">Privacy</span><strong>Thomsen VPN</strong><span>Your traffic, encrypted. One click to connect.</span><em aria-hidden="true">→</em></a><a class="pp__more" href="vm.html#top"><span class="story__cat">Virtualization</span><strong>Thomsen VM</strong><span>A full machine, running inside your desktop.</span><em aria-hidden="true">→</em></a></div>
     </section>
 
     <section class="lm__cta">
       <h2>Ready to get started?</h2>
       <p>Join the Discord to buy Thomsen OSINT and get support straight from the developer.</p>
-      <div class="lm__links"><a class="btn btn--light" href="https://discord.gg/thomsen">Join the Discord <span aria-hidden="true">→</span></a><a class="scene__more" href="index.html">Back to home <span aria-hidden="true">→</span></a></div>
+      <div class="lm__links"><a class="btn btn--light" href="https://discord.gg/thomsen">Join the Discord <span aria-hidden="true">→</span></a><a class="scene__more" href="index.html#top">Back to home <span aria-hidden="true">→</span></a></div>
     </section>
   </main>
 
   <footer class="foot">
     <div class="foot__inner">
       <div class="foot__cols">
-        <div class="foot__brand"><a class="logo" href="index.html">thomsen<span>.</span></a><p>Independent Windows software for cybersecurity, investigations and system utilities.</p></div>
-        <div><h4>Software</h4><a href="shield.html">Thomsen Shield</a><a href="vpn.html">Thomsen VPN</a><a href="osint.html">Thomsen OSINT</a><a href="vm.html">Thomsen VM</a></div>
-        <div><h4>Legal</h4><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a><button class="linkbtn" type="button" data-cookie-settings>Cookie settings</button></div><div><h4>Links</h4><a href="https://github.com/Thomssen">GitHub</a><a href="https://discord.gg/thomsen">Discord</a><a href="https://thomssen.dev/">thomssen.dev</a></div>
+        <div class="foot__brand"><a class="logo" href="index.html#top">thomsen<span>.</span></a><p>Independent Windows software for cybersecurity, investigations and system utilities.</p></div>
+        <div><h4>Software</h4><a href="shield.html#top">Thomsen Shield</a><a href="vpn.html#top">Thomsen VPN</a><a href="osint.html#top">Thomsen OSINT</a><a href="vm.html#top">Thomsen VM</a></div>
+        <div><h4>Legal</h4><a href="terms.html#top">Terms of Service</a><a href="privacy.html#top">Privacy Policy</a><a href="refund.html#top">Refund Policy</a><button class="linkbtn" type="button" data-cookie-settings>Cookie settings</button></div><div><h4>Links</h4><a href="https://github.com/Thomssen">GitHub</a><a href="https://discord.gg/thomsen">Discord</a><a href="https://thomssen.dev/">thomssen.dev</a></div>
       </div>
       <div class="foot__word" aria-hidden="true">thomsen.</div>
       <div class="foot__legal"><span>© 2026 Thomsen Software</span><span>Independent development</span></div>
     </div>
   </footer>
   <script src="cookies.js"></script>
-  <script>if ("scrollRestoration" in history) history.scrollRestoration = "manual"; if (!location.hash) window.scrollTo(0, 0);</script>
+  <script>if ("scrollRestoration" in history) history.scrollRestoration = "manual"; function toTop() { if (!location.hash || location.hash === "#top") window.scrollTo({ top: 0, left: 0, behavior: "instant" }); } toTop(); addEventListener("load", toTop); addEventListener("pageshow", toTop); setTimeout(toTop, 150);</script>
 </body>
 </html>
