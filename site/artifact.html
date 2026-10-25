@@ -86,7 +86,8 @@ h1 em { font-style: normal; background: linear-gradient(180deg, #fff, #777); -we
 .card--b .card__img { height: 150px; }
 
 .window { top: 60px; left: 150px; width: 250px; padding: 14px; border-radius: 26px; }
-.window__bar { display: flex; gap: 6px; margin-bottom: 18px; }
+.window__bar { display: flex; align-items: center; gap: 6px; margin-bottom: 18px; }
+.window__bar span { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .window__bar i { width: 8px; height: 8px; border-radius: 50%; background: #333; }
 .window__time { font-size: 54px; font-weight: 800; letter-spacing: -.05em; line-height: 1; }
 .window__sub { font-size: 11px; color: var(--muted); margin: 6px 0 18px; }
@@ -175,12 +176,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <section class="stage" aria-label="Product preview">
         <article class="card card--a float" style="--d:0s">
           <span class="badge">NEW</span>
-          <div class="card__img art-shield"><b>THOMSEN<br>SHIELD</b></div>
-          <div class="card__row"><strong>Thomsen Shield</strong><span>Network</span></div>
+          <div class="card__img art-shield"><b>THOMSEN<br>VPN</b></div>
+          <div class="card__row"><strong>Thomsen VPN</strong><span>Privacy</span></div>
         </article>
 
         <div class="window float" style="--d:-2s">
-          <div class="window__bar"><i></i><i></i><i></i></div>
+          <div class="window__bar"><i></i><i></i><i></i><span>Thomsen Shield</span></div>
           <div class="window__time">21:37</div>
           <div class="window__sub">Sun 25 Oct · Copenhagen</div>
           <div class="wallet">

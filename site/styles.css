@@ -81,7 +81,8 @@ h1 em { font-style: normal; background: linear-gradient(180deg, #fff, #777); -we
 .card--b .card__img { height: 150px; }
 
 .window { top: 60px; left: 150px; width: 250px; padding: 14px; border-radius: 26px; }
-.window__bar { display: flex; gap: 6px; margin-bottom: 18px; }
+.window__bar { display: flex; align-items: center; gap: 6px; margin-bottom: 18px; }
+.window__bar span { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .window__bar i { width: 8px; height: 8px; border-radius: 50%; background: #333; }
 .window__time { font-size: 54px; font-weight: 800; letter-spacing: -.05em; line-height: 1; }
 .window__sub { font-size: 11px; color: var(--muted); margin: 6px 0 18px; }
