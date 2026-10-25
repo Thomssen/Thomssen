@@ -1,0 +1,4 @@
+# Show this page for every address on the domain, for example /anything or /old/page.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ /index.html [L]

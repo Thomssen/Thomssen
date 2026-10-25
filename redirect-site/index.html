@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thomsen Software</title>
+  <meta name="description" content="This website has moved to thomsen-software.com.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://thomsen-software.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2309090a'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='%23fff'%3Et%3C/text%3E%3Ccircle cx='45' cy='42' r='3.5' fill='%23fff'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: dark; --bg: #09090a; --text: #fff; --muted: #9a9aa0; --line: rgba(255,255,255,.12); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      min-height: 100%; display: grid; place-items: center;
+      padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px));
+      background: radial-gradient(60% 55% at 50% 0%, rgba(255,255,255,.16), transparent 70%), var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { width: 100%; max-width: 560px; text-align: center; }
+    .logo { display: inline-block; margin-bottom: 40px; font-size: 30px; font-weight: 800; letter-spacing: -.05em; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--muted); }
+    .tag { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 22px; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.04); font-size: 13px; font-weight: 600; max-width: 100%; overflow-wrap: anywhere; }
+    .tag i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: #a6dcc2; box-shadow: 0 0 10px #a6dcc2; }
+    h1 { font-size: clamp(36px, 8vw, 60px); line-height: 1.02; letter-spacing: -.045em; font-weight: 800; margin-bottom: 16px; text-wrap: balance; }
+    p { font-size: 17px; line-height: 1.6; color: var(--muted); margin: 0 auto 34px; max-width: 440px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 999px; background: #fff; color: #000; font-size: 16px; font-weight: 700; text-decoration: none; box-shadow: 0 10px 34px rgba(255,255,255,.14); transition: transform .2s, box-shadow .2s; overflow-wrap: anywhere; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(255,255,255,.24); }
+    .btn:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+    .small { margin-top: 26px; font-size: 13px; color: #6d6d74; }
+    .small a { color: var(--muted); text-underline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="logo" href="https://thomsen-software.com/">thomsen<span>.</span></a>
+    <div><span class="tag"><i></i><span id="from">This website has moved</span></span></div>
+    <h1>Go to our new website.</h1>
+    <p>Everything from Thomsen Software now lives in one place. Use the button below to continue.</p>
+    <a class="btn" href="https://thomsen-software.com/">Go to thomsen-software.com <span aria-hidden="true">→</span></a>
+    <p class="small">Or type <a href="https://thomsen-software.com/">thomsen-software.com</a> in your browser.</p>
+  </main>
+  <script>
+    // Shows which domain the visitor came from, for example "thomsen-old.com has moved".
+    (function () {
+      var h = location.hostname.replace(/^www\./, "");
+      if (h && h !== "localhost" && h !== "thomsen-software.com" && /^[a-z0-9.-]+$/i.test(h)) document.getElementById("from").textContent = h + " has moved";
+    })();
+  </script>
+</body>
+</html>
