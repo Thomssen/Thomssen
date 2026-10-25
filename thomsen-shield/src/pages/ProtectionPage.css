@@ -1,0 +1,32 @@
+.prot__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.prot__row-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.prot__row-hint {
+  margin-top: 3px;
+  max-width: 52ch;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.prot__field-spaced {
+  margin-top: 16px;
+}
+.prot__sensitivity-hint {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.prot__lockdown-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

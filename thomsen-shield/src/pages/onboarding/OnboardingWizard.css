@@ -1,0 +1,210 @@
+.onboarding {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 32px 20px;
+}
+
+.onboarding__panel {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.onboarding__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.onboarding__step-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.onboarding__bar {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+}
+.onboarding__bar-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--btn-primary-bg);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.onboarding__content {
+  animation: onboarding-step-in var(--dur-slow) var(--ease-out) both;
+}
+@keyframes onboarding-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.onboarding__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.onboarding__nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* -- Welcome ------------------------------------------------------------ */
+.onboarding__welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 20px 12px 8px;
+}
+.onboarding__logo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.onboarding__title {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+.onboarding__lead {
+  max-width: 42ch;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.onboarding__welcome-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* -- Generic step header -------------------------------------------------- */
+.onboarding__step {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.onboarding__heading {
+  font-size: 19px;
+  letter-spacing: -0.015em;
+}
+.onboarding__description {
+  margin-top: -10px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.onboarding__hint {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-faint);
+}
+.onboarding__field-spaced {
+  margin-top: 16px;
+}
+
+/* -- Protection mode cards ------------------------------------------------- */
+.onboarding__modes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.onboarding__mode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 15px 16px;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
+}
+.onboarding__mode:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+.onboarding__mode.is-selected {
+  border-color: var(--text);
+  background: var(--surface-2);
+}
+
+.onboarding__mode-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.onboarding__mode-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+.onboarding__mode-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-faint);
+}
+
+/* -- Info rows -------------------------------------------------------- */
+.onboarding__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.onboarding__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-faint);
+}
+.onboarding__row:last-child {
+  border-bottom: none;
+}
+.onboarding__row-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 480px) {
+  .onboarding__modes {
+    gap: 8px;
+  }
+}

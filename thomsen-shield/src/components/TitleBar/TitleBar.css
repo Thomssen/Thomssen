@@ -1,0 +1,67 @@
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--titlebar-h);
+  padding-left: 14px;
+  background: var(--titlebar-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-faint);
+  user-select: none;
+}
+
+.titlebar__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.005em;
+}
+
+.titlebar__sep {
+  color: var(--text-faint);
+}
+
+.titlebar__route {
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.titlebar__controls {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+/* Windows convention: flush rectangular buttons spanning the full titlebar
+   height, no gaps between them, icon always visible - not macOS's inset
+   circular traffic lights (hidden until hover). */
+.titlebar__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 100%;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  background: transparent;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.titlebar__btn:hover {
+  background: var(--btn-secondary-bg-hover);
+  color: var(--text);
+}
+.titlebar__btn:active {
+  background: var(--border-strong);
+}
+
+.titlebar__btn--close:hover {
+  background: #e81123;
+  color: #ffffff;
+}
+.titlebar__btn--close:active {
+  background: #f1707a;
+}

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thomsen Shield - section preview</title>
+<!--
+  ============================================================================
+  DROP-IN PREVIEW for the Thomsen Shield product section.
+
+  I can't reach C:\Users\krist\Desktop\Thomsen Site from this session (it's
+  a cloud sandbox, not your Windows machine), so this wasn't built by
+  copying your site's actual CSS - it's reconstructed from the same shared
+  design tokens your other Thomsen apps use (near-black surfaces, white
+  text, grey secondary text, hairline borders, pill buttons, no
+  gradients - see thomsen-vm's src/styles/tokens.css). It should already
+  read as "the same family" as your Web Scanner section, but if you paste
+  me your site's real HTML/CSS I'll match it exactly instead.
+
+  HOW TO USE THIS FILE:
+  - Open it directly in a browser to preview the section on its own dark
+    page (this <head>/<body> wrapper below is ONLY for that preview).
+  - To actually add it to your site: copy everything between the
+    "COPY FROM HERE" and "COPY TO HERE" comments into your existing page,
+    in the same spot your Web Scanner section lives. Copy the <style>
+    block's contents into your stylesheet (or keep it as a scoped <style>
+    tag right before the section - it's written to be self-contained and
+    won't leak into the rest of the page either way, since every rule is
+    prefixed .ts-shield).
+  - Copy assets/thomsen-shield-dashboard.png alongside it (or point the
+    <img> src at wherever you host product images).
+  - The Buy button already points at the real endpoint
+    (https://api.thomssen.dev/buy) built in thomsen-shield-license-api/ -
+    nothing to swap out once that's deployed. Until then it will 404.
+  ============================================================================
+-->
+<style>
+  /* Preview-page-only styling - delete everything in this block when you
+     copy the section into your real site; your site already has its own
+     background/body rules. */
+  body { margin: 0; background: #050607; padding: 64px 20px; }
+</style>
+</head>
+<body>
+
+<!-- ============ COPY FROM HERE ============ -->
+<style>
+  /* Every rule below is scoped under .ts-shield so it can't collide with
+     anything already in your site's stylesheet. Uses the same tokens as
+     thomsen-vm/src/styles/tokens.css - if your site already defines these
+     as CSS custom properties at :root, delete this :root block and these
+     rules will pick up your site's own values automatically. */
+  .ts-shield {
+    --ts-bg: #050607;
+    --ts-surface: #0d0f11;
+    --ts-surface-2: #131619;
+    --ts-text: #f2f3f4;
+    --ts-text-secondary: #b4b9be;
+    --ts-text-muted: #7c838a;
+    --ts-text-faint: #565c62;
+    --ts-border: rgba(255,255,255,0.08);
+    --ts-border-strong: rgba(255,255,255,0.14);
+    --ts-btn-primary-bg: #f3f4f5;
+    --ts-btn-primary-bg-hover: #ffffff;
+    --ts-btn-primary-text: #0a0b0c;
+    --ts-radius: 16px;
+    --ts-radius-sm: 10px;
+    --ts-radius-pill: 999px;
+    --ts-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+
+    font-family: var(--ts-font);
+    color: var(--ts-text-secondary);
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 72px 24px;
+  }
+  .ts-shield * { box-sizing: border-box; }
+  .ts-shield__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .ts-shield__grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  /* -- Left: product image ------------------------------------------- */
+  .ts-shield__frame {
+    position: relative;
+    border-radius: var(--ts-radius);
+    border: 1px solid var(--ts-border-strong);
+    background: var(--ts-surface);
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  }
+  .ts-shield__frame img { display: block; width: 100%; height: auto; }
+  .ts-shield__frame-bar {
+    display: flex; align-items: center; gap: 7px;
+    padding: 12px 14px;
+    background: rgba(8,9,11,0.9);
+    border-bottom: 1px solid var(--ts-border);
+  }
+  .ts-shield__dot { width: 10px; height: 10px; border-radius: 50%; }
+  .ts-shield__dot--y { background: #febc2e; }
+  .ts-shield__dot--g { background: #28c840; }
+  .ts-shield__dot--r { background: #ff5f57; }
+
+  /* -- Right: product info --------------------------------------------- */
+  .ts-shield__eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ts-text-muted);
+  }
+  .ts-shield__eyebrow::before { content: ""; width: 16px; height: 1px; background: var(--ts-border-strong); }
+  .ts-shield__title {
+    margin: 14px 0 0;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ts-text);
+  }
+  .ts-shield__desc {
+    margin: 18px 0 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ts-text-muted);
+    max-width: 52ch;
+  }
+
+  .ts-shield__cta-row { margin-top: 30px; }
+  .ts-shield__buy {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 54px; padding-inline: 30px;
+    border-radius: var(--ts-radius-pill);
+    background: var(--ts-btn-primary-bg);
+    color: var(--ts-btn-primary-text);
+    font-size: 16px; font-weight: 600;
+    text-decoration: none;
+    transition: background-color 150ms ease;
+  }
+  .ts-shield__buy:hover { background: var(--ts-btn-primary-bg-hover); }
+  .ts-shield__compat {
+    margin: 14px 0 0;
+    font-size: 12.5px;
+    color: var(--ts-text-faint);
+  }
+
+  .ts-shield__rule {
+    height: 1px;
+    background: var(--ts-border);
+    border: 0;
+    margin: 28px 0 20px;
+  }
+
+  .ts-shield__pills {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .ts-shield__pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 28px; padding-inline: 13px;
+    border-radius: var(--ts-radius-pill);
+    border: 1px solid var(--ts-border);
+    background: var(--ts-surface-2);
+    color: var(--ts-text-secondary);
+    font-size: 12px; font-weight: 600;
+  }
+  .ts-shield__pill::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--ts-text-muted);
+  }
+</style>
+
+<section class="ts-shield" aria-labelledby="ts-shield-title">
+  <div class="ts-shield__grid">
+
+    <!-- Product image -->
+    <div class="ts-shield__frame">
+      <div class="ts-shield__frame-bar" aria-hidden="true">
+        <span class="ts-shield__dot ts-shield__dot--r"></span>
+        <span class="ts-shield__dot ts-shield__dot--y"></span>
+        <span class="ts-shield__dot ts-shield__dot--g"></span>
+      </div>
+      <img src="assets/thomsen-shield-dashboard.png" alt="Thomsen Shield dashboard showing Protection and Windows Firewall both active, active connection count, blocked IPs, and a live network activity graph" width="1320" height="470" loading="lazy" />
+    </div>
+
+    <!-- Product info -->
+    <div>
+      <p class="ts-shield__eyebrow">Windows Utility &middot; Paid</p>
+      <h2 class="ts-shield__title" id="ts-shield-title">Thomsen Shield</h2>
+      <p class="ts-shield__desc">
+        Lightweight network protection for Windows. Monitor suspicious
+        traffic, control your firewall and automatically block abusive
+        connections.
+      </p>
+
+      <div class="ts-shield__cta-row">
+        <a class="ts-shield__buy" href="https://api.thomssen.dev/buy">Buy &mdash; &euro;50.00 Lifetime</a>
+        <p class="ts-shield__compat">Windows 10 / 11 &bull; One-time payment &bull; Lifetime license</p>
+      </div>
+
+      <hr class="ts-shield__rule" />
+
+      <div class="ts-shield__pills">
+        <span class="ts-shield__pill">Live Protection</span>
+        <span class="ts-shield__pill">Firewall Control</span>
+        <span class="ts-shield__pill">Traffic Monitoring</span>
+        <span class="ts-shield__pill">Automatic Blocking</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ============ COPY TO HERE ============ -->
+
+</body>
+</html>

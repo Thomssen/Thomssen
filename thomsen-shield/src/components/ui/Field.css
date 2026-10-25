@@ -1,0 +1,159 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field__labelrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.field__label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.field__aside {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.field__hint {
+  font-size: 11.5px;
+  color: var(--text-faint);
+  line-height: 1.5;
+}
+
+.field--error .field__error {
+  font-size: 11.5px;
+  color: var(--bad);
+  line-height: 1.5;
+}
+
+.input {
+  height: 36px;
+  padding-inline: 12px;
+  width: 100%;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 13px;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.input::placeholder {
+  color: var(--text-faint);
+}
+.input:hover {
+  background: var(--field-bg-focus);
+}
+.input:focus {
+  outline: none;
+  background: var(--field-bg-focus);
+  border-color: var(--border-strong);
+}
+.input--mono {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+.textarea {
+  height: auto;
+  min-height: 80px;
+  padding-block: 9px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.select {
+  position: relative;
+  display: block;
+}
+.select__el {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  padding-right: 32px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+.select__el:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.select__chevron {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* The panel this app already uses for any floating list of choices - see
+   Menu.css - so a dropdown looks like the rest of the app, dark theme
+   included, instead of the OS's own (light, unstyled) native popup. */
+.select__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 5px;
+  background: var(--surface-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  animation: select-panel-in var(--dur-fast) var(--ease-out) both;
+}
+@keyframes select-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-align: left;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.select__option:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.select__option--active:not(:disabled) {
+  background: var(--btn-secondary-bg-hover);
+  color: var(--text);
+}
+.select__option--selected {
+  color: var(--text);
+  font-weight: 600;
+}
+.select__option--selected svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}

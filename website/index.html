@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark light" name="color-scheme"/>
+<title>Thomsen Software — Windows Network Protection</title>
+<meta content="Thomsen Software — lightweight network and firewall protection for Windows. Monitor connections, detect abuse, and control Windows Firewall from one clean app." name="description"/>
+<meta content="#050607" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
+<link href="assets/favicon.ico" rel="icon" sizes="any"/>
+<link href="assets/logo.png" rel="icon" type="image/png"/>
+<link href="assets/logo.png" rel="apple-touch-icon"/>
+<link href="https://thomssen.dev/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Thomsen Software" property="og:site_name"/>
+<meta content="https://thomssen.dev/" property="og:url"/>
+<meta content="Thomsen Software — Windows Network Protection" property="og:title"/>
+<meta content="Lightweight network and firewall protection for Windows." property="og:description"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="assets/main3.css" rel="stylesheet"/>
+<!-- Sets the saved dark/light theme before the page shows (no flash).
+         Same script as the real thomssen.dev pages — keep it identical
+         across every page in this folder. -->
+<script>
+      (function () {
+        try {
+          var t = localStorage.getItem('thomsen-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t =
+              window.matchMedia &&
+              window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- ══════════════════════════════════════════════════════════════════
+         NAVBAR — keep in sync with refund.html / terms.html / privacy.html
+         ══════════════════════════════════════════════════════════════════ -->
+<header class="nav-wrap">
+<div class="nav-scrim"></div>
+<nav aria-label="Primary" class="nav">
+<a aria-label="Thomsen Software — home" class="nav__brand" href="index.html">
+<img alt="" class="nav__mark" height="26" src="assets/logo.png" width="26"/>
+<span class="nav__brand-text">Thomsen Software</span>
+</a>
+<ul class="nav__links">
+<li><a class="nav__link is-active" href="index.html">Home</a></li>
+<li><a class="nav__link" href="#pricing">Products</a></li>
+<li><a class="nav__link" href="#faq">FAQ</a></li>
+</ul>
+<div class="nav__actions">
+<button aria-label="Switch theme" class="theme-toggle" type="button">
+<span class="theme-toggle__icons" data-dark="true">
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--moon" fill="none" height="17" viewbox="0 0 24 24" width="17">
+<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z" fill="currentColor"></path>
+</svg>
+<svg aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--sun" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-width="1.9" viewbox="0 0 24 24" width="17">
+<circle cx="12" cy="12" fill="currentColor" r="4" stroke="none"></circle>
+<path d="M12 2.5v2M12 19.5v2M4.5 12h-2M21.5 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4"></path>
+</svg>
+</span>
+</button>
+<a class="btn btn--primary btn--sm nav__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+<button aria-controls="nav-panel" aria-expanded="false" aria-label="Open menu" class="nav__burger" type="button">
+<span></span><span></span>
+</button>
+</div>
+</nav>
+<div class="nav-panel" id="nav-panel">
+<ul class="nav-panel__links">
+<li><a class="nav-panel__link is-active" href="index.html">Home</a></li>
+<li><a class="nav-panel__link" href="#pricing">Products</a></li>
+<li><a class="nav-panel__link" href="#faq">FAQ</a></li>
+</ul>
+<a class="btn btn--primary nav-panel__cta" href="https://discord.gg/x7JNcz5tqb">Discord</a>
+</div>
+</header>
+<main class="page" id="main">
+<!-- ════════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+<div aria-hidden="true" class="hero__grid"></div>
+<div class="container hero__inner">
+<div class="hero__copy">
+<p class="hero__badge"><span class="dot dot-good"></span>Independent Windows Software</p>
+<h1 class="hero__title">Software for people who want to see what's happening.</h1>
+<p class="hero__desc">
+              Thomsen Software builds small, focused Windows tools — network protection,
+              OSINT investigation, and virtualization — each doing one job well instead
+              of a dozen jobs badly.
+            </p>
+<div class="hero__actions">
+<a class="btn btn--primary btn--lg" href="#pricing">Products</a>
+<a class="btn btn--secondary btn--lg" href="#how-it-works">See how it works</a>
+</div>
+<p class="hero__meta">Windows 10 / 11 · One-time payment · Lifetime license</p>
+</div>
+<div class="hero__visual">
+<div class="hero__panel">
+<div class="hero__panel-head"><span class="dot dot-good"></span>System status — live products</div>
+<a class="hero__panel-row" href="#pricing">
+<span class="hero__panel-row-icon" aria-hidden="true"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="16"><path d="M10 2.5l6.5 2.6v4.6c0 4.2-2.8 6.9-6.5 7.4-3.7-.5-6.5-3.2-6.5-7.4V5.1L10 2.5z"></path></svg></span>
+<span class="hero__panel-row-name">Thomsen Shield</span>
+<span class="status-badge">Shipping</span>
+</a>
+<a class="hero__panel-row" href="#pricing">
+<span class="hero__panel-row-icon" aria-hidden="true"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="16"><rect height="10" rx="1.5" width="14" x="3" y="4"></rect><path d="M3 7.5h14"></path><path d="M7 17h6"></path><path d="M10 14v3"></path></svg></span>
+<span class="hero__panel-row-name">Thomsen VM</span>
+<span class="status-badge status-badge--muted">Free</span>
+</a>
+<a class="hero__panel-row" href="#pricing">
+<span class="hero__panel-row-icon" aria-hidden="true"><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 20 20" width="16"><circle cx="8.5" cy="8.5" r="5.3"></circle><path d="M16.3 16.3l-3.8-3.8"></path></svg></span>
+<span class="hero__panel-row-name">Thomsen OSINT</span>
+<span class="status-badge status-badge--warn">In development</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════
+           HOW IT WORKS
+           ════════════════════════════════════════════════════════════════ -->
+<section class="section section--tight band" id="how-it-works">
+<div class="container">
+<div class="section-head">
+<p class="eyebrow">How it works</p>
+<h2>Three things, done well.</h2>
+<p>Thomsen Shield doesn't try to do everything. It watches your connections, flags what looks wrong, and gives you full control over Windows Firewall — nothing more, nothing hidden.</p>
+</div>
+<div class="hiw-grid">
+<div class="hiw-card">
+<p class="hiw-card__num">01</p>
+<h3>Monitor</h3>
+<p>See every active connection on your PC — the app behind it, the remote address, and its status — updated live.</p>
+</div>
+<div class="hiw-card">
+<p class="hiw-card__num">02</p>
+<h3>Detect</h3>
+<p>Connection spikes and repeated connections from one IP are flagged automatically, with a sensitivity level you control.</p>
+</div>
+<div class="hiw-card">
+<p class="hiw-card__num">03</p>
+<h3>Control</h3>
+<p>Block an IP or app in one click, or manage Windows Firewall rules directly — Thomsen Shield only ever touches rules it created.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════
+           PRICING
+           ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="pricing">
+<div class="container">
+<div class="section-head section-head--center">
+<p class="eyebrow">Product</p>
+<h2>One price. Yours for good.</h2>
+<p>No subscriptions, no tiers to compare. Buy once, use it for as long as you own a Windows PC.</p>
+</div>
+<div class="pricing">
+<div class="pricing-card pricing-card--osint">
+<p class="pricing-card__name">Thomsen OSINT</p>
+<div class="pricing-card__price">
+<span class="pricing-card__price-amount">€10</span>
+<span class="pricing-card__price-period">one-time</span>
+</div>
+<p class="pricing-card__note">Lifetime license · Windows 10 / 11</p>
+<a class="btn btn--primary btn--block" href="https://api.thomssen.dev/buy2">Pre-order</a>
+<ul class="pricing-card__list pricing-card__list--tight">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Username search across 30+ platforms</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Domain, DNS &amp; subdomain intelligence</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>IP, ISP &amp; geolocation lookup</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Local-first — no cloud or telemetry</li>
+</ul>
+<a class="pricing-card__more" href="products/osint/">Full details<svg aria-hidden="true" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="12"><path d="M7 4l6 6-6 6"></path></svg></a>
+</div>
+<div class="pricing-card pricing-card--shield">
+<span class="pricing-card__badge">Main Product</span>
+<p class="pricing-card__name">Thomsen Shield</p>
+<div class="pricing-card__price">
+<span class="pricing-card__price-amount">€30</span>
+<span class="pricing-card__price-period">one-time</span>
+</div>
+<p class="pricing-card__note">Lifetime license · Windows 10 / 11</p>
+<a class="btn btn--primary btn--block btn--lg" href="https://api.thomssen.dev/buy">Purchase</a>
+<ul class="pricing-card__list pricing-card__list--tight">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Live connection monitoring</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Automatic abuse detection &amp; blocking</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Full Windows Firewall control</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Free updates for the life of the license</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Blocklist, allowlist &amp; exportable logs</li>
+</ul>
+<a class="pricing-card__more" href="products/shield/">Full details<svg aria-hidden="true" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="12"><path d="M7 4l6 6-6 6"></path></svg></a>
+<p class="pricing-card__refund">Covered by our <a href="refund.html">14-day refund policy</a>.</p>
+</div>
+<div class="pricing-card pricing-card--vm">
+<p class="pricing-card__name">Thomsen VM</p>
+<div class="pricing-card__price">
+<span class="pricing-card__price-amount pricing-card__price-amount--free">Free</span>
+</div>
+<p class="pricing-card__note">Free program · Windows 10 / 11</p>
+<a class="btn btn--primary btn--block" href="https://github.com/Thomssen/Thomsen-VM/releases/download/v1.0.0/Thomsen-VM-Setup.exe">VM Download</a>
+<ul class="pricing-card__list pricing-card__list--tight">
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Guided VM creation wizard with ISO auto-detection</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>UEFI and Legacy BIOS firmware, per VM</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Snapshots (create, restore, delete)</li>
+<li><svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="14"><path d="M4 10.5l4 4 8-9"></path></svg>Live CPU, RAM, disk, and network monitoring</li>
+</ul>
+<a class="pricing-card__more" href="products/vm/">Full details<svg aria-hidden="true" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 20 20" width="12"><path d="M7 4l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════
+           FAQ
+           ════════════════════════════════════════════════════════════════ -->
+<section class="section band" id="faq">
+<div class="container">
+<div class="section-head">
+<p class="eyebrow">FAQ</p>
+<h2>Questions, answered.</h2>
+</div>
+<div class="faq">
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                Is this a subscription?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>No. All Thomsen software is sold as a one-time purchase with no subscriptions or recurring charges. Thomsen Shield costs €30 for a lifetime license, while Thomsen OSINT costs €10 for a lifetime license.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                What does Thomsen Shield do?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>Thomsen Shield monitors your PC's network activity, detects unusual connection spikes, and can automatically block abusive connections. It is designed as an additional defensive layer and does not claim to stop every DDoS attack.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                What does Thomsen OSINT do?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>Thomsen OSINT provides tools for username searches, domain intelligence, IP intelligence, metadata analysis, and other OSINT research from one application.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                What Windows versions are supported?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>Both programs support Windows 10 and Windows 11, 64-bit.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                Do the programs need administrator rights?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>Thomsen Shield only requests administrator rights when an action requires them, such as creating or removing Windows Firewall rules. Thomsen OSINT does not require administrator access.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                Can Thomsen Shield start automatically with Windows?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>Yes. You can turn on "Start with Windows" in Settings so Thomsen Shield is already monitoring as soon as you sign in.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                Can I use my license on more than one PC?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>Each license is intended for one Windows PC at a time. You can move your license to another PC when needed.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                Is my data uploaded?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>Both programs are designed to run locally wherever possible. Thomsen Shield does not upload your network activity or blocked IPs. Thomsen OSINT does not require a cloud account or telemetry. See the <a href="privacy.html">Privacy Policy</a> for more information.</p></div></div>
+</div>
+<div class="faq-item" data-open="false">
+<button aria-expanded="false" class="faq-item__q" type="button">
+                What if I'm not happy with my purchase?
+                <svg aria-hidden="true" class="faq-item__chevron" fill="none" height="7" viewbox="0 0 10 6" width="12"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+</button>
+<div class="faq-item__a"><div class="faq-item__a-inner"><p>You can contact us within 14 days of purchase to request a refund according to our <a href="refund.html">Refund Policy</a>.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ══════════════════════════════════════════════════════════════════
+         FOOTER   (keep in sync with refund.html / terms.html / privacy.html)
+         ══════════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+<div class="container">
+<div class="footer__top">
+<a class="footer__brand" href="index.html">
+<img alt="" class="footer__mark" height="30" src="assets/logo.png" width="30"/>
+<div>
+<p class="footer__name">Thomsen Software</p>
+<p class="footer__tag">Lightweight network and firewall protection for Windows.</p>
+</div>
+</a>
+<div class="footer__cols">
+<div class="footer__col">
+<p class="footer__col-title">Products</p>
+<a class="footer__link" href="index.html">Home</a>
+<a class="footer__link" href="#pricing">Products</a>
+
+<a class="footer__link" href="#faq">FAQ</a>
+</div>
+<div class="footer__col">
+<p class="footer__col-title">Community</p>
+<a class="footer__link" href="https://discord.gg/x7JNcz5tqb" rel="noopener" target="_blank">Discord</a>
+<a class="footer__link" href="server-rules/">Server Rules</a>
+<a class="footer__link" href="https://github.com/Thomssen" rel="noopener" target="_blank">GitHub</a>
+<a class="footer__link" href="https://www.youtube.com/@Thomsssen" rel="noopener" target="_blank">YouTube</a>
+<a class="footer__link" href="#" id="copyEmail">Email</a>
+</div>
+<script>
+            const emailLink = document.getElementById("copyEmail");
+
+            emailLink.addEventListener("click", async (e) => {
+                e.preventDefault();
+                const email = "support@thomssen.dev";
+                await navigator.clipboard.writeText(email);
+                const oldText = emailLink.textContent;
+                emailLink.textContent = "Copied!";
+                setTimeout(() => {
+                emailLink.textContent = oldText;
+                 }, 1500);
+                 });
+            </script>
+<div class="footer__col">
+<p class="footer__col-title">Legal</p>
+<a class="footer__link" href="terms.html">Terms</a>
+<a class="footer__link" href="privacy.html">Privacy</a>
+<a class="footer__link" href="refund.html">Refund Policy</a>
+<a class="footer__link" data-cc-open="" href="#">Cookie Settings</a>
+</div>
+</div>
+</div>
+<div class="footer__bottom">
+<p class="footer__copy">© <span data-year="">2026</span> Thomsen Software</p>
+</div>
+</div>
+</footer>
+<script defer="" src="assets/site2.js"></script>
+<script defer="" src="assets/consent.js"></script>
+</body>
+</html>

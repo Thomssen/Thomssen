@@ -1,0 +1,46 @@
+.dash__status {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.dash__status-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+}
+.dash__status-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dash__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.dash__graph-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.dash__graph-head h3 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
+.dash__graph-hint {
+  font-size: 11.5px;
+  color: var(--text-faint);
+}
+
+@media (max-width: 640px) {
+  .dash__stats {
+    grid-template-columns: 1fr;
+  }
+}

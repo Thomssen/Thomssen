@@ -1,0 +1,75 @@
+.license-gate {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 32px 20px;
+}
+
+.license-gate__panel {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.license-gate__logo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.license-gate__brand {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.license-gate__title {
+  margin-top: 4px;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.license-gate__lead {
+  margin-top: 8px;
+  max-width: 38ch;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.license-gate__card {
+  width: 100%;
+  margin-top: 22px;
+  text-align: left;
+}
+
+.license-gate__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.license-gate__hint {
+  margin-top: 18px;
+  max-width: 40ch;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-faint);
+}

@@ -1,0 +1,45 @@
+.log-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-list__group {
+  padding: 6px 20px 10px;
+}
+.log-list__day {
+  padding: 12px 0 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.log-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-faint);
+  font-size: 12.5px;
+}
+.log-list__group > .log-row:last-child {
+  border-bottom: none;
+}
+
+.log-row__time {
+  flex-shrink: 0;
+  width: 68px;
+  color: var(--text-faint);
+}
+
+.log-row__cat {
+  flex-shrink: 0;
+  width: 84px;
+  justify-content: center;
+}
+
+.log-row__message {
+  flex: 1;
+  color: var(--text-secondary);
+}
