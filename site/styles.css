@@ -230,3 +230,32 @@ h2 { font-size: clamp(34px, 5vw, 52px); letter-spacing: -.045em; line-height: 1;
 .wcard p { font-size: 14px; line-height: 1.65; color: var(--muted); max-width: 440px; }
 .wcard:not(.wcard--big) p { font-size: 13px; }
 @media (max-width: 820px) { .wcard, .wcard--big { grid-column: span 6; } .chip { margin-bottom: 26px; } }
+
+/* FAQ + Discord */
+.faq { padding-block: 70px 110px; border-top: 1px solid var(--line); }
+.faq__inner { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.faq__grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; margin-bottom: 90px; }
+.faq__intro { min-width: 0; }
+.faq__intro h2 { margin-bottom: 18px; }
+.faq__intro p { color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 280px; }
+.faq__list { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.qa { border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2); transition: border-color .2s, background .2s; }
+.qa[open] { border-color: rgba(255,255,255,.3); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); }
+.qa summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; font-size: 14px; font-weight: 700; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa p { padding: 0 22px 22px; font-size: 13px; line-height: 1.7; color: var(--muted); max-width: 520px; }
+.qa__i { position: relative; flex: none; width: 26px; height: 26px; border: 1px solid var(--line); border-radius: 8px; transition: transform .25s; }
+.qa__i::before, .qa__i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; background: #fff; transform: translate(-50%, -50%); }
+.qa__i::after { transform: translate(-50%, -50%) rotate(90deg); }
+.qa[open] .qa__i { transform: rotate(45deg); }
+
+.discord { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; padding: clamp(28px, 5vw, 56px); border: 1px solid var(--line); border-radius: 26px; background:
+  repeating-linear-gradient(135deg, transparent 0 22px, rgba(255,255,255,.025) 22px 23px),
+  radial-gradient(80% 140% at 100% 100%, rgba(255,255,255,.10), transparent 60%), var(--bg-2); }
+.discord__copy { min-width: 0; max-width: 560px; }
+.discord h2 { font-size: clamp(30px, 4.4vw, 46px); margin-bottom: 18px; }
+.discord__copy p { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 400px; }
+.discord__side { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.discord__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.discord__tags li { font-size: 11px; font-weight: 600; color: var(--muted); padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(0,0,0,.35); }
+@media (max-width: 820px) { .faq__grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 56px; } }
