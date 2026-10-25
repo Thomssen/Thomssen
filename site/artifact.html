@@ -512,7 +512,7 @@ html { scroll-padding-top: 90px; }
 
 .foot { border-top: 1px solid var(--line); overflow: hidden; }
 .foot__inner { max-width: 1180px; margin: 0 auto; padding: 70px max(16px, env(safe-area-inset-left, 0px)) 28px; }
-.foot__cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+.foot__cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; }
 .foot__brand .logo { font-size: 28px; display: inline-block; margin-bottom: 14px; }
 .foot__brand p { font-size: 14px; line-height: 1.6; color: var(--muted); max-width: 320px; }
 .foot h4 { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
@@ -593,6 +593,61 @@ html { scroll-padding-top: 90px; }
 .pp__more span:not(.story__cat) { font-size: 14px; line-height: 1.5; color: var(--muted); }
 .pp__more em { font-style: normal; margin-top: 10px; font-size: 18px; }
 @media (max-width: 860px) { .pp__grid, .pp__others { grid-template-columns: 1fr; } .pp__spec { grid-template-columns: 1fr 1fr; justify-content: start; gap: 18px 32px; } }
+
+/* legal pages */
+.legal { position: relative; overflow: hidden; padding: clamp(130px, 14vw, 170px) max(16px, env(safe-area-inset-left, 0px)) clamp(70px, 9vw, 120px); }
+.legal > :not(.hero2__beam) { position: relative; }
+.legal__head { max-width: 1100px; margin: 0 auto 56px; }
+.legal__head .scene__more { display: inline-block; margin-bottom: 26px; font-size: 14px; color: var(--muted); }
+.legal__head h1 { font-size: clamp(42px, 6.4vw, 78px); line-height: 1; letter-spacing: -.05em; margin-bottom: 14px; }
+.legal__date { font-size: 13px; color: var(--dim); margin-bottom: 22px; }
+.legal__intro { max-width: 680px; font-size: 17px; line-height: 1.65; color: var(--muted); }
+.legal__grid { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: clamp(30px, 6vw, 90px); max-width: 1100px; margin: 0 auto; align-items: start; }
+.legal__toc { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 2px; padding-left: 16px; border-left: 1px solid var(--line); }
+.legal__toc h4 { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+.legal__toc a { padding: 6px 0; font-size: 13px; color: var(--muted); transition: color .2s; }
+.legal__toc a:hover { color: #fff; }
+.legal__s { padding-block: 30px; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.legal__s:first-child { border-top: 0; padding-top: 0; }
+.legal__s h2 { font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -.035em; margin-bottom: 14px; }
+.legal__s h2 span { color: var(--dim); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.legal__s p, .legal__s li { font-size: 15px; line-height: 1.75; color: #b9b9bf; max-width: 680px; }
+.legal__s p + p { margin-top: 14px; }
+.legal__s ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.legal__s li { position: relative; padding-left: 20px; }
+.legal__s li::before { content: ""; position: absolute; left: 0; top: .8em; width: 6px; height: 1px; background: #fff; }
+.legal__s a { color: #fff; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.35); }
+.legal__s a:hover { text-decoration-color: #fff; }
+@media (max-width: 860px) { .legal__grid { grid-template-columns: 1fr; } .legal__toc { position: static; border-left: 0; padding-left: 0; padding-bottom: 20px; border-bottom: 1px solid var(--line); } .foot__cols { grid-template-columns: 1fr 1fr; } }
+
+/* cookie settings */
+.linkbtn { display: block; padding: 5px 0; border: 0; background: none; font: inherit; font-size: 14px; color: var(--muted); text-align: left; cursor: pointer; transition: color .2s; }
+.linkbtn:hover { color: #fff; }
+.legal__s .linkbtn { display: inline; padding: 0; font-size: 15px; color: #fff; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.35); }
+.ckbar { position: fixed; z-index: 90; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); max-width: 560px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; padding: 16px 18px; border-radius: 20px; border: 1px solid rgba(255,255,255,.14); background: rgba(18,18,20,.86); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+.ckbar p { flex: 1 1 240px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.ckbar div { display: flex; gap: 8px; }
+.ckbar[hidden], .ck[hidden] { display: none; }
+.ck { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 16px; background: rgba(0,0,0,.6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.ck__box { width: 100%; max-width: 480px; max-height: calc(100vh - 32px); overflow: auto; padding: 26px; border-radius: 24px; border: 1px solid rgba(255,255,255,.14); background: #0f0f11; box-shadow: 0 40px 100px rgba(0,0,0,.7); outline: none; }
+.ck__box h2 { font-size: 26px; margin-bottom: 8px; }
+.ck__intro { font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 18px; }
+.ck__row { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); }
+.ck__row strong { display: block; font-size: 14px; margin-bottom: 6px; }
+.ck__row p { font-size: 13px; line-height: 1.6; color: var(--muted); }
+.ck__tag { flex: none; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #86b3a0; padding-top: 2px; }
+.ck__sw { position: relative; flex: none; width: 42px; height: 24px; margin-top: 2px; }
+.ck__sw input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.ck__sw span { position: absolute; inset: 0; border-radius: 12px; background: #3a3a3e; transition: background .2s; pointer-events: none; }
+.ck__sw span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .2s; }
+.ck__sw input:checked + span { background: #86b3a0; }
+.ck__sw input:checked + span::after { transform: translateX(18px); }
+.ck__sw input:focus-visible + span { outline: 2px solid #fff; outline-offset: 2px; }
+.ck__act { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px; }
+.ck__act a { margin-left: auto; font-size: 13px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+
+button.btn { font-family: inherit; cursor: pointer; }
+button.btn--ghost { color: #fff; }
 
 </style>
 
@@ -754,7 +809,7 @@ html { scroll-padding-top: 90px; }
       <div class="foot__cols">
         <div class="foot__brand"><a class="logo" href="#home">thomsen<span>.</span></a><p>Independent Windows software for cybersecurity, investigations and system utilities.</p></div>
         <div><h4>Software</h4><a href="shield.html">Thomsen Shield</a><a href="vpn.html">Thomsen VPN</a><a href="osint.html">Thomsen OSINT</a><a href="vm.html">Thomsen VM</a></div>
-        <div><h4>Links</h4><a href="https://github.com/Thomssen">GitHub</a><a href="https://discord.gg/thomsen">Discord</a><a href="https://thomssen.dev/">thomssen.dev</a></div>
+        <div><h4>Legal</h4><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a><button class="linkbtn" type="button" data-cookie-settings>Cookie settings</button></div><div><h4>Links</h4><a href="https://github.com/Thomssen">GitHub</a><a href="https://discord.gg/thomsen">Discord</a><a href="https://thomssen.dev/">thomssen.dev</a></div>
       </div>
       <div class="foot__word" aria-hidden="true">thomsen.</div>
       <div class="foot__legal"><span>© 2026 Thomsen Software</span><span>Independent development</span></div>
@@ -863,5 +918,56 @@ html { scroll-padding-top: 90px; }
     refresh();
     setInterval(refresh, 60000);
   }
+})();
+</script>
+  <script>// Cookie settings: stores only the visitor's own choice in local storage.
+(function () {
+  var KEY = "thomsen_cookie_choice";
+  function read() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
+  function write(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} }
+  var saved = read();
+
+  var bar = document.createElement("div");
+  bar.className = "ckbar"; bar.hidden = true; bar.setAttribute("role", "region"); bar.setAttribute("aria-label", "Cookie notice");
+  bar.innerHTML = '<p>This site only stores your theme and cookie choice in your browser. No analytics or advertising.</p><div><button type="button" class="btn btn--ghost btn--sm" data-ck="open">Settings</button><button type="button" class="btn btn--light btn--sm" data-ck="ok">Got it</button></div>';
+
+  var dlg = document.createElement("div");
+  dlg.className = "ck"; dlg.hidden = true;
+  dlg.innerHTML = '<div class="ck__box" role="dialog" aria-modal="true" aria-labelledby="ck-title" tabindex="-1">' +
+    '<h2 id="ck-title">Cookie settings</h2>' +
+    '<p class="ck__intro">We keep browser storage to a minimum. Here is exactly what this site uses.</p>' +
+    '<div class="ck__row"><div><strong>Strictly necessary</strong><p>Stores your theme and cookie choice in your browser\'s local storage. It is never sent to us and is not used to track you.</p></div><span class="ck__tag">Always on</span></div>' +
+    '<div class="ck__row"><div><strong>Analytics and advertising</strong><p>Not used. This site runs no analytics or advertising scripts. If that ever changes, it will only happen with your consent.</p></div><label class="ck__sw"><input type="checkbox" id="ck-opt" aria-label="Allow analytics and advertising"><span></span></label></div>' +
+    '<div class="ck__act"><button type="button" class="btn btn--light btn--sm" data-ck="save">Save choice</button><button type="button" class="btn btn--ghost btn--sm" data-ck="close">Close</button><a href="privacy.html#s3">Privacy Policy</a></div></div>';
+  document.body.appendChild(bar); document.body.appendChild(dlg);
+
+  var box = dlg.querySelector(".ck__box"), opt = dlg.querySelector("#ck-opt"), last = null;
+  function openDlg() { last = document.activeElement; var c = read(); opt.checked = !!(c && c.optional); dlg.hidden = false; bar.hidden = true; box.focus(); }
+  function closeDlg() { dlg.hidden = true; if (last && last.focus) last.focus(); if (!read()) bar.hidden = false; }
+  function save() { write({ necessary: true, optional: opt.checked, date: new Date().toISOString() }); dlg.hidden = true; bar.hidden = true; if (last && last.focus) last.focus(); }
+
+  bar.addEventListener("click", function (e) {
+    var a = e.target.getAttribute && e.target.getAttribute("data-ck");
+    if (a === "open") openDlg();
+    if (a === "ok") { write({ necessary: true, optional: false, date: new Date().toISOString() }); bar.hidden = true; }
+  });
+  dlg.addEventListener("click", function (e) {
+    var a = e.target.getAttribute && e.target.getAttribute("data-ck");
+    if (a === "save") save(); else if (a === "close" || e.target === dlg) closeDlg();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !dlg.hidden) closeDlg();
+    if (e.key === "Tab" && !dlg.hidden) {
+      var f = [].slice.call(dlg.querySelectorAll("button, input, a")); if (!f.length) return;
+      var first = f[0], lastEl = f[f.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === box)) { e.preventDefault(); lastEl.focus(); }
+      else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
+    }
+  });
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("[data-cookie-settings]");
+    if (t) { e.preventDefault(); openDlg(); }
+  });
+  if (!saved) bar.hidden = false;
 })();
 </script>
