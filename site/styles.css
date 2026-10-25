@@ -298,3 +298,45 @@ h2 { font-size: clamp(40px, 6.4vw, 76px); letter-spacing: -.05em; }
 .js .reveal { opacity: .12; transform: translateY(28px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
 .js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } .scene__art { transform: none !important; opacity: 1 !important; } }
+
+/* Bold pass */
+.hero { --mx: 70%; --my: 30%; }
+.hero__glow { background: radial-gradient(520px circle at var(--mx) var(--my), rgba(255,255,255,.13), transparent 70%), radial-gradient(40% 40% at 5% 100%, rgba(255,255,255,.05), transparent 70%); }
+h1 em { background-size: 220% 100%; background: linear-gradient(100deg, #6e6e74 0%, #fff 35%, #6e6e74 70%, #fff 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 6s linear infinite; }
+@keyframes shimmer { to { background-position: -220% 0; } }
+
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding: 18px 0; background: rgba(255,255,255,.02); }
+.marquee__row { display: flex; width: max-content; gap: 56px; animation: marq 40s linear infinite; }
+.marquee__row span { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+.marquee__row span::after { content: "◆"; margin-left: 56px; font-size: 7px; color: #fff; vertical-align: 2px; opacity: .5; }
+@keyframes marq { to { transform: translateX(-50%); } }
+
+.manifesto { max-width: 1040px; margin: 0 auto; padding: clamp(100px, 16vw, 200px) max(16px, env(safe-area-inset-left, 0px)); }
+.manifesto__text { font-size: clamp(30px, 5.2vw, 62px); line-height: 1.12; letter-spacing: -.04em; font-weight: 700; text-wrap: balance; }
+.manifesto__text .w { color: #fff; opacity: .18; transition: opacity .25s; }
+
+.scene { display: grid; grid-template-columns: .9fr 1.25fr; gap: clamp(28px, 5vw, 80px); align-items: center; text-align: left; }
+.scene__text { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.scene:nth-of-type(even) .scene__text { order: 2; }
+.scene__links { justify-content: flex-start; }
+.scene__art { margin-top: 0; max-width: none; height: auto; aspect-ratio: 520 / 340; padding: 6px; perspective: 1200px; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.12), transparent 70%), #0d0d0e; box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04) inset; }
+.scene__art svg { width: 100%; height: 100%; transition: transform .25s ease-out; transform-style: preserve-3d; }
+@media (max-width: 860px) { .scene { grid-template-columns: 1fr; } .scene:nth-of-type(even) .scene__text { order: 0; } }
+
+.scene__art .ring { animation: ringfill 3.2s ease-in-out infinite alternate; }
+@keyframes ringfill { from { stroke-dashoffset: 327; } to { stroke-dashoffset: 24; } }
+.scene__art .flow { stroke-dasharray: 5 7; animation: flow 1.4s linear infinite; }
+.scene__art .flow2 { stroke-dasharray: 260; animation: draw 3.5s ease-in-out infinite; }
+@keyframes draw { 0% { stroke-dashoffset: 260; } 60%,100% { stroke-dashoffset: 0; } }
+.scene__art .blink { animation: blink 1.2s steps(2, jump-none) infinite; }
+.scene__art .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.8s ease-out infinite; }
+.scene__art .pulse.d2 { animation-delay: 1.4s; }
+.scene__art .bar { transform-box: fill-box; transform-origin: left; animation: barx 4s ease-in-out infinite alternate; }
+.scene__art .bar.b2 { animation-delay: -1s; } .scene__art .bar.b3 { animation-delay: -2s; }
+@keyframes barx { from { transform: scaleX(calc(var(--w) * .6)); } to { transform: scaleX(calc(var(--w) * 1.25)); } }
+@keyframes blink { 50% { opacity: .15; } }
+
+.wcard, .qa, .discord { position: relative; overflow: hidden; }
+.wcard::before, .qa::before, .discord::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.09), transparent 70%); }
+.wcard:hover::before, .qa:hover::before, .discord:hover::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .marquee__row, h1 em, .scene__art * { animation: none !important; } }

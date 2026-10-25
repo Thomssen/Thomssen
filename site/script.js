@@ -59,3 +59,37 @@ links.forEach(a => a.addEventListener('click', () => {
   window.addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true });
   window.addEventListener("resize", tick);
 })();
+
+;(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Word-by-word fill for the manifesto.
+  var m = document.querySelector("[data-fill]");
+  var words = [];
+  if (m) {
+    m.innerHTML = m.textContent.trim().split(/\s+/).map(function (w) { return '<span class="w">' + w + "</span>"; }).join(" ");
+    words = [].slice.call(m.querySelectorAll(".w"));
+  }
+  function fill() {
+    if (!m) return;
+    var vh = window.innerHeight || 800, r = m.getBoundingClientRect();
+    var p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.55 + r.height * 0.5)));
+    var n = p * words.length;
+    words.forEach(function (w, i) { w.style.opacity = reduce ? 1 : Math.max(0.18, Math.min(1, n - i + 0.3)).toFixed(2); });
+  }
+  fill();
+  window.addEventListener("scroll", function () { requestAnimationFrame(fill); }, { passive: true });
+  window.addEventListener("resize", fill);
+  if (reduce) return;
+  // Cursor light on hero, cards and product panels. Tilt on product panels.
+  function track(sel, tilt) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+        el.style.setProperty("--mx", x + "px"); el.style.setProperty("--my", y + "px");
+        if (tilt) { var s = el.querySelector("svg"); if (s) s.style.transform = "rotateY(" + ((x / r.width - 0.5) * 7).toFixed(2) + "deg) rotateX(" + ((0.5 - y / r.height) * 7).toFixed(2) + "deg)"; }
+      });
+      if (tilt) el.addEventListener("pointerleave", function () { var s = el.querySelector("svg"); if (s) s.style.transform = ""; });
+    });
+  }
+  track(".hero", false); track(".wcard, .qa, .discord", false); track("[data-art]", true);
+})();
