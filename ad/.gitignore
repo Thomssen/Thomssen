@@ -1,0 +1,8 @@
+# raw recordings (contain a login screen) and heavy renders stay local
+source/
+out/stills/
+out/*.parts/
+out/*.log
+out/shield-*-silent.mp4
+out/thomsen-shield-ad-1080p.mp4
+out/thomsen-shield-ad-4k.mp4
