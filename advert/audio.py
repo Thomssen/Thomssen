@@ -32,7 +32,8 @@ def midi(m):
 # pad: slow chord changes, one per scene
 chords = [[38, 45, 50, 57], [34, 41, 50, 57], [31, 38, 46, 53], [33, 40, 45, 52],
           [38, 45, 50, 57], [38, 45, 53, 57]]
-bounds = [(0, 12), (12, 23.5), (23.5, 35), (35, 46.5), (46.5, 58), (58, DURATION + 1)]
+SC = {n: s for n, s, _ in SCENES}
+bounds = [(0, SC["shield"]), (SC["shield"], SC["vpn"]), (SC["vpn"], SC["osint"]), (SC["osint"], SC["vm"]), (SC["vm"], SC["unified"]), (SC["unified"], DURATION + 1)]
 pad = np.zeros(N)
 for ch, (a, b) in zip(chords, bounds):
     e = env(a - 1.5, a + 1.5, b - 1.5, b + 1.5) if a > 0 else env(0.5, 4.5, b - 1.5, b + 1.5)
@@ -44,11 +45,17 @@ sub = np.sin(2 * np.pi * midi(26) * T) * env(0.8, 5, DURATION - 6, DURATION - 0.
 swell = rng.standard_normal(N)
 sp = np.fft.rfft(swell); fr = np.fft.rfftfreq(N, 1 / SR)
 swell = np.fft.irfft(sp * (1 / (1 + (np.abs(fr - 2500) / 1800) ** 2)), N)
-open_fx = swell * env(0.6, 4.2, 4.2, 4.6) * 0.07
-hit_t = np.clip(T - 4.3, 0, None)
-hit = np.sin(2 * np.pi * (46 + 30 * np.exp(-hit_t * 6)) * hit_t) * np.exp(-hit_t * 1.1) * (T > 4.3) * 0.5
-shimmer = tone(midi(86), (1, .3)) * np.exp(-hit_t * 0.8) * (T > 4.3) * 0.012
+open_fx = swell * env(0.6, 2.9, 2.9, 3.2) * 0.07
+hit_t = np.clip(T - 2.97, 0, None)
+hit = np.sin(2 * np.pi * (46 + 30 * np.exp(-hit_t * 6)) * hit_t) * np.exp(-hit_t * 1.1) * (T > 2.97) * 0.5
+shimmer = tone(midi(86), (1, .3)) * np.exp(-hit_t * 0.8) * (T > 2.97) * 0.012
 
+# mouse click: a tiny down/up pair, then the wordmark opens with a soft whoosh
+click = np.zeros(N)
+for tc, g in ((2.93, 1.0), (3.03, 0.6)):
+    x = np.clip(T - tc, 0, None)
+    click += (np.sin(2 * np.pi * 2100 * x) * 0.6 + rng.standard_normal(N) * 0.4) * np.exp(-x * 220) * (T >= tc) * 0.05 * g
+open_fx += swell * env(3.1, 3.9, 3.9, 5.0) * 0.05
 # soft whooshes at scene changes
 wh = np.zeros(N)
 for _, s, _ in SCENES[1:]:
@@ -65,7 +72,7 @@ for _, s, _ in SCENES[1:]:
 notes = [62, 65, 69, 72, 74, 69, 65, 72]
 pluck = np.zeros(N)
 beat = 60 / 84
-t0 = 12.0
+t0 = SC["hero"]
 i = 0
 while t0 < DURATION - 6:
     m = notes[(i * 3) % len(notes)] + (12 if i % 7 == 6 else 0)
@@ -74,14 +81,14 @@ while t0 < DURATION - 6:
     pluck += (np.sin(2 * np.pi * midi(m) * x) + 0.3 * np.sin(2 * np.pi * midi(m) * 2 * x)) * np.exp(-x * 3.2) * (T >= t0) * amp
     t0 += beat * 2
     i += 1
-pluck *= env(11.5, 14, DURATION - 9, DURATION - 3)
+pluck *= env(SC["hero"] - 0.5, SC["hero"] + 2, DURATION - 9, DURATION - 3)
 
 # closing: one lifted chord as the logo lands
 lift = np.zeros(N)
 for m in (62, 69, 74, 81):
-    lift += tone(midi(m)) * env(66.5, 70, 71, 75.4) * 0.03
+    lift += tone(midi(m)) * env(SC["end"] + 0.5, SC["end"] + 4, SC["end"] + 5, DURATION - 0.1) * 0.03
 
-dry = pad + sub + open_fx + hit + shimmer + wh + ticks + pluck + lift
+dry = click + pad + sub + open_fx + hit + shimmer + wh + ticks + pluck + lift
 # echo + reverb
 ir_n = int(3.2 * SR)
 ir = rng.standard_normal(ir_n) * np.exp(-np.arange(ir_n) / SR * 2.0)
