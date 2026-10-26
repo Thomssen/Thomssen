@@ -7,6 +7,7 @@ film grain. Output is piped straight into ffmpeg.
 Brand assets: if advert/assets/logo.png exists (white or light artwork on a
 transparent background) it replaces the typographic wordmark everywhere.
 """
+import colorsys
 import math
 import os
 import subprocess
@@ -24,17 +25,15 @@ TINT = np.array([236, 238, 243], np.float32) / 255.0
 SITE = "thomssen.dev"
 
 # (name, start, length)
-SCENES = [
-    ("logo", 0.0, 7.0),
-    ("hero", 7.0, 5.5),
-    ("statement", 12.5, 6.5),
-    ("shield", 19.0, 11.5),
-    ("vpn", 30.5, 11.5),
-    ("osint", 42.0, 11.5),
-    ("vm", 53.5, 11.5),
-    ("unified", 65.0, 8.5),
-    ("end", 73.5, 9.5),
-]
+SPEED = {"hook": 1.0, "logo": 1.8, "hero": 1.9, "shield": 2.12, "vpn": 2.12,
+         "osint": 2.12, "vm": 2.12, "unified": 1.85, "end": 1.75}
+_LEN = [("hook", 5.2), ("logo", 3.9), ("hero", 2.9), ("shield", 5.4), ("vpn", 5.4),
+        ("osint", 5.4), ("vm", 5.4), ("unified", 4.6), ("end", 5.4)]
+SCENES = []
+_t = 0.0
+for _n, _l in _LEN:
+    SCENES.append((_n, _t, _l))
+    _t += _l
 DURATION = SCENES[-1][1] + SCENES[-1][2]
 
 
@@ -307,6 +306,25 @@ def heavy(d, x, y, s, size, a, anchor="l", rise=0.0):
 
 def eyebrow(d, x, y, s, a, size=15, anchor="l", rise=0.0):
     text(d, x, y, s.upper(), fonts()["semi"](size), a, anchor, size * 0.22, rise)
+
+
+def scene_hook(t, dur):
+    img, d = new_layer()
+    lines = [(0.25, "Right now,"), (1.0, "your PC is talking"), (1.8, "to the internet.")]
+    gone = 1 - smooth(prog(t, 2.55, 2.9))
+    for i, (tb, s) in enumerate(lines):
+        a, r = reveal(t, tb, 0.35)
+        nxt = prog(t, lines[i + 1][0], lines[i + 1][0] + 0.3) if i + 1 < len(lines) else 0
+        heavy(d, W / 2, 400 + i * 150, s, 118, a * gone * (1 - 0.5 * nxt), "c", r)
+    a, r = reveal(t, 3.1, 0.4)
+    heavy(d, W / 2, 500, "Do you know", 150, a, "c", r)
+    a, r = reveal(t, 3.7, 0.4)
+    heavy(d, W / 2, 672, "who to?", 150, a, "c", r)
+    for tb in (0.25, 1.0, 1.8, 3.1, 3.7):
+        q = prog(t, tb, tb + 1.1)
+        circle(d, (W / 2, 540), 120 + 760 * out_cubic(q), 0.2 * (1 - q) ** 2, 1.6)
+    fade = smooth(prog(t, 0, 0.12)) * (1 - smooth(prog(t, dur - 0.25, dur)))
+    return layer_of(img), (W / 2, 540, 0.5), fade
 
 
 def scene_hero(t, dur):
@@ -648,39 +666,146 @@ def scene_end(t, dur):
     return layer * end_fade, (W / 2, 560, 0.65 * smooth(prog(t, 0, 1))), 1.0
 
 
-SCENE_FN = {"logo": scene_logo, "hero": scene_hero, "statement": scene_statement,
+SCENE_FN = {"hook": scene_hook, "logo": scene_logo, "hero": scene_hero, "statement": scene_statement,
             "shield": scene_shield, "vpn": scene_vpn, "osint": scene_osint, "vm": scene_vm,
             "unified": scene_unified, "end": scene_end}
 
 XX = np.arange(W, dtype=np.float32)[None, :]
 YY = np.arange(H, dtype=np.float32)[:, None]
 VIG = (1 - 0.35 * (((XX - W / 2) / (W / 2)) ** 2 + ((YY - H / 2) / (H / 2)) ** 2) * 0.5).astype(np.float32)
+MONOCHROME = True
+HUES = {"shield": 0.58, "vpn": 0.40, "osint": 0.075, "vm": 0.77}
+ORDER = ["shield", "vpn", "osint", "vm"]
+_X1 = np.arange(W, dtype=np.float32)
+_Y1 = np.arange(H, dtype=np.float32)
+
+
+def hsv(h, s=0.75, v=1.0):
+    return np.array(colorsys.hsv_to_rgb(h % 1.0, s, v), np.float32)
+
+
+def grad(h0, span, drift=0.0, s=0.7):
+    """Horizontal hue sweep as a (1, W, 3) colour row."""
+    cols = np.array([colorsys.hsv_to_rgb((h0 + span * x / W + drift) % 1.0, s, 1.0)
+                     for x in range(0, W, 8)], np.float32)
+    row = np.stack([np.interp(_X1, np.arange(0, W, 8), cols[:, k]) for k in range(3)], 1)
+    return row[None, :, :]
+
+
+def band(a, b, soft=14):
+    return np.clip(np.minimum((_Y1 - a) / soft, (b - _Y1) / soft), 0, 1)[:, None]
+
+
+def vband(a, b, soft=14):
+    return np.clip(np.minimum((_X1 - a) / soft, (b - _X1) / soft), 0, 1)[None, :]
+
+
+def orb(cx, cy, rx, ry, col, k):
+    g = np.exp(-(((XX - cx) / rx) ** 2 + ((YY - cy) / ry) ** 2)).astype(np.float32)
+    return g[..., None] * (col * k)
+
+
+def plan(name, lt, dur):
+    """-> (accent rgb, colour field or None, mix mask or None, ambient light)."""
+    amb = 0
+    if name == "hook":
+        acc = hsv(0.02 + 0.04 * math.sin(lt * 2), 0.85)
+        flash = max([math.exp(-(lt - b) * 5) for b in (0.25, 1.0, 1.8, 3.1, 3.7) if lt > b] + [0])
+        amb = orb(W / 2, 540, 900, 520, acc, 0.06 + 0.2 * flash)
+        col = grad(0.0, 0.16, lt * 0.1, 0.8)
+        mix = band(540, 700) * 0.95 * smooth(prog(lt, 3.6, 4.0))
+        return acc, col, mix, amb
+    if name == "logo":
+        acc = hsv(0.66 + 0.08 * math.sin(lt), 0.6)
+        k = smooth(prog(lt, 2.9, 4.0)) * 0.22
+        amb = orb(W / 2, 540, 900, 380, acc, k) + orb(W / 2 + 300, 600, 600, 300, hsv(0.78), k * 0.5)
+        return acc, None, None, amb
+    if name == "hero":
+        acc = hsv(0.62, 0.6)
+        col = grad(0.55 + 0.08 * lt, 0.4, 0, 0.65)
+        mix = band(520, 670) * 0.92
+        amb = orb(W / 2, 560, 1000, 420, acc, 0.12)
+        return acc, col, mix, amb
+    if name in HUES:
+        h = HUES[name]
+        acc = hsv(h, 0.75)
+        col = grad(h - 0.05, 0.12, 0.03 * lt, 0.7)
+        panel_mix = vband(1010, 1830, 30) * (band(170, 910, 30))
+        rail = vband(100, 140, 3) * band(320, 940, 3)
+        mix = np.maximum(panel_mix * 0.95, rail)
+        sway = math.sin(lt * 0.8)
+        amb = (orb(1420 + 40 * sway, 540, 520, 430, acc, 0.16) +
+               orb(1700 - 60 * sway, 300 + 40 * sway, 300, 260, hsv(h + 0.1), 0.10) +
+               orb(1250, 800, 260, 220, hsv(h - 0.08), 0.07))
+        return acc, col, mix, amb
+    if name == "unified":
+        acc = hsv(0.6, 0.6)
+        row = np.zeros((1, W, 3), np.float32)
+        mx = np.zeros((1, W), np.float32)
+        for i, key in enumerate(ORDER):
+            x0 = 150 + i * 410
+            row[0, x0:x0 + 390] = hsv(HUES[key], 0.75)
+            mx[0, x0:x0 + 390] = 1
+            r = smooth(prog(lt, 1.9 + 0.4 * i, 3.0 + 0.4 * i))
+            amb = amb + orb(x0 + 195, 780, 240, 220, hsv(HUES[key]), 0.13 * r)
+        head = grad(0.55 + 0.08 * lt, 0.4, 0, 0.65)
+        hm = band(300, 392) * vband(140, 1200, 20) * 0.92
+        card = band(612, 668) * mx
+        col = np.where(hm[..., None] > 0.01, head, row)
+        mix = np.maximum(hm, card * 0.95)
+        return acc, col, mix, amb
+    if name == "end":
+        acc = hsv(0.66 + 0.06 * math.sin(lt), 0.6)
+        col = grad(0.5 + 0.1 * lt, 0.45, 0, 0.7)
+        mix = band(575, 700) * 0.92 * (1 - smooth(prog(lt, 4.0, 4.9)))
+        amb = orb(W / 2, 540, 900, 440, acc, 0.12 + 0.08 * smooth(prog(lt, 5.0, 7.0)))
+        return acc, col, mix, amb
+    return TINT, None, None, 0
 
 
 def render_frame(n):
     fonts()
     t = n / FPS
     name, start, dur = next(s for s in reversed(SCENES) if t >= s[1] - 1e-9)
-    lt = t - start
-    out = SCENE_FN[name](lt, dur)
-    if len(out) == 3 and isinstance(out[0], np.ndarray):
-        layer, spot, alpha = out
-    else:
-        layer, spot, alpha = out
+    k = SPEED[name]
+    lt = (t - start) * k
+    dur = dur * k
+    layer, spot, alpha = SCENE_FN[name](lt, dur)
     layer = layer.astype(np.float32)
-    # glow
+    z = 1.0 + 0.05 * clamp(lt / dur)
+    layer = np.asarray(Image.fromarray(layer, "F").transform(
+        (W, H), Image.AFFINE, (1 / z, 0, W / 2 * (1 - 1 / z), 0, 1 / z, H / 2 * (1 - 1 / z)),
+        resample=Image.BILINEAR), np.float32)
     small = Image.fromarray((np.clip(layer, 0, 1) * 255).astype(np.uint8)).resize((W // 4, H // 4), Image.BILINEAR)
     glow = np.asarray(small.filter(ImageFilter.GaussianBlur(5)).resize((W, H), Image.BILINEAR), np.float32) / 255
     wide = np.asarray(small.filter(ImageFilter.GaussianBlur(16)).resize((W, H), Image.BILINEAR), np.float32) / 255
-    val = layer * alpha + glow * 0.32 * alpha + wide * 0.28 * alpha
+    hi = Image.fromarray((np.clip(layer - 0.55, 0, 1) * 600).clip(0, 255).astype(np.uint8)).resize((W // 4, H // 4), Image.BILINEAR)
+    streak = np.asarray(hi.resize((W // 40, H // 4), Image.BILINEAR).resize((W, H), Image.BILINEAR), np.float32) / 255
+    acc, col, mix, amb = plan(name, lt, dur)
+    if MONOCHROME:
+        # brand rule: black, white and silver only. Keep the animated light as silver.
+        acc, col, mix = TINT, None, None
+        if not isinstance(amb, int):
+            amb = amb.mean(axis=2, keepdims=True) * TINT * 0.8
     cx, cy, st = spot
-    spotv = st * alpha * 0.050 * np.exp(-(((XX - cx) / 760) ** 2 + ((YY - cy) / 470) ** 2))
-    lift = 0.022 * alpha * (smooth(prog(lt, 3.0, 5.0)) if name == 'logo' else 1.0)
-    base = (spotv + val + lift) * VIG
+    spotv = st * alpha * 0.045 * np.exp(-(((XX - cx) / 760) ** 2 + ((YY - cy) / 470) ** 2))
+    lift = 0.02 * alpha * (smooth(prog(lt, 3.0, 5.0)) if name == "logo" else 1.0)
+    if col is not None:
+        cmix = TINT * (1 - mix[..., None]) + col * mix[..., None]
+    else:
+        cmix = TINT
+    halo_col = TINT * 0.35 + acc * 0.65
+    halo = (glow * 0.2 + wide * 0.22 + streak * 0.3) * alpha
+    rgb = (layer * alpha)[..., None] * cmix
+    rgb = rgb + halo[..., None] * halo_col
+    rgb = rgb + spotv[..., None] * (TINT * 0.5 + acc * 0.5) + lift * TINT
+    if not isinstance(amb, int):
+        rgb = rgb + amb * alpha
+    rgb = rgb * VIG[..., None]
     rng = np.random.default_rng(n)
     grain = rng.standard_normal((H, W)).astype(np.float32) * (1.1 / 255)
-    gate = np.clip(base * 60, 0, 1)
-    rgb = np.clip((base + grain * gate)[..., None] * TINT, 0, 1)
+    gate = np.clip(rgb.max(axis=2) * 60, 0, 1)
+    rgb = np.clip(rgb + (grain * gate)[..., None], 0, 1)
     return (rgb * 255 + 0.5).astype(np.uint8).tobytes()
 
 

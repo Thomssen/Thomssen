@@ -1,6 +1,6 @@
 # Thomsen Software — Advertisement
 
-**Format:** 1920×1080, 30 fps, 75.5 s, H.264 + AAC. 16:9 for YouTube and thomssen.dev.
+**Format:** 1920×1080, 30 fps, 43.6 s, H.264 + AAC. 16:9 for YouTube and thomssen.dev.
 
 ## Creative direction
 Black, white, dark grey, silver. One typeface family (Inter). Each product gets a
@@ -11,17 +11,21 @@ through black, so it plays like a series of reveals.
 Nothing is claimed beyond what was supplied: Shield's four listed features, VM is
 free, VPN and OSINT are labelled **Coming soon**, and VPN lists no features.
 
-## Storyboard
-| Time | Scene | On-screen text | Motion / sound |
+## Storyboard (43.6 s)
+| Time | Scene | On screen | Sound |
 |---|---|---|---|
-| 0:00–0:06.5 | Opening | THOMSEN SOFTWARE | Black. A thin line of light grows, then a band sweeps across and reveals the wordmark. Rising air, then a soft low hit. |
-| 0:06.5–0:12 | Brand statement | "We build software that is genuinely useful." | Two-beat type reveal. |
-| 0:12–0:23.5 | **Thomsen Shield** | Network protection · Network monitoring · Suspicious connection detection · Threat intelligence · Windows Firewall protection | Concentric rings and nodes. Traffic flows to the core. Unknown connections approach and are stopped at the outer ring. |
-| 0:23.5–0:35 | **Thomsen VM** | Virtual machines · Free · Clean, focused interface · Accessible virtual machines · Practical virtual environments | Host window; three virtual machines cascade in and come alive. |
-| 0:35–0:46.5 | **Thomsen VPN** | Privacy and connectivity · Coming soon · "Private connectivity, currently in development." | A tunnel of rings between two endpoints; data passes through. |
-| 0:46.5–0:58 | **Thomsen OSINT** | Open-source intelligence · Coming soon · Usernames · IP addresses · Domains and email addresses | Four query types converge on a scanning core. Uses placeholder examples (203.0.113.42 is a reserved documentation address). |
-| 0:58–1:06 | Unified | "One company. Four tools." Shield · VM · VPN · OSINT | Four columns reveal in sequence; one pass of light. |
-| 1:06–1:15.5 | Ending | "Software. Designed with purpose." → logo → thomssen.dev | Closing line, then wordmark and website. Fade to black. |
+| 0:00 | **Hook** | "Right now, your PC is talking to the internet. Do you know who to?" Rings pulse on each line. | Low drone, a sub hit on every line, then a riser. |
+| 0:05 | **Reveal** | A T tile, a cursor glides in and clicks it, and "Thomsen. Software" opens out of the T. | Click, impact, and the beat drops in. |
+| 0:09 | Trust | "Software you can actually trust." | Beat, bass, plucks. |
+| 0:12 | **Thomsen Shield** | Network protection. Four features as pills. See every connection. Stop the ones you do not trust. | Impact and whoosh into each product. |
+| 0:17 | **Thomsen VPN** | Privacy. Coming soon. Currently in development. | |
+| 0:23 | **Thomsen OSINT** | Investigations. Coming soon. | |
+| 0:28 | **Thomsen VM** | Virtualization. Free. | |
+| 0:34 | Lineup | "Quiet on your system. Clear in your results." with four product cards. | |
+| 0:38 | **Close** | "Software. Designed with purpose." then the logo and thomssen.dev. | Lifted chord, final hit, fade. |
+
+Strictly black, white and silver. Light moves as soft silver glow only. A single
+flag in `render.py` (`MONOCHROME`) controls this.
 
 ## Voice-over (optional, if you want to record narration)
 Text matches the screen, so the film works silent or narrated.
