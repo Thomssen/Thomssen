@@ -51,7 +51,7 @@ def fonts():
         F["reg"] = lambda s: font("Inter-Regular", s)
         F["med"] = lambda s: font("Inter-Medium", s)
         F["semi"] = lambda s: font("Inter-SemiBold", s)
-        F["heavy"] = lambda s: font("InterDisplay-ExtraBold", s)
+        F["heavy"] = lambda s: font("InterDisplay-Bold", s)
         F["mono"] = lambda s: ImageFont.truetype(MONO, int(s * S))
     return F
 
@@ -225,14 +225,13 @@ def scene_logo(t, dur):
 
     ta = smooth(prog(t, 0.7, 1.8))
     sc = 0.92 + 0.08 * out_cubic(prog(t, 0.7, 2.0))
-    tile_a = ta * (1 - smooth(prog(t, 3.1, 3.9)))
+    tile_a = ta * (1 - smooth(prog(t, 3.05, 3.5)))
     hs = 150 * sc
     flash = math.exp(-(t - click) * 5) if t > click else 0
-    rrect(d, (cx - hs, cy - hs, cx + hs, cy + hs), 64 * sc, 0.5 * tile_a, 1.6, fill=0.07 * tile_a)
     slide = in_out(prog(t, 3.15, 4.4))
     Tw = big.getlength("T") / S
     tx = lerp(cx - Tw / 2, x_left, slide)
-    text(d, tx, base, "T", big, min(1.0, ta * (0.92 + 0.2 * flash)), "l", 0)
+    text(d, tx, base, "T", big, smooth(prog(t, 2.9, 3.1)), "l", 0)
 
     rest, rd = new_layer()
     rx = tx + adv_T
@@ -243,6 +242,12 @@ def scene_logo(t, dur):
     m = np.clip((edge - xs) / 90, 0, 1)
     m = m * m * (3 - 2 * m)
     layer = layer_of(img) + layer_of(rest) * m
+    tarr = np.zeros((H, W), np.float32)
+    pr = smooth(prog(t, click - 0.05, click + 0.04)) * (1 - smooth(prog(t, click + 0.1, click + 0.25)))
+    lum_, al_ = tile_lum("T", lerp(-1.5, 1.4, in_out(prog(t, 0.7, 3.0))))
+    blit_tile(tarr, lum_, al_, cx, 535 + 4 * math.sin(t * 1.2), 300 * sc * (1 - 0.04 * pr), a=tile_a,
+              tilt=0.6 * (1 - out_cubic(prog(t, 0.7, 2.4))), reflect=0.3)
+    layer = layer + tarr
 
     sw, swd = new_layer()
     sa = smooth(prog(t, 4.4, 5.6))
@@ -301,7 +306,7 @@ def pill_white(d, x, y, label, a, h=46, size=19):
 
 
 def heavy(d, x, y, s, size, a, anchor="l", rise=0.0):
-    text(d, x, y, s, fonts()["heavy"](size), a, anchor, -0.04 * size, rise)
+    text(d, x, y, s, fonts()["heavy"](size), a, anchor, -0.032 * size, rise)
 
 
 def eyebrow(d, x, y, s, a, size=15, anchor="l", rise=0.0):
@@ -379,254 +384,356 @@ def scene_statement(t, dur):
     return layer_of(img), (700, 520, 0.6), fade_io(t, dur, 0.9, 0.9)
 
 
+# ---------------------------------------------------------------- glass objects
+# Each product is a polished squircle slab with an embossed mark. Geometry is built
+# once as a height field; lighting (a key light, a rim and a sweeping softbox) is
+# evaluated per frame, so the slab catches light as it turns.
+_GLYPH = {}
+_GEO = {}
+TN = 600
+
+
+def _chaikin(pts, n=3):
+    for _ in range(n):
+        out = []
+        for i in range(len(pts)):
+            p, q = pts[i], pts[(i + 1) % len(pts)]
+            out.append((0.75 * p[0] + 0.25 * q[0], 0.75 * p[1] + 0.25 * q[1]))
+            out.append((0.25 * p[0] + 0.75 * q[0], 0.25 * p[1] + 0.75 * q[1]))
+        pts = out
+    return pts
+
+
+def glyph_mask(kind, N=TN):
+    key = (kind, N)
+    if key in _GLYPH:
+        return _GLYPH[key]
+    S2 = 2 * N
+    im = Image.new("L", (S2, S2), 0)
+    g = ImageDraw.Draw(im)
+    u = lambda v: v * S2
+    wd = lambda v: max(1, int(v * S2))
+
+    def cap(x, y, w):
+        g.ellipse([u(x) - wd(w) / 2, u(y) - wd(w) / 2, u(x) + wd(w) / 2, u(y) + wd(w) / 2], fill=255)
+
+    if kind == "T":
+        fnt = ImageFont.truetype(FONT_DIR + "InterDisplay-Bold.otf", N)
+        bb = g.textbbox((0, 0), "T", font=fnt)
+        g.text((S2 / 2 - (bb[2] - bb[0]) / 2 - bb[0], S2 / 2 - (bb[3] - bb[1]) / 2 - bb[1]), "T", font=fnt, fill=255)
+    elif kind == "shield":
+        pts = _chaikin([(0.5, 0.20), (0.75, 0.28), (0.75, 0.50), (0.70, 0.63), (0.5, 0.80),
+                        (0.30, 0.63), (0.25, 0.50), (0.25, 0.28)], 3)
+        poly = [(u(x), u(y)) for x, y in pts]
+        g.line(poly + [poly[0]], fill=255, width=wd(0.05), joint="curve")
+        g.line([(u(.41), u(.50)), (u(.485), u(.575)), (u(.60), u(.42))], fill=255, width=wd(0.05), joint="curve")
+        cap(.41, .50, .05)
+        cap(.60, .42, .05)
+    elif kind == "vm":
+        g.rounded_rectangle([u(.25), u(.28), u(.65), u(.62)], radius=u(.045), outline=255, width=wd(0.04))
+        g.rounded_rectangle([u(.35), u(.38), u(.75), u(.72)], radius=u(.045), fill=0)
+        g.rounded_rectangle([u(.35), u(.38), u(.75), u(.72)], radius=u(.045), outline=255, width=wd(0.04))
+        g.line([(u(.35), u(.46)), (u(.75), u(.46))], fill=255, width=wd(0.03))
+    elif kind == "vpn":
+        g.rounded_rectangle([u(.29), u(.47), u(.71), u(.76)], radius=u(.055), outline=255, width=wd(0.05))
+        g.arc([u(.355), u(.22), u(.645), u(.56)], 180, 360, fill=255, width=wd(0.05))
+        g.line([(u(.355), u(.39)), (u(.355), u(.48))], fill=255, width=wd(0.05))
+        g.line([(u(.645), u(.39)), (u(.645), u(.48))], fill=255, width=wd(0.05))
+        g.ellipse([u(.465), u(.565), u(.535), u(.635)], fill=255)
+        g.line([(u(.5), u(.60)), (u(.5), u(.69))], fill=255, width=wd(0.035))
+    elif kind == "osint":
+        g.ellipse([u(.25), u(.25), u(.63), u(.63)], outline=255, width=wd(0.055))
+        g.line([(u(.58), u(.58)), (u(.76), u(.76))], fill=255, width=wd(0.08))
+        cap(.58, .58, .08)
+        cap(.76, .76, .08)
+    m = np.asarray(im.resize((N, N), Image.LANCZOS), np.float32) / 255
+    _GLYPH[key] = m
+    return m
+
+
+def _geo(kind, N=TN):
+    key = (kind, N)
+    if key in _GEO:
+        return _GEO[key]
+    yy, xx = np.mgrid[0:N, 0:N].astype(np.float32)
+    x = (xx - (N - 1) / 2) / (N / 2)
+    y = (yy - (N - 1) / 2) / (N / 2)
+    r = (np.abs(x) ** 5 + np.abs(y) ** 5) ** 0.2
+    inside = 1 - r
+    alpha = np.clip(inside * (N / 2) / 1.6, 0, 1)
+    b = np.clip(inside / 0.15, 0, 1)
+    h = (b * b * (3 - 2 * b)) ** 0.75
+    gm = glyph_mask(kind, N)
+    gb = np.asarray(Image.fromarray((gm * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(3.2)), np.float32) / 255
+    ht = h + 0.14 * gb
+    gy, gx = np.gradient(ht)
+    k = 30.0
+    nx, ny = -gx * k, -gy * k
+    nz = 1 / np.sqrt(1 + nx * nx + ny * ny)
+    nx, ny = nx * nz, ny * nz
+    _GEO[key] = (nx, ny, nz, alpha, gm, x, y, inside)
+    return _GEO[key]
+
+
+def tile_lum(kind, sweep):
+    nx, ny, nz, alpha, gm, x, y, inside = _geo(kind)
+    L = np.array([-0.45, -0.70, 0.75], np.float32)
+    L = L / np.linalg.norm(L)
+    Hh = L + np.array([0, 0, 1], np.float32)
+    Hh = Hh / np.linalg.norm(Hh)
+    ndl = np.clip(nx * L[0] + ny * L[1] + nz * L[2], 0, 1)
+    ndh = np.clip(nx * Hh[0] + ny * Hh[1] + nz * Hh[2], 0, 1)
+    top = np.clip(0.5 - y * 0.5, 0, 1)
+    body = 0.060 + 0.085 * top + 0.11 * ndl
+    spec = ndh ** 60 * 0.85 + ndh ** 9 * 0.10
+    rim = (1 - nz) ** 2.0 * 0.95 * (0.5 + 0.5 * top)
+    edge = np.exp(-((inside - 0.013) / 0.009) ** 2) * 0.5 * (0.30 + 0.70 * top)
+    ang = math.radians(-35)
+    dd = x * math.cos(ang) + y * math.sin(ang)
+    strip = np.exp(-((dd - sweep) / 0.17) ** 2) * 0.30 * (0.4 + 0.6 * nz)
+    glyph = 0.46 + 0.42 * ndl + spec * 0.9 + strip * 1.5
+    lum = (body + spec + rim + strip) * (1 - gm) + glyph * gm + edge
+    return np.clip(lum, 0, 1.15).astype(np.float32), alpha
+
+
+def blit_tile(canvas, lum, alpha, cx, cy, size, a=1.0, tilt=0.0, reflect=0.35):
+    """Composite a rendered slab onto canvas (in place) with an optional floor reflection."""
+    if a <= 0.003:
+        return
+    N = lum.shape[0]
+    s = size / N
+    cs = max(0.25, math.cos(tilt))
+    co = (1 / (s * cs), 0, N / 2 - cx / (s * cs), 0, 1 / s, N / 2 - cy / s)
+    prem = np.asarray(Image.fromarray(lum * alpha, "F").transform((W, H), Image.AFFINE, co, resample=Image.BILINEAR), np.float32)
+    am = np.asarray(Image.fromarray(alpha, "F").transform((W, H), Image.AFFINE, co, resample=Image.BILINEAR), np.float32)
+    if reflect > 0:
+        yb = cy + size / 2 + 8
+        cr = (1 / (s * cs), 0, N / 2 - cx / (s * cs), 0, -1 / s, N / 2 + (2 * (yb - 8) - cy) / s)
+        refl = np.asarray(Image.fromarray(lum * alpha, "F").transform((W, H), Image.AFFINE, cr, resample=Image.BILINEAR), np.float32)
+        fade = np.clip(1 - (YY - yb) / (0.40 * size), 0, 1) ** 1.8 * (YY > yb)
+        canvas += refl * fade * reflect * a
+    canvas *= 1 - am * a
+    canvas += prem * a
+
+
+def silver(layer, y0, y1, bottom=0.70):
+    """Top-to-bottom silver falloff on a text layer, in the manner of a keynote title."""
+    g = 1 - (1 - bottom) * np.clip((YY - y0) / (y1 - y0), 0, 1)
+    return layer * g
+
+
 PRODUCTS = [
     ("shield", "Network protection", "Thomsen Shield",
-     "See every connection. Stop the ones you do not trust.",
-     ["Network monitoring", "Suspicious connection detection", "Threat intelligence",
-      "Windows Firewall protection"], "Windows 10  ·  Windows 11"),
+     "See every connection. Stop the ones you do not trust.", "Buy on Discord",
+     "Windows 10  ·  Windows 11  ·  €10 / month"),
     ("vpn", "Privacy", "Thomsen VPN",
-     "Private connectivity, currently in development.",
-     ["Privacy.", "Connectivity.", "Currently in development."], "Coming soon"),
+     "Your traffic, encrypted. One click to connect.", "Coming soon",
+     "Windows 10  ·  Windows 11  ·  €10 / month"),
     ("osint", "Investigations", "Thomsen OSINT",
-     "Public information, organized into one clear picture.",
-     ["Usernames", "IP addresses", "Domains", "Email addresses"], "Windows 10  ·  Windows 11"),
+     "Public information, organized into one clear picture.", "Buy on Discord",
+     "Windows 10  ·  Windows 11  ·  €10 / month"),
     ("vm", "Virtualization", "Thomsen VM",
-     "A full machine, running inside your desktop.",
-     ["A clean, focused interface", "Accessible virtual machines", "Practical virtual environments"],
+     "A full machine, running inside your desktop.", "Download",
      "Windows 10  ·  Windows 11  ·  Free"),
 ]
-VIS_IN = (1425, 543)      # where the product visuals are drawn
-VIS_OUT = (960, 648)      # where the stage shows them
-VIS_SCALES = {0: 0.95, 1: 1.3, 2: 1.25, 3: 1.35}
-
-
-def text_stage(t, idx):
-    """Name, one line, a status pill up top; one feature caption at a time below."""
-    img, d = new_layer()
+def lineup(d, t, idx):
+    """The website's 'Four tools. One developer.' rail, one product active."""
     f = fonts()
-    key, cat, name, desc, caps, status = PRODUCTS[idx]
-    a, r = reveal(t, 0.25, 0.9)
-    eyebrow(d, W / 2, 92, cat, 0.55 * a, 16, "c", r)
-    a, r = reveal(t, 0.45, 1.0)
-    heavy(d, W / 2, 208, name, 112, a, "c", r)
-    a, r = reveal(t, 0.95, 0.9)
-    text(d, W / 2, 262, desc, f["reg"](28), 0.66 * a, "c", 0, r)
-    a, r = reveal(t, 1.3, 0.8)
-    fnt = f["med"](17)
-    w = text_width(status, fnt, 0.3) + 38
-    rrect(d, (W / 2 - w / 2, 286 + r * 0.3, W / 2 + w / 2, 326 + r * 0.3), 20, 0.4 * a, 1.2, fill=0.03 * a)
-    text(d, W / 2, 312 + r * 0.3, status, fnt, 0.88 * a, "c", 0.3)
-    t0, t1 = 2.0, 10.6
-    slot = (t1 - t0) / len(caps)
-    for i, c in enumerate(caps):
-        s = t0 + slot * i
-        a_in = smooth(prog(t, s, s + 0.45))
-        a_out = 1 - smooth(prog(t, s + slot - 0.4, s + slot)) if i < len(caps) - 1 else 1.0
-        text(d, W / 2, 1010, c, f["med"](42), 0.95 * a_in * a_out, "c", 0.3, (1 - out_cubic(prog(t, s, s + 0.6))) * 16)
-        # progress ticks
-    for i in range(len(caps)):
-        s = t0 + slot * i
-        on = smooth(prog(t, s, s + 0.4))
-        line(d, [(W / 2 - 14 * len(caps) + 28 * i, 1050), (W / 2 - 14 * len(caps) + 28 * i + 18, 1050)], 0.2 + 0.7 * on, 2)
-    return img
+    RX, X = 118, 150
+    eyebrow(d, RX, 84, "The lineup", 0.5)
+    heavy(d, RX, 170, "Four tools.", 78, 1.0)
+    heavy(d, RX, 246, "One developer.", 78, 1.0)
+    y = 326
+    tops = []
+    for i in range(len(PRODUCTS)):
+        tops.append(y)
+        y += 294 if i == idx else 84
+    line(d, [(RX, 326), (RX, y - 6)], 0.13, 1.2)
+    for i, (key, cat, name, desc, btn, meta) in enumerate(PRODUCTS):
+        y0 = tops[i]
+        if i != idx:
+            eyebrow(d, X, y0 + 18, cat, 0.26, 13)
+            heavy(d, X, y0 + 64, name, 44, 0.3)
+            continue
+        bar = out_cubic(prog(t, 0.2, 1.0))
+        line(d, [(RX, y0 + 4), (RX, y0 + 4 + 274 * bar)], 1.0, 2.6)
+        a, r = reveal(t, 0.35, 0.9)
+        eyebrow(d, X, y0 + 18, cat, 0.85 * a, 13, "l", r)
+        a, r = reveal(t, 0.55, 1.1)
+        heavy(d, X, y0 + 90, name, 74, a, "l", r)
+        a, r = reveal(t, 1.1, 1.0)
+        text(d, X, y0 + 140, desc, f["reg"](26), 0.66 * a, "l", 0, r)
+        a, r = reveal(t, 1.6, 0.8)
+        xe = pill_white(d, X, y0 + 172 + r * 0.3, btn, a)
+        text(d, xe + 26, y0 + 202 + r * 0.3, "Learn more", f["semi"](20), 0.9 * a, "l", 0)
+        a, r = reveal(t, 2.2, 0.9)
+        text(d, X, y0 + 258, meta, f["reg"](17), 0.4 * a, "l", 0.3, r)
 
 
-def finish_product(img, t, dur, idx):
-    td = text_stage(t, idx)
-    s = VIS_SCALES[idx]
-    vis = Image.fromarray(layer_of(img), "F").transform(
-        (W, H), Image.AFFINE,
-        (1 / s, 0, VIS_IN[0] - VIS_OUT[0] / s, 0, 1 / s, VIS_IN[1] - VIS_OUT[1] / s),
-        resample=Image.BILINEAR)
-    layer = np.asarray(vis, np.float32) + layer_of(td)
-    return layer, (W / 2, 620, 0.75), fade_io(t, dur, 0.5, 0.5)
+def _blk(d, x, y, w, h, a, fill=None, r=6, line_a=0.0):
+    if a <= 0.003:
+        return
+    rrect(d, (x, y, x + w, y + h), r, line_a * a, 1.2, fill=None if fill is None else fill * a)
+
+
+def device(d, t, key, name):
+    """The site's device mock-up: a dark tablet with a skeleton dashboard."""
+    f = fonts()
+    x0, y0, x1, y1 = 930, 300, 1830, 780
+    p = smooth(prog(t, 0.2, 1.3))
+    rrect(d, (x0, y0, x1, y1), 44, 0.28 * p, 1.6, fill=0.035 * p)
+    rrect(d, (x0 + 14, y0 + 14, x1 - 14, y1 - 14), 34, 0.10 * p, 1.2, fill=0.02 * p)
+    # title bar
+    text(d, x0 + 36, y0 + 46, name, f["semi"](13), 0.9 * p, "l", 0)
+    text(d, x0 + 36 + text_width(name, f["semi"](13)) + 14, y0 + 46, "/ Dashboard", f["reg"](12), 0.4 * p, "l", 0)
+    for j in range(3):
+        circle(d, (x1 - 58 + 16 * j, y0 + 42), 4.2, 0.55 * p, fill=True)
+    line(d, [(x0 + 14, y0 + 62), (x1 - 14, y0 + 62)], 0.10 * p, 1)
+    line(d, [(x0 + 190, y0 + 62), (x0 + 190, y1 - 14)], 0.10 * p, 1)
+    n = [0]
+
+    def A():
+        n[0] += 1
+        return reveal(t, 0.9 + 0.09 * n[0], 0.6)[0] * p
+
+    dim = 0.4 if key == "vpn" else 1.0
+    # sidebar
+    sx = x0 + 34
+    _blk(d, sx - 8, y0 + 84, 150, 28, A() * dim, 0.11, 8)
+    _blk(d, sx + 6, y0 + 94, 80, 8, A() * dim, 0.85, 4)
+    for k in range(4):
+        _blk(d, sx + 6, y0 + 136 + 26 * k, 60 + 14 * ((k * 5) % 3), 7, A() * dim, 0.22, 3)
+    _blk(d, sx + 6, y1 - 54, 50, 7, A() * dim, 0.2, 3)
+    _blk(d, sx + 90, y1 - 60, 46, 18, A() * dim, 0.12, 9, 0.3)
+    mx0, mx1 = x0 + 216, x1 - 38
+    mw = mx1 - mx0
+    if key in ("shield", "vpn"):
+        _blk(d, mx0, y0 + 84, 190, 24, A() * dim, 0.95, 6)
+        _blk(d, mx0, y0 + 118, 130, 8, A() * dim, 0.25, 4)
+        cw = (mw - 14) / 2
+        for c in range(2):
+            cx = mx0 + c * (cw + 14)
+            _blk(d, cx, y0 + 144, cw, 46, A() * dim, 0.04, 12, 0.16)
+            _blk(d, cx + 16, y0 + 162, 110, 10, A() * dim, 0.7, 5)
+            _blk(d, cx + cw - 72, y0 + 160, 54, 16, A() * dim, 0.14, 8, 0.3)
+        sw = (mw - 28) / 3
+        for c in range(3):
+            cx = mx0 + c * (sw + 14)
+            _blk(d, cx, y0 + 204, sw, 70, A() * dim, 0.04, 12, 0.16)
+            _blk(d, cx + 16, y0 + 220, 70, 7, A() * dim, 0.3, 3)
+            _blk(d, cx + 16, y0 + 242, 42, 18, A() * dim, 0.95 if c < 2 else 0.5, 5)
+        _blk(d, mx0, y0 + 290, mw, 160, A() * dim, 0.04, 14, 0.16)
+        cp = out_cubic(prog(t, 1.6, 3.4)) * dim * p
+        pts = [(mx0 + 20 + (mw - 40) * u / 24, y0 + 410 - 14 * math.sin(u * 0.55) - (10 if u > 12 else 0) + 2 * math.sin(u * 2.1)) for u in range(25)]
+        k_ = max(2, int(len(pts) * cp))
+        if cp > 0.02:
+            line(d, pts[:k_], 0.9, 1.8)
+            circle(d, pts[k_ - 1], 3.6, 0.95, fill=True)
+        _blk(d, mx0 + 20, y0 + 310, 110, 8, A() * dim, 0.3, 3)
+    elif key == "osint":
+        _blk(d, mx0, y0 + 84, 170, 24, A(), 0.95, 6)
+        _blk(d, mx0, y0 + 120, mw * 0.78, 7, A(), 0.22, 3)
+        _blk(d, mx0, y0 + 134, mw * 0.55, 7, A(), 0.22, 3)
+        _blk(d, mx0, y0 + 164, mw, 92, A(), 0.04, 14, 0.16)
+        _blk(d, mx0 + 20, y0 + 182, 70, 8, A(), 0.3, 3)
+        a_ = A()
+        _blk(d, mx0 + 20, y0 + 206, mw - 40, 34, a_, 0.07, 10)
+        blink = 1.0 if int(t * 1.6) % 2 == 0 else 0.0
+        _blk(d, mx0 + 34, y0 + 214, 100, 7, a_, 0.5, 3)
+        line(d, [(mx0 + 142, y0 + 213), (mx0 + 142, y0 + 233)], 0.95 * a_ * blink, 2)
+        _blk(d, mx1 - 100, y0 + 214, 70, 18, a_, 0.45, 9)
+        _blk(d, mx0, y0 + 280, 100, 8, A(), 0.3, 3)
+        a_ = A()
+        _blk(d, mx0, y0 + 304, mw, 52, a_, 0.04, 14, 0.16)
+        circle(d, (mx0 + 28, y0 + 330), 8, 0.55 * a_, 1.4)
+        _blk(d, mx0 + 52, y0 + 322, 120, 8, a_, 0.8, 4)
+        _blk(d, mx0 + 52, y0 + 336, 160, 6, a_, 0.25, 3)
+        _blk(d, mx1 - 94, y0 + 322, 66, 16, a_, 0.3, 8)
+    else:
+        _blk(d, mx0, y0 + 84, 230, 26, A(), 0.95, 6)
+        _blk(d, mx0, y0 + 122, 140, 8, A(), 0.25, 4)
+        a_ = A()
+        _blk(d, mx1 - 170, y0 + 82, 170, 40, a_, 0.97, 20)
+        _blk(d, mx1 - 150, y0 + 98, 12, 3, a_ * 0, 0.0)
+        d.text((px(mx1 - 85), px(y0 + 108)), "+  New machine", font=f["semi"](16), fill=0, anchor="ms")
+        sw = (mw - 28) / 3
+        for rr in range(2):
+            for c in range(3):
+                cx = mx0 + c * (sw + 14)
+                cy = y0 + 148 + rr * 82
+                _blk(d, cx, cy, sw, 70, A(), 0.04, 12, 0.16)
+                _blk(d, cx + 16, cy + 16, 70, 7, A(), 0.3, 3)
+                _blk(d, cx + 16, cy + 38, 40 + 12 * c, 18, A(), 0.95 if (rr + c) % 2 == 0 else 0.5, 5)
+        _blk(d, mx0, y0 + 322, mw, 128, A(), 0.04, 14, 0.16)
+        _blk(d, mx0 + 20, y0 + 340, 110, 8, A(), 0.5, 3)
+        for k in range(2):
+            a_ = A()
+            yy = y0 + 372 + 36 * k
+            circle(d, (mx0 + 28, yy + 6), 3.4, 0.8 * a_, fill=True)
+            _blk(d, mx0 + 46, yy, 90, 8, a_, 0.8, 4)
+            _blk(d, mx0 + mw * 0.55, yy + 1, mw * 0.3, 5, a_, 0.2, 3)
+            _blk(d, mx1 - 80, yy - 4, 60, 16, a_, 0.18, 8, 0.3)
+    if key == "vpn":
+        a_ = smooth(prog(t, 1.6, 2.4)) * p
+        cx, cy = (x0 + x1) / 2 + 90, (y0 + y1) / 2
+        rrect(d, (cx - 112, cy - 28, cx + 112, cy + 28), 28, 0, 1, fill=0.97 * a_)
+        d.text((px(cx), px(cy + 8)), "Coming soon", font=f["semi"](22), fill=0, anchor="ms")
+
+
+def site_scene(t, dur, idx):
+    img, d = new_layer()
+    key, cat, name = PRODUCTS[idx][0], PRODUCTS[idx][1], PRODUCTS[idx][2]
+    lineup(d, t, idx)
+    device(d, t, key, name)
+    lay = np.asarray(Image.fromarray(layer_of(img), "F").transform(
+        (W, H), Image.AFFINE, (1, 0, 0, 0, 1, -70), resample=Image.BILINEAR), np.float32)
+    return lay, (1380, 620, 0.7), fade_io(t, dur, 0.5, 0.5)
 
 
 def scene_shield(t, dur):
-    img, d = new_layer()
-    c = (1420, 540)
-    radii = [(110, 0.26), (210, 0.18), (310, 0.14)]
-    # rings build outward
-    for i, (r, al) in enumerate(radii):
-        p = out_cubic(prog(t, 0.5 + 0.35 * i, 2.0 + 0.35 * i))
-        circle(d, c, r * (0.82 + 0.18 * p), al * p, 1.2)
-    # core
-    cp = out_cubic(prog(t, 0.3, 1.6))
-    pulse = 0.5 + 0.5 * math.sin(t * 1.6)
-    circle(d, c, 9 * cp, 0.95 * cp, fill=True)
-    circle(d, c, (22 + 5 * pulse) * cp, 0.35 * cp, 1.2)
-    # nodes
-    nodes = []
-    for i in range(14):
-        r = 210 if i % 2 == 0 else 310
-        ang = i * (2 * math.pi / 14) + t * (0.05 if r == 210 else -0.035) + 0.3
-        nodes.append((c[0] + r * math.cos(ang), c[1] + r * math.sin(ang), ang, r))
-    for i, (nx, ny, ang, r) in enumerate(nodes):
-        p = out_cubic(prog(t, 1.4 + 0.1 * i, 2.6 + 0.1 * i))
-        line(d, [c, (lerp(c[0], nx, p), lerp(c[1], ny, p))], 0.09 * p, 1)
-        circle(d, (nx, ny), 4.5 * p, 0.8 * p, fill=True)
-        # healthy traffic flowing to the core
-        ph = (t * 0.22 + i * 0.137) % 1
-        if p > 0.9:
-            tx, ty = lerp(nx, c[0], ph), lerp(ny, c[1], ph)
-            circle(d, (tx, ty), 2.4, 0.55 * math.sin(math.pi * ph), fill=True)
-    # intruders that are stopped at the outer ring
-    for k, (t0, deg) in enumerate([(4.2, -38), (7.0, 152), (9.4, 28)]):
-        lt = t - t0
-        if lt < 0 or lt > 3.0:
-            continue
-        ang = math.radians(deg)
-        ux, uy = math.cos(ang), math.sin(ang)
-        travel = out_cubic(prog(lt, 0, 1.2))
-        r = lerp(440, 322, travel)
-        fadeI = 1 - smooth(prog(lt, 1.35, 2.0))
-        tail = [(c[0] + (r + s) * ux, c[1] + (r + s) * uy) for s in (0, 30, 60)]
-        line(d, tail[:2], 0.5 * fadeI * (1 - travel * 0.0), 1.4)
-        line(d, tail[1:], 0.22 * fadeI, 1.2)
-        circle(d, tail[0], 6, 0.95 * fadeI, fill=True)
-        if lt > 1.2:
-            hit = prog(lt, 1.2, 3.0)
-            decay = (1 - hit) ** 2
-            arc(d, c, 312, deg - 22 - 10 * hit, deg + 22 + 10 * hit, 0.95 * decay, 2.4)
-            circle(d, (c[0] + 310 * ux, c[1] + 310 * uy), 10 + 70 * out_cubic(hit),
-                   0.6 * decay, 1.4)
-    return finish_product(img, t, dur, 0)
-
-
-def scene_vm(t, dur):
-    img, d = new_layer()
-    cx, cy = 1430, 548
-    hp = out_cubic(prog(t, 0.4, 1.9))
-    hw, hh = 330 * (0.9 + 0.1 * hp), 215 * (0.9 + 0.1 * hp)
-    # three windows cascade in
-    for i, (dx, dy, st) in enumerate([(-110, -58, 1.6), (0, -13, 2.6), (110, 32, 3.6)]):
-        p = out_cubic(prog(t, st, st + 1.3))
-        if p <= 0:
-            continue
-        bob = math.sin(t * 0.9 + i * 1.7) * 3
-        wx, wy = cx + dx, cy + dy + bob + (1 - p) * 26
-        w2, h2 = 150, 98
-        a = p
-        rrect(d, (wx - w2, wy - h2, wx + w2, wy + h2), 14, 0.62 * a, 1.3, fill=0.075 * a)
-        line(d, [(wx - w2, wy - h2 + 32), (wx + w2, wy - h2 + 32)], 0.2 * a, 1)
-        for j in range(3):
-            circle(d, (wx - w2 + 20 + 16 * j, wy - h2 + 16), 3.4, 0.55 * a, fill=True)
-        # power indicator: a small ring that breathes once the window is up
-        live = prog(t, st + 1.0, st + 2.0)
-        circle(d, (wx, wy + 14), 17, 0.28 * live, 1.4)
-        circle(d, (wx, wy + 14), 3.2 + 1.2 * math.sin(t * 2 + i), 0.9 * live, fill=True)
-    return finish_product(img, t, dur, 3)
+    return site_scene(t, dur, 0)
 
 
 def scene_vpn(t, dur):
-    img, d = new_layer()
-    x0, x1, cy = 1075, 1775, 540
-    n = 24
-    pulse = (t * 0.2) % 1.25 - 0.1
-    ap = out_cubic(prog(t, 0.6, 3.0))
-    line(d, [(x0, cy), (lerp(x0, x1, ap), cy)], 0.16 * ap, 1)
-    for i in range(n):
-        u = i / (n - 1)
-        if u > ap:
-            continue
-        ry = 36 + 150 * math.sin(math.pi * u) ** 0.85
-        a = 0.14 + 0.7 * math.exp(-((u - pulse) * 7) ** 2)
-        ellipse(d, (lerp(x0, x1, u), cy), ry * 0.26, ry, a * min(1, (ap - u) * 8), 1.2)
-    # endpoints
-    for ex, off in ((x0, 0.0), (x1, 1.0)):
-        ea = out_cubic(prog(t, 0.5 + off * 2.2, 1.8 + off * 2.2))
-        circle(d, (ex, cy), 10 * ea, 0.95 * ea, fill=True)
-        circle(d, (ex, cy), 26 * ea + 3 * math.sin(t * 1.6 + off), 0.3 * ea, 1.2)
-    # data moving through the tunnel
-    for k in range(5):
-        ph = (t * 0.17 + k * 0.2) % 1
-        if ph < ap:
-            px_ = lerp(x0, x1, ph)
-            tail = lerp(x0, x1, max(0, ph - 0.05))
-            line(d, [(tail, cy), (px_, cy)], 0.6 * math.sin(math.pi * ph), 1.8)
-            circle(d, (px_, cy), 3.2, 0.9 * math.sin(math.pi * ph), fill=True)
-    return finish_product(img, t, dur, 1)
+    return site_scene(t, dur, 1)
 
 
 def scene_osint(t, dur):
-    img, d = new_layer()
-    f = fonts()
-    c = (1430, 548)
-    cp = out_cubic(prog(t, 0.4, 1.8))
-    circle(d, c, 92 * cp, 0.5 * cp, 1.6)
-    circle(d, c, 58 * cp, 0.2 * cp, 1.2)
-    circle(d, c, 6 * cp, 0.95 * cp, fill=True)
-    # scanning sweep (fake gradient from stacked arcs)
-    sw = (t * 70) % 360
-    sa = smooth(prog(t, 1.2, 2.4))
-    for k in range(14):
-        arc(d, c, 92, sw - k * 4.5 - 4, sw - k * 4.5, 0.65 * (1 - k / 14) * sa, 2.2)
-    tokens = [("@username", -135), ("203.0.113.42", -45),
-              ("example.com", 135), ("name@example.com", 45)]
-    fm = f["mono"](23)
-    for i, (s, deg) in enumerate(tokens):
-        st = 1.4 + 0.65 * i
-        p = out_cubic(prog(t, st, st + 1.2))
-        ang = math.radians(deg)
-        rr = lerp(330, 255, p)
-        tx, ty = c[0] + rr * math.cos(ang) * 0.98, c[1] + rr * math.sin(ang) * 0.9
-        tw = text_width(s, fm) + 44
-        # connector
-        ex, ey = lerp(tx, c[0], 0.0), lerp(ty, c[1], 0.0)
-        ux, uy = c[0] - tx, c[1] - ty
-        L = math.hypot(ux, uy)
-        ux, uy = ux / L, uy / L
-        a_pt = (tx + ux * (tw / 2 if abs(ux) > 0.5 else 26) * 0.9, ty + uy * 28)
-        b_pt = (c[0] - ux * 100, c[1] - uy * 100)
-        line(d, [a_pt, (lerp(a_pt[0], b_pt[0], p), lerp(a_pt[1], b_pt[1], p))], 0.16 * p, 1)
-        rrect(d, (tx - tw / 2, ty - 28, tx + tw / 2, ty + 28), 28, 0.5 * p, 1.2, fill=0.05 * p)
-        text(d, tx, ty + 8, s, fm, 0.9 * p, "c")
-        # a query dot travels into the core, then the core ripples
-        cyc = (t - st - 1.4) / 4.0
-        if cyc > 0:
-            ph = cyc % 1
-            if ph < 0.35:
-                q = ph / 0.35
-                circle(d, (lerp(a_pt[0], b_pt[0], q), lerp(a_pt[1], b_pt[1], q)),
-                       3, 0.9 * math.sin(math.pi * q), fill=True)
-            elif ph < 0.8:
-                q = (ph - 0.35) / 0.45
-                circle(d, c, 92 + 60 * out_cubic(q), 0.4 * (1 - q) ** 2, 1.4)
-    return finish_product(img, t, dur, 2)
+    return site_scene(t, dur, 2)
+
+
+def scene_vm(t, dur):
+    return site_scene(t, dur, 3)
 
 
 def scene_unified(t, dur):
     img, d = new_layer()
     f = fonts()
-    RX = 150
     a, r = reveal(t, 0.3, 0.9)
-    eyebrow(d, RX, 150, "Why Thomsen Software", 0.5 * a, 15, "l", r)
+    eyebrow(d, W / 2, 150, "Why Thomsen Software", 0.5 * a, 15, "c", r)
     a, r = reveal(t, 0.5, 1.2)
-    heavy(d, RX, 270, "Quiet on your system.", 100, a, "l", r)
+    heavy(d, W / 2, 250, "Quiet on your system.", 88, a, "c", r)
     a, r = reveal(t, 1.1, 1.2)
-    heavy(d, RX, 380, "Clear in your results.", 100, a * (0.45 + 0.55 * smooth(prog(t, 3.2, 5.0))), "l", r)
-    cards = [("Network protection", "Thomsen Shield", "Windows 10  ·  Windows 11"),
-             ("Privacy", "Thomsen VPN", "Coming soon"),
-             ("Investigations", "Thomsen OSINT", "Windows 10  ·  Windows 11"),
-             ("Virtualization", "Thomsen VM", "Free")]
-    cw, gap, y0, ch = 390, 20, 520, 280
-    for i, (cat, name, st) in enumerate(cards):
-        a, r = reveal(t, 1.9 + 0.4 * i, 1.1)
-        x = RX + i * (cw + gap)
-        yy = y0 + r * 1.2
-        rrect(d, (x, yy, x + cw, yy + ch), 30, 0.16 * a, 1.3, fill=0.05 * a)
-        eyebrow(d, x + 34, yy + 62, cat, 0.5 * a, 13)
-        heavy(d, x + 34, yy + 134, name, 38, a)
-        line(d, [(x + 34, yy + 196), (x + cw - 34, yy + 196)], 0.12 * a, 1)
-        text(d, x + 34, yy + 238, st, f["reg"](20), 0.55 * a, "l", 0.3)
+    heavy(d, W / 2, 346, "Clear in your results.", 88, a * (0.5 + 0.5 * smooth(prog(t, 3.2, 5.0))), "c", r)
+    items = [("shield", "Thomsen Shield", "Windows 10  ·  Windows 11"),
+             ("vpn", "Thomsen VPN", "Coming soon"),
+             ("osint", "Thomsen OSINT", "Windows 10  ·  Windows 11"),
+             ("vm", "Thomsen VM", "Free")]
+    base_y = 600
+    arr = np.zeros((H, W), np.float32)
+    sweep = -1.5 + 3.0 * ((t * 0.12) % 1)
+    for i, (key, name, st) in enumerate(items):
+        s0 = 1.6 + 0.4 * i
+        p = out_cubic(prog(t, s0, s0 + 1.2))
+        cx = W / 2 + (i - 1.5) * 400
+        lum, al = tile_lum(key, sweep - 0.2 * i)
+        blit_tile(arr, lum, al, cx, base_y + 14 * (1 - p), 250 * (0.9 + 0.1 * p), a=p, tilt=0.18 * math.sin(t * 0.8 + i), reflect=0.28)
+        a, r = reveal(t, s0 + 0.5, 0.9)
+        heavy(d, cx, 808, name, 34, a, "c", r)
+        text(d, cx, 846, st, f["reg"](20), 0.5 * a, "c", 0.3, r)
     layer = layer_of(img)
-    bx = lerp(RX - 250, RX + 4 * (cw + gap) + 250, in_out(prog(t, 4.6, 7.0)))
-    xs = np.arange(W, dtype=np.float32)[None, :]
-    ys = np.arange(H, dtype=np.float32)[:, None]
-    band = np.exp(-((xs - bx) / 160) ** 2) * np.exp(-((ys - 660) / 200) ** 2)
-    on = smooth(prog(t, 4.6, 5.2)) * (1 - smooth(prog(t, 6.4, 7.2)))
-    layer = layer * (1 + 0.5 * band * on)
-    return layer, (W / 2, 560, 0.65), fade_io(t, dur)
+    layer = silver(layer, 100, 400, 0.78)
+    return layer + arr, (W / 2, 620, 0.7), fade_io(t, dur)
 
 
 def scene_end(t, dur):
@@ -638,10 +745,16 @@ def scene_end(t, dur):
     a2, r2 = reveal(t, 1.9, 1.4)
     heavy(d, W / 2, 680, "Designed with purpose.", 140, a2 * out1 * 0.5, "c", r2)
     la = smooth(prog(t, 5.0, 6.8))
-    draw_logo(img, d, W / 2, 500, la, 600)
+    draw_logo(img, d, W / 2, 640, la, 560)
     sa, sr = reveal(t, 6.4, 1.1)
-    pill_white(d, W / 2 - text_width(SITE, f["semi"](24)) / 2 - 28, 660 + sr * 0.4, SITE, sa, 60, 24)
-    layer = layer_of(img)
+    pill_white(d, W / 2 - text_width(SITE, f["semi"](24)) / 2 - 28, 760 + sr * 0.4, SITE, sa, 60, 24)
+    base = layer_of(img)
+    # the T slab returns above the wordmark, catching one last sweep of light
+    tile_a = smooth(prog(t, 4.8, 6.4))
+    lum, al = tile_lum("T", lerp(-1.5, 1.5, in_out(prog(t, 5.0, 8.5))))
+    arr = np.zeros((H, W), np.float32)
+    blit_tile(arr, lum, al, W / 2, 330 + 5 * math.sin(t * 1.1), 280, a=tile_a, tilt=0.35 * math.sin(t * 0.7), reflect=0.0)
+    layer = silver(base, 100, 700, 0.9) + arr
     end_fade = 1 - smooth(prog(t, dur - 1.4, dur))
     return layer * end_fade, (W / 2, 560, 0.65 * smooth(prog(t, 0, 1))), 1.0
 
@@ -709,31 +822,16 @@ def plan(name, lt, dur):
     if name in HUES:
         h = HUES[name]
         acc = hsv(h, 0.75)
-        col = grad(h - 0.05, 0.12, 0.03 * lt, 0.7)
-        panel_mix = vband(1010, 1830, 30) * (band(170, 910, 30))
-        rail = vband(100, 140, 3) * band(320, 940, 3)
-        mix = np.maximum(panel_mix * 0.95, rail)
         sway = math.sin(lt * 0.8)
-        amb = (orb(1420 + 40 * sway, 540, 520, 430, acc, 0.16) +
-               orb(1700 - 60 * sway, 300 + 40 * sway, 300, 260, hsv(h + 0.1), 0.10) +
-               orb(1250, 800, 260, 220, hsv(h - 0.08), 0.07))
-        return acc, col, mix, amb
+        amb = (orb(960 + 30 * sway, 612, 700, 460, acc, 0.15) +
+               orb(960, 1000, 800, 160, acc, 0.06))
+        return acc, None, None, amb
     if name == "unified":
         acc = hsv(0.6, 0.6)
-        row = np.zeros((1, W, 3), np.float32)
-        mx = np.zeros((1, W), np.float32)
-        for i, key in enumerate(ORDER):
-            x0 = 150 + i * 410
-            row[0, x0:x0 + 390] = hsv(HUES[key], 0.75)
-            mx[0, x0:x0 + 390] = 1
-            r = smooth(prog(lt, 1.9 + 0.4 * i, 3.0 + 0.4 * i))
-            amb = amb + orb(x0 + 195, 780, 240, 220, hsv(HUES[key]), 0.13 * r)
-        head = grad(0.55 + 0.08 * lt, 0.4, 0, 0.65)
-        hm = band(300, 392) * vband(140, 1200, 20) * 0.92
-        card = band(612, 668) * mx
-        col = np.where(hm[..., None] > 0.01, head, row)
-        mix = np.maximum(hm, card * 0.95)
-        return acc, col, mix, amb
+        for i in range(4):
+            r = smooth(prog(lt, 1.6 + 0.4 * i, 2.8 + 0.4 * i))
+            amb = amb + orb(W / 2 + (i - 1.5) * 400, 620, 260, 240, acc, 0.11 * r)
+        return acc, None, None, amb
     if name == "end":
         acc = hsv(0.66 + 0.06 * math.sin(lt), 0.6)
         col = grad(0.5 + 0.1 * lt, 0.45, 0, 0.7)
@@ -775,7 +873,7 @@ def render_frame(n):
     else:
         cmix = TINT
     halo_col = TINT * 0.35 + acc * 0.65
-    halo = (glow * 0.2 + wide * 0.22 + streak * 0.3) * alpha
+    halo = (glow * 0.04 + wide * 0.07 + streak * 0.10) * alpha
     rgb = (layer * alpha)[..., None] * cmix
     rgb = rgb + halo[..., None] * halo_col
     rgb = rgb + spotv[..., None] * (TINT * 0.5 + acc * 0.5) + lift * TINT

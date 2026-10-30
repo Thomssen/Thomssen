@@ -17,10 +17,10 @@ free, VPN and OSINT are labelled **Coming soon**, and VPN lists no features.
 | 0:00 | **Hook** | "Right now, your PC is talking to the internet. Do you know who to?" | "Right now, your PC is talking to the internet." / "Do you know who to?" |
 | 0:05 | **Reveal** | A T tile, a cursor glides in and clicks it, and "Thomsen. Software" opens out of the T. | "Meet Thomsen Software." |
 | 0:09 | Trust | "Software you can actually trust." | Same. |
-| 0:12 | **Thomsen Shield** | Name and one line up top, the visual on stage, then one feature caption at a time: network monitoring, suspicious connection detection, threat intelligence, Windows Firewall protection. | "Thomsen Shield. See every connection. Stop the ones you do not trust." |
-| 0:18 | **Thomsen VPN** | Same stage. Coming soon. | "Thomsen VPN. Private connectivity. Coming soon." |
-| 0:25 | **Thomsen OSINT** | Same stage. Usernames, IP addresses, domains, email addresses. | "Thomsen OSINT. Public information, organized into one clear picture." |
-| 0:31 | **Thomsen VM** | Same stage. Free. | "Thomsen VM. A full machine, running inside your desktop. And it's free." |
+| 0:12 | **Thomsen Shield** | The website's "Four tools. One developer." showcase: the rail with Shield active, its description and buttons, and the device mock-up with its dashboard building in. | "Thomsen Shield. See every connection. Stop the ones you do not trust." |
+| 0:18 | **Thomsen VPN** | Same showcase. The mock-up dims behind a "Coming soon" badge. | "Thomsen VPN. Your traffic, encrypted. One click to connect. Coming soon." |
+| 0:25 | **Thomsen OSINT** | Same showcase. | "Thomsen OSINT. Public information, organized into one clear picture." |
+| 0:31 | **Thomsen VM** | Same showcase. Free. | "Thomsen VM. A full machine, running inside your desktop. Free." |
 | 0:38 | Lineup | "Quiet on your system. Clear in your results." with four product cards. | Same. |
 | 0:43 | **Close** | "Software. Designed with purpose." then the logo and thomsen-software.com. | "Software. Designed with purpose." / "Thomsen Software dot com." |
 
