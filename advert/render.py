@@ -22,13 +22,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FONT_DIR = "/usr/share/fonts/opentype/inter/"
 MONO = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 TINT = np.array([236, 238, 243], np.float32) / 255.0
-SITE = "thomssen.dev"
+SITE = "thomsen-software.com"
 
 # (name, start, length)
-SPEED = {"hook": 1.0, "logo": 1.8, "hero": 1.9, "shield": 2.12, "vpn": 2.12,
-         "osint": 2.12, "vm": 2.12, "unified": 1.85, "end": 1.75}
-_LEN = [("hook", 5.2), ("logo", 3.9), ("hero", 2.9), ("shield", 5.4), ("vpn", 5.4),
-        ("osint", 5.4), ("vm", 5.4), ("unified", 4.6), ("end", 5.4)]
+SPEED = {"hook": 1.0, "logo": 1.8, "hero": 1.9, "shield": 1.8, "vpn": 1.8,
+         "osint": 1.8, "vm": 1.8, "unified": 1.7, "end": 1.58}
+_LEN = [("hook", 5.2), ("logo", 3.9), ("hero", 2.9), ("shield", 6.4), ("vpn", 6.4),
+        ("osint", 6.4), ("vm", 6.4), ("unified", 5.0), ("end", 6.0)]
 SCENES = []
 _t = 0.0
 for _n, _l in _LEN:
@@ -383,81 +383,67 @@ PRODUCTS = [
     ("shield", "Network protection", "Thomsen Shield",
      "See every connection. Stop the ones you do not trust.",
      ["Network monitoring", "Suspicious connection detection", "Threat intelligence",
-      "Windows Firewall protection"], None, "Windows 10  ·  Windows 11"),
+      "Windows Firewall protection"], "Windows 10  ·  Windows 11"),
     ("vpn", "Privacy", "Thomsen VPN",
-     "Private connectivity, currently in development.", [], "Coming soon", "Windows 10  ·  Windows 11"),
+     "Private connectivity, currently in development.",
+     ["Privacy.", "Connectivity.", "Currently in development."], "Coming soon"),
     ("osint", "Investigations", "Thomsen OSINT",
-     "Public information, organized into one clear picture.", [], "Coming soon", "Windows 10  ·  Windows 11"),
+     "Public information, organized into one clear picture.",
+     ["Usernames", "IP addresses", "Domains", "Email addresses"], "Windows 10  ·  Windows 11"),
     ("vm", "Virtualization", "Thomsen VM",
-     "A full machine, running inside your desktop.", [], "Free", "Windows 10  ·  Windows 11  ·  Free"),
+     "A full machine, running inside your desktop.",
+     ["A clean, focused interface", "Accessible virtual machines", "Practical virtual environments"],
+     "Windows 10  ·  Windows 11  ·  Free"),
 ]
+VIS_IN = (1425, 543)      # where the product visuals are drawn
+VIS_OUT = (960, 648)      # where the stage shows them
+VIS_SCALES = {0: 0.95, 1: 1.3, 2: 1.25, 3: 1.35}
 
 
-def lineup(d, t, idx):
-    """The site's 'Four tools. One developer.' rail, with one product active."""
+def text_stage(t, idx):
+    """Name, one line, a status pill up top; one feature caption at a time below."""
+    img, d = new_layer()
     f = fonts()
-    RX, X = 118, 150
-    eyebrow(d, RX, 84, "The lineup", 0.5)
-    heavy(d, RX, 170, "Four tools.", 78, 1.0)
-    heavy(d, RX, 246, "One developer.", 78, 1.0)
-    y = 326
-    items = []
-    for i, (_, cat, name, desc, feats, status, meta) in enumerate(PRODUCTS):
-        h = (340 if feats else 294) if i == idx else 84
-        items.append(y)
-        y += h
-    top_end = y - 6
-    line(d, [(RX, 326), (RX, top_end)], 0.13, 1.2)
-    for i, (key, cat, name, desc, feats, status, meta) in enumerate(PRODUCTS):
-        y0 = items[i]
-        if i != idx:
-            eyebrow(d, X, y0 + 18, cat, 0.26, 13)
-            heavy(d, X, y0 + 64, name, 44, 0.3)
-            continue
-        h = 340 if feats else 294
-        bar = out_cubic(prog(t, 0.2, 1.0))
-        line(d, [(RX, y0 + 4), (RX, y0 + 4 + (h - 20) * bar)], 1.0, 2.6)
-        a, r = reveal(t, 0.35, 0.9)
-        eyebrow(d, X, y0 + 18, cat, 0.85 * a, 13, "l", r)
-        a, r = reveal(t, 0.55, 1.1)
-        heavy(d, X, y0 + 90, name, 74, a, "l", r)
-        a, r = reveal(t, 1.1, 1.0)
-        text(d, X, y0 + 140, desc, f["reg"](26), 0.66 * a, "l", 0, r)
-        if feats:
-            rows = [feats[:2], feats[2:]]
-            for ri, row in enumerate(rows):
-                xx = X
-                for ci, ft in enumerate(row):
-                    a, r = reveal(t, 1.7 + 0.3 * (ri * 2 + ci), 0.8)
-                    xx = pill_outline(d, xx, y0 + 172 + ri * 50 + r * 0.3, ft, a) + 12
-            my = y0 + 300
-        else:
-            a, r = reveal(t, 1.7, 0.8)
-            if status == "Coming soon":
-                pill_white(d, X, y0 + 172 + r * 0.3, status, a)
-            else:
-                pill_white(d, X, y0 + 172 + r * 0.3, status, a)
-            my = y0 + 258
-        a, r = reveal(t, 2.5, 0.9)
-        text(d, X, my, meta, f["reg"](17), 0.4 * a, "l", 0.3, r)
+    key, cat, name, desc, caps, status = PRODUCTS[idx]
+    a, r = reveal(t, 0.25, 0.9)
+    eyebrow(d, W / 2, 92, cat, 0.55 * a, 16, "c", r)
+    a, r = reveal(t, 0.45, 1.0)
+    heavy(d, W / 2, 208, name, 112, a, "c", r)
+    a, r = reveal(t, 0.95, 0.9)
+    text(d, W / 2, 262, desc, f["reg"](28), 0.66 * a, "c", 0, r)
+    a, r = reveal(t, 1.3, 0.8)
+    fnt = f["med"](17)
+    w = text_width(status, fnt, 0.3) + 38
+    rrect(d, (W / 2 - w / 2, 286 + r * 0.3, W / 2 + w / 2, 326 + r * 0.3), 20, 0.4 * a, 1.2, fill=0.03 * a)
+    text(d, W / 2, 312 + r * 0.3, status, fnt, 0.88 * a, "c", 0.3)
+    t0, t1 = 2.0, 10.6
+    slot = (t1 - t0) / len(caps)
+    for i, c in enumerate(caps):
+        s = t0 + slot * i
+        a_in = smooth(prog(t, s, s + 0.45))
+        a_out = 1 - smooth(prog(t, s + slot - 0.4, s + slot)) if i < len(caps) - 1 else 1.0
+        text(d, W / 2, 1010, c, f["med"](42), 0.95 * a_in * a_out, "c", 0.3, (1 - out_cubic(prog(t, s, s + 0.6))) * 16)
+        # progress ticks
+    for i in range(len(caps)):
+        s = t0 + slot * i
+        on = smooth(prog(t, s, s + 0.4))
+        line(d, [(W / 2 - 14 * len(caps) + 28 * i, 1050), (W / 2 - 14 * len(caps) + 28 * i + 18, 1050)], 0.2 + 0.7 * on, 2)
+    return img
 
 
-def panel(d, t):
-    p = smooth(prog(t, 0.2, 1.3))
-    rrect(d, (1010, 170, 1830, 910), 36, 0.17 * p, 1.4, fill=0.032 * p)
-    for j in range(3):
-        circle(d, (1782 + 16 * j - 16, 202), 4.2, 0.4 * p, fill=True)
-    return p
-
-
-def finish_product(img, t, dur, cx=1420):
-    return layer_of(img), (cx, 540, 0.7), fade_io(t, dur, 0.5, 0.5)
+def finish_product(img, t, dur, idx):
+    td = text_stage(t, idx)
+    s = VIS_SCALES[idx]
+    vis = Image.fromarray(layer_of(img), "F").transform(
+        (W, H), Image.AFFINE,
+        (1 / s, 0, VIS_IN[0] - VIS_OUT[0] / s, 0, 1 / s, VIS_IN[1] - VIS_OUT[1] / s),
+        resample=Image.BILINEAR)
+    layer = np.asarray(vis, np.float32) + layer_of(td)
+    return layer, (W / 2, 620, 0.75), fade_io(t, dur, 0.5, 0.5)
 
 
 def scene_shield(t, dur):
     img, d = new_layer()
-    lineup(d, t, 0)
-    panel(d, t)
     c = (1420, 540)
     radii = [(110, 0.26), (210, 0.18), (310, 0.14)]
     # rings build outward
@@ -504,13 +490,11 @@ def scene_shield(t, dur):
             arc(d, c, 312, deg - 22 - 10 * hit, deg + 22 + 10 * hit, 0.95 * decay, 2.4)
             circle(d, (c[0] + 310 * ux, c[1] + 310 * uy), 10 + 70 * out_cubic(hit),
                    0.6 * decay, 1.4)
-    return finish_product(img, t, dur)
+    return finish_product(img, t, dur, 0)
 
 
 def scene_vm(t, dur):
     img, d = new_layer()
-    lineup(d, t, 3)
-    panel(d, t)
     cx, cy = 1430, 548
     hp = out_cubic(prog(t, 0.4, 1.9))
     hw, hh = 330 * (0.9 + 0.1 * hp), 215 * (0.9 + 0.1 * hp)
@@ -531,13 +515,11 @@ def scene_vm(t, dur):
         live = prog(t, st + 1.0, st + 2.0)
         circle(d, (wx, wy + 14), 17, 0.28 * live, 1.4)
         circle(d, (wx, wy + 14), 3.2 + 1.2 * math.sin(t * 2 + i), 0.9 * live, fill=True)
-    return finish_product(img, t, dur)
+    return finish_product(img, t, dur, 3)
 
 
 def scene_vpn(t, dur):
     img, d = new_layer()
-    lineup(d, t, 1)
-    panel(d, t)
     x0, x1, cy = 1075, 1775, 540
     n = 24
     pulse = (t * 0.2) % 1.25 - 0.1
@@ -563,13 +545,11 @@ def scene_vpn(t, dur):
             tail = lerp(x0, x1, max(0, ph - 0.05))
             line(d, [(tail, cy), (px_, cy)], 0.6 * math.sin(math.pi * ph), 1.8)
             circle(d, (px_, cy), 3.2, 0.9 * math.sin(math.pi * ph), fill=True)
-    return finish_product(img, t, dur)
+    return finish_product(img, t, dur, 1)
 
 
 def scene_osint(t, dur):
     img, d = new_layer()
-    lineup(d, t, 2)
-    panel(d, t)
     f = fonts()
     c = (1430, 548)
     cp = out_cubic(prog(t, 0.4, 1.8))
@@ -612,7 +592,7 @@ def scene_osint(t, dur):
             elif ph < 0.8:
                 q = (ph - 0.35) / 0.45
                 circle(d, c, 92 + 60 * out_cubic(q), 0.4 * (1 - q) ** 2, 1.4)
-    return finish_product(img, t, dur)
+    return finish_product(img, t, dur, 2)
 
 
 def scene_unified(t, dur):
@@ -627,7 +607,7 @@ def scene_unified(t, dur):
     heavy(d, RX, 380, "Clear in your results.", 100, a * (0.45 + 0.55 * smooth(prog(t, 3.2, 5.0))), "l", r)
     cards = [("Network protection", "Thomsen Shield", "Windows 10  ·  Windows 11"),
              ("Privacy", "Thomsen VPN", "Coming soon"),
-             ("Investigations", "Thomsen OSINT", "Coming soon"),
+             ("Investigations", "Thomsen OSINT", "Windows 10  ·  Windows 11"),
              ("Virtualization", "Thomsen VM", "Free")]
     cw, gap, y0, ch = 390, 20, 520, 280
     for i, (cat, name, st) in enumerate(cards):

@@ -1,6 +1,6 @@
 # Thomsen Software — Advertisement
 
-**Format:** 1920×1080, 30 fps, 43.6 s, H.264 + AAC. 16:9 for YouTube and thomssen.dev.
+**Format:** 1920×1080, 30 fps, 48.6 s, H.264 + AAC. 16:9 for YouTube and thomsen-software.com.
 
 ## Creative direction
 Black, white, dark grey, silver. One typeface family (Inter). Each product gets a
@@ -11,30 +11,27 @@ through black, so it plays like a series of reveals.
 Nothing is claimed beyond what was supplied: Shield's four listed features, VM is
 free, VPN and OSINT are labelled **Coming soon**, and VPN lists no features.
 
-## Storyboard (43.6 s)
-| Time | Scene | On screen | Sound |
+## Storyboard (48.6 s)
+| Time | Scene | On screen | Voice-over |
 |---|---|---|---|
-| 0:00 | **Hook** | "Right now, your PC is talking to the internet. Do you know who to?" Rings pulse on each line. | Low drone, a sub hit on every line, then a riser. |
-| 0:05 | **Reveal** | A T tile, a cursor glides in and clicks it, and "Thomsen. Software" opens out of the T. | Click, impact, and the beat drops in. |
-| 0:09 | Trust | "Software you can actually trust." | Beat, bass, plucks. |
-| 0:12 | **Thomsen Shield** | Network protection. Four features as pills. See every connection. Stop the ones you do not trust. | Impact and whoosh into each product. |
-| 0:17 | **Thomsen VPN** | Privacy. Coming soon. Currently in development. | |
-| 0:23 | **Thomsen OSINT** | Investigations. Coming soon. | |
-| 0:28 | **Thomsen VM** | Virtualization. Free. | |
-| 0:34 | Lineup | "Quiet on your system. Clear in your results." with four product cards. | |
-| 0:38 | **Close** | "Software. Designed with purpose." then the logo and thomssen.dev. | Lifted chord, final hit, fade. |
+| 0:00 | **Hook** | "Right now, your PC is talking to the internet. Do you know who to?" | "Right now, your PC is talking to the internet." / "Do you know who to?" |
+| 0:05 | **Reveal** | A T tile, a cursor glides in and clicks it, and "Thomsen. Software" opens out of the T. | "Meet Thomsen Software." |
+| 0:09 | Trust | "Software you can actually trust." | Same. |
+| 0:12 | **Thomsen Shield** | Name and one line up top, the visual on stage, then one feature caption at a time: network monitoring, suspicious connection detection, threat intelligence, Windows Firewall protection. | "Thomsen Shield. See every connection. Stop the ones you do not trust." |
+| 0:18 | **Thomsen VPN** | Same stage. Coming soon. | "Thomsen VPN. Private connectivity. Coming soon." |
+| 0:25 | **Thomsen OSINT** | Same stage. Usernames, IP addresses, domains, email addresses. | "Thomsen OSINT. Public information, organized into one clear picture." |
+| 0:31 | **Thomsen VM** | Same stage. Free. | "Thomsen VM. A full machine, running inside your desktop. And it's free." |
+| 0:38 | Lineup | "Quiet on your system. Clear in your results." with four product cards. | Same. |
+| 0:43 | **Close** | "Software. Designed with purpose." then the logo and thomsen-software.com. | "Software. Designed with purpose." / "Thomsen Software dot com." |
 
 Strictly black, white and silver. Light moves as soft silver glow only. A single
 flag in `render.py` (`MONOCHROME`) controls this.
 
-## Voice-over (optional, if you want to record narration)
-Text matches the screen, so the film works silent or narrated.
-1. "We build software that is genuinely useful."
-2. "Thomsen Shield. Network protection for Windows. Monitoring, suspicious connection detection, threat intelligence and Windows Firewall protection."
-3. "Thomsen VM. A free virtual machine application. Clean. Accessible. Practical."
-4. "Thomsen VPN. Coming soon."
-5. "Thomsen OSINT. Research publicly available information. Coming soon."
-6. "Software. Designed with purpose."
+## Voice-over
+Synthesised with Kokoro (open neural text-to-speech, voice `af_heart`) by `voiceover.py`,
+polished with a rumble filter, light compression and a limiter, with a touch of room.
+The music ducks under it. To change the voice, edit `VOICE` in `voiceover.py`
+(for example `am_michael` or `bf_emma`) or rewrite the `LINES` list.
 
 ## Sound
 Synthesised in `audio.py`: a slow D-minor pad that changes chord per scene, low sub,

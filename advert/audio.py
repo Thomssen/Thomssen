@@ -136,6 +136,24 @@ wet = np.fft.irfft(np.fft.rfft(dry, N + ir_n) * np.fft.rfft(ir, N + ir_n), N + i
 wet *= np.abs(dry).max() / (np.abs(wet).max() + 1e-9) * 0.85
 L = dry + wet * 0.8
 R = dry + np.roll(wet, int(0.011 * SR)) * 0.8
+if len(sys.argv) > 2:
+    import soundfile as sf
+    vo, vsr = sf.read(sys.argv[2], dtype="float32")
+    vo = np.pad(vo, (0, max(0, N - len(vo))))[:N]
+    # music ducks under the voice
+    w = int(0.25 * SR)
+    cs = np.cumsum(np.abs(vo))
+    ma = np.concatenate([np.zeros(w // 2), (cs[w:] - cs[:-w]) / w, np.zeros(N - (N - w) - w // 2)])[:N]
+    duck = 1 - 0.55 * np.clip(ma / 0.04, 0, 1)
+    k = int(0.15 * SR)
+    duck = np.convolve(duck, np.ones(k) / k, mode="same")
+    L = L * duck * 0.8
+    R = R * duck * 0.8
+    vir = rng.standard_normal(int(0.9 * SR)) * np.exp(-np.arange(int(0.9 * SR)) / SR * 5)
+    vwet = np.fft.irfft(np.fft.rfft(vo, N + len(vir)) * np.fft.rfft(vir, N + len(vir)), N + len(vir))[:N]
+    vwet *= np.abs(vo).max() / (np.abs(vwet).max() + 1e-9) * 0.12
+    L = L + vo + vwet
+    R = R + vo + vwet
 for ch in (L, R):
     ch *= 1 - np.clip((T - (DURATION - 2.0)) / 2.0, 0, 1)
 st = np.stack([L, R], 1)
