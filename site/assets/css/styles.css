@@ -667,3 +667,18 @@ html[data-theme="light"] { filter: invert(1) hue-rotate(180deg); }
 .nf__head .legal__intro { margin: 0 auto 30px; }
 .nf__head .cta { justify-content: center; }
 .nf__head .eyebrow { display: block; margin-bottom: 16px; }
+
+/* OSINT page extras */
+.pp__tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.03); }
+.pp__table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px; }
+.pp__table th { padding: 14px 20px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--line); }
+.pp__table td { padding: 16px 20px; color: var(--muted); border-bottom: 1px solid var(--line); vertical-align: top; }
+.pp__table tr:last-child td { border-bottom: 0; }
+.pp__table td:first-child { color: #fff; font-weight: 600; white-space: nowrap; }
+.pp__note { margin-top: 20px; max-width: 760px; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.pp__list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 40px; max-width: 900px; }
+.pp__list li { position: relative; padding-left: 30px; font-size: 15px; line-height: 1.5; }
+.pp__list li::before { content: "✓"; position: absolute; left: 0; top: 1px; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(166,220,194,.16); border: 1px solid #a6dcc2; color: #a6dcc2; font-size: 11px; font-weight: 800; }
+.pp__cta { margin-top: 30px; justify-content: flex-start; }
+.pp__faq { max-width: 860px; }
+@media (max-width: 860px) { .pp__list { grid-template-columns: 1fr; } }
