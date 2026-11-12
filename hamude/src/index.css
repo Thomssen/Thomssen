@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: #050507;
+  color: #f5f3ff;
+  font-family: Inter, system-ui, sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: inherit; touch-action: manipulation; }
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-2xl;
+    box-shadow: 0 10px 60px -10px rgba(168, 85, 247, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .rainbow-text {
+    background-image: linear-gradient(90deg, #ff3b5c, #ff9f3b, #ffe23b, #3bff8a, #3bd1ff, #8b5cff, #ff3bd4, #ff3b5c);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @apply animate-rainbow;
+  }
+}
+
+/* Konami / disco mode */
+.disco #root { animation: hue 2.5s linear infinite; }
+@keyframes hue { to { filter: hue-rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-text { animation: none; }
+}

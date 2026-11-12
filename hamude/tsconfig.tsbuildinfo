@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/messages.ts","./src/components/Background.tsx","./src/components/Celebration.tsx","./src/components/Particles.tsx","./src/components/Quiz.tsx","./src/hooks/useEasterEggs.ts","./vite.config.ts"],"version":"5.9.3"}
