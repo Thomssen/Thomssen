@@ -1,0 +1,55 @@
+name: CI
+on:
+  push: { branches: ["**"] }
+  pull_request:
+permissions: { contents: read }
+
+jobs:
+  rust:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo build --locked -p psychosec
+      - run: cargo test --locked -p psychosec
+      - run: cargo clippy --locked -p psychosec -- -D warnings
+        continue-on-error: true
+
+  rust-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo test --locked -p psychosec
+
+  web:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_PASSWORD: postgres }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - name: Validate database migrations
+        run: PGURL=postgres://postgres:postgres@localhost:5432/postgres scripts/validate-migrations.sh
+      - run: npm run typecheck
+      - name: API tests (real PostgreSQL, Discord stubbed)
+        run: npm test -w @psychosec/api
+        env: { TEST_DATABASE_URL: "postgres://postgres:postgres@localhost:5432/psytest" }
+      - name: Build API, admin, website
+        run: npm run build
+        env:
+          DATABASE_URL: postgres://placeholder
+          DISCORD_CLIENT_ID: "0"
+          DISCORD_CLIENT_SECRET: placeholder
+          DISCORD_GUILD_ID: "0"
+          DISCORD_REDIRECT_URI: https://api.example.test/api/auth/discord/callback
+          NEXT_PUBLIC_API_URL: https://api.example.test

@@ -1,0 +1,8 @@
+PSYCHOSEC - privacy summary
+
+* Your investigations (targets, notes, findings, files, reports) stay on this computer in an encrypted local database. They are never sent to PSYCHOSEC servers.
+* To verify access, PSYCHOSEC's service records your Discord identity, your sign-in IP address and time, session activity and the application version.
+* This is used only to protect the service and administer access. Records are deleted automatically after a fixed retention period.
+* Lookups you run are sent directly from your computer to the public services needed to answer them.
+
+Full policy: https://psychosec.org/privacy

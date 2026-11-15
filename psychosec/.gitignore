@@ -1,0 +1,13 @@
+target/
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+dist/
+out/
+.vercel/
+*.tsbuildinfo
+release-signing/

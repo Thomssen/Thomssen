@@ -1,0 +1,60 @@
+name: Release
+# Builds the Windows installer from a version tag (v1.2.3) and publishes ONLY the installer
+# and checksums to a release. No source archives are attached by this workflow.
+on:
+  push: { tags: ["v[0-9]+.[0-9]+.[0-9]+"] }
+permissions: { contents: write }
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install Inno Setup
+        run: choco install innosetup -y --no-progress
+      - name: Test
+        run: cargo test --locked -p psychosec
+      - name: Build exe + installer
+        shell: pwsh
+        env:
+          PSYCHOSEC_UPDATE_PUBKEY: ${{ secrets.PSYCHOSEC_UPDATE_PUBKEY }}
+          PSYCHOSEC_API_URL: https://api.psychosec.org
+        run: |
+          $v = "${{ github.ref_name }}".TrimStart('v')
+          $env:PATH += ";${env:ProgramFiles(x86)}\Inno Setup 6"
+          ./scripts/build-windows.ps1 -Version $v
+      - name: Authenticode signing (only when a certificate secret exists)
+        if: ${{ env.HAS_CERT == 'true' }}
+        env:
+          HAS_CERT: ${{ secrets.WINDOWS_CERT_PFX_BASE64 != '' }}
+          WINDOWS_CERT_PFX_BASE64: ${{ secrets.WINDOWS_CERT_PFX_BASE64 }}
+          WINDOWS_CERT_PASSWORD: ${{ secrets.WINDOWS_CERT_PASSWORD }}
+        shell: pwsh
+        run: |
+          [IO.File]::WriteAllBytes("cert.pfx", [Convert]::FromBase64String($env:WINDOWS_CERT_PFX_BASE64))
+          $st = (Get-ChildItem "${env:ProgramFiles(x86)}\Windows Kits\10\bin\*\x64\signtool.exe" | Sort-Object FullName | Select-Object -Last 1).FullName
+          Get-ChildItem installer\Output\Psychosec-Setup-*.exe | ForEach-Object {
+            & $st sign /f cert.pfx /p $env:WINDOWS_CERT_PASSWORD /fd SHA256 /tr http://timestamp.digicert.com /td SHA256 $_.FullName
+          }
+          Remove-Item cert.pfx
+      - name: Checksums
+        shell: pwsh
+        run: |
+          cd installer\Output
+          Get-ChildItem Psychosec-Setup-v*.exe | ForEach-Object { "$((Get-FileHash $_ -Algorithm SHA256).Hash.ToLower())  $($_.Name)" } | Set-Content SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installer
+          path: |
+            installer/Output/Psychosec-Setup-v*.exe
+            installer/Output/SHA256SUMS.txt
+      - name: Publish release (installer + checksums only)
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            installer/Output/Psychosec-Setup-v*.exe
+            installer/Output/SHA256SUMS.txt
+          generate_release_notes: false
+          body: "PSYCHOSEC ${{ github.ref_name }}. Verify the SHA-256 in SHA256SUMS.txt. After publishing, sign and register the release with scripts/release-sign.mjs (see docs/releasing.md)."
