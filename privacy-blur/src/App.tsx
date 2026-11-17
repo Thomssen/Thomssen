@@ -50,24 +50,25 @@ export default function App() {
       </div>
 
       <main className="flex-1 overflow-y-auto px-6 pb-6">
-        <div className="mx-auto max-w-[520px] space-y-5">
+        <div className="mx-auto max-w-[460px] space-y-7">
           {status.warning && <Notice tone="bad">{status.warning}</Notice>}
           {status.engine.last_error && <Notice>{status.engine.last_error}</Notice>}
 
-          <button onClick={() => api.setProtection(!on)}
-            className={`focus-ring flex w-full items-center justify-between rounded-2xl px-6 py-5 text-left transition-all duration-200 active:scale-[.99] ${on ? "bg-zinc-100 text-ink-950" : "bg-ink-800 text-zinc-100 hover:bg-ink-700"}`}>
+          <div className="flex items-center justify-between pt-2">
             <div>
-              <div className="text-[18px] font-semibold">{on ? "Protection on" : "Protection off"}</div>
-              <div className={`text-[12.5px] ${on ? "text-ink-600" : "text-mute-400"}`}>{on ? `${status.engine.active_regions} hidden right now · click to stop` : "Click to start hiding personal information"}</div>
+              <div className="text-[22px] font-semibold tracking-tight">{on ? "Protected" : "Not protected"}</div>
+              <div className="mt-0.5 text-mute-400">{on ? `${status.engine.active_regions} hidden right now` : "Nothing is being hidden"}</div>
             </div>
-            {on ? <Pause size={26} /> : <Play size={26} />}
-          </button>
+            <button onClick={() => api.setProtection(!on)} className={`focus-ring flex items-center gap-2 rounded-full px-5 py-2.5 font-medium transition-all duration-200 active:scale-95 ${on ? "bg-ink-700 text-zinc-100 hover:bg-ink-600" : "bg-zinc-100 text-ink-950 hover:bg-white"}`}>
+              {on ? <Pause size={16} /> : <Play size={16} />}{on ? "Stop" : "Start"}
+            </button>
+          </div>
 
           <section>
-            <h2 className="mb-2 text-[12px] font-medium uppercase tracking-wider text-mute-500">Hide</h2>
-            <div className="grid grid-cols-2 gap-2">
+            <h2 className="mb-2.5 text-[12px] font-medium text-mute-500">Hide</h2>
+            <div className="grid grid-cols-2 gap-x-8 rounded-2xl bg-ink-850 px-5 py-1">
               {TYPES.map(({ key, label }) => (
-                <div key={key} className="flex items-center justify-between rounded-xl bg-ink-850 px-4 py-2.5 ring-1 ring-ink-700/60">
+                <div key={key} className="flex items-center justify-between border-b border-ink-700/40 py-3 [&:nth-last-child(-n+2)]:border-0">
                   <span>{label}</span>
                   <Toggle checked={f[key]} onChange={(v) => patch((s) => { s.filters[key] = v; })} />
                 </div>
@@ -77,7 +78,7 @@ export default function App() {
 
           <section>
             <div className="mb-2 flex items-baseline justify-between">
-              <h2 className="text-[12px] font-medium uppercase tracking-wider text-mute-500">Blur strength</h2>
+              <h2 className="text-[12px] font-medium text-mute-500">Blur strength</h2>
               <span className="font-mono text-[12px] text-mute-400">{settings.appearance.intensity}%</span>
             </div>
             <input type="range" min={0} max={100} value={settings.appearance.intensity} className="w-full"
@@ -90,20 +91,20 @@ export default function App() {
           </section>
 
           <section>
-            <h2 className="mb-2 text-[12px] font-medium uppercase tracking-wider text-mute-500">My words</h2>
+            <h2 className="mb-2.5 text-[12px] font-medium text-mute-500">My words</h2>
             <div className="flex gap-2">
-              <Input value={value} placeholder="Name, address, email, phone, anything…" onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => e.key === "Enter" && value.trim() && add()} />
+              <Input className="!border-transparent !bg-ink-850" value={value} placeholder="Name, address, email, phone, anything…" onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => e.key === "Enter" && value.trim() && add()} />
               <Button kind="primary" icon={Plus} disabled={!value.trim()} onClick={add} aria-label="Add" />
             </div>
-            <ul className="mt-2 space-y-1.5">
+            <ul className="mt-2.5 space-y-1.5">
               {entries.map((en) => (
-                <li key={en.id} className="flex items-center justify-between rounded-lg bg-ink-850 px-3 py-2 ring-1 ring-ink-700/60">
+                <li key={en.id} className="flex items-center justify-between rounded-lg bg-ink-850 px-4 py-2.5">
                   <Secret value={en.value} />
                   <button className="rounded p-1 text-mute-500 hover:text-white" aria-label="Delete" onClick={async () => { await api.deleteEntry(en.id); reloadEntries(); }}><X size={14} /></button>
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-[12px] text-mute-600">Stored encrypted on this PC. Never sent anywhere.</p>
+            <p className="mt-3 text-[12px] text-mute-600">Stored encrypted on this PC. Never sent anywhere.</p>
           </section>
 
           <section>
