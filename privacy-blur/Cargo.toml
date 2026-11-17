@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = ["crates/privacy-core", "src-tauri"]
+# `cargo test` at the root only builds the platform-independent core (works on any OS).
+default-members = ["crates/privacy-core"]
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+strip = true

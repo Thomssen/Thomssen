@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body {
+  @apply bg-ink-950 text-zinc-100 font-sans antialiased select-none;
+  font-size: 13.5px;
+  overflow: hidden;
+}
+input, textarea { @apply select-text; }
+::selection { background: #ffffff33; }
+* { scrollbar-width: thin; scrollbar-color: #2c2c33 transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: #2c2c33; border-radius: 10px; border: 3px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb:hover { background: #42424b; border: 3px solid transparent; background-clip: content-box; }
+
+input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; background: #2c2c33; outline: none; }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #fafafa;
+  box-shadow: 0 0 0 4px #0c0c0e, 0 1px 6px #0008; cursor: pointer; transition: transform .12s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.12); }
+
+.focus-ring { @apply outline-none focus-visible:ring-2 focus-visible:ring-white/30; }
