@@ -21,13 +21,7 @@ Requirements: Windows 10 2004+ or Windows 11, and at least one Windows language 
 
 ## Using it
 
-| Page | What it does |
-|---|---|
-| **Dashboard** | Start/stop, live count of hidden elements, categories (counts only), active applications, engine health, screen-sharing software warning |
-| **Privacy Filters** | Per-category toggles, your own names/emails/phones/addresses/usernames/keywords/regex patterns (DPAPI-encrypted), a “test detection” box |
-| **Applications** | Protect all / selected apps only, exclusions, browser protection on/off, per-monitor on/off |
-| **Appearance** | Gaussian blur / pixelation / solid black with live previews rendered by the real engine; intensity, radius, mosaic size, opacity, padding, safe minimum |
-| **Settings** | Start with Windows, tray behaviour, global shortcuts, notifications, performance, screen-sharing & recording test |
+One small dark window: a **Start/Stop** button, toggles for what to hide, a **blur strength** slider with Blur / Pixels / Black box, and **My words** (type a name, address, email, phone number or any word; it is stored encrypted). *Options* holds Start with Windows, tray behaviour, skipping browsers and the panic button. Everything else (detection method, intervals, per-app rules) lives in `settings.json` with sensible defaults.
 
 Default shortcuts (all configurable): `Ctrl+Shift+B` toggle protection · `Ctrl+Shift+P` open settings · `Ctrl+Shift+X` **panic** (black cover over every monitor, click-through, visible in captures).
 
