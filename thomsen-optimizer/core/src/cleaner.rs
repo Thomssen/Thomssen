@@ -521,12 +521,15 @@ mod tests {
 
     #[test]
     fn path_guards() {
-        assert!(is_within(Path::new("/a/b/c"), Path::new("/a/b")));
-        assert!(!is_within(Path::new("/a/b/../c"), Path::new("/a/b")));
-        assert!(!is_within(Path::new("/a/bc"), Path::new("/a/b")));
-        assert!(!is_safe_root(Path::new("/")));
-        assert!(!is_safe_root(Path::new("/home")));
-        assert!(is_safe_root(Path::new("/home/me/Temp")));
+        // Use the platform's own notion of an absolute path.
+        let (root, deep, short, drive) = if cfg!(windows) { ("C:\\a\\b", "C:\\a\\b\\c", "C:\\Users", "C:\\") } else { ("/a/b", "/a/b/c", "/home", "/") };
+        let sep = std::path::MAIN_SEPARATOR;
+        assert!(is_within(Path::new(deep), Path::new(root)));
+        assert!(!is_within(Path::new(&format!("{root}{sep}..{sep}c")), Path::new(root)));
+        assert!(!is_within(Path::new(&format!("{root}c")), Path::new(root)));
+        assert!(!is_safe_root(Path::new(drive)));
+        assert!(!is_safe_root(Path::new(short)));
+        assert!(is_safe_root(Path::new(&format!("{short}{sep}me{sep}Temp"))));
     }
 
     #[test]

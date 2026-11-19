@@ -269,7 +269,8 @@ mod tests {
         let ops = FakeOps::default();
         ops.reg_set(Hive::CurrentUser, RUN, "Discord", &RegData::Sz("\"C:\\Discord\\Update.exe\" --start".into())).unwrap();
         ops.reg_set(Hive::CurrentUser, RUN, "SecurityHealth", &RegData::Sz("C:\\x.exe".into())).unwrap();
-        let l = list(&ops);
+        // Real startup folders of the machine running the test may add entries.
+        let l: Vec<_> = list(&ops).into_iter().filter(|e| matches!(e.source, Source::HkcuRun)).collect();
         assert_eq!(l.len(), 2);
         assert!(l.iter().all(|e| e.enabled && e.impact.is_none()));
         let id = l.iter().find(|e| e.name == "Discord").unwrap().id.clone();
