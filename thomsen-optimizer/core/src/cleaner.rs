@@ -336,9 +336,11 @@ pub fn quick_temp_bytes(env: &CleanerEnv, min_age_hours: u64) -> u64 {
 }
 
 /// A root is only ever cleaned if it is not a drive root and has at least two
-/// path components below it - a belt-and-braces guard on top of the fixed list.
+/// folder names in its path - a belt-and-braces guard on top of the fixed list.
 pub fn is_safe_root(p: &Path) -> bool {
-    p.is_absolute() && p.components().count() >= 3 && p.parent().is_some()
+    // Count real folder names only: the drive prefix and root are not folders,
+    // so `C:\\` and `C:\\Users` are rejected while `C:\\Windows\\Temp` is fine.
+    p.is_absolute() && p.components().filter(|c| matches!(c, std::path::Component::Normal(_))).count() >= 2
 }
 
 /// True when `path` is lexically inside `root` (no `..` tricks).
