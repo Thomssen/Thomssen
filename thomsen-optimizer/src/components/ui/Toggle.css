@@ -1,0 +1,34 @@
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 38px;
+  height: 22px;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  border: 1px solid var(--border-strong);
+  flex-shrink: 0;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.toggle:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.toggle__thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: transform var(--dur) var(--ease-out), background-color var(--dur-fast) var(--ease);
+}
+
+.toggle.is-on {
+  background: var(--btn-primary-bg);
+  border-color: var(--btn-primary-bg);
+}
+.toggle.is-on .toggle__thumb {
+  background: var(--btn-primary-text);
+  transform: translateX(16px);
+}

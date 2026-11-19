@@ -1,0 +1,177 @@
+/* ============================================================================
+   DESIGN TOKENS  -  the single source of truth for the app's look.
+   ----------------------------------------------------------------------------
+   Shared visual language with every other Thomsen app (Thomsen VM, Thomsen
+   Web Scanner): near-black surfaces, white primary text, muted greys,
+   hairline borders - a quiet, professional feel with no neon and no motion
+   for its own sake.
+
+   Dark is the default (:root below); a light variant lives in the
+   `[data-theme="light"]` block at the bottom, applied by AppearanceProvider
+   (src/state/AppearanceProvider.tsx) setting `data-theme` on <html> - see
+   Settings > Appearance.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* -- Surfaces - deeper, Linear/Vercel/Apple-dark-inspired near-black,
+     solid flat panels rather than translucent-over-blur (sidebar/titlebar
+     included) so every value matches exactly rather than depending on
+     what's rendered behind it. --------------------------------------- */
+  --bg: #050505;
+  --bg-alt: #070707;
+  --surface: #0d0d0d;
+  --surface-2: #131313;
+  --surface-3: #191919;
+  --titlebar-bg: rgba(5, 5, 5, 0.78);
+  --sidebar-bg: #080808;
+  --nav-bg: rgba(5, 5, 5, 0.75);
+
+  /* -- Text ------------------------------------------------------------- */
+  --text: #f5f5f5;
+  --text-secondary: #888888;
+  --text-muted: #606060;
+  --text-faint: #454545;
+
+  /* -- Lines - solid, not alpha-over-background, so they read as exactly
+     this grey regardless of what surface they sit on. ------------------ */
+  --border: #1c1c1c;
+  --border-strong: #262626;
+  --border-faint: #101010;
+
+  /* -- Brand accent - neutral off-white, not a saturated hue: used
+     sparingly as the one point of emphasis beyond the status set below -
+     primary buttons, selected tabs, toggle-on, progress fills, focus
+     rings/selection, and a handful of named spots (sidebar active
+     indicator, dashboard graph, focused fields). Never used for status/
+     semantic meaning - see --good/--bad/--warn below, which this never
+     substitutes for. No blue: a monochrome near-black/white palette reads
+     calmer and more premium than a blue tint fighting the status colours
+     for attention. -hover is a touch dimmer, the light-on-dark equivalent
+     of a "pressed" shade. --------- */
+  --accent-brand: #f2f2f2;
+  --accent-brand-hover: #d6d6d6;
+  --accent-brand-soft: rgba(255, 255, 255, 0.12);
+
+  /* -- Primary button (neutral light fill, near-black text) --------------- */
+  --btn-primary-bg: var(--accent-brand);
+  --btn-primary-bg-hover: var(--accent-brand-hover);
+  --btn-primary-text: #080808;
+
+  /* -- Secondary / ghost controls ------------------------------------- */
+  --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+  --btn-secondary-bg-hover: rgba(255, 255, 255, 0.08);
+  --btn-secondary-text: var(--text);
+
+  /* -- Accent (used sparingly for focus / selection) -------------- */
+  --accent: var(--accent-brand);
+  --accent-soft: var(--accent-brand-soft);
+  --glow: rgba(255, 255, 255, 0.05);
+
+  /* -- Field surfaces ------------------------------------------------------ */
+  --field-bg: rgba(255, 255, 255, 0.025);
+  --field-bg-focus: rgba(255, 255, 255, 0.045);
+  --field-border: #1c1c1c;
+
+  /* -- Status (the only colour in the app - muted, indicator-only) ------- */
+  --good: #6f9e8f;
+  --good-soft: rgba(111, 158, 143, 0.14);
+  --bad: #e5595a;
+  --bad-soft: rgba(229, 89, 90, 0.14);
+  --warn: #d8b24c;
+  --warn-soft: rgba(216, 178, 76, 0.14);
+  --neutral-status: #7c838a;
+  --neutral-status-soft: rgba(124, 131, 138, 0.14);
+
+  /* -- Shadows - a touch deeper, so elevation still reads against the
+     darker surfaces above ---------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.45), 0 14px 44px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 60px rgba(0, 0, 0, 0.6);
+
+  /* -- Radii ---------------------------------------------------------------- */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* -- Motion  (subtle, quick, never flashy) ----------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur: 200ms;
+  --dur-slow: 260ms;
+
+  /* -- Type ------------------------------------------------------------- */
+  --font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'SFMono-Regular', ui-monospace, 'Cascadia Mono', 'Consolas',
+    'Liberation Mono', Menlo, monospace;
+
+  /* -- Layout metrics --------------------------------------------------- */
+  --titlebar-h: 38px;
+  --sidebar-w: 224px;
+  --content-max: 1160px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur: 1ms;
+    --dur-slow: 1ms;
+  }
+}
+
+/* ============================================================================
+   LIGHT THEME  -  same structure as :root above, values inverted: surfaces
+   get progressively darker (not lighter) as they come forward, text/borders
+   flip from white-based to black-based. Status colours, shadows aside, are
+   kept as-is - they're mid-toned enough to read on either background.
+   ========================================================================== */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f7f7f8;
+  --bg-alt: #f0f1f2;
+  --surface: #ffffff;
+  --surface-2: #f4f5f6;
+  --surface-3: #eceef0;
+  --titlebar-bg: rgba(255, 255, 255, 0.78);
+  --sidebar-bg: rgba(255, 255, 255, 0.6);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+
+  --text: #0c0d0e;
+  --text-secondary: #4a4f54;
+  --text-muted: #6b7178;
+  --text-faint: #9a9fa5;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --border-faint: rgba(0, 0, 0, 0.05);
+
+  --accent-brand: #5865f2;
+  --accent-brand-hover: #4752c4;
+  --accent-brand-soft: rgba(88, 101, 242, 0.12);
+
+  --btn-primary-bg: var(--accent-brand);
+  --btn-primary-bg-hover: var(--accent-brand-hover);
+  --btn-primary-text: #ffffff;
+
+  --btn-secondary-bg: rgba(0, 0, 0, 0.045);
+  --btn-secondary-bg-hover: rgba(0, 0, 0, 0.075);
+  --btn-secondary-text: var(--text);
+
+  --accent: var(--accent-brand);
+  --accent-soft: var(--accent-brand-soft);
+  --glow: rgba(0, 0, 0, 0.04);
+
+  --field-bg: rgba(0, 0, 0, 0.03);
+  --field-bg-focus: rgba(0, 0, 0, 0.05);
+  --field-border: rgba(0, 0, 0, 0.14);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.06), 0 14px 34px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 50px rgba(0, 0, 0, 0.12);
+}

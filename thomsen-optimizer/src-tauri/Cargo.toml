@@ -1,0 +1,32 @@
+[package]
+name = "thomsen-optimizer"
+version = "1.0.0"
+description = "Thomsen Optimizer - a transparent, reversible gaming optimizer for Windows."
+authors = ["Thomsen Software"]
+edition = "2021"
+rust-version = "1.81"
+license = "UNLICENSED"
+
+[lib]
+name = "thomsen_optimizer_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+thomsen-optimizer-core = { path = "../core" }
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-single-instance = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-process = "2"
+tauri-plugin-updater = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+log = "0.4"
+chrono = "0.4"
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]

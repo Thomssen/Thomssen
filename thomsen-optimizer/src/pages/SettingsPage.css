@@ -1,0 +1,129 @@
+.set__tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: route-in var(--dur) var(--ease-out) both;
+}
+.set__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  max-width: 300px;
+}
+.set__swatch {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.set__swatch:hover {
+  transform: scale(1.12);
+}
+.set__swatch.is-on::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+}
+.set__range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+}
+.set__range input[type='range'] {
+  flex: 1;
+  accent-color: var(--accent-brand);
+}
+.set__range output {
+  width: 54px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  font-size: 12.5px;
+}
+.adv__item {
+  padding: 16px 0;
+  border-top: 1px solid var(--border-faint);
+}
+.adv__item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.adv__item h4 {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.adv__facts {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 6px 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.adv__facts dt {
+  color: var(--text-muted);
+}
+.adv__facts dd {
+  margin: 0;
+}
+.adv__avoid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12.5px;
+}
+.adv__avoid strong {
+  color: var(--text);
+}
+.adv__avoid span {
+  color: var(--text-muted);
+}
+.about__block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.about__logo {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 9px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+}
+.about__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.about__version {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.about__links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.about__license {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 78ch;
+}
+.upd__bar {
+  margin-top: 10px;
+  width: 260px;
+}

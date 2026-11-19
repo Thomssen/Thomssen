@@ -1,0 +1,64 @@
+name: Thomsen Optimizer - CI
+
+on:
+  push:
+    paths:
+      - "thomsen-optimizer/**"
+      - ".github/workflows/thomsen-optimizer-*.yml"
+  pull_request:
+    paths:
+      - "thomsen-optimizer/**"
+      - ".github/workflows/thomsen-optimizer-*.yml"
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: thomsen-optimizer
+
+jobs:
+  frontend:
+    name: Frontend (typecheck, unit tests, build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: thomsen-optimizer/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  core-linux:
+    name: Core logic tests (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: thomsen-optimizer
+      - run: cargo test -p thomsen-optimizer-core
+
+  # The same tests on Windows exercise the real registry / powercfg parsing
+  # paths that are compiled out on Linux, and type-check the whole app shell.
+  windows:
+    name: Core tests + app build check (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: thomsen-optimizer/package-lock.json
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: thomsen-optimizer
+      - run: npm ci
+      - run: npm run build
+      - run: cargo test -p thomsen-optimizer-core
+      - run: cargo check -p thomsen-optimizer

@@ -1,0 +1,69 @@
+.stat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+
+.stat-tile--button {
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
+}
+.stat-tile--button:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+.stat-tile__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stat-tile__value {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  animation: stat-value-in var(--dur) var(--ease-out);
+}
+
+/* Replayed on every real value change (see StatTile.tsx's `key`) - a
+   small fade/rise, never a bounce or a colour flash. */
+@keyframes stat-value-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-tile--accent .stat-tile__value {
+  color: var(--accent-brand);
+}
+.stat-tile--good .stat-tile__value {
+  color: var(--good);
+}
+.stat-tile--bad .stat-tile__value {
+  color: var(--bad);
+}
+.stat-tile--warn .stat-tile__value {
+  color: var(--warn);
+}
+
+.stat-tile__note {
+  font-size: 11.5px;
+  color: var(--text-faint);
+}

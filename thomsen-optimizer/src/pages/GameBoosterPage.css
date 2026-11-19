@@ -1,0 +1,113 @@
+.gb__status--on {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+.gb__status-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.gb__status-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.gb__status-sub {
+  margin-top: 5px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.gb__event {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-faint);
+  font-size: 12px;
+  color: var(--text-faint);
+}
+.gb__profiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+.gb__profile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gb__profile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gb__profile-head h3 {
+  font-size: 15px;
+}
+.gb__link {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.gb__link:hover {
+  color: var(--text);
+}
+.gb__profile-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.gb__facts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.gb__facts strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.gb__tradeoff {
+  font-size: 11.5px;
+  color: var(--text-faint);
+}
+.gb__profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+.gb__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.gb__chip {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--btn-secondary-bg);
+  color: var(--text);
+}
+.gb__chip:hover {
+  background: var(--btn-secondary-bg-hover);
+}
+.gb__none {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+.gb__add {
+  display: flex;
+  gap: 8px;
+}
+.gb__add .input {
+  flex: 1;
+}

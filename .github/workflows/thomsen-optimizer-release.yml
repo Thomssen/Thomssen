@@ -1,0 +1,78 @@
+name: Thomsen Optimizer - release
+
+# Builds the Windows (x64) NSIS installer and publishes it to a GitHub Release,
+# together with the signed updater manifest (latest.json) the app's updater reads.
+#
+# One-time setup (see thomsen-optimizer/docs/RELEASING.md):
+#   1. npx tauri signer generate -w thomsen-optimizer.key
+#   2. Repository secrets:   TAURI_SIGNING_PRIVATE_KEY, TAURI_SIGNING_PRIVATE_KEY_PASSWORD
+#   3. Repository variable:  TAURI_UPDATER_PUBKEY  (the contents of the generated .pub file)
+# Without the key the installer is still built, but updates stay disabled in that build.
+
+on:
+  push:
+    tags:
+      - "optimizer-v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: thomsen-optimizer
+    env:
+      TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+      UPDATER_PUBKEY: ${{ vars.TAURI_UPDATER_PUBKEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: thomsen-optimizer/package-lock.json
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: thomsen-optimizer
+
+      - run: npm ci
+      - name: Run all tests before building
+        run: |
+          npm run typecheck
+          npm test
+          cargo test -p thomsen-optimizer-core
+
+      - name: Configure updater signing
+        shell: bash
+        run: |
+          if [ -n "$UPDATER_PUBKEY" ] && [ -n "$TAURI_SIGNING_PRIVATE_KEY" ]; then
+            node -e '
+              const fs = require("fs");
+              const p = "src-tauri/tauri.conf.json";
+              const c = JSON.parse(fs.readFileSync(p, "utf8"));
+              c.plugins.updater.pubkey = process.env.UPDATER_PUBKEY;
+              c.bundle.createUpdaterArtifacts = true;
+              fs.writeFileSync(p, JSON.stringify(c, null, 2));
+            '
+            echo "SIGNED_UPDATES=true" >> "$GITHUB_ENV"
+          else
+            echo "::warning::No updater signing key configured - building an installer with automatic updates disabled."
+          fi
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: thomsen-optimizer
+          tagName: ${{ github.ref_name }}
+          releaseName: "Thomsen Optimizer ${{ github.ref_name }}"
+          releaseBody: "Free, transparent and reversible gaming optimizer for Windows. See the changelog in the repository for details."
+          releaseDraft: true
+          prerelease: false
+          uploadUpdaterJson: ${{ env.SIGNED_UPDATES == 'true' }}
+          args: --target x86_64-pc-windows-msvc

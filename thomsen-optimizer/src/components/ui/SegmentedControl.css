@@ -1,0 +1,50 @@
+.segmented {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  gap: 2px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+}
+.segmented.is-disabled {
+  opacity: 0.5;
+}
+
+/* The active pill, as one element that slides between items instead of
+   each item painting its own background - measured in SegmentedControl.tsx
+   off the real button, so it lands exactly regardless of label width. */
+.segmented__indicator {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  bottom: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--btn-primary-bg);
+  transition: transform var(--dur) var(--ease-out), width var(--dur) var(--ease-out);
+  pointer-events: none;
+}
+
+.segmented__item {
+  position: relative;
+  z-index: 1;
+  height: 28px;
+  padding-inline: 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease);
+}
+.segmented--sm .segmented__item {
+  height: 24px;
+  padding-inline: 11px;
+  font-size: 12px;
+}
+.segmented__item:hover:not(:disabled):not(.is-active) {
+  color: var(--text);
+}
+.segmented__item.is-active {
+  color: var(--btn-primary-text);
+}

@@ -1,0 +1,31 @@
+THOMSEN OPTIMIZER - LICENSE AGREEMENT
+
+Thomsen Optimizer is free software published by Thomsen Software.
+There is no price, subscription, license key, account or advertising.
+
+1. WHAT IT DOES
+Thomsen Optimizer analyses your Windows PC and, only when you choose, changes
+supported Windows settings (power plan, Game Mode, Game Bar capture, startup
+entries, per-app graphics preference), closes applications you select and
+deletes temporary files you select. Every settings change is recorded locally
+and can be restored. Deleted files and closed applications cannot be restored
+by Thomsen Optimizer.
+
+2. NO GUARANTEES
+Results depend on your hardware, drivers and games. Thomsen Optimizer does not
+promise any FPS increase; use the built-in measurements to judge the effect on
+your own system.
+
+3. PRIVACY
+All data (settings, change history, game library, measurements) stays on your
+PC. Thomsen Optimizer contacts the internet only to check for application
+updates on GitHub, and only if update checks are enabled.
+
+4. WARRANTY
+The software is provided "as is", without warranty of any kind. To the extent
+permitted by law, Thomsen Software is not liable for damages arising from its
+use. Create a Windows restore point before making changes you are unsure about.
+
+5. THIRD-PARTY SOFTWARE
+FPS measurement uses Intel PresentMon, a separate MIT-licensed program that you
+download yourself. Thomsen Optimizer does not bundle it.

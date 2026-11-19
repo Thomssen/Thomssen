@@ -1,0 +1,137 @@
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px 12px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-faint);
+  overflow-y: auto;
+  /* Without this, `overflow-y: auto` alone makes the browser compute
+     overflow-x as auto too (not visible) - any sub-pixel-wide content
+     then shows a stray horizontal scrollbar nothing here actually
+     needs. */
+  overflow-x: hidden;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 8px 20px;
+}
+
+.sidebar__mark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sidebar__wordmark {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar__group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-faint);
+}
+.sidebar__group:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.sidebar__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding-inline: 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: left;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+.sidebar__link:hover {
+  color: var(--text);
+  background: var(--btn-secondary-bg);
+  transform: translateX(1px);
+}
+.sidebar__link.is-active {
+  color: var(--text);
+  background: var(--btn-secondary-bg-hover);
+  font-weight: 600;
+}
+.sidebar__link {
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+/* A thin neutral indicator on the active item, same idea as a Discord
+   server/channel indicator - not a full-colour fill of the row. Scales in
+   from the centre rather than just appearing, so moving between items
+   reads as a soft settle instead of an instant flip. */
+.sidebar__link.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-brand);
+  transform-origin: center;
+  animation: sidebar-indicator-in var(--dur) var(--ease-out) both;
+}
+@keyframes sidebar-indicator-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scaleY(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scaleY(1);
+  }
+}
+
+.sidebar__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border-faint);
+}
+
+.sidebar__footer-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
